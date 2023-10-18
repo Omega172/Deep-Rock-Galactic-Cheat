@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="SDK">
+      <UniqueIdentifier>{11c5f8b2-94c8-4772-b857-3014d7d3ffa6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{b8a48e4d-0725-4fd7-a76a-f55b4bb9ede1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\Console">
+      <UniqueIdentifier>{0d277b43-f5c5-4a5b-9ae9-986dcfaf8104}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ImGui">
+      <UniqueIdentifier>{9daa9e48-4861-45f1-a570-b628a6e2ebfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Kiero">
+      <UniqueIdentifier>{13e1be7c-9ce4-47a6-8c43-c6d77f03e3c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Kiero\MinHook">
+      <UniqueIdentifier>{b2d89b01-34f1-4052-9b97-f5d8b09b5966}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Kiero\MinHook\Include">
+      <UniqueIdentifier>{85fe197f-87d7-480b-a600-42ea5f953b64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hooks">
+      <UniqueIdentifier>{e4099953-4410-4161-b360-18e59e776a46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hooks\D3D11">
+      <UniqueIdentifier>{2a4d0c4a-43d5-4334-972a-8fa621933b28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI">
+      <UniqueIdentifier>{b3ac9a76-e38a-4082-86c3-7c557424a4c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Features">
+      <UniqueIdentifier>{97371129-fc8d-4d7d-9cac-1d161dcae7db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Features\GodMode">
+      <UniqueIdentifier>{4f38d3ec-5734-45a6-8939-7d23d3dc5759}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Features\InfiniteAmmo">
+      <UniqueIdentifier>{13d566cc-0087-4706-8879-9d689c568648}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\Memory">
+      <UniqueIdentifier>{6890a693-b1dc-4d8f-ad4c-6739342b4db9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Features\Fullbright">
+      <UniqueIdentifier>{136b12a1-c536-447f-ac67-6d8db36afe74}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unreal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\Console\Console.hpp">
+      <Filter>Utils\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="SDK.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGUI\imconfig.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGUI\imgui.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGUI\imgui_impl_dx11.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGUI\imgui_impl_win32.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGUI\imgui_internal.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGUI\imstb_rectpack.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGUI\imstb_textedit.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGUI\imstb_truetype.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGUI\Styles.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Kiero\kiero.h">
+      <Filter>Kiero</Filter>
+    </ClInclude>
+    <ClInclude Include="Kiero\minhook\include\MinHook.h">
+      <Filter>Kiero\MinHook\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Hooks\D3D11\D3D11Hooks.h">
+      <Filter>Hooks\D3D11</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Custom.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\GUI.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Watermark.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Feature.h">
+      <Filter>Features</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\GodMode.h">
+      <Filter>Features\GodMode</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\InfiniteAmmo.h">
+      <Filter>Features\InfiniteAmmo</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\Memory\Memory.h">
+      <Filter>Utils\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\Fullbright.h">
+      <Filter>Features\Fullbright</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SDK\CoreUObject_Package.cpp">
+      <Filter>SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="SDK\Engine_Package.cpp">
+      <Filter>SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="SDK\BasicTypes_Package.cpp">
+      <Filter>SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\Console\Console.cpp">
+      <Filter>Utils\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="SDK\FSDEngine_Package.cpp">
+      <Filter>SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="SDK\FSD_Package.cpp">
+      <Filter>SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="SDK\BP_PlayerCharacter_Package.cpp">
+      <Filter>SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="SDK\ABP_TP_Dwarf_Package.cpp">
+      <Filter>SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="SDK\BP_NavigatorCharacter_Package.cpp">
+      <Filter>SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="SDK\BP_FSDCameraManager_Package.cpp">
+      <Filter>SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGUI\imgui.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGUI\imgui_demo.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGUI\imgui_draw.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGUI\imgui_impl_dx11.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGUI\imgui_impl_win32.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGUI\imgui_tables.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGUI\imgui_widgets.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Kiero\kiero.cpp">
+      <Filter>Kiero</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\GUI.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SDK\BP_Gem_Package.cpp">
+      <Filter>SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\GodMode.cpp">
+      <Filter>Features\GodMode</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\InfiniteAmmo.cpp">
+      <Filter>Features\InfiniteAmmo</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\Memory\Memory.cpp">
+      <Filter>Utils\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\Fullbright.cpp">
+      <Filter>Features\Fullbright</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

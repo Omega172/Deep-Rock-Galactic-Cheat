@@ -1,0 +1,34 @@
+﻿#pragma once
+
+/**
+ * Name: Deep_Rock_Galactic
+ * Version: 1.38.91584.0
+ */
+
+#ifdef _MSC_VER
+	#pragma pack(push, 0x01)
+#endif
+
+namespace CG
+{
+	// --------------------------------------------------
+	// # Classes
+	// --------------------------------------------------
+	/**
+	 * BlueprintGeneratedClass Loadout_Flare_Driller.Loadout_Flare_Driller_C
+	 * Size -> 0x0008 (FullSize[0x0390] - InheritedSize[0x0388])
+	 */
+	class ALoadout_Flare_Driller_C : public ALoadoutItemProxy
+	{
+	public:
+		class USceneComponent*                                     DefaultSceneRoot;                                        // 0x0388(0x0008) BlueprintVisible, ZeroConstructor, InstancedReference, IsPlainOldData, NonTransactional, NoDestructor, HasGetValueTypeHash
+
+	public:
+		static UClass* StaticClass();
+	};
+
+}
+
+#ifdef _MSC_VER
+	#pragma pack(pop)
+#endif
