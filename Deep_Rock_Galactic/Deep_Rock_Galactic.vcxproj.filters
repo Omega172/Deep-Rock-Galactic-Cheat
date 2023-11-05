@@ -58,6 +58,9 @@
     <Filter Include="Features\Fullbright">
       <UniqueIdentifier>{136b12a1-c536-447f-ac67-6d8db36afe74}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Features\Super Pickaxe">
+      <UniqueIdentifier>{20887c5a-c658-4769-b751-f469836c39a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -134,6 +137,9 @@
     </ClInclude>
     <ClInclude Include="Features\Fullbright.h">
       <Filter>Features\Fullbright</Filter>
+    </ClInclude>
+    <ClInclude Include="Features\SuperPickaxe.h">
+      <Filter>Features\Super Pickaxe</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -214,6 +220,9 @@
     </ClCompile>
     <ClCompile Include="Features\Fullbright.cpp">
       <Filter>Features\Fullbright</Filter>
+    </ClCompile>
+    <ClCompile Include="Features\SuperPickaxe.cpp">
+      <Filter>Features\Super Pickaxe</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

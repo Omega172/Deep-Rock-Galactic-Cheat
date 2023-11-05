@@ -5,10 +5,10 @@ void GodMode::Run()
 {
 	if (!Initalized)
 		return;
+	
+	std::unique_ptr<Unreal>::pointer pUnreal = unreal.get();
 
-	auto pUnreal = unreal.get();
-
-	auto DRGPlayer = pUnreal->GetDRGPlayer();
+	CG::ABP_PlayerCharacter_C* DRGPlayer = pUnreal->GetDRGPlayer();
 
 	if (!Utils::IsReadableMemory(DRGPlayer, sizeof(DRGPlayer)))
 		return;

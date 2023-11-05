@@ -35,6 +35,8 @@ bool bAimVisibleOnly = true;
 int iAimbotFOV = 90;
 bool bDrawFOV = false;
 
+bool bDrawPossibleSpawnLocations = false;
+
 ImU32 Black = ImGui::ColorConvertFloat4ToU32({ 0.f, 0.f, 0.f, 1.f });
 ImU32 White = ImGui::ColorConvertFloat4ToU32({ 1.f, 1.f, 1.f, 1.f });
 
@@ -135,6 +137,8 @@ void GUI::Render()
 			godMode.get()->DrawMenuItems();
 			ImGui::Spacing();
 			infiniteAmmo.get()->DrawMenuItems();
+			ImGui::Spacing();
+			superPickaxe.get()->DrawMenuItems();
 
 			ImGui::Spacing();
 
@@ -160,6 +164,7 @@ void GUI::Render()
 			ImGui::Checkbox("Names", &bNameESP);
 			ImGui::Checkbox("Tracers", &bTracers);
 			ImGui::Checkbox("Recources", &bResourceESP);
+			ImGui::Checkbox("Possible Spawn Locations", &bDrawPossibleSpawnLocations);
 
 			ImGui::Spacing();
 
@@ -238,6 +243,39 @@ void GUI::Render()
 
 	//
 	// End Other Render Stuff
+	//
+
+	//
+	// Start Testing Stuff
+	//
+
+	std::vector<CG::UTerrainMaterial*> pTerrainObjects = pUnreal->GetAllTerrainObjects();
+	
+	for (CG::UTerrainMaterial* TerrainObject : pTerrainObjects)
+	{
+		if (!TerrainObject)
+			continue;
+
+		CG::UResourceData* pResourceData = TerrainObject->ResourceData;
+		if (!pResourceData)
+			continue;
+
+		if (!Utils::IsReadableMemory(pResourceData, sizeof(pResourceData)))
+			continue;
+
+		CG::FText Title = pResourceData->Title;
+		CG::FText* Test = &Title;
+
+		if (!Utils::IsReadableMemory(&Title, sizeof(Title)))
+			continue;
+
+		std::string Name = pResourceData->Title.ToString();
+
+		continue;
+	}
+
+	//
+	// End Testing Stuff
 	//
 }
 
@@ -632,7 +670,7 @@ void OtherESP(Unreal* pUnreal, CG::AActor* Actor)
 		Name = "Treasure Box";
 		Color = Magenta;
 	}
-	else if (AName.starts_with("BP_RepairTreasurebotItem_C"))
+	else if (AName.starts_with("BP_RepairTreasureboxItem_C"))
 	{
 		Name = "Treasure Box Part";
 		Color = Magenta;
@@ -681,6 +719,16 @@ void OtherESP(Unreal* pUnreal, CG::AActor* Actor)
 	{
 		Name = "Boolo Cap";
 		Color = Cyan;
+	}
+	else if (AName.starts_with("BP_SpawnDroppod"))
+	{
+		Name = "Drop Pod";
+		Color = Magenta;
+	}
+	else if (AName.starts_with("MiningPodCall") && bDrawPossibleSpawnLocations)
+	{
+		Name = "Mining Pod Calldown Location";
+		Color = Magenta;
 	}
 	else
 		return;

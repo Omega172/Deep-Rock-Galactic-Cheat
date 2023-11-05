@@ -1,22 +1,21 @@
 #pragma once
 #include "Feature.h"
 
-class InfiniteAmmo : Feature
+class SuperPickaxe : Feature
 {
 private:
 	bool Initalized = false;
 
 public:
-	bool bInfiniteAmmo = false;
-	bool bNoRecoil = false;
+	bool bSuperPickaxe = false;
+	float fDigSize = 1337.f;
+	int iHitsNeeded = 1;
 
 private:
 	bool bOnce = false;
-	int msDelayTime = 1000;
-	long long msLastTime = std::chrono::milliseconds(500).count();
 
 public:
-	InfiniteAmmo() {};
+	SuperPickaxe() {};
 
 	// Handle setup, like hook creation and variable initalization
 	bool Setup() override
@@ -29,7 +28,7 @@ public:
 	// Handle clean up, like restoring hooked functions 
 	void Destroy() override
 	{
-		bInfiniteAmmo = false;
+		bSuperPickaxe = false;
 
 		Run();
 
@@ -42,12 +41,12 @@ public:
 	// This should be run in the ImGUI draw loop, used to draw anything to the menu
 	void DrawMenuItems() override
 	{
-		//if (ImGui::Button("Restore Ammo"))
-			//bInfiniteAmmo = true;
-
-		//ImGui::SliderInt("Delay Time", &msDelayTime, 500, 10000);
-		ImGui::Checkbox("Infinite Ammo", &bInfiniteAmmo);
-		ImGui::Checkbox("No Recoil", &bNoRecoil);
+		ImGui::Checkbox("Super Pickaxe", &bSuperPickaxe);
+		if (bSuperPickaxe)
+		{
+			ImGui::SliderFloat("Dig Size", &fDigSize, 1.f, 10000.f);
+			ImGui::SliderInt("Hits Needed", &iHitsNeeded, 1.f, 5.f);
+		}
 	}
 
 	// This should be run at the top of the ImGUI draw loop, used to render things like ESP, Tracers, and Debug Info

@@ -21,8 +21,7 @@ namespace CG
 	{
 	public:
 		ENUM_ModularLamps                                          Index;                                                   // 0x0000(0x0001)  (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-		unsigned char                                              UnknownData_PZ9L[0x7];                                   // 0x0001(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY) ()
-		struct FSTRUCT_Lamp                                        ReturnValue;                                             // 0x0008(0x0010)  (ConstParm, Parm, OutParm, ReturnParm, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+		unsigned char                                              UnknownData_PZ9L[0x7];                                          // 0x0008(0x0010)  (ConstParm, Parm, OutParm, ReturnParm, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 	};
 
 	/**

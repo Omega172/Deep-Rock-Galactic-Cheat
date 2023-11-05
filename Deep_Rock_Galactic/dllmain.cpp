@@ -39,6 +39,7 @@ bool Init()
 	fullbright.get()->Setup();
 	godMode.get()->Setup();
 	infiniteAmmo.get()->Setup();
+	superPickaxe.get()->Setup();
 
 	return true;
 }
@@ -74,6 +75,7 @@ DWORD WINAPI MainThread(LPVOID lpParam)
 		fullbright.get()->Run();
 		godMode.get()->Run();
 		infiniteAmmo.get()->Run();
+		superPickaxe.get()->Run();
 
 		/*
 		if (pUnreal->BL3Player && pUnreal->RecoilControlComponent)
@@ -107,6 +109,7 @@ DWORD WINAPI MainThread(LPVOID lpParam)
 	fullbright.get()->Destroy();
 	godMode.get()->Destroy();
 	infiniteAmmo.get()->Destroy();
+	superPickaxe.get()->Destroy();
 
 	std::this_thread::sleep_for(std::chrono::seconds(3));
 	FreeLibraryAndExitThread((HMODULE)lpParam, EXIT_SUCCESS);

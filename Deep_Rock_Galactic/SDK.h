@@ -2119,3 +2119,6 @@ inline std::unique_ptr<GodMode> godMode = std::make_unique<GodMode>();
 
 #include "Features/InfiniteAmmo.h"
 inline std::unique_ptr<InfiniteAmmo> infiniteAmmo = std::make_unique<InfiniteAmmo>();
+
+#include "Features/SuperPickaxe.h"
+inline std::unique_ptr<SuperPickaxe> superPickaxe = std::make_unique<SuperPickaxe>();

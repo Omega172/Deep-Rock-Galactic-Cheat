@@ -6,7 +6,7 @@ void InfiniteAmmo::Run()
 	if (!Initalized)
 		return;
 
-	if (!bInfiniteAmmo)
+	if (!bInfiniteAmmo && !bNoRecoil)
 		return;
 
 	auto pUnreal = unreal.get();
@@ -29,9 +29,17 @@ void InfiniteAmmo::Run()
 		return;
 
 	auto pWeapon = static_cast<CG::AAmmoDrivenWeapon*>(pItem);
-	if (pWeapon && !pWeapon->IsClipFull())
+	if (bInfiniteAmmo && pWeapon && !pWeapon->IsClipFull())
 	{
 		pWeapon->InstantlyReload();
 		pWeapon->Client_RefillAmmo(100.f);
+	}
+
+	if (bNoRecoil && pWeapon)
+	{
+		pWeapon->RecoilSettings.RecoilPitch.Max = 0.f;
+		pWeapon->RecoilSettings.RecoilYaw.Max = 0.f;
+		pWeapon->RecoilSettings.RecoilRoll.Max = 0.f;
+		pWeapon->RecoilSettings.Mass = 0.f;
 	}
 }

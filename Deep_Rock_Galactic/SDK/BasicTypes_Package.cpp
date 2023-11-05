@@ -702,7 +702,7 @@ namespace CG
 	{
 		return ObjectPointer != nullptr ? InterfacePointer : nullptr;
 	}
-
+	
 	/**
 	 * Function:
 	 * 		RVA    -> 0x00000000
