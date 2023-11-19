@@ -62,30 +62,10 @@ DWORD WINAPI MainThread(LPVOID lpParam)
 	{
 		auto pUnreal = unreal.get();
 
-		/*
-		if (pUnreal->OakCharacterMovement)
-		{
-			void* movementArgs[1] = { pUnreal->OakCharacterMovement };
-			speedHack.get()->Run(movementArgs, 1);
-
-			flyHack.get()->Run(movementArgs, 1);
-		}
-		*/
-
 		fullbright.get()->Run();
 		godMode.get()->Run();
 		infiniteAmmo.get()->Run();
 		superPickaxe.get()->Run();
-
-		/*
-		if (pUnreal->BL3Player && pUnreal->RecoilControlComponent)
-		{
-			void* weaponStuffArgs[2] = { pUnreal->RecoilControlComponent, pUnreal->BL3Player->GetActiveWeapon(NULL) };
-			weaponStuff.get()->Run(weaponStuffArgs, 2);
-
-			pUnreal->BL3Player->bCanUseWeaponWhileSprinting = true;
-		}
-		*/
 
 		if (GetAsyncKeyState(UnloadKey) & 0x1)
 			bShouldRun = false;

@@ -249,9 +249,9 @@ void GUI::Render()
 	// Start Testing Stuff
 	//
 
-	std::vector<CG::UTerrainMaterial*> pTerrainObjects = pUnreal->GetAllTerrainObjects();
+	//std::vector<CG::UTerrainMaterial*> pTerrainObjects = pUnreal->GetAllTerrainObjects();
 	
-	for (CG::UTerrainMaterial* TerrainObject : pTerrainObjects)
+	/*for (CG::UTerrainMaterial* TerrainObject : pTerrainObjects)
 	{
 		if (!TerrainObject)
 			continue;
@@ -272,7 +272,7 @@ void GUI::Render()
 		std::string Name = pResourceData->Title.ToString();
 
 		continue;
-	}
+	}*/
 
 	//
 	// End Testing Stuff
