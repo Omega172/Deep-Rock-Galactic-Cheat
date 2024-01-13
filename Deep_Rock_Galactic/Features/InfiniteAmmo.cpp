@@ -28,7 +28,7 @@ void InfiniteAmmo::Run()
 	if (!pItem->IsA(CG::AAmmoDrivenWeapon::StaticClass()))
 		return;
 
-	auto pWeapon = static_cast<CG::AAmmoDrivenWeapon*>(pItem);
+	CG::AAmmoDrivenWeapon* pWeapon = static_cast<CG::AAmmoDrivenWeapon*>(pItem);
 	if (bInfiniteAmmo && pWeapon && !pWeapon->IsClipFull())
 	{
 		pWeapon->InstantlyReload();
@@ -38,8 +38,14 @@ void InfiniteAmmo::Run()
 	if (bNoRecoil && pWeapon)
 	{
 		pWeapon->RecoilSettings.RecoilPitch.Max = 0.f;
+		pWeapon->RecoilSettings.RecoilPitch.Min = 0.f;
 		pWeapon->RecoilSettings.RecoilYaw.Max = 0.f;
+		pWeapon->RecoilSettings.RecoilYaw.Min = 0.f;
 		pWeapon->RecoilSettings.RecoilRoll.Max = 0.f;
+		pWeapon->RecoilSettings.RecoilRoll.Min = 0.f;
 		pWeapon->RecoilSettings.Mass = 0.f;
+
+		pWeapon->RecoilSettings.SpringStiffness = 0.f;
+		pWeapon->RecoilSettings.CriticalDampening = 0.f;
 	}
 }
