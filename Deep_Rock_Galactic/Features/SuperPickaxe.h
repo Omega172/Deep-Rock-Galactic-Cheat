@@ -45,7 +45,7 @@ public:
 		if (bSuperPickaxe)
 		{
 			ImGui::SliderFloat("Dig Size", &fDigSize, 1.f, 10000.f);
-			ImGui::SliderInt("Hits Needed", &iHitsNeeded, 1.f, 5.f);
+			ImGui::SliderInt("Hits Needed", &iHitsNeeded, 1, 5);
 		}
 	}
 
