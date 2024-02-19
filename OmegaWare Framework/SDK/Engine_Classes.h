@@ -6803,7 +6803,9 @@ namespace CG
 		unsigned char                                              UnknownData_AE97[0xC];                                   // 0x006C(0x000C) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class UWorld*                                              World;                                                   // 0x0078(0x0008) ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected
 		class UGameInstance*                                       GameInstance;                                            // 0x0080(0x0008) ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected
-		unsigned char                                              UnknownData_TC33[0x2D8];                                 // 0x0088(0x02D8) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_TC33[0x28];                                 // 0x0088(0x02D8) MISSED OFFSET (PADDING)
+		int32_t													   ViewMode;												// 0x00B0(0x0004) Manually Added
+		unsigned char											   UnknownData_0[0x2AC];
 
 	public:
 		void SSSwapControllers();

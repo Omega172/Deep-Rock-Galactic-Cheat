@@ -177,6 +177,9 @@ namespace Cheat
 
 #include "Features/Feature.h" // Include the Feature.h file that contains the Feature class that is used to create the features for the framework
 #include "Features/ExampleFeature/ExampleFeature.h"
+#include "Features/Fullbright/Fullbright.h"
+#include "Features/PlayerModifications/PlayerModifications.h"
+#include "Features/WeaponModifications/WeaponModifications.h"
 
 // https://stackoverflow.com/questions/13048301/pointer-to-array-of-base-class-populate-with-derived-class
 inline std::vector<std::unique_ptr<Feature>> Features; // A vector of unique pointers to the Feature class that is used to store the features for the framework

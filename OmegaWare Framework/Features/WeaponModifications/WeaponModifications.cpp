@@ -55,20 +55,20 @@ void WeaponModifications::Run() {
 	if (!Initialized)
 		return;
 
-	auto pUnreal = Cheat::unreal.get();
+	Unreal* pUnreal = Cheat::unreal.get();
 	if (!IsValidObjectPtr(pUnreal))
 		return;
 
-	auto pLocalPlayer = pUnreal->GetLocalPlayer();
+	CG::ULocalPlayer* pLocalPlayer = pUnreal->GetLocalPlayer();
 	if (!IsValidObjectPtr(pLocalPlayer))
 		return;
 
-	auto pDRGPlayer = static_cast<CG::ABP_PlayerCharacter_C*>(pUnreal->GetAcknowledgedPawn());
+	CG::ABP_PlayerCharacter_C* pDRGPlayer = static_cast<CG::ABP_PlayerCharacter_C*>(pUnreal->GetAcknowledgedPawn());
 	if (!IsValidObjectPtr(pDRGPlayer))
 		return;
 
 
-	auto pItem = pDRGPlayer->GetEquippedItem();
+	CG::AItem* pItem = pDRGPlayer->GetEquippedItem();
 	if (!IsValidObjectPtr(pItem))
 		return;
 
@@ -77,7 +77,7 @@ void WeaponModifications::Run() {
 
 	pItem->ManualCooldownDelay = bNoOverheating ? 0.f : 1.f;
 
-	auto pItemID = pItem->ItemID;
+	CG::UItemID* pItemID = pItem->ItemID;
 	if (!IsValidObjectPtr(pItemID))
 		return;
 
@@ -89,7 +89,7 @@ void WeaponModifications::Run() {
 
 	case CG::EItemCategory::PrimaryWeapon:
 	case CG::EItemCategory::SecondaryWeapon:
-		auto pWeapon = static_cast<CG::AAmmoDrivenWeapon*>(pItem);
+		CG::AAmmoDrivenWeapon* pWeapon = static_cast<CG::AAmmoDrivenWeapon*>(pItem);
 		if (!IsValidObjectPtr(pWeapon))
 			break;
 

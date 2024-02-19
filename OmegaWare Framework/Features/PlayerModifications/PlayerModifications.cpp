@@ -20,15 +20,15 @@ bool PlayerModifications::Setup()
 void PlayerModifications::Destroy() {
 	Initialized = false;
 
-	auto pUnreal = Cheat::unreal.get();
+	Unreal* pUnreal = Cheat::unreal.get();
 	if (!IsValidObjectPtr(pUnreal) || 1)
 		return;
 
-	auto pDRGPlayer = static_cast<CG::ABP_PlayerCharacter_C*>(pUnreal->GetAcknowledgedPawn());
+	CG::ABP_PlayerCharacter_C* pDRGPlayer = static_cast<CG::ABP_PlayerCharacter_C*>(pUnreal->GetAcknowledgedPawn());
 	if (!IsValidObjectPtr(pDRGPlayer))
 		return;
 
-	auto pHealthComponent = pDRGPlayer->HealthComponent;
+	CG::UPlayerHealthComponent* pHealthComponent = pDRGPlayer->HealthComponent;
 	if (!IsValidObjectPtr(pHealthComponent))
 		return;
 
@@ -58,15 +58,15 @@ void PlayerModifications::Run() {
 	if (!Initialized)
 		return;
 
-	auto pUnreal = Cheat::unreal.get();
+	Unreal* pUnreal = Cheat::unreal.get();
 	if (!IsValidObjectPtr(pUnreal))
 		return;
 
-	auto pDRGPlayer = static_cast<CG::ABP_PlayerCharacter_C*>(pUnreal->GetAcknowledgedPawn());
+	CG::ABP_PlayerCharacter_C* pDRGPlayer = static_cast<CG::ABP_PlayerCharacter_C*>(pUnreal->GetAcknowledgedPawn());
 	if (!IsValidObjectPtr(pDRGPlayer))
 		return;
 	
-	auto pHealthComponent = pDRGPlayer->HealthComponent;
+	CG::UPlayerHealthComponent* pHealthComponent = pDRGPlayer->HealthComponent;
 	if (!IsValidObjectPtr(pHealthComponent))
 		return;
 

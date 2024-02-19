@@ -108,6 +108,9 @@
     <ClCompile Include="Config\Config.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Features\ExampleFeature\ExampleFeature.cpp" />
+    <ClCompile Include="Features\Fullbright\Fullbright.cpp" />
+    <ClCompile Include="Features\PlayerModifications\PlayerModifications.cpp" />
+    <ClCompile Include="Features\WeaponModifications\WeaponModifications.cpp" />
     <ClCompile Include="GUI\GUI.cpp" />
     <ClCompile Include="ImGUI\imgui.cpp" />
     <ClCompile Include="ImGUI\imgui_demo.cpp" />
@@ -126,6 +129,7 @@
     <ClCompile Include="SDK\BasicTypes_Package.cpp" />
     <ClCompile Include="SDK\CoreUObject_Package.cpp" />
     <ClCompile Include="SDK\Engine_Package.cpp" />
+    <ClCompile Include="SDK\FSD_Package.cpp" />
     <ClCompile Include="Utils\Console\Console.cpp" />
     <ClCompile Include="Utils\Logging\Logging.cpp" />
     <ClCompile Include="Utils\Utils.cpp" />
@@ -134,6 +138,9 @@
     <ClInclude Include="Config\Config.h" />
     <ClInclude Include="Features\ExampleFeature\ExampleFeature.h" />
     <ClInclude Include="Features\Feature.h" />
+    <ClInclude Include="Features\Fullbright\Fullbright.h" />
+    <ClInclude Include="Features\PlayerModifications\PlayerModifications.h" />
+    <ClInclude Include="Features\WeaponModifications\WeaponModifications.h" />
     <ClInclude Include="GUI\Custom.h" />
     <ClInclude Include="GUI\GUI.h" />
     <ClInclude Include="GUI\Watermark.h" />
