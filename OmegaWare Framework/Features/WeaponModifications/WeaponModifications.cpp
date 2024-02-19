@@ -80,7 +80,6 @@ void WeaponModifications::Run() {
 		return;
 
 	CG::EItemCategory iCategory = pItemID->GetItemCategory();
-	std::cout << static_cast<int>(iCategory) << "\n";
 	switch (iCategory) {
 	default:
 		break;
