@@ -16,17 +16,17 @@ bool ExampleFeature::Setup()
 		return false;
 	}
 
-	Initalized = true;
-	return Initalized;
+	Initialized = true;
+	return Initialized;
 }
 
-void ExampleFeature::Destroy() { Initalized = false; }
+void ExampleFeature::Destroy() { Initialized = false; }
 
 void ExampleFeature::HandleKeys() {}
 
 void ExampleFeature::DrawMenuItems()
 {
-	if (!Initalized)
+	if (!Initialized)
 		return;
 
 	ImGui::SameLine();
