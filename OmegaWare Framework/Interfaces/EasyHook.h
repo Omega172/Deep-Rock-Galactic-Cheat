@@ -3,20 +3,20 @@
 #include "../kiero/minhook/include/MinHook.h"
 
 #define CreateHook(a) \
-	checkStatus(#a, MH_CreateHook(a, &h ## a, reinterpret_cast<LPVOID*>(&o ## a)), "Created");
+	CheckStatus(#a, MH_CreateHook(a, &h ## a, reinterpret_cast<LPVOID*>(&o ## a)), "Created");
 
 #define EnableHook(a) \
-	checkStatus(#a, MH_EnableHook(a), "Enabled");
+	CheckStatus(#a, MH_EnableHook(a), "Enabled");
 
 #define DisableHook(a) \
-	checkStatus(#a, MH_DisableHook(a), "Disabled");
+	CheckStatus(#a, MH_DisableHook(a), "Disabled");
 
-#define HOOK_DEF(a, b, c) \
+#define DefineHook(a, b, c) \
 	typedef a (*t ## b) c; \
 	static inline t ## b o ## b = NULL; \
 	static a h ## b ## c
 
-inline bool checkStatus(std::string name, MH_STATUS status, std::string reason)
+inline bool CheckStatus(std::string name, MH_STATUS status, std::string reason)
 {
     if (status != MH_ERROR_ALREADY_CREATED && status != MH_ERROR_ALREADY_INITIALIZED)
         return true;
