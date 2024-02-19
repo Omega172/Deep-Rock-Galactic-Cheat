@@ -22,8 +22,8 @@ namespace Cheat
 			if (kiero::bind(8, reinterpret_cast<void**>(&oPresent), hkPresent) != kiero::Status::Success)
 				return false;
 
-			if (kiero::bind(13, reinterpret_cast<void**>(&oResizeBuffers), hkResizeBuffers) != kiero::Status::Success)
-				return false;
+			//if (kiero::bind(13, reinterpret_cast<void**>(&oResizeBuffers), hkResizeBuffers) != kiero::Status::Success)
+				//return false;
 		}
 		else
 			return false;
