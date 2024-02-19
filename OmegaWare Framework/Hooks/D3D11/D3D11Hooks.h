@@ -16,6 +16,7 @@
 // Define function pointers for Present and WndProc
 typedef HRESULT(__stdcall* Present) (IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT Flags);
 typedef LRESULT(CALLBACK* WNDPROC)(HWND, UINT, WPARAM, LPARAM);
+typedef HRESULT(__stdcall* ResizeBuffers) (IDXGISwapChain* pSwapChain, UINT BufferCount, UINT Width, UINT Height, DXGI_FORMAT NewFormat, UINT SwapChainFlags);
 
 // Declare external function for handling Win32 window messages
 extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
@@ -23,6 +24,7 @@ extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam
 // Declare variables for original Present and WndProc functions
 Present oPresent;
 WNDPROC oWndProc;
+ResizeBuffers oResizeBuffers;
 
 // Declare variables for window, device, context, and render target view
 HWND window = NULL;
@@ -123,6 +125,27 @@ HRESULT __stdcall hkPresent(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT 
 
 	// Call the original Present function
 	return oPresent(pSwapChain, SyncInterval, Flags);
+}
+
+HRESULT __stdcall hkResizeBuffers(IDXGISwapChain* pSwapChain, UINT BufferCount, UINT Width, UINT Height, DXGI_FORMAT NewFormat, UINT SwapChainFlags)
+{
+	// Call the original ResizeBuffers function
+	HRESULT hr = oResizeBuffers(pSwapChain, BufferCount, Width, Height, NewFormat, SwapChainFlags);
+
+	// Release the main render target view and call the original Present function
+	mainRenderTargetView->Release();
+
+	ID3D11Texture2D* pBackBuffer = nullptr;
+	pSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer);
+	
+	if (pBackBuffer != nullptr)
+	{
+		pDevice->CreateRenderTargetView(pBackBuffer, NULL, &mainRenderTargetView);
+		pBackBuffer->Release();
+	}
+
+	// Return the original result
+	return hr;
 }
 
 #endif // FRAMEWORK_RENDER_D3D11
