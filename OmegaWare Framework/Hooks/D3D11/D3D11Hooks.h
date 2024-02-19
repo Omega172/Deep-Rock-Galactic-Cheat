@@ -62,6 +62,41 @@ LRESULT __stdcall WndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 	return (GUI::bMenuOpen ? true : CallWindowProcA(oWndProc, hWnd, uMsg, wParam, lParam));
 }
 
+static DXGI_FORMAT GetCorrectDXGIFormat(DXGI_FORMAT currentFormat) {
+	switch (currentFormat) {
+	case DXGI_FORMAT_R8G8B8A8_UNORM_SRGB:
+		return DXGI_FORMAT_R8G8B8A8_UNORM;
+	}
+
+	return currentFormat;
+}
+
+void CreateRenderTarget(IDXGISwapChain* pSwapChain) {
+	ID3D11Texture2D* pBackBuffer = nullptr;
+	pSwapChain->GetBuffer(0, IID_PPV_ARGS(&pBackBuffer));
+	if (pBackBuffer != NULL)
+	{
+		DXGI_SWAP_CHAIN_DESC sd;
+		pSwapChain->GetDesc(&sd);
+
+		D3D11_RENDER_TARGET_VIEW_DESC desc = {};
+		desc.Format = GetCorrectDXGIFormat(sd.BufferDesc.Format);
+
+		pDevice->CreateRenderTargetView(pBackBuffer, NULL, &mainRenderTargetView);
+		desc.ViewDimension = D3D11_RTV_DIMENSION_TEXTURE2DMS;
+		if (FAILED(pDevice->CreateRenderTargetView(pBackBuffer, &desc, &mainRenderTargetView))) {
+			desc.ViewDimension = D3D11_RTV_DIMENSION_TEXTURE2D;
+			if (FAILED(pDevice->CreateRenderTargetView(pBackBuffer, &desc, &mainRenderTargetView))) {
+				if (FAILED(pDevice->CreateRenderTargetView(pBackBuffer, NULL, &mainRenderTargetView))) {
+					Utils::LogError(Utils::GetLocation(CurrentLoc), "Failed to create render target view");
+				}
+			}
+		}
+
+		pBackBuffer->Release();
+	}
+}
+
 // Hooked Present function
 HRESULT __stdcall hkPresent(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT Flags)
 {
@@ -77,11 +112,8 @@ HRESULT __stdcall hkPresent(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT 
 			DXGI_SWAP_CHAIN_DESC sd;
 			pSwapChain->GetDesc(&sd);
 			window = sd.OutputWindow;
-			ID3D11Texture2D* pBackBuffer;
-			pSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer);
-			if (pBackBuffer != NULL)
-				pDevice->CreateRenderTargetView(pBackBuffer, NULL, &mainRenderTargetView);
-			pBackBuffer->Release();
+			
+			CreateRenderTarget(pSwapChain);
 
 			// Hook the window procedure and initialize ImGui
 			oWndProc = (WNDPROC)SetWindowLongPtrA(window, GWLP_WNDPROC, (LONG_PTR)WndProc);
@@ -93,6 +125,11 @@ HRESULT __stdcall hkPresent(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT 
 		}
 		else
 			return oPresent(pSwapChain, SyncInterval, Flags);
+	}
+
+	if (!mainRenderTargetView)
+	{
+		
 	}
 
 	// Begin rendering ImGui
@@ -129,23 +166,9 @@ HRESULT __stdcall hkPresent(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT 
 
 HRESULT __stdcall hkResizeBuffers(IDXGISwapChain* pSwapChain, UINT BufferCount, UINT Width, UINT Height, DXGI_FORMAT NewFormat, UINT SwapChainFlags)
 {
-	// Call the original ResizeBuffers function
-	HRESULT hr = oResizeBuffers(pSwapChain, BufferCount, Width, Height, NewFormat, SwapChainFlags);
-
-	// Release the main render target view and call the original Present function
 	mainRenderTargetView->Release();
 
-	ID3D11Texture2D* pBackBuffer = nullptr;
-	pSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer);
-	
-	if (pBackBuffer != nullptr)
-	{
-		pDevice->CreateRenderTargetView(pBackBuffer, NULL, &mainRenderTargetView);
-		pBackBuffer->Release();
-	}
-
-	// Return the original result
-	return hr;
+	return oResizeBuffers(pSwapChain, BufferCount, Width, Height, NewFormat, SwapChainFlags);;
 }
 
 #endif // FRAMEWORK_RENDER_D3D11
