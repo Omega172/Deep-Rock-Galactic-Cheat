@@ -13,3 +13,5 @@ namespace Utils
 
 	std::string GetDocumentsFolder();
 }
+
+#define IsValidObjectPtr(lpAddress) (lpAddress && Utils::IsReadableMemory(lpAddress, sizeof(*lpAddress)))
