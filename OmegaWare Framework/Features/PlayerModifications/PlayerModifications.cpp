@@ -45,7 +45,7 @@ void PlayerModifications::DrawMenuItems()
 
 	ImGui::SameLine();
 
-	ImGui::BeginChild("GODMODE", ImVec2(ImGui::GetContentRegionAvail().x / 2, ImGui::GetContentRegionAvail().y / 2), ImGuiChildFlags_Border);
+	ImGui::BeginChild("GODMODE", ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y / 2), ImGuiChildFlags_Border);
 	{
 		ImGui::Checkbox(Cheat::localization->Get("GODMODE").c_str(), &bGodMode);
 	}

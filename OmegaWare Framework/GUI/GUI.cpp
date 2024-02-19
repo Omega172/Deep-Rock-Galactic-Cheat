@@ -11,7 +11,7 @@ void GUI::Render()
 		ImGui::SetNextWindowSize(ImVec2(WIDTH, HEIGHT));
 		ImGui::Begin(Cheat::Title.c_str(), NULL, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoCollapse);
 
-		ImGui::BeginChild("Cheat", ImVec2(ImGui::GetContentRegionAvail().x / 3, ImGui::GetContentRegionAvail().y), true);
+		ImGui::BeginChild("Cheat", ImVec2(ImGui::GetContentRegionAvail().x / 3, ImGui::GetContentRegionAvail().y / 2), true);
 		{
 			ImGui::Text(Cheat::localization->Get("CHEAT").c_str());
 			ImGui::Spacing();

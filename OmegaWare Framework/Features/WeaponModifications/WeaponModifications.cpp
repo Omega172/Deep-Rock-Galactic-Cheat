@@ -37,9 +37,7 @@ void WeaponModifications::DrawMenuItems()
 	if (!Initialized)
 		return;
 
-	ImGui::SameLine();
-
-	ImGui::BeginChild("WeaponModifications", ImVec2(ImGui::GetContentRegionAvail().x / 2, ImGui::GetContentRegionAvail().y / 2), ImGuiChildFlags_Border);
+	ImGui::BeginChild("WeaponModifications", ImVec2(ImGui::GetContentRegionAvail().x / 3, ImGui::GetContentRegionAvail().y), ImGuiChildFlags_Border);
 	{
 		ImGui::Checkbox(Cheat::localization->Get("INFINITE_AMMO").c_str(), &bInfiniteAmmo);
 		ImGui::Checkbox(Cheat::localization->Get("NO_OVERHEATING").c_str(), &bNoOverheating);
