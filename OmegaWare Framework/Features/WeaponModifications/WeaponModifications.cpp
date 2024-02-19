@@ -16,6 +16,12 @@ bool WeaponModifications::Setup()
 	if (!Cheat::localization->AddToLocale("ENG", "NO_RECOIL", "No Recoil"))
 		return false;
 
+	if (!Cheat::localization->AddToLocale("ENG", "GRAPPLE_RESTRICTIONS", "No Grapple Restrictions"))
+		return false;
+
+	if (!Cheat::localization->AddToLocale("ENG", "GRAPPLE_MAX_SPEED", "Speed"))
+		return false;
+
 	if (!Cheat::localization->SetLocale("ENG"))
 	{
 		Utils::LogError(Utils::GetLocation(CurrentLoc), "Failed to update locale ENG");
@@ -43,6 +49,11 @@ void WeaponModifications::DrawMenuItems()
 		ImGui::Checkbox(Cheat::localization->Get("NO_OVERHEATING").c_str(), &bNoOverheating);
 		ImGui::Checkbox(Cheat::localization->Get("NO_RELOAD").c_str(), &bNoReload);
 		ImGui::Checkbox(Cheat::localization->Get("NO_RECOIL").c_str(), &bNoRecoil);
+
+		ImGui::Checkbox(Cheat::localization->Get("GRAPPLE_RESTRICTIONS").c_str(), &bNoGrappleRestrictions);
+		
+		if (bNoGrappleRestrictions)
+			ImGui::SliderFloat(Cheat::localization->Get("GRAPPLE_MAX_SPEED").c_str(), &fGrappleMaxSpeed, 50.f, 500.f);
 	}
 	ImGui::EndChild();
 }
@@ -61,7 +72,7 @@ void WeaponModifications::Run() {
 	if (!IsValidObjectPtr(pLocalPlayer))
 		return;
 
-	CG::ABP_PlayerCharacter_C* pDRGPlayer = static_cast<CG::ABP_PlayerCharacter_C*>(pUnreal->GetAcknowledgedPawn());
+	auto pDRGPlayer = static_cast<CG::ABP_PlayerCharacter_C*>(pUnreal->GetAcknowledgedPawn());
 	if (!IsValidObjectPtr(pDRGPlayer))
 		return;
 
@@ -70,44 +81,72 @@ void WeaponModifications::Run() {
 	if (!IsValidObjectPtr(pItem))
 		return;
 
-	if (bInfiniteAmmo)
-		pItem->Resupply(100.f);
-
-	pItem->ManualCooldownDelay = bNoOverheating ? 0.f : 1.f;
-
 	CG::UItemID* pItemID = pItem->ItemID;
 	if (!IsValidObjectPtr(pItemID))
 		return;
 
-	CG::EItemCategory iCategory = pItemID->GetItemCategory();
-	switch (iCategory) {
-	default:
-		break;
+	if (!IsValidObjectPtr(pItemID->GetItemData())) // Important we check this, will stop us from resupplying the "pipeline" LOL
+		return;
 
-	case CG::EItemCategory::PrimaryWeapon:
-	case CG::EItemCategory::SecondaryWeapon:
-		CG::AAmmoDrivenWeapon* pWeapon = static_cast<CG::AAmmoDrivenWeapon*>(pItem);
-		if (!IsValidObjectPtr(pWeapon))
-			break;
-
-		pWeapon->HasAutomaticFire = true;
-		if (bNoReload && !pWeapon->IsClipFull())
-			pWeapon->InstantlyReload();
-
-		if (bNoRecoil) {
-			pWeapon->RecoilSettings.RecoilPitch.Max = 0.f;
-			pWeapon->RecoilSettings.RecoilPitch.Min = 0.f;
-			pWeapon->RecoilSettings.RecoilYaw.Max = 0.f;
-			pWeapon->RecoilSettings.RecoilYaw.Min = 0.f;
-			pWeapon->RecoilSettings.RecoilRoll.Max = 0.f;
-			pWeapon->RecoilSettings.RecoilRoll.Min = 0.f;
-			pWeapon->RecoilSettings.Mass = 0.f;
-
-			pWeapon->RecoilSettings.SpringStiffness = 0.f;
-			pWeapon->RecoilSettings.CriticalDampening = 0.f;
+	if (pItem->IsA(CG::AWPN_GrapplingGun_C::StaticClass())) {
+		auto pGrapplingGun = static_cast<CG::AWPN_GrapplingGun_C*>(pItem);
+		if (!IsValidObjectPtr(pGrapplingGun))
+			return;
+		
+		if (!bNoGrappleRestrictions) {
+			pGrapplingGun->MaxSpeed = 2250.f;
+			return;
 		}
 
+		pGrapplingGun->MaxSpeed = 22.50f * fGrappleMaxSpeed;
+		pGrapplingGun->MaxDistance = 9999999.f;
+
+		CG::UCoolDownItemAggregator* pCoolDown = pGrapplingGun->CoolDownAggregator;
+		if (IsValidObjectPtr(pCoolDown))
+			pCoolDown->CooldownRemaining = 0.f;
+		
+		return;
 	}
+
+
+
+	if (bInfiniteAmmo)
+		pItem->Resupply(100.f);
+
+	if (bNoOverheating) {
+		pItem->ManualCooldownDelay = 0.f;
+		pItem->CooldownRate = 99999.f;
+	}
+	else {
+		pItem->ManualCooldownDelay = 1.f;
+	}
+
+	//std::cout << (pItem->IsA(CG::AWPN_GrapplingGun_C::StaticClass()) ? "true" : "false") << '\n';
+
+	if (!pItem->IsA(CG::AAmmoDrivenWeapon::StaticClass()))
+		return;	
+
+	CG::AAmmoDrivenWeapon* pWeapon = static_cast<CG::AAmmoDrivenWeapon*>(pItem);
+	if (!IsValidObjectPtr(pWeapon))
+		return;
+
+	pWeapon->HasAutomaticFire = true;
+	if (bNoReload && !pWeapon->IsClipFull())
+		pWeapon->InstantlyReload();
+
+	if (bNoRecoil) {
+		pWeapon->RecoilSettings.RecoilPitch.Max = 0.f;
+		pWeapon->RecoilSettings.RecoilPitch.Min = 0.f;
+		pWeapon->RecoilSettings.RecoilYaw.Max = 0.f;
+		pWeapon->RecoilSettings.RecoilYaw.Min = 0.f;
+		pWeapon->RecoilSettings.RecoilRoll.Max = 0.f;
+		pWeapon->RecoilSettings.RecoilRoll.Min = 0.f;
+		pWeapon->RecoilSettings.Mass = 0.f;
+
+		pWeapon->RecoilSettings.SpringStiffness = 0.f;
+		pWeapon->RecoilSettings.CriticalDampening = 0.f;
+	}
+
 
 	/*
 	
@@ -130,6 +169,9 @@ void WeaponModifications::SaveConfig() {
 	Cheat::config->PushEntry("NO_OVERHEATING", "bool", std::to_string(bNoOverheating));
 	Cheat::config->PushEntry("NO_RELOAD", "bool", std::to_string(bNoReload));
 	Cheat::config->PushEntry("NO_RECOIL", "bool", std::to_string(bNoRecoil));
+
+	Cheat::config->PushEntry("GRAPPLE_RESTRICTIONS", "bool", std::to_string(bNoGrappleRestrictions));
+	Cheat::config->PushEntry("GRAPPLE_MAX_SPEED", "float", std::to_string(fGrappleMaxSpeed));
 }
 
 void WeaponModifications::LoadConfig()
@@ -149,4 +191,12 @@ void WeaponModifications::LoadConfig()
 	entry = Cheat::config->GetEntryByName("NO_RECOIL");
 	if (entry.Name == "NO_RECOIL")
 		bNoRecoil = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("GRAPPLE_RESTRICTIONS");
+	if (entry.Name == "GRAPPLE_RESTRICTIONS")
+		bNoGrappleRestrictions = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("GRAPPLE_MAX_SPEED");
+	if (entry.Name == "GRAPPLE_MAX_SPEED")
+		fGrappleMaxSpeed = std::stoi(entry.Value);
 }

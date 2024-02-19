@@ -20,20 +20,6 @@ bool PlayerModifications::Setup()
 void PlayerModifications::Destroy() {
 	Initialized = false;
 
-	Unreal* pUnreal = Cheat::unreal.get();
-	if (!IsValidObjectPtr(pUnreal) || 1)
-		return;
-
-	CG::ABP_PlayerCharacter_C* pDRGPlayer = static_cast<CG::ABP_PlayerCharacter_C*>(pUnreal->GetAcknowledgedPawn());
-	if (!IsValidObjectPtr(pDRGPlayer))
-		return;
-
-	CG::UPlayerHealthComponent* pHealthComponent = pDRGPlayer->HealthComponent;
-	if (!IsValidObjectPtr(pHealthComponent))
-		return;
-
-	if (!bGodModeTicker)
-		pHealthComponent->canTakeDamage = true;
 }
 
 void PlayerModifications::HandleKeys() {}
@@ -70,11 +56,13 @@ void PlayerModifications::Run() {
 	if (!IsValidObjectPtr(pHealthComponent))
 		return;
 
-	if (bGodMode && pHealthComponent->canTakeDamage)
-		pHealthComponent->canTakeDamage = bGodModeTicker = false;
+	if (bGodMode) {
+		pHealthComponent->Resupply(100.f);
+		pHealthComponent->HealArmor(100.f);
 
-	if (!bGodMode && !bGodModeTicker)
-		pHealthComponent->canTakeDamage = bGodModeTicker = true;
+		if (pDRGPlayer->IsDown())
+			pDRGPlayer->InstantRevive(pDRGPlayer, CG::EInputKeys::Use);
+	}
 }
 
 void PlayerModifications::SaveConfig() { Cheat::config->PushEntry("GODMODE", "bool", std::to_string(bGodMode)); }

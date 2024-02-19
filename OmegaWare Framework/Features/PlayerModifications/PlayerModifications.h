@@ -6,7 +6,6 @@ class PlayerModifications : public Feature
 private:
 	bool Initialized = false;
 	bool bGodMode = false;
-	bool bGodModeTicker = false;
 
 public:
 	PlayerModifications();

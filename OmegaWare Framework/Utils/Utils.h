@@ -11,7 +11,8 @@ namespace Utils
 	bool IsReadableMemory(void* ptr, size_t byteCount);
 	bool IsReadableMemory(const void* ptr, size_t byteCount); 
 
+	size_t strlen(char*    lpAddress, size_t dwMaxSize = 1024);
+	size_t wcslen(wchar_t* lpAddress, size_t dwMaxSize = 1024);
+
 	std::string GetDocumentsFolder();
 }
-
-#define IsValidObjectPtr(lpAddress) (lpAddress && Utils::IsReadableMemory(lpAddress, sizeof(*lpAddress)))

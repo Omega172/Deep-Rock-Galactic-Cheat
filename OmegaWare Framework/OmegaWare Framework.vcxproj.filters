@@ -21,10 +21,12 @@
     <ClCompile Include="SDK\BasicTypes_Package.cpp" />
     <ClCompile Include="SDK\CoreUObject_Package.cpp" />
     <ClCompile Include="SDK\Engine_Package.cpp" />
-    <ClCompile Include="Features\Fullbright\Fullbright.cpp" />
-    <ClCompile Include="Features\PlayerModifications\PlayerModifications.cpp" />
-    <ClCompile Include="Features\WeaponModifications\WeaponModifications.cpp" />
     <ClCompile Include="SDK\FSD_Package.cpp" />
+    <ClCompile Include="Features\WeaponModifications\WeaponModifications.cpp" />
+    <ClCompile Include="Features\PlayerModifications\PlayerModifications.cpp" />
+    <ClCompile Include="Features\Fullbright\Fullbright.cpp" />
+    <ClCompile Include="SDK\WPN_GrapplingGun_Package.cpp" />
+    <ClCompile Include="SDK\BP_PlayerCharacter_Package.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utils\Console\Console.h" />
@@ -58,9 +60,9 @@
     <ClInclude Include="Localization\Locales\English.h" />
     <ClInclude Include="Localization\LocaleStructs.h" />
     <ClInclude Include="SDK.h" />
-    <ClInclude Include="Features\Fullbright\Fullbright.h" />
-    <ClInclude Include="Features\PlayerModifications\PlayerModifications.h" />
     <ClInclude Include="Features\WeaponModifications\WeaponModifications.h" />
+    <ClInclude Include="Features\PlayerModifications\PlayerModifications.h" />
+    <ClInclude Include="Features\Fullbright\Fullbright.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

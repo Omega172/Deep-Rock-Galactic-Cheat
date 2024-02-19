@@ -10,6 +10,9 @@ private:
 	bool bNoReload = false;
 	bool bNoRecoil = false;
 
+	bool bNoGrappleRestrictions = false;
+	float fGrappleMaxSpeed = 100.f;
+
 public:
 	WeaponModifications();
 
