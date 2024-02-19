@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -36,13 +36,13 @@ namespace CG
 		TArray<class UMissionStat*>                                StoreModeStats;                                          // 0x02C8(0x0010) Edit, BlueprintVisible
 		class UUI_InfirmaryStats_Item_C*                           SelectedLine;                                            // 0x02D8(0x0008) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash
 		bool                                                       StoreMode;                                               // 0x02E0(0x0001) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor
-		unsigned char                                              UnknownData_BSC3[0x3];                                   // 0x02E1(0x0003) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_LFGW[0x3];                                   // 0x02E1(0x0003) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		float                                                      StoreModePause;                                          // 0x02E4(0x0004) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash
 		TArray<class UTexture2D*>                                  CategoryIcons;                                           // 0x02E8(0x0010) Edit, BlueprintVisible, DisableEditOnInstance
 		TArray<class UTexture2D*>                                  CategoryFilter;                                          // 0x02F8(0x0010) Edit, BlueprintVisible, DisableEditOnInstance
 		class AFSDPlayerController*                                OwningPlayer;                                            // 0x0308(0x0008) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash
 		bool                                                       StopStoreMode;                                           // 0x0310(0x0001) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor
-		unsigned char                                              UnknownData_HDE9[0x7];                                   // 0x0311(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_QWRD[0x7];                                   // 0x0311(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class AFSDPlayerState*                                     OwningState;                                             // 0x0318(0x0008) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash
 		bool                                                       Debug;                                                   // 0x0320(0x0001) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor
 

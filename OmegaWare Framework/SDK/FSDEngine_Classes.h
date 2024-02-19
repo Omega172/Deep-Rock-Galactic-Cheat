@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -35,7 +35,7 @@ namespace CG
 		class UTerrainMaterialCore*                                BulletBurntMaterial;                                     // 0x0038(0x0008) Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		bool                                                       PathfinderDanger : 1;                                    // 0x0040(0x0001) BIT_FIELD Edit, BlueprintVisible, BlueprintReadOnly, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		bool                                                       PathfinderPreventSpawning : 1;                           // 0x0040(0x0001) BIT_FIELD Edit, BlueprintVisible, BlueprintReadOnly, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_XIKG[0x7];                                   // 0x0041(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_CU2A[0x7];                                   // 0x0041(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class UMaterialInterface*                                  ScannerMaterial;                                         // 0x0048(0x0008) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		unsigned char                                              RenderMaterial[0x28];                                    // 0x0050(0x0028) UNKNOWN PROPERTY: SoftObjectProperty
 
@@ -56,10 +56,10 @@ namespace CG
 		unsigned char                                              CSG[0x28];                                               // 0x0048(0x0028) UNKNOWN PROPERTY: SoftClassProperty
 		class FString                                              Status;                                                  // 0x0070(0x0010) Edit, ZeroConstructor, EditConst, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		struct FCoreUObject_FBox                                   CombinedAABB;                                            // 0x0080(0x001C) Edit, ZeroConstructor, EditConst, IsPlainOldData, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_EC1C[0x4];                                   // 0x009C(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_CH30[0x4];                                   // 0x009C(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TArray<struct FBakeEntry>                                  Entries;                                                 // 0x00A0(0x0010) Edit, ZeroConstructor, EditConst, NativeAccessSpecifierPublic
 		bool                                                       IsBaking;                                                // 0x00B0(0x0001) ZeroConstructor, Transient, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_ZFL7[0x7];                                   // 0x00B1(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_KVHY[0x7];                                   // 0x00B1(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TArray<class UBakeConfig*>                                 CurrentBakeConfigs;                                      // 0x00B8(0x0010) ZeroConstructor, Transient, NativeAccessSpecifierPublic
 		class ACSGBuilder*                                         CDO;                                                     // 0x00C8(0x0008) ZeroConstructor, Transient, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 
@@ -86,7 +86,7 @@ namespace CG
 	{
 	public:
 		struct FMeshBaseProperties                                 BaseProperties;                                          // 0x0028(0x0001) Edit, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_Z258[0x7];                                   // 0x0029(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_T98U[0x7];                                   // 0x0029(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		struct FTransform                                          RelativeTransform;                                       // 0x0030(0x0030) IsPlainOldData, NoDestructor, NativeAccessSpecifierPublic
 
 	public:
@@ -103,10 +103,10 @@ namespace CG
 		struct FCSGBakedChildInstanceProperties                    Properties;                                              // 0x0060(0x0010) Edit, BlueprintVisible, NoDestructor, NativeAccessSpecifierPublic
 		struct FCoreUObject_FBox                                   ChildLocalSpaceBoundingBox;                              // 0x0070(0x001C) ZeroConstructor, Transient, IsPlainOldData, NoDestructor, NativeAccessSpecifierPublic
 		struct FCoreUObject_FBox                                   WorldSpaceBoundingBox;                                   // 0x008C(0x001C) ZeroConstructor, Transient, IsPlainOldData, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_AX56[0x8];                                   // 0x00A8(0x0008) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_NDA1[0x8];                                   // 0x00A8(0x0008) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		struct FMatrix                                             TransformMatInv;                                         // 0x00B0(0x0040) ZeroConstructor, Transient, IsPlainOldData, NoDestructor, NativeAccessSpecifierPublic
 		struct FDeepCSGFloatTree                                   TempTree;                                                // 0x00F0(0x0018) Transient, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_LAMA[0x8];                                   // 0x0108(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_G50F[0x8];                                   // 0x0108(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -119,7 +119,7 @@ namespace CG
 	class UCSGBuilderBaseSceneComponent : public USceneComponent
 	{
 	public:
-		unsigned char                                              UnknownData_31RZ[0x8];                                   // 0x01F8(0x0008) Fix Super Size
+		unsigned char                                              UnknownData_DDCR[0x8];                                   // 0x01F8(0x0008) Fix Super Size
 
 	public:
 		static UClass* StaticClass();
@@ -189,7 +189,7 @@ namespace CG
 		class UTerrainMaterialCore*                                SolidMat;                                                // 0x0260(0x0008) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		class UTerrainMaterialCore*                                BurnedMat;                                               // 0x0268(0x0008) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		class UCSGPreviewComponent*                                PreviewComponent;                                        // 0x0270(0x0008) ExportObject, ZeroConstructor, Transient, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_I4ZA[0x10];                                  // 0x0278(0x0010) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_MZ3S[0x10];                                  // 0x0278(0x0010) MISSED OFFSET (PADDING)
 
 	public:
 		void PreGenerate(class UBakeConfig* builder);
@@ -221,7 +221,7 @@ namespace CG
 	class UBakeConfig : public UObject
 	{
 	public:
-		unsigned char                                              UnknownData_XFP5[0x8];                                   // 0x0028(0x0008) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_57L0[0x8];                                   // 0x0028(0x0008) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		struct FBakeSettings                                       Settings;                                                // 0x0030(0x0010) Transient, NativeAccessSpecifierPublic
 		TMap<class FName, class UBuilderBase*>                     Objects;                                                 // 0x0040(0x0050) Transient, NativeAccessSpecifierPublic
 		TArray<class FString>                                      Warnings;                                                // 0x0090(0x0010) ZeroConstructor, Transient, NativeAccessSpecifierPublic
@@ -244,14 +244,14 @@ namespace CG
 	{
 	public:
 		struct FMeshCellNoiseProperties                            Properties;                                              // 0x0060(0x001C) Edit, BlueprintVisible, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_XD1G[0x4];                                   // 0x007C(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_D4LR[0x4];                                   // 0x007C(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		struct FBinaryTerrainMaterialCombiner                      Materials;                                               // 0x0080(0x0030) Edit, BlueprintVisible, NativeAccessSpecifierPublic
 		struct FVector                                             ReciprocalCellSize;                                      // 0x00B0(0x000C) ZeroConstructor, Transient, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_ST8N[0x4];                                   // 0x00BC(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_01K4[0x4];                                   // 0x00BC(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		struct FDeepCSGFloatTree                                   ApplyTree;                                               // 0x00C0(0x0018) Transient, NativeAccessSpecifierPublic
 		TArray<struct FVector>                                     CellPositions;                                           // 0x00D8(0x0010) ZeroConstructor, Transient, NativeAccessSpecifierPublic
 		TArray<struct FDeepCSGNode>                                CellLeaves;                                              // 0x00E8(0x0010) ZeroConstructor, Transient, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_VMD0[0x8];                                   // 0x00F8(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_1SX7[0x8];                                   // 0x00F8(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -265,7 +265,7 @@ namespace CG
 	{
 	public:
 		struct FMeshCellNoiseProperties                            Properties;                                              // 0x0200(0x001C) Edit, BlueprintVisible, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_VQ6E[0x4];                                   // 0x021C(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_EJ89[0x4];                                   // 0x021C(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		struct FBinaryTerrainMaterialCombiner                      Materials;                                               // 0x0220(0x0030) Edit, BlueprintVisible, NativeAccessSpecifierPublic
 
 	public:
@@ -288,7 +288,7 @@ namespace CG
 		struct FDeepCSGFloatTree                                   BoundingTree;                                            // 0x0118(0x0018) Transient, NativeAccessSpecifierPublic
 		struct FMatrix                                             TransformMatInv;                                         // 0x0130(0x0040) ZeroConstructor, Transient, IsPlainOldData, NoDestructor, NativeAccessSpecifierPublic
 		struct FDeepCSGTree                                        TempTree;                                                // 0x0170(0x0048) Transient, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_9Q31[0x8];                                   // 0x01B8(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_3MAX[0x8];                                   // 0x01B8(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -315,10 +315,10 @@ namespace CG
 	class USimpleMeshWithCachedTree : public UCSGBase
 	{
 	public:
-		unsigned char                                              UnknownData_UHK8[0x38];                                  // 0x0060(0x0038) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_QZGB[0x38];                                  // 0x0060(0x0038) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		struct FBinaryTerrainMaterialCombiner                      Materials;                                               // 0x0098(0x0030) Edit, BlueprintVisible, NativeAccessSpecifierPublic
 		bool                                                       InvertCSG;                                               // 0x00C8(0x0001) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_H1NQ[0x7];                                   // 0x00C9(0x0007) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_ZOKS[0x7];                                   // 0x00C9(0x0007) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -332,7 +332,7 @@ namespace CG
 	{
 	public:
 		struct FConvexNoiseProperties                              Noise;                                                   // 0x00D0(0x000C) Edit, BlueprintVisible, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_UY25[0x44];                                  // 0x00DC(0x0044) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_WFEC[0x44];                                  // 0x00DC(0x0044) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -346,7 +346,7 @@ namespace CG
 	{
 	public:
 		struct FCSGConvexColliderProperties                        Properties;                                              // 0x0120(0x0008) Edit, BlueprintVisible, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_LDVY[0x18];                                  // 0x0128(0x0018) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_IS9D[0x18];                                  // 0x0128(0x0018) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -361,7 +361,7 @@ namespace CG
 	public:
 		struct FBinaryTerrainMaterialCombiner                      Materials;                                               // 0x0200(0x0030) Edit, BlueprintVisible, NativeAccessSpecifierPublic
 		bool                                                       InvertCSG;                                               // 0x0230(0x0001) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_3E6O[0x7];                                   // 0x0231(0x0007) Fix size for supers
+		unsigned char                                              UnknownData_P467[0x7];                                   // 0x0231(0x0007) Fix size for supers
 
 	public:
 		static UClass* StaticClass();
@@ -375,7 +375,7 @@ namespace CG
 	{
 	public:
 		struct FConvexNoiseProperties                              Noise;                                                   // 0x0238(0x000C) Edit, BlueprintVisible, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_L8C8[0x4];                                   // 0x0244(0x0004) Fix size for supers
+		unsigned char                                              UnknownData_JY5Q[0x4];                                   // 0x0244(0x0004) Fix size for supers
 
 	public:
 		static UClass* StaticClass();
@@ -427,10 +427,10 @@ namespace CG
 		struct FMeshLayerProperties                                Properties;                                              // 0x0070(0x0028) Edit, BlueprintVisible, NoDestructor, NativeAccessSpecifierPublic
 		struct FGeneralTerrainMaterialCombiner                     Materials;                                               // 0x0098(0x0050) Edit, BlueprintVisible, NativeAccessSpecifierPublic
 		struct FCoreUObject_FBox                                   WorldSpaceBoundingBox;                                   // 0x00E8(0x001C) ZeroConstructor, Transient, IsPlainOldData, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_J681[0x4];                                   // 0x0104(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_M1MX[0x4];                                   // 0x0104(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		struct FDeepCSGFloatTree                                   BoundingTree;                                            // 0x0108(0x0018) Transient, NativeAccessSpecifierPublic
 		struct FDeepCSGTree                                        TempTree;                                                // 0x0120(0x0048) Transient, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_RLSH[0x8];                                   // 0x0168(0x0008) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_YZDO[0x8];                                   // 0x0168(0x0008) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		struct FMatrix                                             TransformMatInv;                                         // 0x0170(0x0040) ZeroConstructor, Transient, IsPlainOldData, NoDestructor, NativeAccessSpecifierPublic
 
 	public:
@@ -446,7 +446,7 @@ namespace CG
 	public:
 		struct FMeshLayerProperties                                Properties;                                              // 0x0200(0x0028) Edit, BlueprintVisible, NoDestructor, NativeAccessSpecifierPublic
 		struct FGeneralTerrainMaterialCombiner                     Materials;                                               // 0x0228(0x0050) Edit, BlueprintVisible, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_E10V[0x8];                                   // 0x0278(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_KDB2[0x8];                                   // 0x0278(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -460,7 +460,7 @@ namespace CG
 	{
 	public:
 		struct FCSGAddMaterialLayersProperties                     Properties;                                              // 0x0068(0x0040) Edit, BlueprintVisible, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_MHU4[0x8];                                   // 0x00A8(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_TMXA[0x8];                                   // 0x00A8(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -487,7 +487,7 @@ namespace CG
 	{
 	public:
 		struct FCSGRandomizeTransformProperties                    Properties;                                              // 0x0068(0x0054) Edit, BlueprintVisible, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_XRHZ[0x4];                                   // 0x00BC(0x0004) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_ZNTP[0x4];                                   // 0x00BC(0x0004) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -501,7 +501,7 @@ namespace CG
 	{
 	public:
 		struct FCSGRandomizeTransformProperties                    Properties;                                              // 0x0200(0x0054) Edit, BlueprintVisible, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_R5DR[0xC];                                   // 0x0254(0x000C) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_1W77[0xC];                                   // 0x0254(0x000C) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -514,7 +514,7 @@ namespace CG
 	class UCSGRandomDisable : public UCSGSingleChildBase
 	{
 	public:
-		unsigned char                                              UnknownData_GJ02[0x8];                                   // 0x0068(0x0008) Fix Super Size
+		unsigned char                                              UnknownData_FAYQ[0x8];                                   // 0x0068(0x0008) Fix Super Size
 
 	public:
 		static UClass* StaticClass();
@@ -528,7 +528,7 @@ namespace CG
 	{
 	public:
 		struct FCSGRandomDisableProperties                         Properties;                                              // 0x0200(0x0004) Edit, BlueprintVisible, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_A4HS[0xC];                                   // 0x0204(0x000C) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_LBKQ[0xC];                                   // 0x0204(0x000C) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -568,7 +568,7 @@ namespace CG
 	{
 	public:
 		struct FCSGCircleDuplicatorProperties                      Properties;                                              // 0x0070(0x0008) Edit, BlueprintVisible, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_5T1U[0x8];                                   // 0x0078(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_E1EE[0x8];                                   // 0x0078(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -582,7 +582,7 @@ namespace CG
 	{
 	public:
 		struct FCSGCircleDuplicatorProperties                      Properties;                                              // 0x0200(0x0008) Edit, BlueprintVisible, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_Z82Z[0x8];                                   // 0x0208(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_SSWH[0x8];                                   // 0x0208(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -599,9 +599,9 @@ namespace CG
 		class UBakeConfig*                                         CurrentBakeConfig;                                       // 0x0200(0x0008) ZeroConstructor, Transient, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		TMap<struct FChunkId, class UDeepProceduralMeshComponent*> Meshes;                                                  // 0x0208(0x0050) ExportObject, Transient, ContainsInstancedReference, NativeAccessSpecifierPublic
 		bool                                                       UsePreviewScene;                                         // 0x0258(0x0001) ZeroConstructor, Transient, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_6IF1[0x2B];                                  // 0x0259(0x002B) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_2FHW[0x2B];                                  // 0x0259(0x002B) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		int32_t                                                    ChangeCount;                                             // 0x0284(0x0004) ZeroConstructor, Transient, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_EXKE[0x8];                                   // 0x0288(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_MYG7[0x8];                                   // 0x0288(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -617,7 +617,7 @@ namespace CG
 		class UClass*                                              Mesh;                                                    // 0x0030(0x0008) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, UObjectWrapper, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		struct FBakeSettings                                       Settings;                                                // 0x0038(0x0010) Edit, NativeAccessSpecifierPublic
 		int32_t                                                    Seed;                                                    // 0x0048(0x0004) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_7227[0x4];                                   // 0x004C(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_P22G[0x4];                                   // 0x004C(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class UTerrainMaterialCore*                                TerrainMaterial;                                         // 0x0050(0x0008) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 
 	public:
@@ -641,7 +641,7 @@ namespace CG
 	class UCSGPlaneComponent : public UConvexMeshWithCachedTreeComponent
 	{
 	public:
-		unsigned char                                              UnknownData_U4O8[0x8];                                   // 0x0248(0x0008) Fix Super Size
+		unsigned char                                              UnknownData_9FL9[0x8];                                   // 0x0248(0x0008) Fix Super Size
 
 	public:
 		static UClass* StaticClass();
@@ -655,7 +655,7 @@ namespace CG
 	{
 	public:
 		struct FMeshBoxProperties                                  Properties;                                              // 0x0120(0x0014) Edit, BlueprintVisible, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_9CSA[0xC];                                   // 0x0134(0x000C) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_VJ9F[0xC];                                   // 0x0134(0x000C) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -669,7 +669,7 @@ namespace CG
 	{
 	public:
 		struct FMeshBoxProperties                                  Properties;                                              // 0x0248(0x0014) Edit, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_3F3N[0x4];                                   // 0x025C(0x0004) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_U8GK[0x4];                                   // 0x025C(0x0004) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -683,7 +683,7 @@ namespace CG
 	{
 	public:
 		struct FCSGCylinderProperties                              Properties;                                              // 0x0120(0x000C) Edit, BlueprintVisible, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_2VSJ[0x4];                                   // 0x012C(0x0004) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_Y5YM[0x4];                                   // 0x012C(0x0004) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -697,7 +697,7 @@ namespace CG
 	{
 	public:
 		struct FCSGCylinderProperties                              Properties;                                              // 0x0248(0x000C) Edit, BlueprintVisible, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_GUR1[0xC];                                   // 0x0254(0x000C) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_ZG2R[0xC];                                   // 0x0254(0x000C) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -724,7 +724,7 @@ namespace CG
 	{
 	public:
 		struct FCSGConeProperties                                  Properties;                                              // 0x0248(0x0010) Edit, BlueprintVisible, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_8IEK[0x8];                                   // 0x0258(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_489V[0x8];                                   // 0x0258(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -738,7 +738,7 @@ namespace CG
 	{
 	public:
 		struct FCSGSphereProperties                                Properties;                                              // 0x0120(0x0014) Edit, BlueprintVisible, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_07V2[0xC];                                   // 0x0134(0x000C) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_9DX5[0xC];                                   // 0x0134(0x000C) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -752,7 +752,7 @@ namespace CG
 	{
 	public:
 		struct FCSGSphereProperties                                Properties;                                              // 0x0248(0x0014) Edit, BlueprintVisible, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_HNPG[0x4];                                   // 0x025C(0x0004) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_XC1N[0x4];                                   // 0x025C(0x0004) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -766,7 +766,7 @@ namespace CG
 	{
 	public:
 		struct FWarpedProperties                                   Properties;                                              // 0x0068(0x0028) Edit, BlueprintVisible, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_F4EC[0xC0];                                  // 0x0090(0x00C0) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_XGMC[0xC0];                                  // 0x0090(0x00C0) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -798,7 +798,7 @@ namespace CG
 		TArray<float>                                              Keys;                                                    // 0x01F0(0x0010) ZeroConstructor, NativeAccessSpecifierPublic
 		TArray<struct FVector4>                                    planes;                                                  // 0x0200(0x0010) ZeroConstructor, NativeAccessSpecifierPublic
 		struct FCoreUObject_FBox                                   TotalAABB;                                               // 0x0210(0x001C) ZeroConstructor, IsPlainOldData, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_VBKE[0x14];                                  // 0x022C(0x0014) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_WQQV[0x14];                                  // 0x022C(0x0014) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -812,7 +812,7 @@ namespace CG
 	{
 	public:
 		struct FSplineWarpProperties                               SplineProperties;                                        // 0x0228(0x0020) Edit, BlueprintVisible, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_8RDR[0x8];                                   // 0x0248(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_JVEI[0x8];                                   // 0x0248(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -832,9 +832,9 @@ namespace CG
 		struct FCoreUObject_FBox                                   ChildLocalSpaceBoundingBox;                              // 0x00C8(0x001C) ZeroConstructor, Transient, IsPlainOldData, NoDestructor, NativeAccessSpecifierPublic
 		struct FCoreUObject_FBox                                   WorldSpaceBoundingBox;                                   // 0x00E4(0x001C) ZeroConstructor, Transient, IsPlainOldData, NoDestructor, NativeAccessSpecifierPublic
 		struct FDeepCSGFloatTree                                   BoundingTree;                                            // 0x0100(0x0018) Transient, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_L65C[0x8];                                   // 0x0118(0x0008) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_4TRJ[0x8];                                   // 0x0118(0x0008) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		struct FMatrix                                             TransformMatInv;                                         // 0x0120(0x0040) ZeroConstructor, Transient, IsPlainOldData, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_RYF2[0xB0];                                  // 0x0160(0x00B0) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_OB0P[0xB0];                                  // 0x0160(0x00B0) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -849,7 +849,7 @@ namespace CG
 	public:
 		struct FCSGSDFInstanceProperties                           Properties;                                              // 0x0200(0x0028) Edit, BlueprintVisible, NativeAccessSpecifierPublic
 		struct FBinaryTerrainMaterialCombiner                      Materials;                                               // 0x0228(0x0030) Edit, BlueprintVisible, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_9MQP[0x8];                                   // 0x0258(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_31NQ[0x8];                                   // 0x0258(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -872,7 +872,7 @@ namespace CG
 		struct FCoreUObject_FBox                                   WorldSpaceBoundingBox;                                   // 0x011C(0x001C) ZeroConstructor, Transient, IsPlainOldData, NoDestructor, NativeAccessSpecifierPublic
 		struct FDeepCSGFloatTree                                   BoundingTree;                                            // 0x0138(0x0018) Transient, NativeAccessSpecifierPublic
 		struct FMatrix                                             TransformMatInv;                                         // 0x0150(0x0040) ZeroConstructor, Transient, IsPlainOldData, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_MR0K[0x80];                                  // 0x0190(0x0080) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_7VKE[0x80];                                  // 0x0190(0x0080) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -900,7 +900,7 @@ namespace CG
 	{
 	public:
 		struct FVoronoiProperties                                  Properties;                                              // 0x00D0(0x001C) Edit, BlueprintVisible, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_OJA3[0x4];                                   // 0x00EC(0x0004) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_W60W[0x4];                                   // 0x00EC(0x0004) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -914,7 +914,7 @@ namespace CG
 	{
 	public:
 		struct FVoronoiProperties                                  Properties;                                              // 0x0238(0x001C) Edit, BlueprintVisible, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_SJ7F[0xC];                                   // 0x0254(0x000C) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_AINA[0xC];                                   // 0x0254(0x000C) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -928,7 +928,7 @@ namespace CG
 	{
 	public:
 		struct FCSGSTLProperties                                   Properties;                                              // 0x00D0(0x0008) Edit, BlueprintVisible, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_KD6P[0x8];                                   // 0x00D8(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_9S98[0x8];                                   // 0x00D8(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -968,7 +968,7 @@ namespace CG
 	{
 	public:
 		class UBodySetup*                                          ProcMeshBodySetup;                                       // 0x0478(0x0008) ZeroConstructor, Transient, DuplicateTransient, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_63MK[0x50];                                  // 0x0480(0x0050) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_9LV5[0x50];                                  // 0x0480(0x0050) MISSED OFFSET (PADDING)
 
 	public:
 		class UTerrainMaterialCore* FindTerrainMaterialFromPhysicalMaterial(class UPhysicalMaterial* Material);
@@ -983,7 +983,7 @@ namespace CG
 	{
 	public:
 		EPreviewCellSize                                           PreviewSize;                                             // 0x0288(0x0001) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_ZGTU[0x7];                                   // 0x0289(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_GJ5F[0x7];                                   // 0x0289(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class UTerrainMaterialCore*                                PreviewMaterial;                                         // 0x0290(0x0008) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		class USDFBase*                                            CurrentRoot;                                             // 0x0298(0x0008) ZeroConstructor, Transient, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		class USDFUnionOpComponent*                                SDFRoot;                                                 // 0x02A0(0x0008) Edit, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
@@ -1008,7 +1008,7 @@ namespace CG
 		TArray<float>                                              Heights;                                                 // 0x00A8(0x0010) ZeroConstructor, NativeAccessSpecifierPublic
 		int32_t                                                    Dimensions;                                              // 0x00B8(0x0004) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		bool                                                       Initialized;                                             // 0x00BC(0x0001) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_NEGS[0x3];                                   // 0x00BD(0x0003) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_5EIT[0x3];                                   // 0x00BD(0x0003) MISSED OFFSET (PADDING)
 
 	public:
 		void Generate();
@@ -1023,7 +1023,7 @@ namespace CG
 	{
 	public:
 		struct FSDFBaseProperties                                  BaseProperties;                                          // 0x0028(0x0001) Edit, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_L2AH[0x7];                                   // 0x0029(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_XJUR[0x7];                                   // 0x0029(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		struct FTransform                                          RelativeTransform;                                       // 0x0030(0x0030) IsPlainOldData, NoDestructor, NativeAccessSpecifierPublic
 
 	public:
@@ -1038,9 +1038,9 @@ namespace CG
 	{
 	public:
 		struct FSDFHeightMaproperties                              Properties;                                              // 0x0060(0x000C) Edit, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_UZSQ[0x4];                                   // 0x006C(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_TTMM[0x4];                                   // 0x006C(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class UHeightMapWithMinMaxQuadTree*                        Heightmap;                                               // 0x0070(0x0008) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_2BJZ[0x8];                                   // 0x0078(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_CTDX[0x8];                                   // 0x0078(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -1064,9 +1064,9 @@ namespace CG
 	{
 	public:
 		struct FSDFHeightMaproperties                              Properties;                                              // 0x0200(0x000C) Edit, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_AJAP[0x4];                                   // 0x020C(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_I3F4[0x4];                                   // 0x020C(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class UHeightMapWithMinMaxQuadTree*                        Heightmap;                                               // 0x0210(0x0008) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_EGX0[0x8];                                   // 0x0218(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_XRMR[0x8];                                   // 0x0218(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -1093,7 +1093,7 @@ namespace CG
 	{
 	public:
 		struct FSDFModifierProperties                              Properties;                                              // 0x0068(0x0038) Edit, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_20S3[0x40];                                  // 0x00A0(0x0040) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_BUHE[0x40];                                  // 0x00A0(0x0040) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -1107,7 +1107,7 @@ namespace CG
 	{
 	public:
 		struct FSDFModifierProperties                              Properties;                                              // 0x0200(0x0038) Edit, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_7KAO[0x8];                                   // 0x0238(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_BUCJ[0x8];                                   // 0x0238(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -1122,7 +1122,7 @@ namespace CG
 	public:
 		struct FSDFSmoothingProperties                             Properties;                                              // 0x0060(0x0008) NoDestructor, NativeAccessSpecifierPublic
 		TArray<class USDFBase*>                                    Arguments;                                               // 0x0068(0x0010) ZeroConstructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_OV4B[0x8];                                   // 0x0078(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_81VQ[0x8];                                   // 0x0078(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -1136,7 +1136,7 @@ namespace CG
 	{
 	public:
 		struct FSDFSmoothingProperties                             Properties;                                              // 0x0200(0x0008) Edit, NoDestructor, NativeAccessSpecifierPrivate
-		unsigned char                                              UnknownData_LCUS[0x8];                                   // 0x0208(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_E4WS[0x8];                                   // 0x0208(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -1151,7 +1151,7 @@ namespace CG
 	public:
 		struct FSDFSmoothingProperties                             Properties;                                              // 0x0060(0x0008) NoDestructor, NativeAccessSpecifierPublic
 		TArray<class USDFBase*>                                    Arguments;                                               // 0x0068(0x0010) ZeroConstructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_TMQE[0x8];                                   // 0x0078(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_XU3X[0x8];                                   // 0x0078(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -1165,7 +1165,7 @@ namespace CG
 	{
 	public:
 		struct FSDFSmoothingProperties                             Properties;                                              // 0x0200(0x0008) Edit, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_55J9[0x8];                                   // 0x0208(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_KP5F[0x8];                                   // 0x0208(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -1181,7 +1181,7 @@ namespace CG
 		struct FSDFSmoothingProperties                             Properties;                                              // 0x0060(0x0008) NoDestructor, NativeAccessSpecifierPublic
 		class USDFBase*                                            A;                                                       // 0x0068(0x0008) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		class USDFBase*                                            B;                                                       // 0x0070(0x0008) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_ETQ5[0x8];                                   // 0x0078(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_QGYA[0x8];                                   // 0x0078(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -1195,7 +1195,7 @@ namespace CG
 	{
 	public:
 		struct FSDFSmoothingProperties                             Properties;                                              // 0x0200(0x0008) Edit, NoDestructor, NativeAccessSpecifierPrivate
-		unsigned char                                              UnknownData_0HFK[0x8];                                   // 0x0208(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_KBWI[0x8];                                   // 0x0208(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -1209,7 +1209,7 @@ namespace CG
 	{
 	public:
 		struct FSDFOnionProperties                                 Properties;                                              // 0x0060(0x0004) Edit, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_YMNX[0x4];                                   // 0x0064(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_ZCUW[0x4];                                   // 0x0064(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class USDFBase*                                            Argument;                                                // 0x0068(0x0008) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 
 	public:
@@ -1224,7 +1224,7 @@ namespace CG
 	{
 	public:
 		struct FSDFOnionProperties                                 Properties;                                              // 0x0200(0x0004) Edit, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_91SX[0xC];                                   // 0x0204(0x000C) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_NA3N[0xC];                                   // 0x0204(0x000C) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -1238,7 +1238,7 @@ namespace CG
 	{
 	public:
 		struct FSDFRandomizeTransformProperties                    Properties;                                              // 0x0068(0x0054) Edit, BlueprintVisible, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_1XN7[0x4];                                   // 0x00BC(0x0004) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_47ZR[0x4];                                   // 0x00BC(0x0004) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -1252,7 +1252,7 @@ namespace CG
 	{
 	public:
 		struct FSDFRandomizeTransformProperties                    Properties;                                              // 0x0200(0x0054) Edit, BlueprintVisible, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_2BPT[0xC];                                   // 0x0254(0x000C) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_KWT0[0xC];                                   // 0x0254(0x000C) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -1265,7 +1265,7 @@ namespace CG
 	class USDFRandomDisable : public USDFSingleChildBase
 	{
 	public:
-		unsigned char                                              UnknownData_1YOW[0x8];                                   // 0x0068(0x0008) Fix Super Size
+		unsigned char                                              UnknownData_USQ0[0x8];                                   // 0x0068(0x0008) Fix Super Size
 
 	public:
 		static UClass* StaticClass();
@@ -1279,7 +1279,7 @@ namespace CG
 	{
 	public:
 		struct FSDFRandomDisableProperties                         Properties;                                              // 0x0200(0x0004) Edit, BlueprintVisible, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_GRUJ[0xC];                                   // 0x0204(0x000C) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_HYED[0xC];                                   // 0x0204(0x000C) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -1292,7 +1292,7 @@ namespace CG
 	class USDFBaseWithTransform : public USDFBase
 	{
 	public:
-		unsigned char                                              UnknownData_MQ04[0xD0];                                  // 0x0060(0x00D0) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_EUPL[0xD0];                                  // 0x0060(0x00D0) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -1316,7 +1316,7 @@ namespace CG
 	{
 	public:
 		struct FSDFSphereProperties                                Properties;                                              // 0x0130(0x000C) Edit, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_6PW4[0x4];                                   // 0x013C(0x0004) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_HAU3[0x4];                                   // 0x013C(0x0004) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -1330,7 +1330,7 @@ namespace CG
 	{
 	public:
 		struct FSDFSphereProperties                                Properties;                                              // 0x0200(0x000C) Edit, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_WQA0[0x4];                                   // 0x020C(0x0004) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_I5DA[0x4];                                   // 0x020C(0x0004) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -1364,7 +1364,7 @@ namespace CG
 	{
 	public:
 		struct FSDFBoxProperties                                   Properties;                                              // 0x0130(0x000C) Edit, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_3E83[0x4];                                   // 0x013C(0x0004) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_V9RV[0x4];                                   // 0x013C(0x0004) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -1378,7 +1378,7 @@ namespace CG
 	{
 	public:
 		struct FSDFBoxProperties                                   Properties;                                              // 0x0200(0x000C) Edit, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_3M31[0x4];                                   // 0x020C(0x0004) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_X1R8[0x4];                                   // 0x020C(0x0004) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -1392,7 +1392,7 @@ namespace CG
 	{
 	public:
 		struct FSDFCylinderProperties                              Properties;                                              // 0x0130(0x0008) Edit, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_LUES[0x8];                                   // 0x0138(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_A21I[0x8];                                   // 0x0138(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -1406,7 +1406,7 @@ namespace CG
 	{
 	public:
 		struct FSDFCylinderProperties                              Properties;                                              // 0x0200(0x0008) Edit, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_BMJ6[0x8];                                   // 0x0208(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_HWII[0x8];                                   // 0x0208(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -1420,7 +1420,7 @@ namespace CG
 	{
 	public:
 		struct FSDFCapsuleProperties                               Properties;                                              // 0x0130(0x0008) Edit, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_4GDE[0x8];                                   // 0x0138(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_JTOO[0x8];                                   // 0x0138(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -1434,7 +1434,7 @@ namespace CG
 	{
 	public:
 		struct FSDFCapsuleProperties                               Properties;                                              // 0x0200(0x0008) Edit, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_PD1O[0x8];                                   // 0x0208(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_P0U1[0x8];                                   // 0x0208(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -1476,7 +1476,7 @@ namespace CG
 		class FString                                              Status;                                                  // 0x0030(0x0010) Edit, ZeroConstructor, EditConst, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		unsigned char                                              Mesh[0x28];                                              // 0x0040(0x0028) UNKNOWN PROPERTY: SoftObjectProperty
 		struct FCoreUObject_FBox                                   AABB;                                                    // 0x0068(0x001C) Edit, ZeroConstructor, EditConst, IsPlainOldData, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_T915[0x4];                                   // 0x0084(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_AWTD[0x4];                                   // 0x0084(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		struct FDeepCSGFloatTree                                   BSPTree;                                                 // 0x0088(0x0018) NativeAccessSpecifierPublic
 		struct FDeepCSGFloatTreePacked                             BSPTreePacked;                                           // 0x00A0(0x0018) NativeAccessSpecifierPublic
 

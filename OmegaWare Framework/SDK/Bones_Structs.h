@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -15,32 +15,13 @@ namespace CG
 	// # Enums
 	// --------------------------------------------------
 	/**
-	 * BoneSkeletalMesh SK_DropPod_Drill.SK_DropPod_Drill
+	 * BoneSkeletalMesh SK_HoopsGame_Slide.SK_HoopsGame_Slide
 	 */
-	enum class EBone_SK_DropPod_Drill : uint8_t
+	enum class EBone_SK_HoopsGame_Slide : uint8_t
 	{
-		Root_DropPod_Drill = 0,
-		Drill01            = 1,
-		Drill02            = 2,
-		Drill03            = 3,
-		Drill04            = 4
-	};
-
-	/**
-	 * BoneSkeletalMesh SK_DropPod_Airlock02.SK_DropPod_Airlock02
-	 */
-	enum class EBone_SK_DropPod_Airlock02 : uint8_t
-	{
-		Root_DropPod_Airlock    = 0,
-		InnerAirlock_LowerCore  = 1,
-		InnerAirlock_LowerShell = 2,
-		InnerAirlock_UpperCore  = 3,
-		InnerAirlock_UpperShell = 4,
-		OuterAirlock_Left       = 5,
-		OuterAirlock_Right      = 6,
-		OuterAirlock_Top        = 7,
-		InnerAirlock_LowerWire  = 8,
-		InnerAirlock_UpperWire  = 9
+		Object003   = 0,
+		Cylinder009 = 1,
+		Object004   = 2
 	};
 
 	/**
@@ -185,24 +166,134 @@ namespace CG
 	};
 
 	/**
-	 * BoneSkeletalMesh SK_Forge_A.SK_Forge_A
+	 * BoneSkeletalMesh SK_Banner01.SK_Banner01
 	 */
-	enum class EBone_SK_Forge_A : uint8_t
+	enum class EBone_SK_Banner01 : uint8_t
 	{
-		SK_Forge_A_Root          = 0,
-		SK_Forge_A_Big_Handle    = 1,
-		SK_Forge_A_Hammer_Attach = 2,
-		SK_Forge_A_Wrench_4      = 3,
-		SK_Forge_A_Wrench_3      = 4,
-		SK_Forge_A_Wrench_2      = 5,
-		SK_Forge_A_Drill         = 6,
-		SK_Forge_A_Screwdriver   = 7,
-		SK_Forge_A_DrawerPipe_2  = 8,
-		SK_Forge_A_DrawerPipe_3  = 9,
-		SK_Forge_A_DrawerPipe_4  = 10,
-		SK_Forge_A_DrawerPipe_5  = 11,
-		SK_Forge_A_Drawer        = 12,
-		SK_Forge_A_Table         = 13
+		BN_ROOT   = 0,
+		BN_Center = 1,
+		BN_Right  = 2,
+		BN_Left   = 3
+	};
+
+	/**
+	 * BoneSkeletalMesh SK_Bosco_Default.SK_Bosco_Default
+	 */
+	enum class EBone_SK_Bosco_Default : uint8_t
+	{
+		MainBody        = 0,
+		Hatch_Cover_R   = 1,
+		Hatch_Cover_L   = 2,
+		Ear_R           = 3,
+		Ear_L           = 4,
+		Gun_Arm_L       = 5,
+		Gun_Case_L      = 6,
+		Gun_Barrel01_L  = 7,
+		Gun_Barrel02_L  = 8,
+		Gun_Arm_R       = 9,
+		Gun_Case_R      = 10,
+		Gun_Barrel01_R  = 11,
+		Gun_Barrel02__R = 12,
+		LowerBody       = 13,
+		Arm01_L         = 14,
+		Arm02_L         = 15,
+		Arm03_L         = 16,
+		Arm01_R         = 17,
+		Arm02_R         = 18,
+		Arm03_R         = 19,
+		MidRiff         = 20,
+		Thruster_L      = 21,
+		Thruster_R      = 22,
+		Butterfly       = 23,
+		Gun_Drum_L      = 24,
+		Gun_Drum_R      = 25,
+		Hat             = 26,
+		Plague          = 27,
+		Vial            = 28,
+		Tube_back       = 29,
+		Tube_R          = 30,
+		Tube_L          = 31,
+		Elf_hat01       = 32,
+		Elf_hat02       = 33,
+		Elf_hat03       = 34,
+		Elf_hat04       = 35,
+		Elf_hat05       = 36,
+		Bag             = 37,
+		Belt_M          = 38,
+		Belt_R          = 39,
+		Belt_L          = 40,
+		Headband_M      = 41,
+		Headband01_R    = 42,
+		Headband02_R    = 43,
+		Headband03_R    = 44,
+		Headband01_L    = 45,
+		Headband02_L    = 46,
+		Headband03_L    = 47
+	};
+
+	/**
+	 * BoneSkeletalMesh SK_DropPod_Drill.SK_DropPod_Drill
+	 */
+	enum class EBone_SK_DropPod_Drill : uint8_t
+	{
+		Root_DropPod_Drill = 0,
+		Drill01            = 1,
+		Drill02            = 2,
+		Drill03            = 3,
+		Drill04            = 4
+	};
+
+	/**
+	 * BoneSkeletalMesh SK_DropPod_Airlock02.SK_DropPod_Airlock02
+	 */
+	enum class EBone_SK_DropPod_Airlock02 : uint8_t
+	{
+		Root_DropPod_Airlock    = 0,
+		InnerAirlock_LowerCore  = 1,
+		InnerAirlock_LowerShell = 2,
+		InnerAirlock_UpperCore  = 3,
+		InnerAirlock_UpperShell = 4,
+		OuterAirlock_Left       = 5,
+		OuterAirlock_Right      = 6,
+		OuterAirlock_Top        = 7,
+		InnerAirlock_LowerWire  = 8,
+		InnerAirlock_UpperWire  = 9
+	};
+
+	/**
+	 * BoneSkeletalMesh SK_AutoCannon_Skin_Infected.SK_AutoCannon_Skin_Infected
+	 */
+	enum class EBone_SK_AutoCannon_Skin_Infected : uint8_t
+	{
+		SK_AutoCannon_A_Root              = 0,
+		SK_AutoCannon_A_Muzzle_Left       = 1,
+		SK_AutoCannon_A_Muzzle_Right      = 2,
+		SK_AutoCannon_A_Mag_Anim          = 3,
+		SK_AutoCannon_A_LeftAmmunition_C  = 4,
+		SK_AutoCannon_A_LeftAmmunition_B  = 5,
+		SK_AutoCannon_A_LeftAmmunition_A  = 6,
+		SK_AutoCannon_A_LeftAmmunition_D  = 7,
+		SK_AutoCannon_A_RightAmmunition_C = 8,
+		SK_AutoCannon_A_RightAmmunition_D = 9,
+		SK_AutoCannon_A_RightAmmunition_A = 10,
+		SK_AutoCannon_A_RightAmmunition_B = 11,
+		SK_AutoCannon_A_LeftHandle_B      = 12,
+		SK_AutoCannon_A_LeftHandle_A      = 13,
+		SK_AutoCannon_A_Barrel_Left       = 14,
+		SK_AutoCannon_A_Spring_Left       = 15,
+		SK_AutoCannon_A_Barrel_Right      = 16,
+		SK_AutoCannon_A_Spring_Right      = 17,
+		SK_AutoCannon_A_Slide_Left_C      = 18,
+		SK_AutoCannon_A_Slide_Left_B      = 19,
+		SK_AutoCannon_A_Slide_Left_A      = 20,
+		SK_AutoCannon_A_Slide_Right_A     = 21,
+		SK_AutoCannon_A_Slide_Right_B     = 22,
+		SK_AutoCannon_A_Slide_Right_C     = 23,
+		SK_AutoCannon_A_LoadArm_Left_A    = 24,
+		SK_AutoCannon_A_LoadArm_Left_B    = 25,
+		SK_AutoCannon_A_LoadArm_Right_A   = 26,
+		SK_AutoCannon_A_LoadArm_Right_B   = 27,
+		SK_AutoCannon_A_Mag_Static        = 28
 	};
 
 	/**
@@ -227,17 +318,6 @@ namespace CG
 	};
 
 	/**
-	 * BoneSkeletalMesh SK_SlidingDoor01.SK_SlidingDoor01
-	 */
-	enum class EBone_SK_SlidingDoor01 : uint8_t
-	{
-		Frame         = 0,
-		DoorMain      = 1,
-		DoorSideInner = 2,
-		DoorSide      = 3
-	};
-
-	/**
 	 * BoneSkeletalMesh SK_Dice.SK_Dice
 	 */
 	enum class EBone_SK_Dice : uint8_t
@@ -247,6 +327,359 @@ namespace CG
 		String_01 = 2,
 		String_02 = 3,
 		Dice      = 4
+	};
+
+	/**
+	 * BoneSkeletalMesh SK_DropPod_MuleBay.SK_DropPod_MuleBay
+	 */
+	enum class EBone_SK_DropPod_MuleBay : uint8_t
+	{
+		MollyBay_Root           = 0,
+		MollyBay_Hatch_Lower    = 1,
+		MollyBay_Hatch_Upper    = 2,
+		MollyBay_Base           = 3,
+		MollyBay_Crane_Base     = 4,
+		MollyBay_Crane_Grabber  = 5,
+		MollyBay_Crane_Supports = 6,
+		MollyBay_ParticleSocket = 7
+	};
+
+	/**
+	 * BoneSkeletalMesh SK_DropPod_OreBox.SK_DropPod_OreBox
+	 */
+	enum class EBone_SK_DropPod_OreBox : uint8_t
+	{
+		Root_OreBox         = 0,
+		OreBox_LidLower     = 1,
+		OreBox_LidUpper     = 2,
+		OreBox_Tray         = 3,
+		OreBox_GrinderLower = 4,
+		OreBox_GrinderUpper = 5
+	};
+
+	/**
+	 * BoneSkeletalMesh SK_DropPod_Ramp02.SK_DropPod_Ramp02
+	 */
+	enum class EBone_SK_DropPod_Ramp02 : uint8_t
+	{
+		Root          = 0,
+		RampSection01 = 1,
+		RampSection02 = 2,
+		RampSection03 = 3,
+		RampSection04 = 4,
+		RampSection05 = 5,
+		RampSection06 = 6
+	};
+
+	/**
+	 * BoneSkeletalMesh SK_Flier_Grabber_A.SK_Flier_Grabber_A
+	 */
+	enum class EBone_SK_Flier_Grabber_A : uint8_t
+	{
+		GrabberBug_Root             = 0,
+		GrabberBug_Body             = 1,
+		GrabberBug_Head             = 2,
+		GrabberBug_Mandible_L_3     = 3,
+		GrabberBug_Mandible_R_3     = 4,
+		GrabberBug_LWing_Front_2    = 5,
+		GrabberBug_LWing_Front_3    = 6,
+		GrabberBug_RArm_Front_2     = 7,
+		GrabberBug_RArm_Front_3     = 8,
+		GrabberBug_RArm_Front_Palm  = 9,
+		GrabberBug_RFront_Toe       = 10,
+		GrabberBug_LArm_Front_2     = 11,
+		GrabberBug_LArm_Front_3     = 12,
+		GrabberBug_LArm_Front_Palm  = 13,
+		GrabberBug_LFront_Toe       = 14,
+		GrabberBug_RArm_Back_2      = 15,
+		GrabberBug_RArm_Back_3      = 16,
+		GrabberBug_RArm_Back_Palm   = 17,
+		GrabberBug_RBack_Toe        = 18,
+		GrabberBug_LArm_Back_2      = 19,
+		GrabberBug_LArm_Back_3      = 20,
+		GrabberBug_LArm_Back_Palm   = 21,
+		GrabberBug_LBack_Toe        = 22,
+		GrabberBug_LWing_Back_2     = 23,
+		GrabberBug_LWing_Back_3     = 24,
+		GrabberBug_RWing_Back_2     = 25,
+		GrabberBug_RWing_Back_3     = 26,
+		GrabberBug_RWing_Front_2    = 27,
+		GrabberBug_RWing_Front_3    = 28,
+		GrabberBug_Tail_2           = 29,
+		GrabberBug_Tail_3           = 30,
+		GrabberBug_Tail_4           = 31,
+		GrabberBug_Tail_5           = 32,
+		GrabberBug_Tail_6           = 33,
+		GrabberBug_Tail_7           = 34,
+		GrabberBug_LArm_Middle_2    = 35,
+		GrabberBug_LArm_Middle_3    = 36,
+		GrabberBug_LArm_Middle_Palm = 37,
+		GrabberBug_LMiddle_Toe      = 38,
+		GrabberBug_RArm_Middle_2    = 39,
+		GrabberBug_RArm_Middle_3    = 40,
+		GrabberBug_RArm_Middle_Palm = 41,
+		GrabberBug_RMiddle_Toe      = 42,
+		GrabberBug_Back             = 43,
+		GrabberBug_WeakSpot         = 44
+	};
+
+	/**
+	 * BoneSkeletalMesh SK_Flier_Heavy.SK_Flier_Heavy
+	 */
+	enum class EBone_SK_Flier_Heavy : uint8_t
+	{
+		ShooterBug_Root            = 0,
+		ShooterBug_Body            = 1,
+		ShooterBug_Head            = 2,
+		ShooterBug_Mandible_L_3    = 3,
+		ShooterBug_Mandible_L_2    = 4,
+		ShooterBug_Mandible_R_3    = 5,
+		ShooterBug_Mandible_R_2    = 6,
+		ShooterBug_Upper_Lip       = 7,
+		ShooterBug_Lower_Lip       = 8,
+		ShooterBug_Right_Lip       = 9,
+		ShooterBug_Left_Lip        = 10,
+		ShooterBug_LWing_Front_2   = 11,
+		ShooterBug_LWing_Front_3   = 12,
+		ShooterBug_RArm_Front_2    = 13,
+		ShooterBug_RArm_Front_3    = 14,
+		ShooterBug_RArm_Front_Palm = 15,
+		ShooterBug_LArm_Front_2    = 16,
+		ShooterBug_LArm_Front_3    = 17,
+		ShooterBug_LArm_Front_Palm = 18,
+		ShooterBug_RArm_Back_2     = 19,
+		ShooterBug_RArm_Back_3     = 20,
+		ShooterBug_RArm_Back_Palm  = 21,
+		ShooterBug_LArm_Back_2     = 22,
+		ShooterBug_LArm_Back_3     = 23,
+		ShooterBug_LArm_Back_Palm  = 24,
+		ShooterBug_LWing_Back_2    = 25,
+		ShooterBug_LWing_Back_3    = 26,
+		ShooterBug_RWing_Back_2    = 27,
+		ShooterBug_RWing_Back_3    = 28,
+		ShooterBug_RWing_Front_2   = 29,
+		ShooterBug_RWing_Front_3   = 30,
+		ShooterBug_Tail_2          = 31,
+		ShooterBug_Tail_3          = 32,
+		ShooterBug_Tail_4          = 33,
+		ShooterBug_Tail_5          = 34,
+		ShooterBug_Tail_6          = 35,
+		ShooterBug_Tail_7          = 36,
+		ShooterBug_WeakPoint       = 37,
+		ShooterBug_Armor_R         = 38,
+		ShooterBug_Armor_L         = 39
+	};
+
+	/**
+	 * BoneSkeletalMesh SK_Flier_Triple_Shooter.SK_Flier_Triple_Shooter
+	 */
+	enum class EBone_SK_Flier_Triple_Shooter : uint8_t
+	{
+		ShooterBug_Root            = 0,
+		ShooterBug_Body            = 1,
+		ShooterBug_Head            = 2,
+		ShooterBug_Mandible_L_3    = 3,
+		ShooterBug_Mandible_L_2    = 4,
+		ShooterBug_Mandible_R_3    = 5,
+		ShooterBug_Mandible_R_2    = 6,
+		ShooterBug_Upper_Lip       = 7,
+		ShooterBug_Lower_Lip       = 8,
+		ShooterBug_Right_Lip       = 9,
+		ShooterBug_Left_Lip        = 10,
+		ShooterBug_LWing_Front_2   = 11,
+		ShooterBug_LWing_Front_3   = 12,
+		ShooterBug_RArm_Front_2    = 13,
+		ShooterBug_RArm_Front_3    = 14,
+		ShooterBug_RArm_Front_Palm = 15,
+		ShooterBug_LArm_Front_2    = 16,
+		ShooterBug_LArm_Front_3    = 17,
+		ShooterBug_LArm_Front_Palm = 18,
+		ShooterBug_RArm_Back_2     = 19,
+		ShooterBug_RArm_Back_3     = 20,
+		ShooterBug_RArm_Back_Palm  = 21,
+		ShooterBug_LArm_Back_2     = 22,
+		ShooterBug_LArm_Back_3     = 23,
+		ShooterBug_LArm_Back_Palm  = 24,
+		ShooterBug_LWing_Back_2    = 25,
+		ShooterBug_LWing_Back_3    = 26,
+		ShooterBug_RWing_Back_2    = 27,
+		ShooterBug_RWing_Back_3    = 28,
+		ShooterBug_RWing_Front_2   = 29,
+		ShooterBug_RWing_Front_3   = 30,
+		ShooterBug_Tail_2          = 31,
+		ShooterBug_Tail_3          = 32,
+		ShooterBug_Tail_4          = 33,
+		ShooterBug_Tail_5          = 34,
+		ShooterBug_Tail_6          = 35,
+		ShooterBug_Tail_7          = 36,
+		ShooterBug_WeakPoint       = 37,
+		ShooterBug_Armor_R         = 38,
+		ShooterBug_Armor_L         = 39
+	};
+
+	/**
+	 * BoneSkeletalMesh SK_Flier_Shooter.SK_Flier_Shooter
+	 */
+	enum class EBone_SK_Flier_Shooter : uint8_t
+	{
+		ShooterBug_Root            = 0,
+		ShooterBug_Body            = 1,
+		ShooterBug_Head            = 2,
+		ShooterBug_Mandible_L_3    = 3,
+		ShooterBug_Mandible_L_2    = 4,
+		ShooterBug_Mandible_R_3    = 5,
+		ShooterBug_Mandible_R_2    = 6,
+		ShooterBug_Upper_Lip       = 7,
+		ShooterBug_Lower_Lip       = 8,
+		ShooterBug_Right_Lip       = 9,
+		ShooterBug_Left_Lip        = 10,
+		ShooterBug_LWing_Front_2   = 11,
+		ShooterBug_LWing_Front_3   = 12,
+		ShooterBug_RArm_Front_2    = 13,
+		ShooterBug_RArm_Front_3    = 14,
+		ShooterBug_RArm_Front_Palm = 15,
+		ShooterBug_LArm_Front_2    = 16,
+		ShooterBug_LArm_Front_3    = 17,
+		ShooterBug_LArm_Front_Palm = 18,
+		ShooterBug_RArm_Back_2     = 19,
+		ShooterBug_RArm_Back_3     = 20,
+		ShooterBug_RArm_Back_Palm  = 21,
+		ShooterBug_LArm_Back_2     = 22,
+		ShooterBug_LArm_Back_3     = 23,
+		ShooterBug_LArm_Back_Palm  = 24,
+		ShooterBug_LWing_Back_2    = 25,
+		ShooterBug_LWing_Back_3    = 26,
+		ShooterBug_RWing_Back_2    = 27,
+		ShooterBug_RWing_Back_3    = 28,
+		ShooterBug_RWing_Front_2   = 29,
+		ShooterBug_RWing_Front_3   = 30,
+		ShooterBug_Tail_2          = 31,
+		ShooterBug_Tail_3          = 32,
+		ShooterBug_Tail_4          = 33,
+		ShooterBug_Tail_5          = 34,
+		ShooterBug_Tail_6          = 35,
+		ShooterBug_Tail_7          = 36,
+		ShooterBug_WeakPoint       = 37,
+		ShooterBug_Armor_R         = 38,
+		ShooterBug_Armor_L         = 39
+	};
+
+	/**
+	 * BoneSkeletalMesh SK_Spider_Tank_A.SK_Spider_Tank_A
+	 */
+	enum class EBone_SK_Spider_Tank_A : uint8_t
+	{
+		Spider_Root                = 0,
+		Spider_Chest               = 1,
+		Spider_Back                = 2,
+		Spider_Head                = 3,
+		Spider_UpperJaw            = 4,
+		Spider_LowerJaw            = 5,
+		Spider_LeftLowerJaw        = 6,
+		Spider_RightLowerJaw       = 7,
+		Spider_UpperJawSkin        = 8,
+		Spider_NeckTop             = 9,
+		Spider_NeckRight           = 10,
+		Spider_NeckButtom          = 11,
+		Spider_NeckLeft            = 12,
+		Spider_LegL_Front_2        = 13,
+		Spider_LegL_Front_3        = 14,
+		Spider_LegL_Front_4        = 15,
+		Spider_LegR_Front_Part_2   = 16,
+		Spider_LegR_Front_Part_3   = 17,
+		Spider_LegR_Front_Part_4   = 18,
+		Spider_LegL_1_Part_2       = 19,
+		Spider_LegL_1_Part_3       = 20,
+		Spider_LegL_2_Part_2       = 21,
+		Spider_LegL_2_Part_3       = 22,
+		Spider_LegR_1_Part_2       = 23,
+		Spider_LegR_1_Part_3       = 24,
+		Spider_LegR_2_Part_2       = 25,
+		Spider_LegR_2_Part_3       = 26,
+		Spider_LegL_3_Part_2       = 27,
+		Spider_LegL_3_Part_3       = 28,
+		Spider_LegR_3_Part_2       = 29,
+		Spider_LegR_3_Part_3       = 30,
+		Spider_BackR_1_Armor       = 31,
+		Spider_BackR_2_Armor       = 32,
+		Spider_BackL_1_Armor       = 33,
+		Spider_BackL_2_Armor       = 34,
+		Spider_LegL_Front_Armor_3  = 35,
+		Spider_LegL_Front_Armor_2  = 36,
+		Spider_LegR_Front_Armor_3  = 37,
+		Spider_LegR_Front_Armor_2  = 38,
+		Spider_LegL_1_Armor        = 39,
+		Spider_LegL_2_Armor        = 40,
+		Spider_LegR_1_Armor        = 41,
+		Spider_LegR_2_Armor        = 42,
+		Spider_LegL_3_Armor        = 43,
+		Spider_LegR_3_Armor        = 44,
+		Spider_ChestL_1_Armor      = 45,
+		Spider_ChestR_1_Armor      = 46,
+		Spider_BackC_1_Armor       = 47,
+		Spider_ChestC_1_Armor      = 48,
+		Spider_ChestR_2_Armor      = 49,
+		Spider_ChestL_2_Armor      = 50,
+		SK_Spider_Shell_Root_R     = 51,
+		SK_Spider_Shell_R          = 52,
+		SK_Spider_Shell_Root_L     = 53,
+		SK_Spider_Shell_L          = 54,
+		SK_Spider_WeakSpot         = 55,
+		SK_Spider_RageSpot_Root_L  = 56,
+		SK_Spider_RageSpot_L       = 57,
+		SK_Spider_RageSpot_Root_R  = 58,
+		SK_Spider_RageSpot_R       = 59,
+		SK_Spider_RageSpot_Root_C  = 60,
+		SK_Spider_RageSpot_C       = 61,
+		Spider_BackL_2_Armor001    = 62,
+		SK_Spider_BackR_1_Armor    = 63,
+		Spider_BackC_1_Armor001    = 64,
+		SK_Spider_BackR_3_Armor    = 65,
+		SK_Spider_BackL_3_Armor    = 66,
+		SK_Spider_ChestR_1_Armor   = 67,
+		SK_Spider_ChestL_1_Armor   = 68,
+		SK_Spider_Breath_Muzzle    = 69,
+		SK_Spider_LegL_Front_Armor = 70,
+		SK_Spider_LegR_Front_Armor = 71,
+		SK_Spider_Muzzle_R         = 72,
+		SK_Spider_Muzzle_L         = 73,
+		Spider_Back1               = 74,
+		Spider_Tail1               = 75,
+		Spider_Tail2               = 76,
+		Spider_Tail3               = 77,
+		Spider_Tail4               = 78,
+		Spider_Tail5               = 79,
+		Spider_Tail6               = 80,
+		Spider_Tail7               = 81,
+		Spider_Tail8               = 82,
+		Spider_Tail_armor8         = 83,
+		Spider_Tail_armor7         = 84,
+		Spider_Tail_armor6         = 85,
+		Spider_Tail_armor5         = 86,
+		Spider_Tail_armor4         = 87,
+		Spider_Tail_armor3         = 88,
+		Spider_Tail_armor2         = 89,
+		Spider_Tail_armor1         = 90,
+		Spider_Butt_2              = 91,
+		Spider_Butt_3              = 92,
+		Spider_Butt_4              = 93,
+		Spider_Butt_3_Scale        = 94,
+		Spider_Butt_2_Scale        = 95,
+		Spider_Butt_1_Scale        = 96,
+		Spider_Butt_3_Armor        = 97,
+		Spider_Butt_2_Armor        = 98,
+		Spider_Butt_1_Armor        = 99,
+		Spider_AntennaeBack        = 100
+	};
+
+	/**
+	 * BoneSkeletalMesh SK_DrinksBox.SK_DrinksBox
+	 */
+	enum class EBone_SK_DrinksBox : uint8_t
+	{
+		Box  = 0,
+		Tray = 1,
+		Lid  = 2
 	};
 
 	/**
@@ -388,16 +821,6 @@ namespace CG
 		Dwarf_ATT_Lower_R                     = 131,
 		Dwarf_ATT_Lower_L                     = 132,
 		Dwarf_Camera_Attach                   = 133
-	};
-
-	/**
-	 * BoneSkeletalMesh SK_DrinksBox.SK_DrinksBox
-	 */
-	enum class EBone_SK_DrinksBox : uint8_t
-	{
-		Box  = 0,
-		Tray = 1,
-		Lid  = 2
 	};
 
 	/**
@@ -1065,463 +1488,169 @@ namespace CG
 	};
 
 	/**
-	 * BoneSkeletalMesh SK_HoopsGame_Slide.SK_HoopsGame_Slide
+	 * BoneSkeletalMesh SK_SlidingDoor01.SK_SlidingDoor01
 	 */
-	enum class EBone_SK_HoopsGame_Slide : uint8_t
+	enum class EBone_SK_SlidingDoor01 : uint8_t
 	{
-		Object003   = 0,
-		Cylinder009 = 1,
-		Object004   = 2
+		Frame         = 0,
+		DoorMain      = 1,
+		DoorSideInner = 2,
+		DoorSide      = 3
 	};
 
 	/**
-	 * BoneSkeletalMesh SK_DropPod_MuleBay.SK_DropPod_MuleBay
+	 * BoneSkeletalMesh SK_TipMachine.SK_TipMachine
 	 */
-	enum class EBone_SK_DropPod_MuleBay : uint8_t
+	enum class EBone_SK_TipMachine : uint8_t
 	{
-		MollyBay_Root           = 0,
-		MollyBay_Hatch_Lower    = 1,
-		MollyBay_Hatch_Upper    = 2,
-		MollyBay_Base           = 3,
-		MollyBay_Crane_Base     = 4,
-		MollyBay_Crane_Grabber  = 5,
-		MollyBay_Crane_Supports = 6,
-		MollyBay_ParticleSocket = 7
+		TipMachine_Root       = 0,
+		TipMachine_Base       = 1,
+		TipMachine_FlapL      = 2,
+		TipMachine_FlapL_Note = 3,
+		TipMachine_FlapR      = 4,
+		TipMachine_FlapR_Note = 5,
+		TipMachine_ArmR1      = 6,
+		TipMachine_ArmR2      = 7,
+		TipMachine_ArmR_Note  = 8,
+		TipMachine_ArmL1      = 9,
+		TipMachine_ArmL2      = 10,
+		TipMachine_ArmL_Note  = 11,
+		TipMachine_Screen     = 12,
+		TipMachine_StalkL1    = 13,
+		TipMachine_StalkL2    = 14,
+		TipMachine_StalkL3    = 15,
+		TipMachine_StalkL_Eye = 16,
+		TipMachine_StalkR1    = 17,
+		TipMachine_StalkR2    = 18,
+		TipMachine_StalkR3    = 19,
+		TipMachine_StalkR_Eye = 20,
+		TipMachine_Lid        = 21,
+		TipMachine_LidNote    = 22
 	};
 
 	/**
-	 * BoneSkeletalMesh SK_DropPod_OreBox.SK_DropPod_OreBox
+	 * BoneSkeletalMesh SK_Jellyfish.SK_Jellyfish
 	 */
-	enum class EBone_SK_DropPod_OreBox : uint8_t
+	enum class EBone_SK_Jellyfish : uint8_t
 	{
-		Root_OreBox         = 0,
-		OreBox_LidLower     = 1,
-		OreBox_LidUpper     = 2,
-		OreBox_Tray         = 3,
-		OreBox_GrinderLower = 4,
-		OreBox_GrinderUpper = 5
+		Root              = 0,
+		BN_Center01       = 1,
+		BN_Arm1_2         = 2,
+		BN_Arm1_3         = 3,
+		BN_Nub15          = 4,
+		BN_Nub1_01        = 5,
+		BN_Nub06          = 6,
+		PNT_Center        = 7,
+		Point002          = 8,
+		Point003          = 9,
+		IKChain001        = 10,
+		Point006          = 11,
+		Point007          = 12,
+		IKChain002        = 13,
+		Point010          = 14,
+		Point011          = 15,
+		IKChain003        = 16,
+		Point014          = 17,
+		Point015          = 18,
+		IKChain004        = 19,
+		Point018          = 20,
+		BN_Nub13          = 21,
+		IKChain005        = 22,
+		Point022          = 23,
+		Point023          = 24,
+		IKChain006        = 25,
+		Point026          = 26,
+		BN_Nub14          = 27,
+		IKChain007        = 28,
+		Point030          = 29,
+		Point031          = 30,
+		IKChain008        = 31,
+		BN_Center02       = 32,
+		BN_Arm2_01        = 33,
+		BN_Arm2_02        = 34,
+		BN_Nub00          = 35,
+		BN_Nub2_01        = 36,
+		BN_Nub17          = 37,
+		BN_Center03       = 38,
+		BN_Arm3_01        = 39,
+		BN_Arm3_02        = 40,
+		BN_Nub12          = 41,
+		BN_Nub3_01        = 42,
+		BN_Nub08          = 43,
+		BN_Center04       = 44,
+		BN_Arm4_01        = 45,
+		BN_Arm4_02        = 46,
+		BN_Nub03          = 47,
+		BN_Nub4_01        = 48,
+		BN_Nub04          = 49,
+		BN_Center05       = 50,
+		BN_Arm5_01        = 51,
+		BN_Arm5_02        = 52,
+		BN_Nub11          = 53,
+		BN_Nub5_01        = 54,
+		BN_Nub07          = 55,
+		BN_Center06       = 56,
+		BN_Arm6_01        = 57,
+		BN_Arm6_02        = 58,
+		BN_Nub02          = 59,
+		BN_Nub6_01        = 60,
+		BN_Nub18          = 61,
+		BN_Center07       = 62,
+		BN_Arm7_01        = 63,
+		BN_Arm7_02        = 64,
+		BN_Nub10          = 65,
+		BN_Nub7_01        = 66,
+		BN_Nub09          = 67,
+		BN_Center08       = 68,
+		BN_Arm8_03        = 69,
+		BN_Arm8_02        = 70,
+		BN_Nub16          = 71,
+		BN_Nub8_01        = 72,
+		BN_Nub05          = 73,
+		BN_BottomWobble01 = 74,
+		BN_BottomWobble02 = 75,
+		BN_Nub01          = 76,
+		Point004          = 77,
+		Point008          = 78,
+		Point012          = 79,
+		Point016          = 80,
+		Point020          = 81,
+		Point024          = 82,
+		Point028          = 83,
+		Point032          = 84,
+		PNT_BottomWobble  = 85
 	};
 
 	/**
-	 * BoneSkeletalMesh SK_DropPod_Ramp02.SK_DropPod_Ramp02
+	 * BoneSkeletalMesh SK_BoltActionRifle_B.SK_BoltActionRifle_B
 	 */
-	enum class EBone_SK_DropPod_Ramp02 : uint8_t
+	enum class EBone_SK_BoltActionRifle_B : uint8_t
 	{
-		Root          = 0,
-		RampSection01 = 1,
-		RampSection02 = 2,
-		RampSection03 = 3,
-		RampSection04 = 4,
-		RampSection05 = 5,
-		RampSection06 = 6
+		SK_M1000_A_Root       = 0,
+		SK_M1000_A_Muzzle     = 1,
+		SK_M1000_A_Slider     = 2,
+		SK_M1000_A_Bolthandle = 3,
+		SK_M1000_A_Bolt       = 4,
+		SK_M1000_A_Clippusher = 5,
+		SK_M1000_A_Flap       = 6,
+		SK_M1000_A_MagA       = 7,
+		SK_M1000_A_MagB       = 8
 	};
 
 	/**
-	 * BoneSkeletalMesh SK_Flier_Grabber_A.SK_Flier_Grabber_A
+	 * BoneSkeletalMesh SK_AssaultRifle_B.SK_AssaultRifle_B
 	 */
-	enum class EBone_SK_Flier_Grabber_A : uint8_t
+	enum class EBone_SK_AssaultRifle_B : uint8_t
 	{
-		GrabberBug_Root             = 0,
-		GrabberBug_Body             = 1,
-		GrabberBug_Head             = 2,
-		GrabberBug_Mandible_L_3     = 3,
-		GrabberBug_Mandible_R_3     = 4,
-		GrabberBug_LWing_Front_2    = 5,
-		GrabberBug_LWing_Front_3    = 6,
-		GrabberBug_RArm_Front_2     = 7,
-		GrabberBug_RArm_Front_3     = 8,
-		GrabberBug_RArm_Front_Palm  = 9,
-		GrabberBug_RFront_Toe       = 10,
-		GrabberBug_LArm_Front_2     = 11,
-		GrabberBug_LArm_Front_3     = 12,
-		GrabberBug_LArm_Front_Palm  = 13,
-		GrabberBug_LFront_Toe       = 14,
-		GrabberBug_RArm_Back_2      = 15,
-		GrabberBug_RArm_Back_3      = 16,
-		GrabberBug_RArm_Back_Palm   = 17,
-		GrabberBug_RBack_Toe        = 18,
-		GrabberBug_LArm_Back_2      = 19,
-		GrabberBug_LArm_Back_3      = 20,
-		GrabberBug_LArm_Back_Palm   = 21,
-		GrabberBug_LBack_Toe        = 22,
-		GrabberBug_LWing_Back_2     = 23,
-		GrabberBug_LWing_Back_3     = 24,
-		GrabberBug_RWing_Back_2     = 25,
-		GrabberBug_RWing_Back_3     = 26,
-		GrabberBug_RWing_Front_2    = 27,
-		GrabberBug_RWing_Front_3    = 28,
-		GrabberBug_Tail_2           = 29,
-		GrabberBug_Tail_3           = 30,
-		GrabberBug_Tail_4           = 31,
-		GrabberBug_Tail_5           = 32,
-		GrabberBug_Tail_6           = 33,
-		GrabberBug_Tail_7           = 34,
-		GrabberBug_LArm_Middle_2    = 35,
-		GrabberBug_LArm_Middle_3    = 36,
-		GrabberBug_LArm_Middle_Palm = 37,
-		GrabberBug_LMiddle_Toe      = 38,
-		GrabberBug_RArm_Middle_2    = 39,
-		GrabberBug_RArm_Middle_3    = 40,
-		GrabberBug_RArm_Middle_Palm = 41,
-		GrabberBug_RMiddle_Toe      = 42,
-		GrabberBug_Back             = 43,
-		GrabberBug_WeakSpot         = 44
-	};
-
-	/**
-	 * BoneSkeletalMesh SK_Flier_Heavy.SK_Flier_Heavy
-	 */
-	enum class EBone_SK_Flier_Heavy : uint8_t
-	{
-		ShooterBug_Root            = 0,
-		ShooterBug_Body            = 1,
-		ShooterBug_Head            = 2,
-		ShooterBug_Mandible_L_3    = 3,
-		ShooterBug_Mandible_L_2    = 4,
-		ShooterBug_Mandible_R_3    = 5,
-		ShooterBug_Mandible_R_2    = 6,
-		ShooterBug_Upper_Lip       = 7,
-		ShooterBug_Lower_Lip       = 8,
-		ShooterBug_Right_Lip       = 9,
-		ShooterBug_Left_Lip        = 10,
-		ShooterBug_LWing_Front_2   = 11,
-		ShooterBug_LWing_Front_3   = 12,
-		ShooterBug_RArm_Front_2    = 13,
-		ShooterBug_RArm_Front_3    = 14,
-		ShooterBug_RArm_Front_Palm = 15,
-		ShooterBug_LArm_Front_2    = 16,
-		ShooterBug_LArm_Front_3    = 17,
-		ShooterBug_LArm_Front_Palm = 18,
-		ShooterBug_RArm_Back_2     = 19,
-		ShooterBug_RArm_Back_3     = 20,
-		ShooterBug_RArm_Back_Palm  = 21,
-		ShooterBug_LArm_Back_2     = 22,
-		ShooterBug_LArm_Back_3     = 23,
-		ShooterBug_LArm_Back_Palm  = 24,
-		ShooterBug_LWing_Back_2    = 25,
-		ShooterBug_LWing_Back_3    = 26,
-		ShooterBug_RWing_Back_2    = 27,
-		ShooterBug_RWing_Back_3    = 28,
-		ShooterBug_RWing_Front_2   = 29,
-		ShooterBug_RWing_Front_3   = 30,
-		ShooterBug_Tail_2          = 31,
-		ShooterBug_Tail_3          = 32,
-		ShooterBug_Tail_4          = 33,
-		ShooterBug_Tail_5          = 34,
-		ShooterBug_Tail_6          = 35,
-		ShooterBug_Tail_7          = 36,
-		ShooterBug_WeakPoint       = 37,
-		ShooterBug_Armor_R         = 38,
-		ShooterBug_Armor_L         = 39
-	};
-
-	/**
-	 * BoneSkeletalMesh SK_Flier_Triple_Shooter.SK_Flier_Triple_Shooter
-	 */
-	enum class EBone_SK_Flier_Triple_Shooter : uint8_t
-	{
-		ShooterBug_Root            = 0,
-		ShooterBug_Body            = 1,
-		ShooterBug_Head            = 2,
-		ShooterBug_Mandible_L_3    = 3,
-		ShooterBug_Mandible_L_2    = 4,
-		ShooterBug_Mandible_R_3    = 5,
-		ShooterBug_Mandible_R_2    = 6,
-		ShooterBug_Upper_Lip       = 7,
-		ShooterBug_Lower_Lip       = 8,
-		ShooterBug_Right_Lip       = 9,
-		ShooterBug_Left_Lip        = 10,
-		ShooterBug_LWing_Front_2   = 11,
-		ShooterBug_LWing_Front_3   = 12,
-		ShooterBug_RArm_Front_2    = 13,
-		ShooterBug_RArm_Front_3    = 14,
-		ShooterBug_RArm_Front_Palm = 15,
-		ShooterBug_LArm_Front_2    = 16,
-		ShooterBug_LArm_Front_3    = 17,
-		ShooterBug_LArm_Front_Palm = 18,
-		ShooterBug_RArm_Back_2     = 19,
-		ShooterBug_RArm_Back_3     = 20,
-		ShooterBug_RArm_Back_Palm  = 21,
-		ShooterBug_LArm_Back_2     = 22,
-		ShooterBug_LArm_Back_3     = 23,
-		ShooterBug_LArm_Back_Palm  = 24,
-		ShooterBug_LWing_Back_2    = 25,
-		ShooterBug_LWing_Back_3    = 26,
-		ShooterBug_RWing_Back_2    = 27,
-		ShooterBug_RWing_Back_3    = 28,
-		ShooterBug_RWing_Front_2   = 29,
-		ShooterBug_RWing_Front_3   = 30,
-		ShooterBug_Tail_2          = 31,
-		ShooterBug_Tail_3          = 32,
-		ShooterBug_Tail_4          = 33,
-		ShooterBug_Tail_5          = 34,
-		ShooterBug_Tail_6          = 35,
-		ShooterBug_Tail_7          = 36,
-		ShooterBug_WeakPoint       = 37,
-		ShooterBug_Armor_R         = 38,
-		ShooterBug_Armor_L         = 39
-	};
-
-	/**
-	 * BoneSkeletalMesh SK_Flier_Shooter.SK_Flier_Shooter
-	 */
-	enum class EBone_SK_Flier_Shooter : uint8_t
-	{
-		ShooterBug_Root            = 0,
-		ShooterBug_Body            = 1,
-		ShooterBug_Head            = 2,
-		ShooterBug_Mandible_L_3    = 3,
-		ShooterBug_Mandible_L_2    = 4,
-		ShooterBug_Mandible_R_3    = 5,
-		ShooterBug_Mandible_R_2    = 6,
-		ShooterBug_Upper_Lip       = 7,
-		ShooterBug_Lower_Lip       = 8,
-		ShooterBug_Right_Lip       = 9,
-		ShooterBug_Left_Lip        = 10,
-		ShooterBug_LWing_Front_2   = 11,
-		ShooterBug_LWing_Front_3   = 12,
-		ShooterBug_RArm_Front_2    = 13,
-		ShooterBug_RArm_Front_3    = 14,
-		ShooterBug_RArm_Front_Palm = 15,
-		ShooterBug_LArm_Front_2    = 16,
-		ShooterBug_LArm_Front_3    = 17,
-		ShooterBug_LArm_Front_Palm = 18,
-		ShooterBug_RArm_Back_2     = 19,
-		ShooterBug_RArm_Back_3     = 20,
-		ShooterBug_RArm_Back_Palm  = 21,
-		ShooterBug_LArm_Back_2     = 22,
-		ShooterBug_LArm_Back_3     = 23,
-		ShooterBug_LArm_Back_Palm  = 24,
-		ShooterBug_LWing_Back_2    = 25,
-		ShooterBug_LWing_Back_3    = 26,
-		ShooterBug_RWing_Back_2    = 27,
-		ShooterBug_RWing_Back_3    = 28,
-		ShooterBug_RWing_Front_2   = 29,
-		ShooterBug_RWing_Front_3   = 30,
-		ShooterBug_Tail_2          = 31,
-		ShooterBug_Tail_3          = 32,
-		ShooterBug_Tail_4          = 33,
-		ShooterBug_Tail_5          = 34,
-		ShooterBug_Tail_6          = 35,
-		ShooterBug_Tail_7          = 36,
-		ShooterBug_WeakPoint       = 37,
-		ShooterBug_Armor_R         = 38,
-		ShooterBug_Armor_L         = 39
-	};
-
-	/**
-	 * BoneSkeletalMesh SK_Spider_Tank_A.SK_Spider_Tank_A
-	 */
-	enum class EBone_SK_Spider_Tank_A : uint8_t
-	{
-		Spider_Root                = 0,
-		Spider_Chest               = 1,
-		Spider_Back                = 2,
-		Spider_Head                = 3,
-		Spider_UpperJaw            = 4,
-		Spider_LowerJaw            = 5,
-		Spider_LeftLowerJaw        = 6,
-		Spider_RightLowerJaw       = 7,
-		Spider_UpperJawSkin        = 8,
-		Spider_NeckTop             = 9,
-		Spider_NeckRight           = 10,
-		Spider_NeckButtom          = 11,
-		Spider_NeckLeft            = 12,
-		Spider_LegL_Front_2        = 13,
-		Spider_LegL_Front_3        = 14,
-		Spider_LegL_Front_4        = 15,
-		Spider_LegR_Front_Part_2   = 16,
-		Spider_LegR_Front_Part_3   = 17,
-		Spider_LegR_Front_Part_4   = 18,
-		Spider_LegL_1_Part_2       = 19,
-		Spider_LegL_1_Part_3       = 20,
-		Spider_LegL_2_Part_2       = 21,
-		Spider_LegL_2_Part_3       = 22,
-		Spider_LegR_1_Part_2       = 23,
-		Spider_LegR_1_Part_3       = 24,
-		Spider_LegR_2_Part_2       = 25,
-		Spider_LegR_2_Part_3       = 26,
-		Spider_LegL_3_Part_2       = 27,
-		Spider_LegL_3_Part_3       = 28,
-		Spider_LegR_3_Part_2       = 29,
-		Spider_LegR_3_Part_3       = 30,
-		Spider_BackR_1_Armor       = 31,
-		Spider_BackR_2_Armor       = 32,
-		Spider_BackL_1_Armor       = 33,
-		Spider_BackL_2_Armor       = 34,
-		Spider_LegL_Front_Armor_3  = 35,
-		Spider_LegL_Front_Armor_2  = 36,
-		Spider_LegR_Front_Armor_3  = 37,
-		Spider_LegR_Front_Armor_2  = 38,
-		Spider_LegL_1_Armor        = 39,
-		Spider_LegL_2_Armor        = 40,
-		Spider_LegR_1_Armor        = 41,
-		Spider_LegR_2_Armor        = 42,
-		Spider_LegL_3_Armor        = 43,
-		Spider_LegR_3_Armor        = 44,
-		Spider_ChestL_1_Armor      = 45,
-		Spider_ChestR_1_Armor      = 46,
-		Spider_BackC_1_Armor       = 47,
-		Spider_ChestC_1_Armor      = 48,
-		Spider_ChestR_2_Armor      = 49,
-		Spider_ChestL_2_Armor      = 50,
-		SK_Spider_Shell_Root_R     = 51,
-		SK_Spider_Shell_R          = 52,
-		SK_Spider_Shell_Root_L     = 53,
-		SK_Spider_Shell_L          = 54,
-		SK_Spider_WeakSpot         = 55,
-		SK_Spider_RageSpot_Root_L  = 56,
-		SK_Spider_RageSpot_L       = 57,
-		SK_Spider_RageSpot_Root_R  = 58,
-		SK_Spider_RageSpot_R       = 59,
-		SK_Spider_RageSpot_Root_C  = 60,
-		SK_Spider_RageSpot_C       = 61,
-		Spider_BackL_2_Armor001    = 62,
-		SK_Spider_BackR_1_Armor    = 63,
-		Spider_BackC_1_Armor001    = 64,
-		SK_Spider_BackR_3_Armor    = 65,
-		SK_Spider_BackL_3_Armor    = 66,
-		SK_Spider_ChestR_1_Armor   = 67,
-		SK_Spider_ChestL_1_Armor   = 68,
-		SK_Spider_Breath_Muzzle    = 69,
-		SK_Spider_LegL_Front_Armor = 70,
-		SK_Spider_LegR_Front_Armor = 71,
-		SK_Spider_Muzzle_R         = 72,
-		SK_Spider_Muzzle_L         = 73,
-		Spider_Back1               = 74,
-		Spider_Tail1               = 75,
-		Spider_Tail2               = 76,
-		Spider_Tail3               = 77,
-		Spider_Tail4               = 78,
-		Spider_Tail5               = 79,
-		Spider_Tail6               = 80,
-		Spider_Tail7               = 81,
-		Spider_Tail8               = 82,
-		Spider_Tail_armor8         = 83,
-		Spider_Tail_armor7         = 84,
-		Spider_Tail_armor6         = 85,
-		Spider_Tail_armor5         = 86,
-		Spider_Tail_armor4         = 87,
-		Spider_Tail_armor3         = 88,
-		Spider_Tail_armor2         = 89,
-		Spider_Tail_armor1         = 90,
-		Spider_Butt_2              = 91,
-		Spider_Butt_3              = 92,
-		Spider_Butt_4              = 93,
-		Spider_Butt_3_Scale        = 94,
-		Spider_Butt_2_Scale        = 95,
-		Spider_Butt_1_Scale        = 96,
-		Spider_Butt_3_Armor        = 97,
-		Spider_Butt_2_Armor        = 98,
-		Spider_Butt_1_Armor        = 99,
-		Spider_AntennaeBack        = 100
-	};
-
-	/**
-	 * BoneSkeletalMesh SK_ShieldGenerator.SK_ShieldGenerator
-	 */
-	enum class EBone_SK_ShieldGenerator : uint8_t
-	{
-		Cylinder001 = 0
-	};
-
-	/**
-	 * BoneSkeletalMesh SK_Mug007.SK_Mug007
-	 */
-	enum class EBone_SK_Mug007 : uint8_t
-	{
-		Mug001      = 0,
-		Mug001_Foam = 1,
-		Mug010      = 2,
-		Mug019      = 3,
-		Mug012      = 4,
-		Mug013      = 5,
-		Mug002      = 6,
-		Mug014      = 7,
-		Mug008      = 8,
-		Mug011      = 9,
-		Mug007      = 10,
-		Mug018      = 11,
-		Mug006      = 12,
-		Mug003      = 13,
-		Mug004      = 14,
-		Mug015      = 15,
-		Mug017      = 16,
-		Mug009      = 17,
-		Mug005      = 18,
-		Mug016      = 19,
-		Mug007_Foam = 20,
-		FoamOrg     = 21,
-		Mug020      = 22,
-		Mug_020     = 23,
-		Mug001_Lid  = 24,
-		Mug_Sausage = 25,
-		Mug_DLC08   = 26
-	};
-
-	/**
-	 * BoneSkeletalMesh SK_Detonator_B.SK_Detonator_B
-	 */
-	enum class EBone_SK_Detonator_B : uint8_t
-	{
-		SK_Detonator_B_Root      = 0,
-		SK_Detonator_B_Button    = 1,
-		SK_Detonator_B_ButtonLid = 2
-	};
-
-	/**
-	 * BoneSkeletalMesh SK_Bosco_Default.SK_Bosco_Default
-	 */
-	enum class EBone_SK_Bosco_Default : uint8_t
-	{
-		MainBody        = 0,
-		Hatch_Cover_R   = 1,
-		Hatch_Cover_L   = 2,
-		Ear_R           = 3,
-		Ear_L           = 4,
-		Gun_Arm_L       = 5,
-		Gun_Case_L      = 6,
-		Gun_Barrel01_L  = 7,
-		Gun_Barrel02_L  = 8,
-		Gun_Arm_R       = 9,
-		Gun_Case_R      = 10,
-		Gun_Barrel01_R  = 11,
-		Gun_Barrel02__R = 12,
-		LowerBody       = 13,
-		Arm01_L         = 14,
-		Arm02_L         = 15,
-		Arm03_L         = 16,
-		Arm01_R         = 17,
-		Arm02_R         = 18,
-		Arm03_R         = 19,
-		MidRiff         = 20,
-		Thruster_L      = 21,
-		Thruster_R      = 22,
-		Butterfly       = 23,
-		Gun_Drum_L      = 24,
-		Gun_Drum_R      = 25,
-		Hat             = 26,
-		Plague          = 27,
-		Vial            = 28,
-		Tube_back       = 29,
-		Tube_R          = 30,
-		Tube_L          = 31,
-		Elf_hat01       = 32,
-		Elf_hat02       = 33,
-		Elf_hat03       = 34,
-		Elf_hat04       = 35,
-		Elf_hat05       = 36,
-		Bag             = 37,
-		Belt_M          = 38,
-		Belt_R          = 39,
-		Belt_L          = 40,
-		Headband_M      = 41,
-		Headband01_R    = 42,
-		Headband02_R    = 43,
-		Headband03_R    = 44,
-		Headband01_L    = 45,
-		Headband02_L    = 46,
-		Headband03_L    = 47
+		SK_AssaultRifle_B_Root   = 0,
+		SK_AssaultRifle_B_Bullet = 1,
+		SK_AssaultRifle_B_Muzzle = 2,
+		SK_AssaultRifle_B_Slide  = 3,
+		SK_AssaultRifle_B_Wheel  = 4,
+		SK_AssaultRifle_B_Casing = 5,
+		SK_AssaultRifle_B_Lock   = 6,
+		SK_AssaultRifle_B_Mag_A  = 7,
+		SK_AssaultRifle_B_Mag_B  = 8
 	};
 
 	/**
@@ -1533,16 +1662,31 @@ namespace CG
 	};
 
 	/**
-	 * BoneSkeletalMesh SK_plague_GlyphidAttachment_03.SK_plague_GlyphidAttachment_03
+	 * BoneSkeletalMesh SK_plague_Projectile.SK_plague_Projectile
 	 */
-	enum class EBone_SK_plague_GlyphidAttachment_03 : uint8_t
+	enum class EBone_SK_plague_Projectile : uint8_t
 	{
-		GlyphidAttachment_03_grp       = 0,
-		glyphAt_03_jnt                 = 1,
-		glyphAt_03_jnt1                = 2,
-		glyphAt_03_jnt2                = 3,
-		glyphAt_03_jnt3                = 4,
-		SM_Plague_GlyphidAttachment_03 = 5
+		plague_projectile_grp      = 0,
+		plague_projectile_rootJnt  = 1,
+		plague_projectile_jnt1     = 2,
+		plague_projectile_jnt2     = 3,
+		plague_projectile_legJnt5  = 4,
+		plague_projectile_legJnt6  = 5,
+		plague_projectile_legJnt7  = 6,
+		plague_projectile_legJnt8  = 7,
+		plague_projectile_legJnt9  = 8,
+		plague_projectile_legJnt10 = 9,
+		plague_projectile_legJnt11 = 10,
+		plague_projectile_legJnt12 = 11,
+		plague_projectile_legJnt13 = 12,
+		plague_projectile_legJnt14 = 13,
+		plague_projectile_legJnt15 = 14,
+		plague_projectile_legJnt1  = 15,
+		plague_projectile_legJnt2  = 16,
+		plague_projectile_legJnt4  = 17,
+		plague_projectile_legJnt3  = 18,
+		plague_projectile_jnt3     = 19,
+		SM_Plague_Projectile       = 20
 	};
 
 	/**
@@ -1598,9 +1742,9 @@ namespace CG
 	};
 
 	/**
-	 * BoneSkeletalMesh SK_1P_Dwarf_Rig.SK_1P_Dwarf_Rig
+	 * BoneSkeletalMesh SK_Vanity_ArmorDriller003_FP.SK_Vanity_ArmorDriller003_FP
 	 */
-	enum class EBone_SK_1P_Dwarf_Rig : uint8_t
+	enum class EBone_SK_Vanity_ArmorDriller003_FP : uint8_t
 	{
 		Dwarf_RootBone         = 0,
 		Dwarf_Pelvis           = 1,
@@ -1670,7 +1814,7 @@ namespace CG
 	 */
 	enum class EBone_SK_SentryGun_Engineer : uint8_t
 	{
-		BN_Root                   = 0,
+		BN_ROOT                   = 0,
 		BN_Base_Bottom            = 1,
 		BN_Leg01                  = 2,
 		BN_Foot01                 = 3,
@@ -1725,58 +1869,6 @@ namespace CG
 		Jnt_WormPod_ArmB_02 = 9,
 		Jnt_WormPod_ArmC_01 = 10,
 		Jnt_WormPod_ArmC_02 = 11
-	};
-
-	/**
-	 * BoneSkeletalMesh SK_TipMachine.SK_TipMachine
-	 */
-	enum class EBone_SK_TipMachine : uint8_t
-	{
-		TipMachine_Root       = 0,
-		TipMachine_Base       = 1,
-		TipMachine_FlapL      = 2,
-		TipMachine_FlapL_Note = 3,
-		TipMachine_FlapR      = 4,
-		TipMachine_FlapR_Note = 5,
-		TipMachine_ArmR1      = 6,
-		TipMachine_ArmR2      = 7,
-		TipMachine_ArmR_Note  = 8,
-		TipMachine_ArmL1      = 9,
-		TipMachine_ArmL2      = 10,
-		TipMachine_ArmL_Note  = 11,
-		TipMachine_Screen     = 12,
-		TipMachine_StalkL1    = 13,
-		TipMachine_StalkL2    = 14,
-		TipMachine_StalkL3    = 15,
-		TipMachine_StalkL_Eye = 16,
-		TipMachine_StalkR1    = 17,
-		TipMachine_StalkR2    = 18,
-		TipMachine_StalkR3    = 19,
-		TipMachine_StalkR_Eye = 20,
-		TipMachine_Lid        = 21,
-		TipMachine_LidNote    = 22
-	};
-
-	/**
-	 * BoneSkeletalMesh SK_LockOnRifle_Skin_Infected.SK_LockOnRifle_Skin_Infected
-	 */
-	enum class EBone_SK_LockOnRifle_Skin_Infected : uint8_t
-	{
-		SK_LockOnRifle_A_Root         = 0,
-		SK_LockOnRifle_A_Bullet       = 1,
-		SK_LockOnRifle_A_Muzzle       = 2,
-		SK_LockOnRifle_A_Casing       = 3,
-		SK_LockOnRifle_A_Mag_A        = 4,
-		SK_LockOnRifle_A_Mag_B        = 5,
-		SK_LockOnRifle_A_Slide        = 6,
-		SK_LockOnRifle_A_Cock         = 7,
-		SK_LockOnRifle_A_EyeRoot      = 8,
-		SK_LockOnRifle_A_Eye          = 9,
-		SK_LockOnRifle_A_Lock         = 10,
-		SK_LockOnRifle_A_AmmoCounterA = 11,
-		SK_LockOnRifle_A_AmmoCounterB = 12,
-		SK_LockOnRifle_A_BoxA         = 13,
-		SK_LockOnRifle_A_Plate        = 14
 	};
 
 }

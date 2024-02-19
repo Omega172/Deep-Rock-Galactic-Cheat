@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -14,6 +14,17 @@ namespace CG
 	// --------------------------------------------------
 	// # Structs
 	// --------------------------------------------------
+	/**
+	 * Function LVL_CharacterSelection.LVL_CharacterSelection_C.MakeVanity
+	 */
+	struct ALVL_CharacterSelection_C_MakeVanity_Params
+	{
+	public:
+		bool                                                       UseSleves;                                               // 0x0000(0x0001)  (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+		unsigned char                                              UnknownData_SZ8B[0x7];                                   // 0x0001(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY) ()
+		struct FEquippedVanity                                     UseSleveless;                                            // 0x0008(0x0020)  (Parm, OutParm)
+	};
+
 	/**
 	 * Function LVL_CharacterSelection.LVL_CharacterSelection_C.PlaySpecificSequence
 	 */
@@ -36,7 +47,7 @@ namespace CG
 	{
 	public:
 		ECharselectionCameraLocation                               CamSetting;                                              // 0x0000(0x0001)  (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-		unsigned char                                              UnknownData_14QH[0x7];                                   // 0x0001(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY) ()
+		unsigned char                                              UnknownData_YC2T[0x7];                                   // 0x0001(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY) ()
 	};
 
 	/**
@@ -82,6 +93,7 @@ namespace CG
 	{
 	public:
 		int32_t                                                    EntryPoint;                                              // 0x0000(0x0004)  (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+		unsigned char                                              UnknownData_J4SI[0x4];                                   // 0x0004(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY) ()
 	};
 
 }

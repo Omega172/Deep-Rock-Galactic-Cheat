@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -21,10 +21,10 @@ namespace CG
 	class UAudioCurveSourceComponent : public UAudioComponent
 	{
 	public:
-		unsigned char                                              UnknownData_VTSX[0x8];                                   // 0x0860(0x0008) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_6WE4[0x8];                                   // 0x0860(0x0008) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class FName                                                CurveSourceBindingName;                                  // 0x0868(0x0008) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		float                                                      CurveSyncOffset;                                         // 0x0870(0x0004) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_7DG0[0x2C];                                  // 0x0874(0x002C) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_QH5Z[0x2C];                                  // 0x0874(0x002C) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();

@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -43,14 +43,14 @@ namespace CG
 		bool                                                       RequestNormals;                                          // 0x0209(0x0001) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		bool                                                       RequestVertexConfidence;                                 // 0x020A(0x0001) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		EMeshTrackerVertexColorMode                                VertexColorMode;                                         // 0x020B(0x0001) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_QYBX[0x4];                                   // 0x020C(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_COBO[0x4];                                   // 0x020C(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TArray<struct FColor>                                      BlockVertexColors;                                       // 0x0210(0x0010) Edit, BlueprintVisible, ZeroConstructor, NativeAccessSpecifierPublic
 		struct FLinearColor                                        VertexColorFromConfidenceZero;                           // 0x0220(0x0010) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		struct FLinearColor                                        VertexColorFromConfidenceOne;                            // 0x0230(0x0010) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		float                                                      UpdateInterval;                                          // 0x0240(0x0004) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_WB29[0x4];                                   // 0x0244(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_4089[0x4];                                   // 0x0244(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class UMRMeshComponent*                                    MRMesh;                                                  // 0x0248(0x0008) ExportObject, ZeroConstructor, Transient, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_MDJM[0x20];                                  // 0x0250(0x0020) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_T7JM[0x20];                                  // 0x0250(0x0020) MISSED OFFSET (PADDING)
 
 	public:
 		void OnMockDataMeshTrackerUpdated__DelegateSignature(int32_t Index, TArray<struct FVector> Vertices, TArray<int32_t> Triangles, TArray<struct FVector> Normals, TArray<float> Confidence);
@@ -66,16 +66,16 @@ namespace CG
 	class UMRMeshComponent : public UPrimitiveComponent
 	{
 	public:
-		unsigned char                                              UnknownData_13VY[0x10];                                  // 0x0450(0x0010) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_SHX0[0x10];                                  // 0x0450(0x0010) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class UMaterialInterface*                                  Material;                                                // 0x0460(0x0008) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
 		class UMaterialInterface*                                  WireframeMaterial;                                       // 0x0468(0x0008) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
 		bool                                                       bCreateMeshProxySections;                                // 0x0470(0x0001) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
 		bool                                                       bUpdateNavMeshOnMeshUpdate;                              // 0x0471(0x0001) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
 		bool                                                       bNeverCreateCollisionMesh;                               // 0x0472(0x0001) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
-		unsigned char                                              UnknownData_QTLX[0x5];                                   // 0x0473(0x0005) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_3AFP[0x5];                                   // 0x0473(0x0005) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class UBodySetup*                                          CachedBodySetup;                                         // 0x0478(0x0008) ZeroConstructor, Transient, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
 		TArray<class UBodySetup*>                                  BodySetups;                                              // 0x0480(0x0010) ZeroConstructor, Transient, NativeAccessSpecifierPrivate
-		unsigned char                                              UnknownData_LHRI[0x80];                                  // 0x0490(0x0080) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_MQP0[0x80];                                  // 0x0490(0x0080) MISSED OFFSET (PADDING)
 
 	public:
 		void SetWireframeMaterial(class UMaterialInterface* InMaterial);

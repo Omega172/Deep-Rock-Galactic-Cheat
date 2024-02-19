@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -21,7 +21,7 @@ namespace CG
 	class UABP_AutoCannon_C : public UAnimInstance
 	{
 	public:
-		unsigned char                                              UnknownData_C69N[0x8];                                   // 0x02B8(0x0008) Fix Super Size
+		unsigned char                                              UnknownData_88KE[0x8];                                   // 0x02B8(0x0008) Fix Super Size
 		struct FPointerToUberGraphFrame                            UberGraphFrame;                                          // 0x02C0(0x0008) ZeroConstructor, Transient, DuplicateTransient
 		struct FAnimNode_SequenceEvaluator                         AnimGraphNode_SequenceEvaluator;                         // 0x02C8(0x0050)
 		struct FAnimNode_Root                                      AnimGraphNode_Root;                                      // 0x0318(0x0030)

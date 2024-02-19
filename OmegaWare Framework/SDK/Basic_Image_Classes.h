@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -26,7 +26,7 @@ namespace CG
 		class UImage*                                              ImageComponent;                                          // 0x0270(0x0008) BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, RepSkip, NoDestructor, PersistentInstance, HasGetValueTypeHash
 		struct FSlateBrush                                         Brush;                                                   // 0x0278(0x0088) Edit, BlueprintVisible, ExposeOnSpawn
 		ENUM_MenuColors                                            Tint;                                                    // 0x0300(0x0001) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, Interp, NoDestructor, ExposeOnSpawn, HasGetValueTypeHash
-		unsigned char                                              UnknownData_62L0[0x3];                                   // 0x0301(0x0003) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_THKM[0x3];                                   // 0x0301(0x0003) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		float                                                      TintOpacity;                                             // 0x0304(0x0004) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, Interp, NoDestructor, ExposeOnSpawn, HasGetValueTypeHash
 		TMap<class FName, float>                                   Scalars;                                                 // 0x0308(0x0050) Edit, BlueprintVisible, BlueprintReadOnly
 		TMap<class FName, struct FLinearColor>                     Vectors;                                                 // 0x0358(0x0050) Edit, BlueprintVisible, BlueprintReadOnly

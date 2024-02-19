@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -308,7 +308,7 @@ namespace CG
 		EModioEnvironment                                          Environment;                                             // 0x0040(0x0001) Edit, ZeroConstructor, Config, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		EModioLogLevel                                             LogLevel;                                                // 0x0041(0x0001) Edit, ZeroConstructor, Config, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		EModioPortal                                               DefaultPortal;                                           // 0x0042(0x0001) Edit, ZeroConstructor, Config, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_V336[0x5];                                   // 0x0043(0x0005) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_5A8H[0x5];                                   // 0x0043(0x0005) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -321,7 +321,7 @@ namespace CG
 	class UModioSubsystem : public UEngineSubsystem
 	{
 	public:
-		unsigned char                                              UnknownData_BN71[0x140];                                 // 0x0030(0x0140) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_YPPG[0x140];                                 // 0x0030(0x0140) MISSED OFFSET (PADDING)
 
 	public:
 		void SetLogLevel(EModioLogLevel UnrealLogLevel);

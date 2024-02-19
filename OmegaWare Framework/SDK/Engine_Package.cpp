@@ -1,6 +1,6 @@
 ﻿/**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #include "pch.h"
@@ -10229,7 +10229,7 @@ namespace CG
 		FVector worldPos{};
 		
 		const TArray<struct FTransform>& componentSpaceTransforms = USkeletalMeshComponent::CachedBoneSpaceTransforms;
-		int32_t componentToWorldOffset = 0x190 /* || 0x1C0 || 0x1D0 || 0x250 */ ;
+		int32_t componentToWorldOffset = 0x190 /* || 0x1C0 || 0x1D0 || 0x250 */;
 		
 		if (boneId >= componentSpaceTransforms.Count())
 			return worldPos;

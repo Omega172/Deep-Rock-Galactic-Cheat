@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -21,7 +21,7 @@ namespace CG
 	class UAnimSequencerInstance : public UAnimInstance
 	{
 	public:
-		unsigned char                                              UnknownData_WVWI[0x8];                                   // 0x02B8(0x0008) Fix Super Size
+		unsigned char                                              UnknownData_8YVP[0x8];                                   // 0x02B8(0x0008) Fix Super Size
 
 	public:
 		static UClass* StaticClass();
@@ -85,7 +85,7 @@ namespace CG
 		class FScriptMulticastDelegate                             OnInterrupted;                                           // 0x0048(0x0010) ZeroConstructor, InstancedReference, BlueprintAssignable, NativeAccessSpecifierPublic
 		class FScriptMulticastDelegate                             OnNotifyBegin;                                           // 0x0058(0x0010) ZeroConstructor, InstancedReference, BlueprintAssignable, NativeAccessSpecifierPublic
 		class FScriptMulticastDelegate                             OnNotifyEnd;                                             // 0x0068(0x0010) ZeroConstructor, InstancedReference, BlueprintAssignable, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_7T8X[0x30];                                  // 0x0078(0x0030) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_MQTJ[0x30];                                  // 0x0078(0x0030) MISSED OFFSET (PADDING)
 
 	public:
 		void OnNotifyEndReceived(const class FName& NotifyName, const struct FBranchingPointNotifyPayload& BranchingPointNotifyPayload);

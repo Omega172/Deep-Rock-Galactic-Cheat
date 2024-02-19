@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -16,7 +16,7 @@ namespace CG
 	// --------------------------------------------------
 	/**
 	 * WidgetBlueprintGeneratedClass UI_Merch_BigAndSmall.UI_Merch_BigAndSmall_C
-	 * Size -> 0x0098 (FullSize[0x0328] - InheritedSize[0x0290])
+	 * Size -> 0x00B0 (FullSize[0x0340] - InheritedSize[0x0290])
 	 */
 	class UUI_Merch_BigAndSmall_C : public UUI_MerchEntry_Base_C
 	{
@@ -28,17 +28,20 @@ namespace CG
 		class UButton*                                             EntryButton;                                             // 0x02B0(0x0008) BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, RepSkip, NoDestructor, PersistentInstance, HasGetValueTypeHash
 		class UBasic_Image_C*                                      Image_Big;                                               // 0x02B8(0x0008) BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, RepSkip, NoDestructor, PersistentInstance, HasGetValueTypeHash
 		class UBasic_Image_C*                                      Image_Hovered;                                           // 0x02C0(0x0008) BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, RepSkip, NoDestructor, PersistentInstance, HasGetValueTypeHash
-		class UBasic_Image_C*                                      Img_Shadow;                                              // 0x02C8(0x0008) BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, RepSkip, NoDestructor, PersistentInstance, HasGetValueTypeHash
-		class UOverlay*                                            Overlay_Big;                                             // 0x02D0(0x0008) BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, RepSkip, NoDestructor, PersistentInstance, HasGetValueTypeHash
-		class UHorizontalBox*                                      Small_Box;                                               // 0x02D8(0x0008) BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, RepSkip, NoDestructor, PersistentInstance, HasGetValueTypeHash
-		class FText                                                Description;                                             // 0x02E0(0x0018) Edit, BlueprintVisible
-		class UTexture2D*                                          BigImage;                                                // 0x02F8(0x0008) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash
-		TArray<class UTexture2D*>                                  SmallImages;                                             // 0x0300(0x0010) Edit, BlueprintVisible
-		class UBasic_Image_C*                                      SmallImage;                                              // 0x0310(0x0008) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash
-		float                                                      SmallImageWidth;                                         // 0x0318(0x0004) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash
-		int32_t                                                    Index;                                                   // 0x031C(0x0004) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash
-		int32_t                                                    BigImageWidth;                                           // 0x0320(0x0004) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash
-		int32_t                                                    SmallImagesSpacing;                                      // 0x0324(0x0004) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash
+		class UUI_MediaPlayer_C*                                   Image_MediaPlayer;                                       // 0x02C8(0x0008) BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, RepSkip, NoDestructor, PersistentInstance, HasGetValueTypeHash
+		class UBasic_Image_C*                                      IMG_Shadow;                                              // 0x02D0(0x0008) BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, RepSkip, NoDestructor, PersistentInstance, HasGetValueTypeHash
+		class UOverlay*                                            Overlay_Big;                                             // 0x02D8(0x0008) BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, RepSkip, NoDestructor, PersistentInstance, HasGetValueTypeHash
+		class UHorizontalBox*                                      Small_Box;                                               // 0x02E0(0x0008) BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, RepSkip, NoDestructor, PersistentInstance, HasGetValueTypeHash
+		class FText                                                Description;                                             // 0x02E8(0x0018) Edit, BlueprintVisible
+		class UTexture2D*                                          BigImage;                                                // 0x0300(0x0008) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash
+		TArray<class UTexture2D*>                                  SmallImages;                                             // 0x0308(0x0010) Edit, BlueprintVisible
+		class UBasic_Image_C*                                      SmallImage;                                              // 0x0318(0x0008) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash
+		float                                                      SmallImageWidth;                                         // 0x0320(0x0004) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash
+		int32_t                                                    Index;                                                   // 0x0324(0x0004) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash
+		int32_t                                                    BigImageWidth;                                           // 0x0328(0x0004) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash
+		int32_t                                                    SmallImagesSpacing;                                      // 0x032C(0x0004) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash
+		class UFileMediaSource*                                    Movie;                                                   // 0x0330(0x0008) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash
+		class UMediaPlayer*                                        Target;                                                  // 0x0338(0x0008) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash
 
 	public:
 		void CreateSmallImages();

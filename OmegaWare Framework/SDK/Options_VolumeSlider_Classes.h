@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -16,7 +16,7 @@ namespace CG
 	// --------------------------------------------------
 	/**
 	 * WidgetBlueprintGeneratedClass Options_VolumeSlider.Options_VolumeSlider_C
-	 * Size -> 0x0011 (FullSize[0x0271] - InheritedSize[0x0260])
+	 * Size -> 0x0018 (FullSize[0x0278] - InheritedSize[0x0260])
 	 */
 	class UOptions_VolumeSlider_C : public USoundClassWidget
 	{
@@ -24,6 +24,8 @@ namespace CG
 		struct FPointerToUberGraphFrame                            UberGraphFrame;                                          // 0x0260(0x0008) ZeroConstructor, Transient, DuplicateTransient
 		class UBasic_Slider_C*                                     Basic_Slider;                                            // 0x0268(0x0008) BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, RepSkip, NoDestructor, PersistentInstance, HasGetValueTypeHash
 		EVolumeType                                                volumeType;                                              // 0x0270(0x0001) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash
+		unsigned char                                              UnknownData_B20H[0x3];                                   // 0x0271(0x0003) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		int32_t                                                    Indent;                                                  // 0x0274(0x0004) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash
 
 	public:
 		void Construct();

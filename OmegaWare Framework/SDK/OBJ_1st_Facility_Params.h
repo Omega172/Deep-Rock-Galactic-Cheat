@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -21,7 +21,7 @@ namespace CG
 	{
 	public:
 		float                                                      missionLength;                                           // 0x0000(0x0004)  (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-		unsigned char                                              UnknownData_HXUD[0x4];                                   // 0x0004(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY) ()
+		unsigned char                                              UnknownData_DXLQ[0x4];                                   // 0x0004(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY) ()
 		class FText                                                ReturnValue;                                             // 0x0008(0x0018)  (Parm, OutParm, ReturnParm)
 	};
 
@@ -103,13 +103,10 @@ namespace CG
 	};
 
 	/**
-	 * Function OBJ_1st_Facility.OBJ_1st_Facility_C.OBJ_Updated
+	 * Function OBJ_1st_Facility.OBJ_1st_Facility_C.OnAllRequiredReturnObjectivesCompleted_Event_1
 	 */
-	struct UOBJ_1st_Facility_C_OBJ_Updated_Params
-	{
-	public:
-		class UObjective*                                          Objective;                                               // 0x0000(0x0008)  (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-	};
+	struct UOBJ_1st_Facility_C_OnAllRequiredReturnObjectivesCompleted_Event_1_Params
+	{	};
 
 	/**
 	 * Function OBJ_1st_Facility.OBJ_1st_Facility_C.ExecuteUbergraph_OBJ_1st_Facility
@@ -118,7 +115,6 @@ namespace CG
 	{
 	public:
 		int32_t                                                    EntryPoint;                                              // 0x0000(0x0004)  (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
-		unsigned char                                              UnknownData_KWBD[0x4];                                   // 0x0004(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY) ()
 	};
 
 }

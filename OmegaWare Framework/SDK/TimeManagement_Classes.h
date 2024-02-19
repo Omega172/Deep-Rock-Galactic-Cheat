@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -42,7 +42,7 @@ namespace CG
 	{
 	public:
 		struct FFrameRate                                          FrameRate;                                               // 0x0028(0x0008) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_OB1G[0x18];                                  // 0x0030(0x0018) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_PJA9[0x18];                                  // 0x0030(0x0018) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -56,7 +56,7 @@ namespace CG
 	{
 	public:
 		bool                                                       bUseGenlockToCount;                                      // 0x0030(0x0001) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, AdvancedDisplay, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_UGXW[0x27];                                  // 0x0031(0x0027) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_87TK[0x27];                                  // 0x0031(0x0027) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -97,7 +97,7 @@ namespace CG
 	{
 	public:
 		bool                                                       bUseForSynchronization;                                  // 0x0028(0x0001) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_BFC8[0x3];                                   // 0x0029(0x0003) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_YXRB[0x3];                                   // 0x0029(0x0003) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		int32_t                                                    FrameOffset;                                             // 0x002C(0x0004) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 
 	public:

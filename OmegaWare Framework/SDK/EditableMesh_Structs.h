@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -97,7 +97,7 @@ namespace CG
 		uint32_t                                                   RenderingSectionIndex;                                   // 0x0000(0x0004) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		int32_t                                                    MaterialIndex;                                           // 0x0004(0x0004) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		int32_t                                                    MaxTriangles;                                            // 0x0008(0x0004) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_KMJU[0x3C];                                  // 0x000C(0x003C) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_W7YN[0x3C];                                  // 0x000C(0x003C) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -115,7 +115,7 @@ namespace CG
 	{
 	public:
 		struct FPolygonGroupID                                     PolygonGroupID;                                          // 0x0000(0x0004) NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_K1ZI[0x4];                                   // 0x0004(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_4UPQ[0x4];                                   // 0x0004(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TArray<struct FAdaptorTriangleID>                          TriangulatedPolygonTriangleIndices;                      // 0x0008(0x0010) ZeroConstructor, NativeAccessSpecifierPublic
 	};
 
@@ -137,7 +137,7 @@ namespace CG
 	struct FMeshElementAttributeValue
 	{
 	public:
-		unsigned char                                              UnknownData_CVOP[0x50];                                  // 0x0000(0x0050) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_V74W[0x50];                                  // 0x0000(0x0050) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -149,7 +149,7 @@ namespace CG
 	public:
 		class FName                                                AttributeName;                                           // 0x0000(0x0008) BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		int32_t                                                    AttributeIndex;                                          // 0x0008(0x0004) BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_5CAQ[0x4];                                   // 0x000C(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_UQET[0x4];                                   // 0x000C(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		struct FMeshElementAttributeValue                          AttributeValue;                                          // 0x0010(0x0050) BlueprintVisible, NoDestructor, NativeAccessSpecifierPublic
 	};
 
@@ -172,7 +172,7 @@ namespace CG
 	public:
 		struct FMeshElementAttributeList                           PolygonGroupAttributes;                                  // 0x0000(0x0010) BlueprintVisible, NativeAccessSpecifierPublic
 		struct FPolygonGroupID                                     OriginalPolygonGroupID;                                  // 0x0010(0x0004) BlueprintVisible, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_P967[0x4];                                   // 0x0014(0x0004) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_5YMK[0x4];                                   // 0x0014(0x0004) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -215,7 +215,7 @@ namespace CG
 	{
 	public:
 		struct FPolygonID                                          PolygonID;                                               // 0x0000(0x0004) BlueprintVisible, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_QS6D[0x4];                                   // 0x0004(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_GM4W[0x4];                                   // 0x0004(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TArray<struct FVertexIndexAndInstanceID>                   PerimeterVertexIndicesAndInstanceIDs;                    // 0x0008(0x0010) BlueprintVisible, ZeroConstructor, NativeAccessSpecifierPublic
 		TArray<struct FVertexInstancesForPolygonHole>              VertexIndicesAndInstanceIDsForEachHole;                  // 0x0018(0x0010) BlueprintVisible, ZeroConstructor, NativeAccessSpecifierPublic
 	};
@@ -238,7 +238,7 @@ namespace CG
 	{
 	public:
 		struct FPolygonID                                          PolygonID;                                               // 0x0000(0x0004) BlueprintVisible, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_9Y5Y[0x4];                                   // 0x0004(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_L8QY[0x4];                                   // 0x0004(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TArray<struct FMeshElementAttributeList>                   PerimeterVertexAttributeLists;                           // 0x0008(0x0010) BlueprintVisible, ZeroConstructor, NativeAccessSpecifierPublic
 		TArray<struct FVertexAttributesForPolygonHole>             VertexAttributeListsForEachHole;                         // 0x0018(0x0010) BlueprintVisible, ZeroConstructor, NativeAccessSpecifierPublic
 	};
@@ -251,7 +251,7 @@ namespace CG
 	{
 	public:
 		struct FEdgeID                                             EdgeID;                                                  // 0x0000(0x0004) BlueprintVisible, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_495D[0x4];                                   // 0x0004(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_XXI9[0x4];                                   // 0x0004(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		struct FMeshElementAttributeList                           EdgeAttributes;                                          // 0x0008(0x0010) BlueprintVisible, NativeAccessSpecifierPublic
 	};
 
@@ -263,7 +263,7 @@ namespace CG
 	{
 	public:
 		struct FVertexInstanceID                                   VertexInstanceID;                                        // 0x0000(0x0004) BlueprintVisible, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_FIH3[0x4];                                   // 0x0004(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_SV8C[0x4];                                   // 0x0004(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		struct FMeshElementAttributeList                           VertexInstanceAttributes;                                // 0x0008(0x0010) BlueprintVisible, NativeAccessSpecifierPublic
 	};
 
@@ -275,7 +275,7 @@ namespace CG
 	{
 	public:
 		struct FVertexID                                           VertexID;                                                // 0x0000(0x0004) BlueprintVisible, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_W1YB[0x4];                                   // 0x0004(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_C6X2[0x4];                                   // 0x0004(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		struct FMeshElementAttributeList                           VertexAttributes;                                        // 0x0008(0x0010) BlueprintVisible, NativeAccessSpecifierPublic
 	};
 
@@ -298,7 +298,7 @@ namespace CG
 	{
 	public:
 		struct FPolygonID                                          PolygonID;                                               // 0x0000(0x0004) BlueprintVisible, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_U4EI[0x4];                                   // 0x0004(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_4JCU[0x4];                                   // 0x0004(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TArray<struct FVertexPair>                                 VertexPairsToSplitAt;                                    // 0x0008(0x0010) BlueprintVisible, ZeroConstructor, NativeAccessSpecifierPublic
 	};
 
@@ -322,11 +322,11 @@ namespace CG
 	{
 	public:
 		struct FPolygonGroupID                                     PolygonGroupID;                                          // 0x0000(0x0004) BlueprintVisible, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_51ZO[0x4];                                   // 0x0004(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_2G7M[0x4];                                   // 0x0004(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TArray<struct FVertexAndAttributes>                        PerimeterVertices;                                       // 0x0008(0x0010) BlueprintVisible, ZeroConstructor, NativeAccessSpecifierPublic
 		struct FPolygonID                                          OriginalPolygonID;                                       // 0x0018(0x0004) BlueprintVisible, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		EPolygonEdgeHardness                                       PolygonEdgeHardness;                                     // 0x001C(0x0001) BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_F30V[0x3];                                   // 0x001D(0x0003) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_4T7U[0x3];                                   // 0x001D(0x0003) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -340,7 +340,7 @@ namespace CG
 		struct FVertexID                                           VertexID1;                                               // 0x0004(0x0004) BlueprintVisible, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		struct FMeshElementAttributeList                           EdgeAttributes;                                          // 0x0008(0x0010) BlueprintVisible, NativeAccessSpecifierPublic
 		struct FEdgeID                                             OriginalEdgeID;                                          // 0x0018(0x0004) BlueprintVisible, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_23XS[0x4];                                   // 0x001C(0x0004) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_TB78[0x4];                                   // 0x001C(0x0004) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -351,10 +351,10 @@ namespace CG
 	{
 	public:
 		struct FVertexID                                           VertexID;                                                // 0x0000(0x0004) BlueprintVisible, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_6HXC[0x4];                                   // 0x0004(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_BQFO[0x4];                                   // 0x0004(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		struct FMeshElementAttributeList                           VertexInstanceAttributes;                                // 0x0008(0x0010) BlueprintVisible, NativeAccessSpecifierPublic
 		struct FVertexInstanceID                                   OriginalVertexInstanceID;                                // 0x0018(0x0004) NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_UW83[0x4];                                   // 0x001C(0x0004) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_1JHW[0x4];                                   // 0x001C(0x0004) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -366,7 +366,7 @@ namespace CG
 	public:
 		struct FMeshElementAttributeList                           VertexAttributes;                                        // 0x0000(0x0010) BlueprintVisible, NativeAccessSpecifierPublic
 		struct FVertexID                                           OriginalVertexID;                                        // 0x0010(0x0004) NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_CX9T[0x4];                                   // 0x0014(0x0004) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_3PDG[0x4];                                   // 0x0014(0x0004) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -417,7 +417,7 @@ namespace CG
 	public:
 		int32_t                                                    EdgeVertex0PositionIndex;                                // 0x0000(0x0004) BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		int32_t                                                    EdgeVertex1PositionIndex;                                // 0x0004(0x0004) BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_W0FE[0x4];                                   // 0x0008(0x0004) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_VE3N[0x4];                                   // 0x0008(0x0004) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -442,7 +442,7 @@ namespace CG
 		uint32_t                                                   RenderingSectionIndex;                                   // 0x0000(0x0004) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		int32_t                                                    MaterialIndex;                                           // 0x0004(0x0004) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		int32_t                                                    MaxTriangles;                                            // 0x0008(0x0004) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_BVRS[0x3C];                                  // 0x000C(0x003C) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_OWQH[0x3C];                                  // 0x000C(0x003C) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -453,7 +453,7 @@ namespace CG
 	{
 	public:
 		struct FPolygonGroupID                                     PolygonGroupID;                                          // 0x0000(0x0004) NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_ARMZ[0x4];                                   // 0x0004(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_RRGH[0x4];                                   // 0x0004(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TArray<struct FTriangleID>                                 TriangulatedPolygonTriangleIndices;                      // 0x0008(0x0010) ZeroConstructor, NativeAccessSpecifierPublic
 	};
 

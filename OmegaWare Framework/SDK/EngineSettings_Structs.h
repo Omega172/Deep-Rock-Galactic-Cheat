@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -69,7 +69,7 @@ namespace CG
 	public:
 		class FString                                              Command;                                                 // 0x0000(0x0010) Edit, ZeroConstructor, Config, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		class FString                                              Desc;                                                    // 0x0010(0x0010) Edit, ZeroConstructor, Config, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_4ABE[0x8];                                   // 0x0020(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_KS4F[0x8];                                   // 0x0020(0x0008) MISSED OFFSET (PADDING)
 	};
 
 	/**

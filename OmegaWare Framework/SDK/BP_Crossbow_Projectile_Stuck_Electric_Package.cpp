@@ -1,6 +1,6 @@
 ﻿/**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #include "pch.h"
@@ -70,16 +70,16 @@ namespace CG
 	/**
 	 * Function:
 	 * 		RVA    -> 0x00000000
-	 * 		Name   -> Function BP_Crossbow_Projectile_Stuck_Electric.BP_Crossbow_Projectile_Stuck_Electric_C.Fadeout__FinishedFunc
+	 * 		Name   -> Function BP_Crossbow_Projectile_Stuck_Electric.BP_Crossbow_Projectile_Stuck_Electric_C.FadeOut__FinishedFunc
 	 * 		Flags  -> ()
 	 */
-	void ABP_Crossbow_Projectile_Stuck_Electric_C::Fadeout__FinishedFunc()
+	void ABP_Crossbow_Projectile_Stuck_Electric_C::FadeOut__FinishedFunc()
 	{
 		static UFunction* fn = nullptr;
 		if (!fn)
-			fn = UObject::FindObject<UFunction>("Function BP_Crossbow_Projectile_Stuck_Electric.BP_Crossbow_Projectile_Stuck_Electric_C.Fadeout__FinishedFunc");
+			fn = UObject::FindObject<UFunction>("Function BP_Crossbow_Projectile_Stuck_Electric.BP_Crossbow_Projectile_Stuck_Electric_C.FadeOut__FinishedFunc");
 		
-		ABP_Crossbow_Projectile_Stuck_Electric_C_Fadeout__FinishedFunc_Params params {};
+		ABP_Crossbow_Projectile_Stuck_Electric_C_FadeOut__FinishedFunc_Params params {};
 		
 		auto flags = fn->FunctionFlags;
 		UObject::ProcessEvent(fn, &params);
@@ -89,16 +89,16 @@ namespace CG
 	/**
 	 * Function:
 	 * 		RVA    -> 0x00000000
-	 * 		Name   -> Function BP_Crossbow_Projectile_Stuck_Electric.BP_Crossbow_Projectile_Stuck_Electric_C.Fadeout__UpdateFunc
+	 * 		Name   -> Function BP_Crossbow_Projectile_Stuck_Electric.BP_Crossbow_Projectile_Stuck_Electric_C.FadeOut__UpdateFunc
 	 * 		Flags  -> ()
 	 */
-	void ABP_Crossbow_Projectile_Stuck_Electric_C::Fadeout__UpdateFunc()
+	void ABP_Crossbow_Projectile_Stuck_Electric_C::FadeOut__UpdateFunc()
 	{
 		static UFunction* fn = nullptr;
 		if (!fn)
-			fn = UObject::FindObject<UFunction>("Function BP_Crossbow_Projectile_Stuck_Electric.BP_Crossbow_Projectile_Stuck_Electric_C.Fadeout__UpdateFunc");
+			fn = UObject::FindObject<UFunction>("Function BP_Crossbow_Projectile_Stuck_Electric.BP_Crossbow_Projectile_Stuck_Electric_C.FadeOut__UpdateFunc");
 		
-		ABP_Crossbow_Projectile_Stuck_Electric_C_Fadeout__UpdateFunc_Params params {};
+		ABP_Crossbow_Projectile_Stuck_Electric_C_FadeOut__UpdateFunc_Params params {};
 		
 		auto flags = fn->FunctionFlags;
 		UObject::ProcessEvent(fn, &params);
@@ -108,16 +108,16 @@ namespace CG
 	/**
 	 * Function:
 	 * 		RVA    -> 0x00000000
-	 * 		Name   -> Function BP_Crossbow_Projectile_Stuck_Electric.BP_Crossbow_Projectile_Stuck_Electric_C.Fadein__FinishedFunc
+	 * 		Name   -> Function BP_Crossbow_Projectile_Stuck_Electric.BP_Crossbow_Projectile_Stuck_Electric_C.FadeIn__FinishedFunc
 	 * 		Flags  -> ()
 	 */
-	void ABP_Crossbow_Projectile_Stuck_Electric_C::Fadein__FinishedFunc()
+	void ABP_Crossbow_Projectile_Stuck_Electric_C::FadeIn__FinishedFunc()
 	{
 		static UFunction* fn = nullptr;
 		if (!fn)
-			fn = UObject::FindObject<UFunction>("Function BP_Crossbow_Projectile_Stuck_Electric.BP_Crossbow_Projectile_Stuck_Electric_C.Fadein__FinishedFunc");
+			fn = UObject::FindObject<UFunction>("Function BP_Crossbow_Projectile_Stuck_Electric.BP_Crossbow_Projectile_Stuck_Electric_C.FadeIn__FinishedFunc");
 		
-		ABP_Crossbow_Projectile_Stuck_Electric_C_Fadein__FinishedFunc_Params params {};
+		ABP_Crossbow_Projectile_Stuck_Electric_C_FadeIn__FinishedFunc_Params params {};
 		
 		auto flags = fn->FunctionFlags;
 		UObject::ProcessEvent(fn, &params);
@@ -127,16 +127,16 @@ namespace CG
 	/**
 	 * Function:
 	 * 		RVA    -> 0x00000000
-	 * 		Name   -> Function BP_Crossbow_Projectile_Stuck_Electric.BP_Crossbow_Projectile_Stuck_Electric_C.Fadein__UpdateFunc
+	 * 		Name   -> Function BP_Crossbow_Projectile_Stuck_Electric.BP_Crossbow_Projectile_Stuck_Electric_C.FadeIn__UpdateFunc
 	 * 		Flags  -> ()
 	 */
-	void ABP_Crossbow_Projectile_Stuck_Electric_C::Fadein__UpdateFunc()
+	void ABP_Crossbow_Projectile_Stuck_Electric_C::FadeIn__UpdateFunc()
 	{
 		static UFunction* fn = nullptr;
 		if (!fn)
-			fn = UObject::FindObject<UFunction>("Function BP_Crossbow_Projectile_Stuck_Electric.BP_Crossbow_Projectile_Stuck_Electric_C.Fadein__UpdateFunc");
+			fn = UObject::FindObject<UFunction>("Function BP_Crossbow_Projectile_Stuck_Electric.BP_Crossbow_Projectile_Stuck_Electric_C.FadeIn__UpdateFunc");
 		
-		ABP_Crossbow_Projectile_Stuck_Electric_C_Fadein__UpdateFunc_Params params {};
+		ABP_Crossbow_Projectile_Stuck_Electric_C_FadeIn__UpdateFunc_Params params {};
 		
 		auto flags = fn->FunctionFlags;
 		UObject::ProcessEvent(fn, &params);

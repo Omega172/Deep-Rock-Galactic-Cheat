@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -58,7 +58,7 @@ namespace CG
 		TArray<class FName>                                        UsedBoneNames;                                           // 0x00C0(0x0010) ZeroConstructor, NativeAccessSpecifierPublic
 		TArray<int32_t>                                            UsedBoneIndices;                                         // 0x00D0(0x0010) ZeroConstructor, NativeAccessSpecifierPublic
 		int32_t                                                    ReferenceBoneIndex;                                      // 0x00E0(0x0004) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_S3YA[0x4];                                   // 0x00E4(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_A0V3[0x4];                                   // 0x00E4(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class UClothingAssetCustomData*                            CustomData;                                              // 0x00E8(0x0008) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 
 	public:
@@ -75,7 +75,7 @@ namespace CG
 		class UClothPhysicalMeshDataBase_Legacy*                   PhysicalMeshData;                                        // 0x0028(0x0008) ZeroConstructor, Deprecated, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		struct FClothPhysicalMeshData                              ClothPhysicalMeshData;                                   // 0x0030(0x00F8) NativeAccessSpecifierPublic
 		struct FClothCollisionData                                 CollisionData;                                           // 0x0128(0x0040) NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_4X7O[0x20];                                  // 0x0168(0x0020) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_HJHY[0x20];                                  // 0x0168(0x0020) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();

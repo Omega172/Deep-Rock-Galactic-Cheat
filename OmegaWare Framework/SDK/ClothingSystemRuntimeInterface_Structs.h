@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -69,7 +69,7 @@ namespace CG
 		TArray<struct FClothCollisionPrim_ConvexFace>              Faces;                                                   // 0x0000(0x0010) ZeroConstructor, NativeAccessSpecifierPublic
 		TArray<struct FVector>                                     SurfacePoints;                                           // 0x0010(0x0010) ZeroConstructor, NativeAccessSpecifierPublic
 		int32_t                                                    BoneIndex;                                               // 0x0020(0x0004) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_9D47[0x4];                                   // 0x0024(0x0004) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_36JM[0x4];                                   // 0x0024(0x0004) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -80,7 +80,7 @@ namespace CG
 	{
 	public:
 		struct FVector                                             LocalPosition;                                           // 0x0000(0x000C) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_TBQF[0x4];                                   // 0x000C(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_EOCK[0x4];                                   // 0x000C(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		struct FQuat                                               LocalRotation;                                           // 0x0010(0x0010) IsPlainOldData, NoDestructor, NativeAccessSpecifierPublic
 		struct FVector                                             HalfExtents;                                             // 0x0020(0x000C) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		int32_t                                                    BoneIndex;                                               // 0x002C(0x0004) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic

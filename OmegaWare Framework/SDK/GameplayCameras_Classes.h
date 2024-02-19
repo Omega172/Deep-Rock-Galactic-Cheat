@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -21,7 +21,7 @@ namespace CG
 	class UTestCameraShake : public UCameraShakeBase
 	{
 	public:
-		unsigned char                                              UnknownData_UB8S[0x4];                                   // 0x00AC(0x0004) Fix Super Size
+		unsigned char                                              UnknownData_7R1X[0x4];                                   // 0x00AC(0x0004) Fix Super Size
 
 	public:
 		static UClass* StaticClass();
@@ -37,7 +37,7 @@ namespace CG
 		float                                                      Duration;                                                // 0x0028(0x0004) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		float                                                      BlendInTime;                                             // 0x002C(0x0004) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		float                                                      BlendOutTime;                                            // 0x0030(0x0004) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_7096[0x4];                                   // 0x0034(0x0004) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_OH33[0x4];                                   // 0x0034(0x0004) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -65,7 +65,7 @@ namespace CG
 	{
 	public:
 		TArray<class UCameraShakePattern*>                         ChildPatterns;                                           // 0x0028(0x0010) Edit, ExportObject, ZeroConstructor, ContainsInstancedReference, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_ON9E[0x10];                                  // 0x0038(0x0010) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_FZJS[0x10];                                  // 0x0038(0x0010) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -78,7 +78,7 @@ namespace CG
 	class UDefaultCameraShakeBase : public UCameraShakeBase
 	{
 	public:
-		unsigned char                                              UnknownData_39HX[0x4];                                   // 0x00AC(0x0004) Fix Super Size
+		unsigned char                                              UnknownData_1ICX[0x4];                                   // 0x00AC(0x0004) Fix Super Size
 
 	public:
 		static UClass* StaticClass();
@@ -101,16 +101,16 @@ namespace CG
 		float                                                      AnimBlendInTime;                                         // 0x0110(0x0004) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		float                                                      AnimBlendOutTime;                                        // 0x0114(0x0004) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		float                                                      RandomAnimSegmentDuration;                               // 0x0118(0x0004) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_EIP0[0x4];                                   // 0x011C(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_53C7[0x4];                                   // 0x011C(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class UCameraAnim*                                         Anim;                                                    // 0x0120(0x0008) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		class UCameraAnimationSequence*                            AnimSequence;                                            // 0x0128(0x0008) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		bool                                                       bRandomAnimSegment : 1;                                  // 0x0130(0x0001) BIT_FIELD Edit, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_FMQO[0x3];                                   // 0x0131(0x0003) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_I3IA[0x3];                                   // 0x0131(0x0003) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		float                                                      OscillatorTimeRemaining;                                 // 0x0134(0x0004) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, Transient, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		class UCameraAnimInst*                                     AnimInst;                                                // 0x0138(0x0008) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, Transient, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_46MD[0x40];                                  // 0x0140(0x0040) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_BUJN[0x40];                                  // 0x0140(0x0040) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class USequenceCameraShakePattern*                         SequenceShakePattern;                                    // 0x0180(0x0008) ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, Protected, PersistentInstance, HasGetValueTypeHash, NativeAccessSpecifierProtected
-		unsigned char                                              UnknownData_Z6JG[0x28];                                  // 0x0188(0x0028) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_KQVD[0x28];                                  // 0x0188(0x0028) MISSED OFFSET (PADDING)
 
 	public:
 		class UMatineeCameraShake* StartMatineeCameraShakeFromSource(class APlayerCameraManager* PlayerCameraManager, class UClass* ShakeClass, class UCameraShakeSourceComponent* SourceComponent, float Scale, ECameraShakePlaySpace PlaySpace, const struct FRotator& UserPlaySpaceRot);
@@ -171,7 +171,7 @@ namespace CG
 		struct FPerlinNoiseShaker                                  Yaw;                                                     // 0x0068(0x0008) Edit, BlueprintVisible, NoDestructor, NativeAccessSpecifierPublic
 		struct FPerlinNoiseShaker                                  Roll;                                                    // 0x0070(0x0008) Edit, BlueprintVisible, NoDestructor, NativeAccessSpecifierPublic
 		struct FPerlinNoiseShaker                                  FOV;                                                     // 0x0078(0x0008) Edit, BlueprintVisible, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_TBE4[0x38];                                  // 0x0080(0x0038) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_772S[0x38];                                  // 0x0080(0x0038) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -195,7 +195,7 @@ namespace CG
 		struct FWaveOscillator                                     Yaw;                                                     // 0x0078(0x000C) Edit, BlueprintVisible, NoDestructor, NativeAccessSpecifierPublic
 		struct FWaveOscillator                                     Roll;                                                    // 0x0084(0x000C) Edit, BlueprintVisible, NoDestructor, NativeAccessSpecifierPublic
 		struct FWaveOscillator                                     FOV;                                                     // 0x0090(0x000C) Edit, BlueprintVisible, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_1KGD[0x3C];                                  // 0x009C(0x003C) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_CJ6F[0x3C];                                  // 0x009C(0x003C) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();

@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -22,18 +22,18 @@ namespace CG
 	{
 	public:
 		struct FRigVMMemoryContainer                               WorkMemoryStorage;                                       // 0x0028(0x00A0) NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_GQ5M[0x8];                                   // 0x00C8(0x0008) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_QP8W[0x8];                                   // 0x00C8(0x0008) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		struct FRigVMMemoryContainer                               LiteralMemoryStorage;                                    // 0x00D0(0x00A0) NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_OJIZ[0x8];                                   // 0x0170(0x0008) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_EBDA[0x8];                                   // 0x0170(0x0008) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		struct FRigVMByteCode                                      ByteCodeStorage;                                         // 0x0178(0x0030) NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_HJGZ[0x8];                                   // 0x01A8(0x0008) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_P0FH[0x8];                                   // 0x01A8(0x0008) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		struct FRigVMInstructionArray                              Instructions;                                            // 0x01B0(0x0010) Transient, NativeAccessSpecifierPrivate
 		struct FRigVMExecuteContext                                Context;                                                 // 0x01C0(0x0058) Transient, NativeAccessSpecifierPrivate
 		TArray<class FName>                                        FunctionNamesStorage;                                    // 0x0218(0x0010) ZeroConstructor, NativeAccessSpecifierPrivate
-		unsigned char                                              UnknownData_SDXA[0x20];                                  // 0x0228(0x0020) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_Z1M3[0x20];                                  // 0x0228(0x0020) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TArray<struct FRigVMParameter>                             Parameters;                                              // 0x0248(0x0010) ZeroConstructor, NativeAccessSpecifierPrivate
 		TMap<class FName, int32_t>                                 ParametersNameMap;                                       // 0x0258(0x0050) NativeAccessSpecifierPrivate
-		unsigned char                                              UnknownData_QYRL[0x48];                                  // 0x02A8(0x0048) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_9QDQ[0x48];                                  // 0x02A8(0x0048) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class URigVM*                                              DeferredVMToCopy;                                        // 0x02F0(0x0008) ZeroConstructor, Transient, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
 
 	public:

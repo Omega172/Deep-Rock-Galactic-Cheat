@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -30,6 +30,12 @@ namespace CG
 	 * Function Options_Tab_Audio.Options_Tab_Audio_C.ShowOptions
 	 */
 	struct UOptions_Tab_Audio_C_ShowOptions_Params
+	{	};
+
+	/**
+	 * Function Options_Tab_Audio.Options_Tab_Audio_C.BndEvt__Options_Tab_Audio_Button_OpenSteamSettings_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature
+	 */
+	struct UOptions_Tab_Audio_C_BndEvt__Options_Tab_Audio_Button_OpenSteamSettings_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature_Params
 	{	};
 
 	/**

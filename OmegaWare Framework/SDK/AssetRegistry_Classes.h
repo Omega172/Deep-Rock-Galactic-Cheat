@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -21,7 +21,7 @@ namespace CG
 	class UAssetRegistryImpl : public UObject
 	{
 	public:
-		unsigned char                                              UnknownData_PT7R[0x828];                                 // 0x0028(0x0828) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_UTIO[0x828];                                 // 0x0028(0x0828) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();

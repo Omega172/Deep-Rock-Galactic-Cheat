@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -23,14 +23,14 @@ namespace CG
 	public:
 		struct FPointerToUberGraphFrame                            UberGraphFrame;                                          // 0x0278(0x0008) ZeroConstructor, Transient, DuplicateTransient
 		bool                                                       ShouldUseEventTexture;                                   // 0x0280(0x0001) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor
-		unsigned char                                              UnknownData_COKC[0x7];                                   // 0x0281(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_NBM2[0x7];                                   // 0x0281(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		unsigned char                                              AnniversaryText[0x28];                                   // 0x0288(0x0028) UNKNOWN PROPERTY: SoftObjectProperty
 		unsigned char                                              EasterText[0x28];                                        // 0x02B0(0x0028) UNKNOWN PROPERTY: SoftObjectProperty
 		unsigned char                                              LunarFestivalText[0x28];                                 // 0x02D8(0x0028) UNKNOWN PROPERTY: SoftObjectProperty
 		unsigned char                                              XmasText[0x28];                                          // 0x0300(0x0028) UNKNOWN PROPERTY: SoftObjectProperty
 		unsigned char                                              OktoberfestV1Text[0x28];                                 // 0x0328(0x0028) UNKNOWN PROPERTY: SoftObjectProperty
 		bool                                                       UseV2Material;                                           // 0x0350(0x0001) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor
-		unsigned char                                              UnknownData_0ULK[0x7];                                   // 0x0351(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_06V6[0x7];                                   // 0x0351(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		unsigned char                                              OktoberFestV2Text[0x28];                                 // 0x0358(0x0028) UNKNOWN PROPERTY: SoftObjectProperty
 		bool                                                       QueuedActivation;                                        // 0x0380(0x0001) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor
 

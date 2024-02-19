@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -26,7 +26,7 @@ namespace CG
 		float                                                      CraneArmLength;                                          // 0x0228(0x0004) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, Interp, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		bool                                                       bLockMountPitch;                                         // 0x022C(0x0001) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, Interp, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		bool                                                       bLockMountYaw;                                           // 0x022D(0x0001) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, Interp, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_69V9[0x2];                                   // 0x022E(0x0002) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_FDQH[0x2];                                   // 0x022E(0x0002) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class USceneComponent*                                     TransformComponent;                                      // 0x0230(0x0008) Edit, ExportObject, ZeroConstructor, DisableEditOnInstance, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
 		class USceneComponent*                                     CraneYawControl;                                         // 0x0238(0x0008) Edit, ExportObject, ZeroConstructor, DisableEditOnInstance, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
 		class USceneComponent*                                     CranePitchControl;                                       // 0x0240(0x0008) Edit, ExportObject, ZeroConstructor, DisableEditOnInstance, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
@@ -45,7 +45,7 @@ namespace CG
 	public:
 		float                                                      CurrentPositionOnRail;                                   // 0x0220(0x0004) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, Interp, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		bool                                                       bLockOrientationToRail;                                  // 0x0224(0x0001) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, Interp, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_WPWV[0x3];                                   // 0x0225(0x0003) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_ZY71[0x3];                                   // 0x0225(0x0003) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class USceneComponent*                                     TransformComponent;                                      // 0x0228(0x0008) Edit, ExportObject, ZeroConstructor, DisableEditOnInstance, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
 		class USplineComponent*                                    RailSplineComponent;                                     // 0x0230(0x0008) Edit, ExportObject, ZeroConstructor, DisableEditOnInstance, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
 		class USceneComponent*                                     RailCameraMount;                                         // 0x0238(0x0008) Edit, ExportObject, ZeroConstructor, DisableEditOnInstance, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
@@ -63,7 +63,7 @@ namespace CG
 	{
 	public:
 		struct FCameraLookatTrackingSettings                       LookatTrackingSettings;                                  // 0x07B0(0x0050) Edit, BlueprintVisible, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_JBSL[0x10];                                  // 0x0800(0x0010) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_4L0G[0x10];                                  // 0x0800(0x0010) MISSED OFFSET (PADDING)
 
 	public:
 		class UCineCameraComponent* GetCineCameraComponent();
@@ -84,7 +84,7 @@ namespace CG
 		float                                                      CurrentFocalLength;                                      // 0x0858(0x0004) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, Interp, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		float                                                      CurrentAperture;                                         // 0x085C(0x0004) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, Interp, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		float                                                      CurrentFocusDistance;                                    // 0x0860(0x0004) Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, EditConst, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_7D3W[0xC];                                   // 0x0864(0x000C) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_G4ON[0xC];                                   // 0x0864(0x000C) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TArray<struct FNamedFilmbackPreset>                        FilmbackPresets;                                         // 0x0870(0x0010) ZeroConstructor, Config, Protected, NativeAccessSpecifierProtected
 		TArray<struct FNamedLensPreset>                            LensPresets;                                             // 0x0880(0x0010) ZeroConstructor, Config, Protected, NativeAccessSpecifierProtected
 		class FString                                              DefaultFilmbackPresetName;                               // 0x0890(0x0010) ZeroConstructor, Config, Deprecated, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected
@@ -92,7 +92,7 @@ namespace CG
 		class FString                                              DefaultLensPresetName;                                   // 0x08B0(0x0010) ZeroConstructor, Config, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected
 		float                                                      DefaultLensFocalLength;                                  // 0x08C0(0x0004) ZeroConstructor, Config, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected
 		float                                                      DefaultLensFStop;                                        // 0x08C4(0x0004) ZeroConstructor, Config, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected
-		unsigned char                                              UnknownData_0QYH[0x8];                                   // 0x08C8(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_NZDI[0x8];                                   // 0x08C8(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		void SetLensPresetByName(const class FString& InPresetName);

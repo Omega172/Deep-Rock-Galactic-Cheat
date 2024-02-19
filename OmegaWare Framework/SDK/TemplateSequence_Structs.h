@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -37,7 +37,7 @@ namespace CG
 	public:
 		TWeakObjectPtr<class UObject>                              Object;                                                  // 0x0000(0x0008) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, UObjectWrapper, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		bool                                                       bOverridesDefault;                                       // 0x0008(0x0001) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_WFZF[0x3];                                   // 0x0009(0x0003) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_Z7WR[0x3];                                   // 0x0009(0x0003) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -50,7 +50,7 @@ namespace CG
 		struct FGuid                                               ObjectBinding;                                           // 0x0000(0x0010) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		struct FMovieScenePropertyBinding                          PropertyBinding;                                         // 0x0010(0x0014) NoDestructor, NativeAccessSpecifierPublic
 		ETemplateSectionPropertyScaleType                          PropertyScaleType;                                       // 0x0024(0x0001) ELEMENT_SIZE_MISMATCH ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_Q04Y[0x3];                                   // 0x0025(0x0003) FIX WRONG TYPE SIZE OF PREVIOUS PROPERTY
+		unsigned char                                              UnknownData_ER20[0x3];                                   // 0x0025(0x0003) FIX WRONG TYPE SIZE OF PREVIOUS PROPERTY
 		struct FMovieSceneFloatChannel                             FloatChannel;                                            // 0x0028(0x00A0) NativeAccessSpecifierPublic
 	};
 

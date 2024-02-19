@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -21,7 +21,7 @@ namespace CG
 	class UFontBulkData : public UObject
 	{
 	public:
-		unsigned char                                              UnknownData_1Z9J[0x50];                                  // 0x0028(0x0050) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_U719[0x50];                                  // 0x0028(0x0050) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -77,7 +77,7 @@ namespace CG
 	class USlateWidgetStyleContainerBase : public UObject
 	{
 	public:
-		unsigned char                                              UnknownData_7YF0[0x8];                                   // 0x0028(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_WNEX[0x8];                                   // 0x0028(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();

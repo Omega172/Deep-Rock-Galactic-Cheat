@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -96,7 +96,7 @@ namespace CG
 	{
 	public:
 		int32_t                                                    TokenStreamVersion;                                      // 0x0000(0x0004) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
-		unsigned char                                              UnknownData_LQQI[0x4];                                   // 0x0004(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_1RKO[0x4];                                   // 0x0004(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TArray<struct FGameplayTag>                                TagDictionary;                                           // 0x0008(0x0010) Edit, ZeroConstructor, NativeAccessSpecifierPrivate
 		TArray<unsigned char>                                      QueryTokenStream;                                        // 0x0018(0x0010) Edit, ZeroConstructor, NativeAccessSpecifierPrivate
 		class FString                                              UserDescription;                                         // 0x0028(0x0010) Edit, ZeroConstructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
@@ -123,7 +123,7 @@ namespace CG
 	public:
 		class FName                                                SourceName;                                              // 0x0000(0x0008) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		EGameplayTagSourceType                                     SourceType;                                              // 0x0008(0x0001) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_DYXF[0x7];                                   // 0x0009(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_K4ZX[0x7];                                   // 0x0009(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class UGameplayTagsList*                                   SourceTagList;                                           // 0x0010(0x0008) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		class URestrictedGameplayTagsList*                         SourceRestrictedTagList;                                 // 0x0018(0x0008) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 	};
@@ -147,7 +147,7 @@ namespace CG
 	{
 	public:
 		bool                                                       bAllowNonRestrictedChildren;                             // 0x0020(0x0001) Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_BYT3[0x7];                                   // 0x0021(0x0007) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_XBNZ[0x7];                                   // 0x0021(0x0007) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -190,7 +190,7 @@ namespace CG
 	struct FGameplayTagCreationWidgetHelper
 	{
 	public:
-		unsigned char                                              UnknownData_WKXC[0x1];                                   // 0x0000(0x0001) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_B1UA[0x1];                                   // 0x0000(0x0001) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -200,7 +200,7 @@ namespace CG
 	struct FGameplayTagReferenceHelper
 	{
 	public:
-		unsigned char                                              UnknownData_BY84[0x10];                                  // 0x0000(0x0010) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_1KC2[0x10];                                  // 0x0000(0x0010) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -210,7 +210,7 @@ namespace CG
 	struct FGameplayTagNode
 	{
 	public:
-		unsigned char                                              UnknownData_JDVA[0x50];                                  // 0x0000(0x0050) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_EGNF[0x50];                                  // 0x0000(0x0050) MISSED OFFSET (PADDING)
 	};
 
 }

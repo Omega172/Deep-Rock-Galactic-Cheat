@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -16,7 +16,7 @@ namespace CG
 	// --------------------------------------------------
 	/**
 	 * BlueprintGeneratedClass ITM_BarGlass_Item_MacteraBrew.ITM_BarGlass_Item_MacteraBrew_C
-	 * Size -> 0x0000 (FullSize[0x042D] - InheritedSize[0x042D])
+	 * Size -> 0x0000 (FullSize[0x0435] - InheritedSize[0x0435])
 	 */
 	class AITM_BarGlass_Item_MacteraBrew_C : public AITM_BarGlass_Item_C
 	{

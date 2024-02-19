@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -28,7 +28,7 @@ namespace CG
 		class UBasic_ScrollArrow_C*                                ScrollArrow_Left;                                        // 0x0280(0x0008) BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, RepSkip, NoDestructor, PersistentInstance, HasGetValueTypeHash
 		class UBasic_ScrollArrow_C*                                ScrollArrow_Right;                                       // 0x0288(0x0008) BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, RepSkip, NoDestructor, PersistentInstance, HasGetValueTypeHash
 		int32_t                                                    PatchNoteIndex;                                          // 0x0290(0x0004) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash
-		unsigned char                                              UnknownData_5CSN[0x4];                                   // 0x0294(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_DMZY[0x4];                                   // 0x0294(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TArray<class FText>                                        PatchNoteHeaders_Steam;                                  // 0x0298(0x0010) Edit, BlueprintVisible, DisableEditOnInstance
 		TArray<class FText>                                        PatchNotes_Steam;                                        // 0x02A8(0x0010) Edit, BlueprintVisible, DisableEditOnInstance
 		TArray<class FText>                                        PatchNoteHeaders_Xbox;                                   // 0x02B8(0x0010) Edit, BlueprintVisible, DisableEditOnInstance

@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -21,7 +21,7 @@ namespace CG
 	class UABP_HeavyParticleCannon_New_C : public UAnimInstance
 	{
 	public:
-		unsigned char                                              UnknownData_MFQE[0x8];                                   // 0x02B8(0x0008) Fix Super Size
+		unsigned char                                              UnknownData_VEU3[0x8];                                   // 0x02B8(0x0008) Fix Super Size
 		struct FPointerToUberGraphFrame                            UberGraphFrame;                                          // 0x02C0(0x0008) ZeroConstructor, Transient, DuplicateTransient
 		struct FAnimNode_Root                                      AnimGraphNode_Root;                                      // 0x02C8(0x0030)
 		struct FAnimNode_ModifyBone                                AnimGraphNode_ModifyBone_2;                              // 0x02F8(0x0108)
@@ -30,7 +30,7 @@ namespace CG
 		struct FAnimNode_Slot                                      AnimGraphNode_Slot;                                      // 0x0528(0x0048)
 		struct FAnimNode_ConvertLocalToComponentSpace              AnimGraphNode_LocalToComponentSpace;                     // 0x0570(0x0020)
 		bool                                                       IsBeamActive;                                            // 0x0590(0x0001) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor
-		unsigned char                                              UnknownData_3BD8[0x3];                                   // 0x0591(0x0003) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_GKYP[0x3];                                   // 0x0591(0x0003) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		float                                                      SpinUpTime;                                              // 0x0594(0x0004) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash
 		float                                                      SpinDownTime;                                            // 0x0598(0x0004) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash
 		float                                                      MaxSpinsPerSecond;                                       // 0x059C(0x0004) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash

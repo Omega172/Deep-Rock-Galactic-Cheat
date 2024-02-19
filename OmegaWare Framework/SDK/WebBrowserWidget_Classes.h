@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -25,7 +25,7 @@ namespace CG
 		class FScriptMulticastDelegate                             OnBeforePopup;                                           // 0x0118(0x0010) ZeroConstructor, InstancedReference, BlueprintAssignable, NativeAccessSpecifierPublic
 		class FString                                              InitialURL;                                              // 0x0128(0x0010) Edit, ZeroConstructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected
 		bool                                                       bSupportsTransparency;                                   // 0x0138(0x0001) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected
-		unsigned char                                              UnknownData_U3V3[0x17];                                  // 0x0139(0x0017) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_GE3E[0x17];                                  // 0x0139(0x0017) MISSED OFFSET (PADDING)
 
 	public:
 		void OnUrlChanged__DelegateSignature(const class FText& Text);
@@ -46,7 +46,7 @@ namespace CG
 	{
 	public:
 		unsigned char                                              DefaultMaterial[0x28];                                   // 0x0028(0x0028) UNKNOWN PROPERTY: SoftObjectProperty
-		unsigned char                                              UnknownData_QHQ4[0x28];                                  // 0x0050(0x0028) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_ANN4[0x28];                                  // 0x0050(0x0028) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();

@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -72,7 +72,7 @@ namespace CG
 		void PreConstruct(bool IsDesignTime);
 		void BndEvt__BTN_HostPublic_K2Node_ComponentBoundEvent_48_OnClicked__DelegateSignature();
 		void OnTeamMemberCampaignMissionChangedEvent();
-		void ShowChallengeIcon(bool InHighlight, class UTexture2D* Icon, const struct FLinearColor& Color);
+		void ShowChallengeIcon(bool inHighlight, class UTexture2D* Icon, const struct FLinearColor& Color);
 		void ExecuteUbergraph_ITM_MisSel_MissionMapIcon(int32_t EntryPoint);
 		static UClass* StaticClass();
 	};

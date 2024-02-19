@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -16,13 +16,13 @@ namespace CG
 	// --------------------------------------------------
 	/**
 	 * BlueprintGeneratedClass BP_SR_PlayerControllerBase.BP_SR_PlayerControllerBase_C
-	 * Size -> 0x0009 (FullSize[0x0759] - InheritedSize[0x0750])
+	 * Size -> 0x0009 (FullSize[0x0799] - InheritedSize[0x0790])
 	 */
 	class ABP_SR_PlayerControllerBase_C : public ABP_PlayerControllerBase_C
 	{
 	public:
-		struct FPointerToUberGraphFrame                            UberGraphFrame;                                          // 0x0750(0x0008) ZeroConstructor, Transient, DuplicateTransient
-		bool                                                       IsOpeningCharSelectionWorld;                             // 0x0758(0x0001) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor
+		struct FPointerToUberGraphFrame                            UberGraphFrame;                                          // 0x0790(0x0008) ZeroConstructor, Transient, DuplicateTransient
+		bool                                                       IsOpeningCharSelectionWorld;                             // 0x0798(0x0001) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor
 
 	public:
 		void GetMissionSelect(class UWindowWidget** Widget);

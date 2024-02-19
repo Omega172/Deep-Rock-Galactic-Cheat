@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -67,7 +67,7 @@ namespace CG
 		class FString                                              ModVersion;                                              // 0x0068(0x0010) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		class FString                                              ModDescription;                                          // 0x0078(0x0010) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		EUGCApprovalStatus                                         Status;                                                  // 0x0088(0x0001) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_ASBT[0x7];                                   // 0x0089(0x0007) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_0JLC[0x7];                                   // 0x0089(0x0007) MISSED OFFSET (PADDING)
 
 	public:
 		bool IsModIdInvalid();
@@ -101,13 +101,13 @@ namespace CG
 	class UUGCLatentActionManager : public UObject
 	{
 	public:
-		unsigned char                                              UnknownData_A6YO[0x8];                                   // 0x0028(0x0008) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_MR3P[0x8];                                   // 0x0028(0x0008) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TWeakObjectPtr<class UModioTermsWrapper>                   LatestModioTermsAndConditions;                           // 0x0030(0x0008) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, Transient, IsPlainOldData, NoDestructor, UObjectWrapper, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_6WRE[0x50];                                  // 0x0038(0x0050) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_7ZDT[0x50];                                  // 0x0038(0x0050) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TMap<int64_t, class UModioModInfoWrapper*>                 ModioModMetaDatas;                                       // 0x0088(0x0050) Transient, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_BO14[0x50];                                  // 0x00D8(0x0050) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_9PYL[0x50];                                  // 0x00D8(0x0050) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TMap<int64_t, class UTexture2DDynamic*>                    ModioModThumbnails;                                      // 0x0128(0x0050) BlueprintVisible, BlueprintReadOnly, Transient, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_RNON[0xA0];                                  // 0x0178(0x00A0) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_VUIX[0xA0];                                  // 0x0178(0x00A0) MISSED OFFSET (PADDING)
 
 	public:
 		class UModioModInfoWrapper* GetCachedModioModMetaData(int64_t ModId);
@@ -121,33 +121,33 @@ namespace CG
 	class UUGCPackage : public UObject
 	{
 	public:
-		unsigned char                                              UnknownData_0D31[0x8];                                   // 0x0028(0x0008) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_8JX6[0x8];                                   // 0x0028(0x0008) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class FString                                              Name;                                                    // 0x0030(0x0010) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		class FString                                              Version;                                                 // 0x0040(0x0010) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		class FString                                              ModURL;                                                  // 0x0050(0x0010) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		class FString                                              Categories;                                              // 0x0060(0x0010) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		EUGCApprovalStatus                                         Status;                                                  // 0x0070(0x0001) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		EUGCDownloadVersion                                        DownloadVersion;                                         // 0x0071(0x0001) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_SF23[0x6];                                   // 0x0072(0x0006) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_FHX2[0x6];                                   // 0x0072(0x0006) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class FString                                              ModPath;                                                 // 0x0078(0x0010) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		class FString                                              PakFileLocation;                                         // 0x0088(0x0010) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		TArray<class FString>                                      PakFileAssets;                                           // 0x0098(0x0010) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_GC8S[0x20];                                  // 0x00A8(0x0020) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_7TA4[0x20];                                  // 0x00A8(0x0020) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class FString                                              Author;                                                  // 0x00C8(0x0010) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		class FString                                              AuthorURL;                                               // 0x00D8(0x0010) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		class FString                                              Description;                                             // 0x00E8(0x0010) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_L5SE[0x4];                                   // 0x00F8(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_8EUF[0x4];                                   // 0x00F8(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		bool                                                       IsMounted;                                               // 0x00FC(0x0001) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		bool                                                       MountingToBeApplied;                                     // 0x00FD(0x0001) BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		bool                                                       DeprecatedLocation;                                      // 0x00FE(0x0001) BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_H47E[0x1];                                   // 0x00FF(0x0001) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_HK9U[0x1];                                   // 0x00FF(0x0001) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		bool                                                       ShowStatusForAudioCosmetic;                              // 0x0100(0x0001) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_MQ2W[0x7];                                   // 0x0101(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_KM6S[0x7];                                   // 0x0101(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TArray<int64_t>                                            Dependencies;                                            // 0x0108(0x0010) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, NativeAccessSpecifierPublic
 		bool                                                       DependencyRemoved;                                       // 0x0118(0x0001) BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		bool                                                       PackagedForLatestVersion;                                // 0x0119(0x0001) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		bool                                                       OverridePackedForLatestVersion;                          // 0x011A(0x0001) BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_14C0[0x5];                                   // 0x011B(0x0005) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_0YG6[0x5];                                   // 0x011B(0x0005) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		struct FDateTime                                           LastUpdated;                                             // 0x0120(0x0008) BlueprintVisible, ZeroConstructor, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 
 	public:
@@ -167,12 +167,12 @@ namespace CG
 		TArray<class UUGCPackage*>                                 UGCPackages;                                             // 0x0038(0x0010) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, NativeAccessSpecifierPublic
 		TMap<class UClass*, class UClass*>                         RegisteredOverrides;                                     // 0x0048(0x0050) BlueprintVisible, BlueprintReadOnly, UObjectWrapper, NativeAccessSpecifierPublic
 		bool                                                       PackageChange;                                           // 0x0098(0x0001) BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_R5JB[0x7];                                   // 0x0099(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_DPZN[0x7];                                   // 0x0099(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class FScriptMulticastDelegate                             OnBlueprintsSpawned;                                     // 0x00A0(0x0010) ZeroConstructor, InstancedReference, BlueprintAssignable, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_LPQM[0x10];                                  // 0x00B0(0x0010) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_8ZMX[0x10];                                  // 0x00B0(0x0010) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TArray<class UUGCPackage*>                                 UGCPackagesInstalledDuringJoin;                          // 0x00C0(0x0010) ZeroConstructor, Transient, NativeAccessSpecifierPrivate
 		TArray<class UUGCPackage*>                                 UGCPackagesUnmountedDuringJoin;                          // 0x00D0(0x0010) ZeroConstructor, Transient, NativeAccessSpecifierPrivate
-		unsigned char                                              UnknownData_DZV8[0x18];                                  // 0x00E0(0x0018) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_IBCW[0x18];                                  // 0x00E0(0x0018) MISSED OFFSET (PADDING)
 
 	public:
 		void UnmountUGCPackages(TArray<class FString> ExcludingModIds);
@@ -207,20 +207,20 @@ namespace CG
 	class UUGCSettings : public UObject
 	{
 	public:
-		unsigned char                                              UnknownData_2564[0x10];                                  // 0x0028(0x0010) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_2LD1[0x10];                                  // 0x0028(0x0010) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TArray<class FString>                                      slot1;                                                   // 0x0038(0x0010) ZeroConstructor, Config, NativeAccessSpecifierPrivate
 		int32_t                                                    slot1Icon;                                               // 0x0048(0x0004) ZeroConstructor, Config, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
-		unsigned char                                              UnknownData_61B9[0x4];                                   // 0x004C(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_AQDP[0x4];                                   // 0x004C(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TArray<class FString>                                      slot2;                                                   // 0x0050(0x0010) ZeroConstructor, Config, NativeAccessSpecifierPrivate
 		int32_t                                                    slot2Icon;                                               // 0x0060(0x0004) ZeroConstructor, Config, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
-		unsigned char                                              UnknownData_4I8D[0x4];                                   // 0x0064(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_FMIS[0x4];                                   // 0x0064(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TArray<class FString>                                      slot3;                                                   // 0x0068(0x0010) ZeroConstructor, Config, NativeAccessSpecifierPrivate
 		int32_t                                                    slot3Icon;                                               // 0x0078(0x0004) ZeroConstructor, Config, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
-		unsigned char                                              UnknownData_8JSP[0x4];                                   // 0x007C(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_K8FA[0x4];                                   // 0x007C(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TArray<class FString>                                      slot4;                                                   // 0x0080(0x0010) ZeroConstructor, Config, NativeAccessSpecifierPrivate
 		int32_t                                                    slot4Icon;                                               // 0x0090(0x0004) ZeroConstructor, Config, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
 		int32_t                                                    SelectedSlot;                                            // 0x0094(0x0004) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, Config, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_ZSAO[0x8];                                   // 0x0098(0x0008) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_KEUH[0x8];                                   // 0x0098(0x0008) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class FScriptMulticastDelegate                             OnSettingsUpdated;                                       // 0x00A0(0x0010) ZeroConstructor, InstancedReference, BlueprintAssignable, NativeAccessSpecifierPublic
 
 	public:
@@ -251,14 +251,14 @@ namespace CG
 		bool                                                       forceNoMods;                                             // 0x0030(0x0001) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		bool                                                       noInternetAccess;                                        // 0x0031(0x0001) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		bool                                                       noModioUser;                                             // 0x0032(0x0001) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_CPZP[0x1];                                   // 0x0033(0x0001) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_TABH[0x1];                                   // 0x0033(0x0001) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		bool                                                       IsJoining;                                               // 0x0034(0x0001) BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_8BDJ[0x3];                                   // 0x0035(0x0003) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_W6JV[0x3];                                   // 0x0035(0x0003) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class UUGCRegistry*                                        UGCRegistry;                                             // 0x0038(0x0008) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		class UUGCSettings*                                        UGCSettings;                                             // 0x0040(0x0008) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		class UUGCLatentActionManager*                             UGCLatentActionManager;                                  // 0x0048(0x0008) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		bool                                                       ModioTermsAndConditionsAccepted;                         // 0x0050(0x0001) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_DCGI[0x17];                                  // 0x0051(0x0017) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_TYC8[0x17];                                  // 0x0051(0x0017) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class FScriptMulticastDelegate                             OnModioUserAuthenticated;                                // 0x0068(0x0010) ZeroConstructor, InstancedReference, BlueprintAssignable, NativeAccessSpecifierPublic
 		class FScriptMulticastDelegate                             OnErrorInstalling;                                       // 0x0078(0x0010) ZeroConstructor, InstancedReference, BlueprintAssignable, NativeAccessSpecifierPublic
 		TMap<class FString, EUGCPackageError>                      ModsFailedInstall;                                       // 0x0088(0x0050) BlueprintVisible, NativeAccessSpecifierPublic
@@ -267,22 +267,22 @@ namespace CG
 		class FScriptMulticastDelegate                             OnModUninstallProgressFinished;                          // 0x00F8(0x0010) ZeroConstructor, InstancedReference, BlueprintAssignable, NativeAccessSpecifierPublic
 		class FScriptMulticastDelegate                             OnModManagementStateChanged;                             // 0x0108(0x0010) ZeroConstructor, InstancedReference, BlueprintAssignable, NativeAccessSpecifierPublic
 		bool                                                       IsModioModManagementEnabled;                             // 0x0118(0x0001) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_WMX8[0x7];                                   // 0x0119(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_14NT[0x7];                                   // 0x0119(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class FScriptMulticastDelegate                             OnLocalUserModsInstalled;                                // 0x0120(0x0010) ZeroConstructor, InstancedReference, BlueprintAssignable, NativeAccessSpecifierPublic
 		bool                                                       IsLocalUserModsInstalled;                                // 0x0130(0x0001) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_U83U[0x7];                                   // 0x0131(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_87JZ[0x7];                                   // 0x0131(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class FScriptMulticastDelegate                             OnEscapeMenuOpened;                                      // 0x0138(0x0010) ZeroConstructor, InstancedReference, BlueprintAssignable, BlueprintCallable, NativeAccessSpecifierPublic
 		class FScriptMulticastDelegate                             OnModioRequestHandled;                                   // 0x0148(0x0010) ZeroConstructor, InstancedReference, BlueprintAssignable, NativeAccessSpecifierPublic
 		TArray<class FString>                                      CrashingDisabledMods;                                    // 0x0158(0x0010) BlueprintVisible, ZeroConstructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_76ZK[0x70];                                  // 0x0168(0x0070) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_UE2D[0x70];                                  // 0x0168(0x0070) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TArray<class UUGCPackage*>                                 ModsPendingUninstall;                                    // 0x01D8(0x0010) ZeroConstructor, Transient, NativeAccessSpecifierPrivate
 		TArray<class UUGCPackage*>                                 ModsPendingUpdate;                                       // 0x01E8(0x0010) ZeroConstructor, Transient, NativeAccessSpecifierPrivate
-		unsigned char                                              UnknownData_SS84[0x18];                                  // 0x01F8(0x0018) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_YGMZ[0x18];                                  // 0x01F8(0x0018) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TArray<EModioRequestType>                                  ModioRequests;                                           // 0x0210(0x0010) ZeroConstructor, Transient, NativeAccessSpecifierPrivate
 		TArray<int64_t>                                            ModioSubscribeRequestsIds;                               // 0x0220(0x0010) ZeroConstructor, Transient, NativeAccessSpecifierPrivate
 		TArray<int64_t>                                            ModioSubscribeDependecyRequestsIds;                      // 0x0230(0x0010) ZeroConstructor, Transient, NativeAccessSpecifierPrivate
 		TArray<int64_t>                                            ModioAddDependecyRequestsIds;                            // 0x0240(0x0010) ZeroConstructor, Transient, NativeAccessSpecifierPrivate
-		unsigned char                                              UnknownData_L212[0x18];                                  // 0x0250(0x0018) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_UR7V[0x18];                                  // 0x0250(0x0018) MISSED OFFSET (PADDING)
 
 	public:
 		void UGRequiredModsFetched__DelegateSignature(TArray<class FString> ModsToEnable, TArray<class FString> ModsToInstall);

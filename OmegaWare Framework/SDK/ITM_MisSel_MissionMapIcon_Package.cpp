@@ -1,6 +1,6 @@
 ﻿/**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #include "pch.h"
@@ -525,18 +525,18 @@ namespace CG
 	 * 		Name   -> Function ITM_MisSel_MissionMapIcon.ITM_MisSel_MissionMapIcon_C.ShowChallengeIcon
 	 * 		Flags  -> ()
 	 * Parameters:
-	 * 		bool                                               InHighlight                                                (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+	 * 		bool                                               inHighlight                                                (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
 	 * 		class UTexture2D*                                  Icon                                                       (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 	 * 		struct FLinearColor                                Color                                                      (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 	 */
-	void UITM_MisSel_MissionMapIcon_C::ShowChallengeIcon(bool InHighlight, class UTexture2D* Icon, const struct FLinearColor& Color)
+	void UITM_MisSel_MissionMapIcon_C::ShowChallengeIcon(bool inHighlight, class UTexture2D* Icon, const struct FLinearColor& Color)
 	{
 		static UFunction* fn = nullptr;
 		if (!fn)
 			fn = UObject::FindObject<UFunction>("Function ITM_MisSel_MissionMapIcon.ITM_MisSel_MissionMapIcon_C.ShowChallengeIcon");
 		
 		UITM_MisSel_MissionMapIcon_C_ShowChallengeIcon_Params params {};
-		params.InHighlight = InHighlight;
+		params.inHighlight = inHighlight;
 		params.Icon = Icon;
 		params.Color = Color;
 		

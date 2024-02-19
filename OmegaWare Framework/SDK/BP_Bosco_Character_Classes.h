@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -16,7 +16,7 @@ namespace CG
 	// --------------------------------------------------
 	/**
 	 * BlueprintGeneratedClass BP_Bosco_Character.BP_Bosco_Character_C
-	 * Size -> 0x0000 (FullSize[0x10B0] - InheritedSize[0x10B0])
+	 * Size -> 0x0000 (FullSize[0x10C0] - InheritedSize[0x10C0])
 	 */
 	class ABP_Bosco_Character_C : public ABP_PlayerCharacter_C
 	{

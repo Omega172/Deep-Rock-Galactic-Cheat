@@ -1,6 +1,6 @@
 ﻿/**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #include "pch.h"
@@ -662,16 +662,16 @@ namespace CG
 	 * 		Name   -> Function BP_HUD_SpaceRig.BP_HUD_SpaceRig_C.Handle Event Rewards
 	 * 		Flags  -> ()
 	 * Parameters:
-	 * 		class UFSDEvent*                                   inEvent                                                    (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	 * 		class UFSDEvent*                                   InEvent                                                    (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 	 */
-	void ABP_HUD_SpaceRig_C::HandleEventRewards(class UFSDEvent* inEvent)
+	void ABP_HUD_SpaceRig_C::HandleEventRewards(class UFSDEvent* InEvent)
 	{
 		static UFunction* fn = nullptr;
 		if (!fn)
 			fn = UObject::FindObject<UFunction>("Function BP_HUD_SpaceRig.BP_HUD_SpaceRig_C.Handle Event Rewards");
 		
 		ABP_HUD_SpaceRig_C_HandleEventRewards_Params params {};
-		params.inEvent = inEvent;
+		params.InEvent = InEvent;
 		
 		auto flags = fn->FunctionFlags;
 		UObject::ProcessEvent(fn, &params);
@@ -684,16 +684,16 @@ namespace CG
 	 * 		Name   -> Function BP_HUD_SpaceRig.BP_HUD_SpaceRig_C.Handle Event Popup
 	 * 		Flags  -> ()
 	 * Parameters:
-	 * 		class UFSDEvent*                                   inEvent                                                    (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
+	 * 		class UFSDEvent*                                   InEvent                                                    (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 	 */
-	void ABP_HUD_SpaceRig_C::HandleEventPopup(class UFSDEvent* inEvent)
+	void ABP_HUD_SpaceRig_C::HandleEventPopup(class UFSDEvent* InEvent)
 	{
 		static UFunction* fn = nullptr;
 		if (!fn)
 			fn = UObject::FindObject<UFunction>("Function BP_HUD_SpaceRig.BP_HUD_SpaceRig_C.Handle Event Popup");
 		
 		ABP_HUD_SpaceRig_C_HandleEventPopup_Params params {};
-		params.inEvent = inEvent;
+		params.InEvent = InEvent;
 		
 		auto flags = fn->FunctionFlags;
 		UObject::ProcessEvent(fn, &params);

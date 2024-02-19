@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -33,27 +33,27 @@ namespace CG
 	{	};
 
 	/**
-	 * Function BP_Crossbow_Projectile_Stuck_Electric.BP_Crossbow_Projectile_Stuck_Electric_C.Fadeout__FinishedFunc
+	 * Function BP_Crossbow_Projectile_Stuck_Electric.BP_Crossbow_Projectile_Stuck_Electric_C.FadeOut__FinishedFunc
 	 */
-	struct ABP_Crossbow_Projectile_Stuck_Electric_C_Fadeout__FinishedFunc_Params
+	struct ABP_Crossbow_Projectile_Stuck_Electric_C_FadeOut__FinishedFunc_Params
 	{	};
 
 	/**
-	 * Function BP_Crossbow_Projectile_Stuck_Electric.BP_Crossbow_Projectile_Stuck_Electric_C.Fadeout__UpdateFunc
+	 * Function BP_Crossbow_Projectile_Stuck_Electric.BP_Crossbow_Projectile_Stuck_Electric_C.FadeOut__UpdateFunc
 	 */
-	struct ABP_Crossbow_Projectile_Stuck_Electric_C_Fadeout__UpdateFunc_Params
+	struct ABP_Crossbow_Projectile_Stuck_Electric_C_FadeOut__UpdateFunc_Params
 	{	};
 
 	/**
-	 * Function BP_Crossbow_Projectile_Stuck_Electric.BP_Crossbow_Projectile_Stuck_Electric_C.Fadein__FinishedFunc
+	 * Function BP_Crossbow_Projectile_Stuck_Electric.BP_Crossbow_Projectile_Stuck_Electric_C.FadeIn__FinishedFunc
 	 */
-	struct ABP_Crossbow_Projectile_Stuck_Electric_C_Fadein__FinishedFunc_Params
+	struct ABP_Crossbow_Projectile_Stuck_Electric_C_FadeIn__FinishedFunc_Params
 	{	};
 
 	/**
-	 * Function BP_Crossbow_Projectile_Stuck_Electric.BP_Crossbow_Projectile_Stuck_Electric_C.Fadein__UpdateFunc
+	 * Function BP_Crossbow_Projectile_Stuck_Electric.BP_Crossbow_Projectile_Stuck_Electric_C.FadeIn__UpdateFunc
 	 */
-	struct ABP_Crossbow_Projectile_Stuck_Electric_C_Fadein__UpdateFunc_Params
+	struct ABP_Crossbow_Projectile_Stuck_Electric_C_FadeIn__UpdateFunc_Params
 	{	};
 
 	/**

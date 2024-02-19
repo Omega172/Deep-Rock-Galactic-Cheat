@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -35,7 +35,7 @@ namespace CG
 	struct FMRMeshConfiguration
 	{
 	public:
-		unsigned char                                              UnknownData_6L6S[0x1];                                   // 0x0000(0x0001) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_SP7B[0x1];                                   // 0x0000(0x0001) MISSED OFFSET (PADDING)
 	};
 
 }

@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -60,7 +60,7 @@ namespace CG
 	struct FGameplayResourceSet
 	{
 	public:
-		unsigned char                                              UnknownData_UGTE[0x2];                                   // 0x0000(0x0002) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_UMFE[0x2];                                   // 0x0000(0x0002) MISSED OFFSET (PADDING)
 	};
 
 }

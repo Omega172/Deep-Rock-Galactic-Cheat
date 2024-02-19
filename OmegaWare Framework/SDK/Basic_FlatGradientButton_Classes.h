@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -35,14 +35,14 @@ namespace CG
 		ENUM_MenuColors                                            ButtonHoveredTint;                                       // 0x02A3(0x0001) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash
 		ENUM_MenuColors                                            BorderHoverdTint;                                        // 0x02A4(0x0001) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash
 		EHorizontalAlignment                                       ContentHorizontalAlignment;                              // 0x02A5(0x0001) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, ExposeOnSpawn, HasGetValueTypeHash
-		unsigned char                                              UnknownData_LYD0[0x2];                                   // 0x02A6(0x0002) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_0WZ4[0x2];                                   // 0x02A6(0x0002) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class FText                                                Text;                                                    // 0x02A8(0x0018) Edit, BlueprintVisible, ExposeOnSpawn
 		class FText                                                TextControllerOverride;                                  // 0x02C0(0x0018) Edit, BlueprintVisible, ExposeOnSpawn
 		struct FSlateFontInfo                                      TextFont;                                                // 0x02D8(0x0058) Edit, BlueprintVisible, ExposeOnSpawn, HasGetValueTypeHash
 		struct FSizeBoxSettings                                    ButtonSize;                                              // 0x0330(0x0020) Edit, BlueprintVisible, NoDestructor
 		struct FMargin                                             TextPadding;                                             // 0x0350(0x0010) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor
 		EStretch                                                   TextScale;                                               // 0x0360(0x0001) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash
-		unsigned char                                              UnknownData_A5LA[0x7];                                   // 0x0361(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_K0XQ[0x7];                                   // 0x0361(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class FScriptMulticastDelegate                             OnClicked;                                               // 0x0368(0x0010) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, BlueprintAssignable, BlueprintCallable
 
 	public:

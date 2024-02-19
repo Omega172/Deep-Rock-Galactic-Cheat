@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -31,7 +31,7 @@ namespace CG
 		class FText                                                StatBaseValue;                                           // 0x02B8(0x0018) Edit, BlueprintVisible, DisableEditOnInstance
 		class FText                                                StatUpgradeValue;                                        // 0x02D0(0x0018) Edit, BlueprintVisible, DisableEditOnInstance
 		EItemPreviewStatus                                         ItemPreviewStatus;                                       // 0x02E8(0x0001) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash
-		unsigned char                                              UnknownData_93KF[0x7];                                   // 0x02E9(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_I1FZ[0x7];                                   // 0x02E9(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		struct FSlateFontInfo                                      SpecialFont;                                             // 0x02F0(0x0058) Edit, BlueprintVisible, DisableEditOnInstance, HasGetValueTypeHash
 		struct FGearStatEntry                                      GearStat;                                                // 0x0348(0x0068) Edit, BlueprintVisible, ExposeOnSpawn
 

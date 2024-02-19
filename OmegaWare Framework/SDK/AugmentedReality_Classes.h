@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -119,7 +119,7 @@ namespace CG
 	class UARBaseAsyncTaskBlueprintProxy : public UBlueprintAsyncActionBase
 	{
 	public:
-		unsigned char                                              UnknownData_357I[0x20];                                  // 0x0030(0x0020) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_CGBQ[0x20];                                  // 0x0030(0x0020) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -134,7 +134,7 @@ namespace CG
 	public:
 		class FScriptMulticastDelegate                             OnSuccess;                                               // 0x0050(0x0010) ZeroConstructor, InstancedReference, BlueprintAssignable, NativeAccessSpecifierPublic
 		class FScriptMulticastDelegate                             OnFailed;                                                // 0x0060(0x0010) ZeroConstructor, InstancedReference, BlueprintAssignable, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_ETKY[0x10];                                  // 0x0070(0x0010) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_WQLQ[0x10];                                  // 0x0070(0x0010) MISSED OFFSET (PADDING)
 
 	public:
 		class UARSaveWorldAsyncTaskBlueprintProxy* ARSaveWorld(class UObject* WorldContextObject);
@@ -150,7 +150,7 @@ namespace CG
 	public:
 		class FScriptMulticastDelegate                             OnSuccess;                                               // 0x0050(0x0010) ZeroConstructor, InstancedReference, BlueprintAssignable, NativeAccessSpecifierPublic
 		class FScriptMulticastDelegate                             OnFailed;                                                // 0x0060(0x0010) ZeroConstructor, InstancedReference, BlueprintAssignable, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_7FMN[0x28];                                  // 0x0070(0x0028) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_J4UZ[0x28];                                  // 0x0070(0x0028) MISSED OFFSET (PADDING)
 
 	public:
 		class UARGetCandidateObjectAsyncTaskBlueprintProxy* ARGetCandidateObject(class UObject* WorldContextObject, const struct FVector& Location, const struct FVector& Extent);
@@ -165,14 +165,14 @@ namespace CG
 	{
 	public:
 		struct FGuid                                               NativeID;                                                // 0x01F8(0x0010) Net, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_H6PO[0x30];                                  // 0x0208(0x0030) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_ZX66[0x30];                                  // 0x0208(0x0030) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		bool                                                       bUseDefaultReplication;                                  // 0x0238(0x0001) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected
-		unsigned char                                              UnknownData_1YCP[0x7];                                   // 0x0239(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_YOXC[0x7];                                   // 0x0239(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class UMaterialInterface*                                  DefaultMeshMaterial;                                     // 0x0240(0x0008) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected
 		class UMaterialInterface*                                  DefaultWireframeMeshMaterial;                            // 0x0248(0x0008) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected
 		class UMRMeshComponent*                                    MRMeshComponent;                                         // 0x0250(0x0008) ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected
 		class UARTrackedGeometry*                                  MyTrackedGeometry;                                       // 0x0258(0x0008) ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected
-		unsigned char                                              UnknownData_V6ZK[0x20];                                  // 0x0260(0x0020) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_LXMR[0x20];                                  // 0x0260(0x0020) MISSED OFFSET (PADDING)
 
 	public:
 		void UpdateVisualization();
@@ -223,7 +223,7 @@ namespace CG
 	{
 	public:
 		struct FARFaceUpdatePayload                                ReplicatedPayload;                                       // 0x0280(0x0040) BlueprintVisible, BlueprintReadOnly, Net, RepNotify, NoDestructor, Protected, NativeAccessSpecifierProtected
-		unsigned char                                              UnknownData_A56I[0x20];                                  // 0x02C0(0x0020) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_Y90L[0x20];                                  // 0x02C0(0x0020) MISSED OFFSET (PADDING)
 
 	public:
 		void SetFaceComponentDebugMode(EFaceComponentDebugMode NewDebugMode);
@@ -389,7 +389,7 @@ namespace CG
 	public:
 		class FScriptMulticastDelegate                             OnSuccess;                                               // 0x0050(0x0010) ZeroConstructor, InstancedReference, BlueprintAssignable, NativeAccessSpecifierPublic
 		class FScriptMulticastDelegate                             OnFailed;                                                // 0x0060(0x0010) ZeroConstructor, InstancedReference, BlueprintAssignable, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_TUD5[0x30];                                  // 0x0070(0x0030) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_UJYG[0x30];                                  // 0x0070(0x0030) MISSED OFFSET (PADDING)
 
 	public:
 		void GeoTrackingAvailabilityDelegate__DelegateSignature(bool bIsAvailable, const class FString& Error);
@@ -407,7 +407,7 @@ namespace CG
 	public:
 		class FScriptMulticastDelegate                             OnSuccess;                                               // 0x0050(0x0010) ZeroConstructor, InstancedReference, BlueprintAssignable, NativeAccessSpecifierPublic
 		class FScriptMulticastDelegate                             OnFailed;                                                // 0x0060(0x0010) ZeroConstructor, InstancedReference, BlueprintAssignable, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_39I3[0x30];                                  // 0x0070(0x0030) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_OIV9[0x30];                                  // 0x0070(0x0030) MISSED OFFSET (PADDING)
 
 	public:
 		void GetGeoLocationDelegate__DelegateSignature(float Longitude, float Latitude, float Altitude, const class FString& Error);
@@ -424,7 +424,7 @@ namespace CG
 	public:
 		class FScriptMulticastDelegate                             OnARActorSpawnedDelegate;                                // 0x01F8(0x0010) ZeroConstructor, InstancedReference, BlueprintAssignable, NativeAccessSpecifierPublic
 		class FScriptMulticastDelegate                             OnARActorToBeDestroyedDelegate;                          // 0x0208(0x0010) ZeroConstructor, InstancedReference, BlueprintAssignable, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_G5V4[0x18];                                  // 0x0218(0x0018) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_UC3L[0x18];                                  // 0x0218(0x0018) MISSED OFFSET (PADDING)
 
 	public:
 		void ServerSpawnARActor(class UClass* ComponentClass, const struct FGuid& NativeID);
@@ -481,14 +481,14 @@ namespace CG
 	public:
 		class UARTrackedGeometry*                                  TrackedGeometry;                                         // 0x0028(0x0008) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
 		class USceneComponent*                                     PinnedComponent;                                         // 0x0030(0x0008) ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
-		unsigned char                                              UnknownData_A0FP[0x8];                                   // 0x0038(0x0008) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_1OLF[0x8];                                   // 0x0038(0x0008) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		struct FTransform                                          LocalToTrackingTransform;                                // 0x0040(0x0030) IsPlainOldData, NoDestructor, NativeAccessSpecifierPrivate
 		struct FTransform                                          LocalToAlignedTrackingTransform;                         // 0x0070(0x0030) IsPlainOldData, NoDestructor, NativeAccessSpecifierPrivate
 		EARTrackingState                                           TrackingState;                                           // 0x00A0(0x0001) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
-		unsigned char                                              UnknownData_2DDU[0x1F];                                  // 0x00A1(0x001F) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_GLC7[0x1F];                                  // 0x00A1(0x001F) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class FScriptMulticastDelegate                             OnARTrackingStateChanged;                                // 0x00C0(0x0010) ZeroConstructor, InstancedReference, BlueprintAssignable, NativeAccessSpecifierPrivate
 		class FScriptMulticastDelegate                             OnARTransformUpdated;                                    // 0x00D0(0x0010) ZeroConstructor, InstancedReference, BlueprintAssignable, NativeAccessSpecifierPrivate
-		unsigned char                                              UnknownData_PFQ1[0x10];                                  // 0x00E0(0x0010) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_7J34[0x10];                                  // 0x00E0(0x0010) MISSED OFFSET (PADDING)
 
 	public:
 		EARTrackingState GetTrackingState();
@@ -530,24 +530,24 @@ namespace CG
 		bool                                                       bEnableAutomaticCameraTracking;                          // 0x0043(0x0001) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected
 		bool                                                       bResetCameraTracking;                                    // 0x0044(0x0001) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected
 		bool                                                       bResetTrackedObjects;                                    // 0x0045(0x0001) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected
-		unsigned char                                              UnknownData_FMBL[0x2];                                   // 0x0046(0x0002) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_LZ6F[0x2];                                   // 0x0046(0x0002) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TArray<class UARCandidateImage*>                           CandidateImages;                                         // 0x0048(0x0010) Edit, ZeroConstructor, Protected, NativeAccessSpecifierProtected
 		int32_t                                                    MaxNumSimultaneousImagesTracked;                         // 0x0058(0x0004) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected
 		EAREnvironmentCaptureProbeType                             EnvironmentCaptureProbeType;                             // 0x005C(0x0001) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected
-		unsigned char                                              UnknownData_IAKZ[0x3];                                   // 0x005D(0x0003) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_62FN[0x3];                                   // 0x005D(0x0003) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TArray<unsigned char>                                      WorldMapData;                                            // 0x0060(0x0010) Edit, ZeroConstructor, EditConst, Protected, NativeAccessSpecifierProtected
 		TArray<class UARCandidateObject*>                          CandidateObjects;                                        // 0x0070(0x0010) Edit, ZeroConstructor, Protected, NativeAccessSpecifierProtected
 		struct FARVideoFormat                                      DesiredVideoFormat;                                      // 0x0080(0x000C) Edit, NoDestructor, Protected, NativeAccessSpecifierProtected
 		bool                                                       bUseOptimalVideoFormat;                                  // 0x008C(0x0001) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected
 		EARFaceTrackingDirection                                   FaceTrackingDirection;                                   // 0x008D(0x0001) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected
 		EARFaceTrackingUpdate                                      FaceTrackingUpdate;                                      // 0x008E(0x0001) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected
-		unsigned char                                              UnknownData_SYCB[0x1];                                   // 0x008F(0x0001) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_E2G8[0x1];                                   // 0x008F(0x0001) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		int32_t                                                    MaxNumberOfTrackedFaces;                                 // 0x0090(0x0004) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected
-		unsigned char                                              UnknownData_K5EE[0x4];                                   // 0x0094(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_CEJ1[0x4];                                   // 0x0094(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TArray<unsigned char>                                      SerializedARCandidateImageDatabase;                      // 0x0098(0x0010) ZeroConstructor, Protected, NativeAccessSpecifierProtected
 		EARSessionTrackingFeature                                  EnabledSessionTrackingFeature;                           // 0x00A8(0x0001) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected
 		EARSceneReconstruction                                     SceneReconstructionMethod;                               // 0x00A9(0x0001) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected
-		unsigned char                                              UnknownData_RC5R[0x6];                                   // 0x00AA(0x0006) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_3E9Q[0x6];                                   // 0x00AA(0x0006) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class UClass*                                              PlaneComponentClass;                                     // 0x00B0(0x0008) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, Protected, UObjectWrapper, HasGetValueTypeHash, NativeAccessSpecifierProtected
 		class UClass*                                              PointComponentClass;                                     // 0x00B8(0x0008) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, Protected, UObjectWrapper, HasGetValueTypeHash, NativeAccessSpecifierProtected
 		class UClass*                                              FaceComponentClass;                                      // 0x00C0(0x0008) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, Protected, UObjectWrapper, HasGetValueTypeHash, NativeAccessSpecifierProtected
@@ -605,7 +605,7 @@ namespace CG
 	{
 	public:
 		int32_t                                                    BufferSizePerChunk;                                      // 0x0308(0x0004) Edit, BlueprintVisible, ZeroConstructor, Config, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_FDPS[0x64];                                  // 0x030C(0x0064) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_ND0B[0x64];                                  // 0x030C(0x0064) MISSED OFFSET (PADDING)
 
 	public:
 		void SetPreviewImageData(TArray<unsigned char> ImageData);
@@ -628,7 +628,7 @@ namespace CG
 		int32_t                                                    ARWorldBytesTotal;                                       // 0x02B4(0x0004) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		int32_t                                                    PreviewImageBytesDelivered;                              // 0x02B8(0x0004) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		int32_t                                                    ARWorldBytesDelivered;                                   // 0x02BC(0x0004) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_KT7K[0x8];                                   // 0x02C0(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_YWX0[0x8];                                   // 0x02C0(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		void K2_OnARWorldMapIsReady();
@@ -642,7 +642,7 @@ namespace CG
 	class AARSharedWorldPlayerController : public APlayerController
 	{
 	public:
-		unsigned char                                              UnknownData_X7B8[0x8];                                   // 0x0570(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_0MDK[0x8];                                   // 0x0570(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		void ServerMarkReadyForReceiving();
@@ -660,7 +660,7 @@ namespace CG
 	{
 	public:
 		class UAREnvironmentCaptureProbe*                          CaptureProbe;                                            // 0x0230(0x0008) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
-		unsigned char                                              UnknownData_21SE[0x8];                                   // 0x0238(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_87DE[0x8];                                   // 0x0238(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		void SetEnvironmentCaptureProbe(class UAREnvironmentCaptureProbe* InCaptureProbe);
@@ -677,7 +677,7 @@ namespace CG
 		float                                                      Timestamp;                                               // 0x017C(0x0004) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		struct FGuid                                               ExternalTextureGuid;                                     // 0x0180(0x0010) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		struct FVector2D                                           Size;                                                    // 0x0190(0x0008) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_RQR7[0x8];                                   // 0x0198(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_KE91[0x8];                                   // 0x0198(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -711,7 +711,7 @@ namespace CG
 	{
 	public:
 		EARTextureType                                             TextureType;                                             // 0x01D0(0x0001) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_0DSB[0x3];                                   // 0x01D1(0x0003) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_MAR5[0x3];                                   // 0x01D1(0x0003) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		float                                                      Timestamp;                                               // 0x01D4(0x0004) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		struct FGuid                                               ExternalTextureGuid;                                     // 0x01D8(0x0010) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		struct FVector2D                                           Size;                                                    // 0x01E8(0x0008) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
@@ -738,19 +738,19 @@ namespace CG
 	{
 	public:
 		struct FGuid                                               UniqueId;                                                // 0x0028(0x0010) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_VPDX[0x8];                                   // 0x0038(0x0008) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_8CHR[0x8];                                   // 0x0038(0x0008) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		struct FTransform                                          LocalToTrackingTransform;                                // 0x0040(0x0030) IsPlainOldData, NoDestructor, Protected, NativeAccessSpecifierProtected
 		struct FTransform                                          LocalToAlignedTrackingTransform;                         // 0x0070(0x0030) IsPlainOldData, NoDestructor, Protected, NativeAccessSpecifierProtected
 		EARTrackingState                                           TrackingState;                                           // 0x00A0(0x0001) ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected
-		unsigned char                                              UnknownData_E7FC[0xF];                                   // 0x00A1(0x000F) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_CZKP[0xF];                                   // 0x00A1(0x000F) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class UMRMeshComponent*                                    UnderlyingMesh;                                          // 0x00B0(0x0008) ExportObject, ZeroConstructor, Transient, InstancedReference, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected
 		EARObjectClassification                                    ObjectClassification;                                    // 0x00B8(0x0001) ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected
 		EARSpatialMeshUsageFlags                                   SpatialMeshUsageFlags;                                   // 0x00B9(0x0001) ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected
-		unsigned char                                              UnknownData_NVMV[0x16];                                  // 0x00BA(0x0016) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_BJWA[0x16];                                  // 0x00BA(0x0016) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		int32_t                                                    LastUpdateFrameNumber;                                   // 0x00D0(0x0004) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
-		unsigned char                                              UnknownData_Q5KS[0xC];                                   // 0x00D4(0x000C) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_74SH[0xC];                                   // 0x00D4(0x000C) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class FName                                                DebugName;                                               // 0x00E0(0x0008) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
-		unsigned char                                              UnknownData_4RC8[0x10];                                  // 0x00E8(0x0010) Fix size for supers
+		unsigned char                                              UnknownData_EHH2[0x10];                                  // 0x00E8(0x0010) Fix size for supers
 
 	public:
 		bool IsTracked();
@@ -774,10 +774,10 @@ namespace CG
 	class UARPlaneGeometry : public UARTrackedGeometry
 	{
 	public:
-		unsigned char                                              UnknownData_65JX[0x4];                                   // 0x00F8(0x0004) Fix Super Size
+		unsigned char                                              UnknownData_KCDM[0x4];                                   // 0x00F8(0x0004) Fix Super Size
 		struct FVector                                             Center;                                                  // 0x00FC(0x000C) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
 		struct FVector                                             Extent;                                                  // 0x0108(0x000C) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
-		unsigned char                                              UnknownData_925S[0x4];                                   // 0x0114(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_NLBK[0x4];                                   // 0x0114(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TArray<struct FVector>                                     BoundaryPolygon;                                         // 0x0118(0x0010) ZeroConstructor, NativeAccessSpecifierPrivate
 		class UARPlaneGeometry*                                    SubsumedBy;                                              // 0x0128(0x0008) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
 
@@ -797,7 +797,7 @@ namespace CG
 	class UARTrackedPoint : public UARTrackedGeometry
 	{
 	public:
-		unsigned char                                              UnknownData_UBBU[0x8];                                   // 0x00F8(0x0008) Fix Super Size
+		unsigned char                                              UnknownData_8P2T[0x8];                                   // 0x00F8(0x0008) Fix Super Size
 
 	public:
 		static UClass* StaticClass();
@@ -828,7 +828,7 @@ namespace CG
 	public:
 		class FString                                              QRCode;                                                  // 0x0108(0x0010) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		int32_t                                                    Version;                                                 // 0x0118(0x0004) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_L80V[0x4];                                   // 0x011C(0x0004) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_YYV5[0x4];                                   // 0x011C(0x0004) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -843,9 +843,9 @@ namespace CG
 	public:
 		struct FVector                                             LookAtTarget;                                            // 0x00F8(0x000C) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		bool                                                       bIsTracked;                                              // 0x0104(0x0001) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_81WL[0x3];                                   // 0x0105(0x0003) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_IB4F[0x3];                                   // 0x0105(0x0003) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TMap<EARFaceBlendShape, float>                             BlendShapes;                                             // 0x0108(0x0050) NativeAccessSpecifierPrivate
-		unsigned char                                              UnknownData_E4LP[0x38];                                  // 0x0158(0x0038) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_DTP4[0x38];                                  // 0x0158(0x0038) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		struct FTransform                                          LeftEyeTransform;                                        // 0x0190(0x0030) IsPlainOldData, NoDestructor, NativeAccessSpecifierPrivate
 		struct FTransform                                          RightEyeTransform;                                       // 0x01C0(0x0030) IsPlainOldData, NoDestructor, NativeAccessSpecifierPrivate
 
@@ -865,7 +865,7 @@ namespace CG
 	{
 	public:
 		struct FVector                                             Extent;                                                  // 0x00F8(0x000C) ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected
-		unsigned char                                              UnknownData_YAKG[0x4];                                   // 0x0104(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_PNUX[0x4];                                   // 0x0104(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class UAREnvironmentCaptureProbeTexture*                   EnvironmentCaptureTexture;                               // 0x0108(0x0008) ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected
 
 	public:
@@ -896,7 +896,7 @@ namespace CG
 	{
 	public:
 		struct FARPose3D                                           TrackedPose;                                             // 0x00F8(0x0050) NativeAccessSpecifierPrivate
-		unsigned char                                              UnknownData_VFFV[0x8];                                   // 0x0148(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_I30C[0x8];                                   // 0x0148(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		struct FARPose3D GetTrackedPoseData();
@@ -910,7 +910,7 @@ namespace CG
 	class UARMeshGeometry : public UARTrackedGeometry
 	{
 	public:
-		unsigned char                                              UnknownData_8FZA[0x8];                                   // 0x00F8(0x0008) Fix Super Size
+		unsigned char                                              UnknownData_7NWG[0x8];                                   // 0x00F8(0x0008) Fix Super Size
 
 	public:
 		bool GetObjectClassificationAtLocation(const struct FVector& InWorldLocation, EARObjectClassification* OutClassification, struct FVector* OutClassificationLocation, float MaxLocationDiff);
@@ -924,8 +924,8 @@ namespace CG
 	class UARGeoAnchor : public UARTrackedGeometry
 	{
 	public:
-		unsigned char                                              UnknownData_4WPT[0x8];                                   // 0x00F8(0x0008) Fix Super Size
-		unsigned char                                              UnknownData_4DW5[0x10];                                  // 0x0100(0x0010) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_ZQC8[0x8];                                   // 0x00F8(0x0008) Fix Super Size
+		unsigned char                                              UnknownData_JSJJ[0x10];                                  // 0x0100(0x0010) MISSED OFFSET (PADDING)
 
 	public:
 		float GetLongitude();
@@ -990,7 +990,7 @@ namespace CG
 		float                                                      Width;                                                   // 0x0048(0x0004) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected
 		float                                                      Height;                                                  // 0x004C(0x0004) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected
 		EARCandidateImageOrientation                               Orientation;                                             // 0x0050(0x0001) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected
-		unsigned char                                              UnknownData_UBB9[0x7];                                   // 0x0051(0x0007) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_673E[0x7];                                   // 0x0051(0x0007) MISSED OFFSET (PADDING)
 
 	public:
 		float GetPhysicalWidth();
@@ -1011,7 +1011,7 @@ namespace CG
 		TArray<unsigned char>                                      CandidateObjectData;                                     // 0x0030(0x0010) Edit, ZeroConstructor, NativeAccessSpecifierPrivate
 		class FString                                              FriendlyName;                                            // 0x0040(0x0010) Edit, ZeroConstructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
 		struct FCoreUObject_FBox                                   BoundingBox;                                             // 0x0050(0x001C) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, NativeAccessSpecifierPrivate
-		unsigned char                                              UnknownData_8NM4[0x4];                                   // 0x006C(0x0004) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_U6CP[0x4];                                   // 0x006C(0x0004) MISSED OFFSET (PADDING)
 
 	public:
 		void SetFriendlyName(const class FString& NewName);

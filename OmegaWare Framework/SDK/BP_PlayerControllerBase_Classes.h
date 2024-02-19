@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -16,23 +16,23 @@ namespace CG
 	// --------------------------------------------------
 	/**
 	 * BlueprintGeneratedClass BP_PlayerControllerBase.BP_PlayerControllerBase_C
-	 * Size -> 0x0078 (FullSize[0x0750] - InheritedSize[0x06D8])
+	 * Size -> 0x0078 (FullSize[0x0790] - InheritedSize[0x0718])
 	 */
 	class ABP_PlayerControllerBase_C : public AFSDPlayerController
 	{
 	public:
-		struct FPointerToUberGraphFrame                            UberGraphFrame;                                          // 0x06D8(0x0008) ZeroConstructor, Transient, DuplicateTransient
-		class FScriptMulticastDelegate                             ReplyToInviteRequest;                                    // 0x06E0(0x0010) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, BlueprintAssignable, BlueprintCallable
-		class UBP_Invitation_C*                                    InviteRequest;                                           // 0x06F0(0x0008) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash
-		float                                                      InviteTimeElapsed;                                       // 0x06F8(0x0004) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash
-		unsigned char                                              UnknownData_MXG4[0x4];                                   // 0x06FC(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
-		struct FDateTime                                           InviteWaitTime;                                          // 0x0700(0x0008) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, NoDestructor, HasGetValueTypeHash
-		int32_t                                                    AnselStatus;                                             // 0x0708(0x0004) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash
-		int32_t                                                    AnselCameraTries;                                        // 0x070C(0x0004) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash
-		class ABP_FSDCameraManager_C*                              CameraManager;                                           // 0x0710(0x0008) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash
-		struct FTimerHandle                                        AnselTimerHandle;                                        // 0x0718(0x0008) Edit, BlueprintVisible, DisableEditOnInstance, NoDestructor, HasGetValueTypeHash
-		class UWindowWidget*                                       RetirementPopup;                                         // 0x0720(0x0008) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash
-		unsigned char                                              hudClass[0x28];                                          // 0x0728(0x0028) UNKNOWN PROPERTY: SoftClassProperty
+		struct FPointerToUberGraphFrame                            UberGraphFrame;                                          // 0x0718(0x0008) ZeroConstructor, Transient, DuplicateTransient
+		class FScriptMulticastDelegate                             ReplyToInviteRequest;                                    // 0x0720(0x0010) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, BlueprintAssignable, BlueprintCallable
+		class UBP_Invitation_C*                                    InviteRequest;                                           // 0x0730(0x0008) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash
+		float                                                      InviteTimeElapsed;                                       // 0x0738(0x0004) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash
+		unsigned char                                              UnknownData_X72Y[0x4];                                   // 0x073C(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		struct FDateTime                                           InviteWaitTime;                                          // 0x0740(0x0008) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, NoDestructor, HasGetValueTypeHash
+		int32_t                                                    AnselStatus;                                             // 0x0748(0x0004) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash
+		int32_t                                                    AnselCameraTries;                                        // 0x074C(0x0004) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash
+		class ABP_FSDCameraManager_C*                              CameraManager;                                           // 0x0750(0x0008) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash
+		struct FTimerHandle                                        AnselTimerHandle;                                        // 0x0758(0x0008) Edit, BlueprintVisible, DisableEditOnInstance, NoDestructor, HasGetValueTypeHash
+		class UWindowWidget*                                       RetirementPopup;                                         // 0x0760(0x0008) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash
+		unsigned char                                              hudClass[0x28];                                          // 0x0768(0x0028) UNKNOWN PROPERTY: SoftClassProperty
 
 	public:
 		void GetEditorCharacterClass(class UPlayerCharacterID** CharacterClass);

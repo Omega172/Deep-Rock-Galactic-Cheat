@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -28,7 +28,7 @@ namespace CG
 		int32_t                                                    Preview;                                                 // 0x0280(0x0004) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash
 
 	public:
-		void SetHighScore(int32_t InIndex, const struct FJettyBootsScore& InHighscore, bool InHighlight);
+		void SetHighScore(int32_t InIndex, const struct FJettyBootsScore& InHighscore, bool inHighlight);
 		void PreConstruct(bool IsDesignTime);
 		void ExecuteUbergraph_UI_JettyBoots_HighScore(int32_t EntryPoint);
 		static UClass* StaticClass();

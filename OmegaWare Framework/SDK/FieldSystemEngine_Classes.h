@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -34,7 +34,7 @@ namespace CG
 	class UFieldSystem : public UObject
 	{
 	public:
-		unsigned char                                              UnknownData_FRCR[0x10];                                  // 0x0028(0x0010) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_XKQC[0x10];                                  // 0x0028(0x0010) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -50,11 +50,11 @@ namespace CG
 		class UFieldSystem*                                        FieldSystem;                                             // 0x0450(0x0008) Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, AdvancedDisplay, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		bool                                                       bIsWorldField;                                           // 0x0458(0x0001) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		bool                                                       bIsChaosField;                                           // 0x0459(0x0001) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_T5VV[0x6];                                   // 0x045A(0x0006) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_HUWD[0x6];                                   // 0x045A(0x0006) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		unsigned char                                              SupportedSolvers[0x10];                                  // 0x0460(0x0010) UNKNOWN PROPERTY: ArrayProperty
 		struct FFieldObjectCommands                                ConstructionCommands;                                    // 0x0470(0x0030) ContainsInstancedReference, NativeAccessSpecifierPublic
 		struct FFieldObjectCommands                                BufferCommands;                                          // 0x04A0(0x0030) ContainsInstancedReference, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_6AT6[0x50];                                  // 0x04D0(0x0050) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_QEMW[0x50];                                  // 0x04D0(0x0050) MISSED OFFSET (PADDING)
 
 	public:
 		void ResetFieldSystem();
@@ -89,7 +89,7 @@ namespace CG
 	{
 	public:
 		int32_t                                                    Iterations;                                              // 0x00B0(0x0004) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_8U0X[0x4];                                   // 0x00B4(0x0004) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_0QMY[0x4];                                   // 0x00B4(0x0004) MISSED OFFSET (PADDING)
 
 	public:
 		class UFieldSystemMetaDataIteration* SetMetaDataIteration(int32_t Iterations);
@@ -104,7 +104,7 @@ namespace CG
 	{
 	public:
 		EFieldResolutionType                                       ResolutionType;                                          // 0x00B0(0x0001) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_10PF[0x7];                                   // 0x00B1(0x0007) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_XH2J[0x7];                                   // 0x00B1(0x0007) MISSED OFFSET (PADDING)
 
 	public:
 		class UFieldSystemMetaDataProcessingResolution* SetMetaDataaProcessingResolutionType(EFieldResolutionType ResolutionType);
@@ -119,7 +119,7 @@ namespace CG
 	{
 	public:
 		EFieldFilterType                                           FilterType;                                              // 0x00B0(0x0001) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_BV3D[0x7];                                   // 0x00B1(0x0007) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_8PDH[0x7];                                   // 0x00B1(0x0007) MISSED OFFSET (PADDING)
 
 	public:
 		class UFieldSystemMetaDataFilter* SetMetaDataFilterType(EFieldFilterType FilterType);
@@ -174,7 +174,7 @@ namespace CG
 	{
 	public:
 		int32_t                                                    Magnitude;                                               // 0x00B0(0x0004) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_F4GR[0x4];                                   // 0x00B4(0x0004) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_NM2M[0x4];                                   // 0x00B4(0x0004) MISSED OFFSET (PADDING)
 
 	public:
 		class UUniformInteger* SetUniformInteger(int32_t Magnitude);
@@ -193,7 +193,7 @@ namespace CG
 		int32_t                                                    InteriorValue;                                           // 0x00C0(0x0004) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		int32_t                                                    ExteriorValue;                                           // 0x00C4(0x0004) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		ESetMaskConditionType                                      SetMaskCondition;                                        // 0x00C8(0x0001) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_B743[0x7];                                   // 0x00C9(0x0007) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_L87T[0x7];                                   // 0x00C9(0x0007) MISSED OFFSET (PADDING)
 
 	public:
 		class URadialIntMask* SetRadialIntMask(float Radius, const struct FVector& Position, int32_t InteriorValue, int32_t ExteriorValue, ESetMaskConditionType SetMaskConditionIn);
@@ -208,7 +208,7 @@ namespace CG
 	{
 	public:
 		float                                                      Magnitude;                                               // 0x00B0(0x0004) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_WRNY[0x4];                                   // 0x00B4(0x0004) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_SM74[0x4];                                   // 0x00B4(0x0004) MISSED OFFSET (PADDING)
 
 	public:
 		class UUniformScalar* SetUniformScalar(float Magnitude);
@@ -228,7 +228,7 @@ namespace CG
 		float                                                      Period;                                                  // 0x00C4(0x0004) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		EWaveFunctionType                                          Function;                                                // 0x00C8(0x0001) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		EFieldFalloffType                                          Falloff;                                                 // 0x00C9(0x0001) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_6WUL[0x6];                                   // 0x00CA(0x0006) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_AY21[0x6];                                   // 0x00CA(0x0006) MISSED OFFSET (PADDING)
 
 	public:
 		class UWaveScalar* SetWaveScalar(float Magnitude, const struct FVector& Position, float Wavelength, float Period, float Time, EWaveFunctionType Function, EFieldFalloffType Falloff);
@@ -249,7 +249,7 @@ namespace CG
 		float                                                      Radius;                                                  // 0x00C0(0x0004) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		struct FVector                                             Position;                                                // 0x00C4(0x000C) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		EFieldFalloffType                                          Falloff;                                                 // 0x00D0(0x0001) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_EHXJ[0x7];                                   // 0x00D1(0x0007) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_DVCT[0x7];                                   // 0x00D1(0x0007) MISSED OFFSET (PADDING)
 
 	public:
 		class URadialFalloff* SetRadialFalloff(float Magnitude, float MinRange, float MaxRange, float Default, float Radius, const struct FVector& Position, EFieldFalloffType Falloff);
@@ -271,7 +271,7 @@ namespace CG
 		struct FVector                                             Position;                                                // 0x00C4(0x000C) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		struct FVector                                             Normal;                                                  // 0x00D0(0x000C) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		EFieldFalloffType                                          Falloff;                                                 // 0x00DC(0x0001) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_T3W5[0x3];                                   // 0x00DD(0x0003) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_41U1[0x3];                                   // 0x00DD(0x0003) MISSED OFFSET (PADDING)
 
 	public:
 		class UPlaneFalloff* SetPlaneFalloff(float Magnitude, float MinRange, float MaxRange, float Default, float Distance, const struct FVector& Position, const struct FVector& Normal, EFieldFalloffType Falloff);
@@ -291,7 +291,7 @@ namespace CG
 		float                                                      Default;                                                 // 0x00BC(0x0004) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		struct FTransform                                          Transform;                                               // 0x00C0(0x0030) Edit, BlueprintVisible, IsPlainOldData, NoDestructor, NativeAccessSpecifierPublic
 		EFieldFalloffType                                          Falloff;                                                 // 0x00F0(0x0001) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_QF3E[0xF];                                   // 0x00F1(0x000F) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_YDC5[0xF];                                   // 0x00F1(0x000F) MISSED OFFSET (PADDING)
 
 	public:
 		class UBoxFalloff* SetBoxFalloff(float Magnitude, float MinRange, float MaxRange, float Default, const struct FTransform& Transform, EFieldFalloffType Falloff);
@@ -307,7 +307,7 @@ namespace CG
 	public:
 		float                                                      MinRange;                                                // 0x00B0(0x0004) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		float                                                      MaxRange;                                                // 0x00B4(0x0004) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_S96U[0x8];                                   // 0x00B8(0x0008) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_DB2G[0x8];                                   // 0x00B8(0x0008) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		struct FTransform                                          Transform;                                               // 0x00C0(0x0030) Edit, BlueprintVisible, IsPlainOldData, NoDestructor, NativeAccessSpecifierPublic
 
 	public:
@@ -353,7 +353,7 @@ namespace CG
 	{
 	public:
 		float                                                      Magnitude;                                               // 0x00B0(0x0004) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_PG9H[0x4];                                   // 0x00B4(0x0004) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_D9MT[0x4];                                   // 0x00B4(0x0004) MISSED OFFSET (PADDING)
 
 	public:
 		class URandomVector* SetRandomVector(float Magnitude);
@@ -368,11 +368,11 @@ namespace CG
 	{
 	public:
 		float                                                      Magnitude;                                               // 0x00B0(0x0004) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_HFFG[0x4];                                   // 0x00B4(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_BMEU[0x4];                                   // 0x00B4(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class UFieldNodeBase*                                      RightField;                                              // 0x00B8(0x0008) Edit, BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		class UFieldNodeBase*                                      LeftField;                                               // 0x00C0(0x0008) Edit, BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		EFieldOperationType                                        Operation;                                               // 0x00C8(0x0001) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_O9F9[0x7];                                   // 0x00C9(0x0007) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_NV5T[0x7];                                   // 0x00C9(0x0007) MISSED OFFSET (PADDING)
 
 	public:
 		class UOperatorField* SetOperatorField(float Magnitude, class UFieldNodeBase* LeftField, class UFieldNodeBase* RightField, EFieldOperationType Operation);
@@ -417,7 +417,7 @@ namespace CG
 		class UFieldNodeBase*                                      Culling;                                                 // 0x00B0(0x0008) Edit, BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		class UFieldNodeBase*                                      Field;                                                   // 0x00B8(0x0008) Edit, BlueprintVisible, ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		EFieldCullingOperationType                                 Operation;                                               // 0x00C0(0x0001) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_ZUEN[0x7];                                   // 0x00C1(0x0007) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_68NM[0x7];                                   // 0x00C1(0x0007) MISSED OFFSET (PADDING)
 
 	public:
 		class UCullingField* SetCullingField(class UFieldNodeBase* Culling, class UFieldNodeBase* Field, EFieldCullingOperationType Operation);

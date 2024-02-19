@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -70,7 +70,7 @@ namespace CG
 	struct FTimedDataChannelSampleTime
 	{
 	public:
-		unsigned char                                              UnknownData_YEBW[0x18];                                  // 0x0000(0x0018) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_U4GY[0x18];                                  // 0x0000(0x0018) MISSED OFFSET (PADDING)
 	};
 
 }

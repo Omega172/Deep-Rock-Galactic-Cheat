@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -92,21 +92,21 @@ namespace CG
 		TArray<class UITM_ServerList_Entry_C*>                     ServerListEntryCache;                                    // 0x04C8(0x0010) Edit, BlueprintVisible, DisableEditOnInstance, ContainsInstancedReference
 		TArray<class UITM_ServerList_Entry_C*>                     ExistingEntries;                                         // 0x04D8(0x0010) Edit, BlueprintVisible, DisableEditOnInstance, ContainsInstancedReference
 		int32_t                                                    ActiveEntryIndex;                                        // 0x04E8(0x0004) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash
-		unsigned char                                              UnknownData_C9RO[0x4];                                   // 0x04EC(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_3HP2[0x4];                                   // 0x04EC(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TArray<float>                                              ColumnWidths;                                            // 0x04F0(0x0010) Edit, BlueprintVisible, DisableEditOnInstance
 		EServerSortOrder                                           SortingMethod;                                           // 0x0500(0x0001) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash
 		bool                                                       SortingReversed;                                         // 0x0501(0x0001) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor
 		bool                                                       ServerSideFiltering;                                     // 0x0502(0x0001) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor
-		unsigned char                                              UnknownData_E88L[0x5];                                   // 0x0503(0x0005) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_D7UA[0x5];                                   // 0x0503(0x0005) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TArray<struct FFriendInfo>                                 NewFriends;                                              // 0x0508(0x0010) Edit, BlueprintVisible, DisableEditOnInstance
 		TArray<struct FFriendInfo>                                 CurrentFriends;                                          // 0x0518(0x0010) Edit, BlueprintVisible, DisableEditOnInstance
 		class UObject*                                             CurrentFriendSession;                                    // 0x0528(0x0008) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash
 		EBlueprintablePrivilegeResults                             CurrentOnliineBlockingReason;                            // 0x0530(0x0001) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor, HasGetValueTypeHash
-		unsigned char                                              UnknownData_SFA9[0x7];                                   // 0x0531(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_PH66[0x7];                                   // 0x0531(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TArray<class FString>                                      AllServernameWords;                                      // 0x0538(0x0010) Edit, BlueprintVisible, DisableEditOnInstance
 		bool                                                       UGCDisallowed;                                           // 0x0548(0x0001) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor
 		bool                                                       isManuallySorted;                                        // 0x0549(0x0001) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor
-		unsigned char                                              UnknownData_GZ4T[0x6];                                   // 0x054A(0x0006) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_AGND[0x6];                                   // 0x054A(0x0006) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		struct FBlueprintSessionResult                             CurrentJoiningModdedSession;                             // 0x0550(0x0108) Edit, BlueprintVisible, DisableEditOnInstance
 		class FString                                              CurrentJoiningModdedPassword;                            // 0x0658(0x0010) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, HasGetValueTypeHash
 

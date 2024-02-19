@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -21,7 +21,7 @@ namespace CG
 	struct FTrackRenderData
 	{
 	public:
-		unsigned char                                              UnknownData_2UZ1[0x70];                                  // 0x0000(0x0070) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_ZC7H[0x70];                                  // 0x0000(0x0070) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -31,7 +31,7 @@ namespace CG
 	struct FGeometryCacheMeshData
 	{
 	public:
-		unsigned char                                              UnknownData_2F7Y[0xB0];                                  // 0x0000(0x00B0) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_BMV7[0xB0];                                  // 0x0000(0x00B0) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -41,7 +41,7 @@ namespace CG
 	struct FGeometryCacheVertexInfo
 	{
 	public:
-		unsigned char                                              UnknownData_ALGL[0x8];                                   // 0x0000(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_RJ21[0x8];                                   // 0x0000(0x0008) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -51,7 +51,7 @@ namespace CG
 	struct FGeometryCacheMeshBatchInfo
 	{
 	public:
-		unsigned char                                              UnknownData_Q4MH[0xC];                                   // 0x0000(0x000C) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_JV61[0xC];                                   // 0x0000(0x000C) MISSED OFFSET (PADDING)
 	};
 
 }

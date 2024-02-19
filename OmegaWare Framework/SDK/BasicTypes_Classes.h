@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -94,7 +94,7 @@ namespace CG
 		int32_t                                                    Flags;                                                   // 0x0008(0x0004)
 		int32_t                                                    ClusterIndex;                                            // 0x000C(0x0004)
 		int32_t                                                    SerialNumber;                                            // 0x0010(0x0004)
-		unsigned char                                              pad_C6KPBOY7KW[0x04];                                    // 0x0014(0x0004)
+		unsigned char                                              pad_MOGW1MKOCI[0x04];                                    // 0x0014(0x0004)
 
 	public:
 		bool IsUnreachable() const;

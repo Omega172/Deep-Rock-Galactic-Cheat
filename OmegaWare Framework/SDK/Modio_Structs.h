@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -318,7 +318,7 @@ namespace CG
 	struct FModioYoutubeURLList
 	{
 	public:
-		unsigned char                                              UnknownData_QPT8[0x1];                                   // 0x0000(0x0001) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_QI22[0x1];                                   // 0x0000(0x0001) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -328,7 +328,7 @@ namespace CG
 	struct FModioSketchfabURLList
 	{
 	public:
-		unsigned char                                              UnknownData_12XM[0x1];                                   // 0x0000(0x0001) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_F7PH[0x1];                                   // 0x0000(0x0001) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -352,7 +352,7 @@ namespace CG
 	struct FModioModID
 	{
 	public:
-		unsigned char                                              UnknownData_ZT0H[0x8];                                   // 0x0000(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_NHT8[0x8];                                   // 0x0000(0x0008) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -362,7 +362,7 @@ namespace CG
 	struct FModioUserID
 	{
 	public:
-		unsigned char                                              UnknownData_H813[0x8];                                   // 0x0000(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_2MJP[0x8];                                   // 0x0000(0x0008) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -385,7 +385,7 @@ namespace CG
 	struct FModioFileMetadataID
 	{
 	public:
-		unsigned char                                              UnknownData_GBWV[0x8];                                   // 0x0000(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_W00L[0x8];                                   // 0x0000(0x0008) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -400,7 +400,7 @@ namespace CG
 		struct FDateTime                                           DateAdded;                                               // 0x0010(0x0008) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		EModioVirusScanStatus                                      CurrentVirusScanStatus;                                  // 0x0018(0x0001) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		EModioVirusStatus                                          CurrentVirusStatus;                                      // 0x0019(0x0001) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_QEXU[0x6];                                   // 0x001A(0x0006) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_JLQ7[0x6];                                   // 0x001A(0x0006) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		int64_t                                                    Filesize;                                                // 0x0020(0x0008) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		class FString                                              Filename;                                                // 0x0028(0x0010) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		class FString                                              Version;                                                 // 0x0038(0x0010) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
@@ -445,7 +445,7 @@ namespace CG
 		int64_t                                                    RatingNegative;                                          // 0x0030(0x0008) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		int64_t                                                    RatingPercentagePositive;                                // 0x0038(0x0008) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		float                                                      RatingWeightedAggregate;                                 // 0x0040(0x0004) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_P27J[0x4];                                   // 0x0044(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_NUR9[0x4];                                   // 0x0044(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class FString                                              RatingDisplayText;                                       // 0x0048(0x0010) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 	};
 
@@ -468,17 +468,17 @@ namespace CG
 		struct FDateTime                                           ProfileDateLive;                                         // 0x0098(0x0008) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		EModioMaturityFlags                                        ProfileMaturityOption;                                   // 0x00A0(0x0001) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		bool                                                       bVisible;                                                // 0x00A1(0x0001) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_Q5KM[0x6];                                   // 0x00A2(0x0006) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_KZJA[0x6];                                   // 0x00A2(0x0006) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class FString                                              MetadataBlob;                                            // 0x00A8(0x0010) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		struct FModioFileMetadata                                  FileInfo;                                                // 0x00B8(0x0068) BlueprintVisible, BlueprintReadOnly, NativeAccessSpecifierPublic
 		TArray<struct FModioMetadata>                              MetadataKvp;                                             // 0x0120(0x0010) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, NativeAccessSpecifierPublic
 		TArray<struct FModioModTag>                                Tags;                                                    // 0x0130(0x0010) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, NativeAccessSpecifierPublic
 		int32_t                                                    NumGalleryImages;                                        // 0x0140(0x0004) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_6JRQ[0x4];                                   // 0x0144(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_287Y[0x4];                                   // 0x0144(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		struct FModioYoutubeURLList                                YoutubeURLs;                                             // 0x0148(0x0001) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_A4N1[0xF];                                   // 0x0149(0x000F) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_F2OV[0xF];                                   // 0x0149(0x000F) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		struct FModioSketchfabURLList                              SketchfabURLs;                                           // 0x0158(0x0001) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_ZB43[0xF];                                   // 0x0159(0x000F) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_OWQW[0xF];                                   // 0x0159(0x000F) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		struct FModioModStats                                      Stats;                                                   // 0x0168(0x0058) BlueprintVisible, BlueprintReadOnly, NativeAccessSpecifierPublic
 	};
 
@@ -490,7 +490,7 @@ namespace CG
 	{
 	public:
 		struct FModioPagedResult                                   PagedResult;                                             // 0x0000(0x0014) ZeroConstructor, IsPlainOldData, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_CHMV[0x4];                                   // 0x0014(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_PQDT[0x4];                                   // 0x0014(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TArray<struct FModioModInfo>                               InternalList;                                            // 0x0018(0x0010) ZeroConstructor, NativeAccessSpecifierPublic
 	};
 
@@ -504,7 +504,7 @@ namespace CG
 		class FString                                              TagGroupName;                                            // 0x0000(0x0010) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		TArray<class FString>                                      TagGroupValues;                                          // 0x0010(0x0010) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, NativeAccessSpecifierPublic
 		bool                                                       bAllowMultipleSelection;                                 // 0x0020(0x0001) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_LC7L[0x7];                                   // 0x0021(0x0007) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_FOKI[0x7];                                   // 0x0021(0x0007) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -515,7 +515,7 @@ namespace CG
 	{
 	public:
 		struct FModioPagedResult                                   PagedResult;                                             // 0x0000(0x0014) ZeroConstructor, IsPlainOldData, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_E218[0x4];                                   // 0x0014(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_I4B1[0x4];                                   // 0x0014(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TArray<struct FModioModTagInfo>                            InternalList;                                            // 0x0018(0x0010) ZeroConstructor, NativeAccessSpecifierPublic
 	};
 
@@ -526,7 +526,7 @@ namespace CG
 	struct FModioErrorCode
 	{
 	public:
-		unsigned char                                              UnknownData_67X3[0x8];                                   // 0x0000(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_W4D4[0x8];                                   // 0x0000(0x0008) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -538,7 +538,7 @@ namespace CG
 	public:
 		struct FModioModID                                         ID;                                                      // 0x0000(0x0008) BlueprintVisible, BlueprintReadOnly, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		EModioModManagementEventType                               Event;                                                   // 0x0008(0x0001) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_ZM6S[0x7];                                   // 0x0009(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_JIFG[0x7];                                   // 0x0009(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		struct FModioErrorCode                                     Status;                                                  // 0x0010(0x0008) BlueprintVisible, BlueprintReadOnly, HasGetValueTypeHash, NativeAccessSpecifierPublic
 	};
 
@@ -549,7 +549,7 @@ namespace CG
 	struct FModioOptionalModInfoList
 	{
 	public:
-		unsigned char                                              UnknownData_1U7J[0x30];                                  // 0x0000(0x0030) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_8MZ5[0x30];                                  // 0x0000(0x0030) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -559,7 +559,7 @@ namespace CG
 	struct FModioOptionalModInfo
 	{
 	public:
-		unsigned char                                              UnknownData_3GXZ[0x1C8];                                 // 0x0000(0x01C8) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_HZA2[0x1C8];                                 // 0x0000(0x01C8) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -569,7 +569,7 @@ namespace CG
 	struct FModioOptionalImage
 	{
 	public:
-		unsigned char                                              UnknownData_MSBJ[0x18];                                  // 0x0000(0x0018) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_LU9M[0x18];                                  // 0x0000(0x0018) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -579,7 +579,7 @@ namespace CG
 	struct FModioOptionalModTagOptions
 	{
 	public:
-		unsigned char                                              UnknownData_ANP5[0x30];                                  // 0x0000(0x0030) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_LLLB[0x30];                                  // 0x0000(0x0030) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -589,7 +589,7 @@ namespace CG
 	struct FModioOptionalTerms
 	{
 	public:
-		unsigned char                                              UnknownData_POUH[0xD8];                                  // 0x0000(0x00D8) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_EL3B[0xD8];                                  // 0x0000(0x00D8) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -599,7 +599,7 @@ namespace CG
 	struct FModioOptionalModDependencyList
 	{
 	public:
-		unsigned char                                              UnknownData_OLT6[0x30];                                  // 0x0000(0x0030) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_E7PQ[0x30];                                  // 0x0000(0x0030) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -609,7 +609,7 @@ namespace CG
 	struct FModioOptionalModID
 	{
 	public:
-		unsigned char                                              UnknownData_EGCT[0x10];                                  // 0x0000(0x0010) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_L9UL[0x10];                                  // 0x0000(0x0010) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -622,7 +622,7 @@ namespace CG
 		class FString                                              AuthToken;                                               // 0x0000(0x0010) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnTemplate, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		class FString                                              UserEmail;                                               // 0x0010(0x0010) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnTemplate, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		bool                                                       bUserHasAcceptedTerms;                                   // 0x0020(0x0001) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnTemplate, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_Q8VL[0x7];                                   // 0x0021(0x0007) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_DZL3[0x7];                                   // 0x0021(0x0007) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -632,7 +632,7 @@ namespace CG
 	struct FModioEmailAuthCode
 	{
 	public:
-		unsigned char                                              UnknownData_OWTB[0x10];                                  // 0x0000(0x0010) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_KUEE[0x10];                                  // 0x0000(0x0010) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -642,7 +642,7 @@ namespace CG
 	struct FModioEmailAddress
 	{
 	public:
-		unsigned char                                              UnknownData_EP14[0x10];                                  // 0x0000(0x0010) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_2TV7[0x10];                                  // 0x0000(0x0010) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -673,7 +673,7 @@ namespace CG
 	{
 	public:
 		class FString                                              PathToModRootDirectory;                                  // 0x0000(0x0010) Edit, BlueprintVisible, ZeroConstructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_S68H[0x68];                                  // 0x0010(0x0068) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_M9RS[0x68];                                  // 0x0010(0x0068) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -686,7 +686,7 @@ namespace CG
 		class FString                                              PathToLogoFile;                                          // 0x0000(0x0010) Edit, BlueprintVisible, ZeroConstructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		class FString                                              Name;                                                    // 0x0010(0x0010) Edit, BlueprintVisible, ZeroConstructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		class FString                                              Summary;                                                 // 0x0020(0x0010) Edit, BlueprintVisible, ZeroConstructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_DT5I[0x98];                                  // 0x0030(0x0098) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_LNG3[0x98];                                  // 0x0030(0x0098) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -696,7 +696,7 @@ namespace CG
 	struct FModioEditModParams
 	{
 	public:
-		unsigned char                                              UnknownData_LHWR[0xA0];                                  // 0x0000(0x00A0) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_SXNL[0xA0];                                  // 0x0000(0x00A0) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -706,7 +706,7 @@ namespace CG
 	struct FModioFilterParams
 	{
 	public:
-		unsigned char                                              UnknownData_CGSF[0xA8];                                  // 0x0000(0x00A8) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_32QF[0xA8];                                  // 0x0000(0x00A8) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -730,7 +730,7 @@ namespace CG
 		struct FModioApiKey                                        ApiKey;                                                  // 0x0008(0x0010) Edit, BlueprintVisible, BlueprintReadOnly, NativeAccessSpecifierPublic
 		EModioEnvironment                                          GameEnvironment;                                         // 0x0018(0x0001) Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		EModioPortal                                               PortalInUse;                                             // 0x0019(0x0001) Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_ANGT[0x1E];                                  // 0x001A(0x001E) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_V4WV[0x1E];                                  // 0x001A(0x001E) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -740,7 +740,7 @@ namespace CG
 	struct FModioModCollectionEntry
 	{
 	public:
-		unsigned char                                              UnknownData_UH10[0x1F0];                                 // 0x0000(0x01F0) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_YK5V[0x1F0];                                 // 0x0000(0x01F0) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -750,7 +750,7 @@ namespace CG
 	struct FModioModCreationHandle
 	{
 	public:
-		unsigned char                                              UnknownData_UZER[0x8];                                   // 0x0000(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_6FK1[0x8];                                   // 0x0000(0x0008) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -772,7 +772,7 @@ namespace CG
 	{
 	public:
 		struct FModioPagedResult                                   PagedResult;                                             // 0x0000(0x0014) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_T80D[0x4];                                   // 0x0014(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_A7TB[0x4];                                   // 0x0014(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TArray<struct FModioModDependency>                         InternalList;                                            // 0x0018(0x0010) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, NativeAccessSpecifierPublic
 	};
 
@@ -783,7 +783,7 @@ namespace CG
 	struct FModioOptionalModProgressInfo
 	{
 	public:
-		unsigned char                                              UnknownData_TMUV[0x30];                                  // 0x0000(0x0030) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_TPVE[0x30];                                  // 0x0000(0x0030) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -793,7 +793,7 @@ namespace CG
 	struct FModioUnsigned64
 	{
 	public:
-		unsigned char                                              UnknownData_WKB5[0x8];                                   // 0x0000(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_2R6Y[0x8];                                   // 0x0000(0x0008) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -817,7 +817,7 @@ namespace CG
 	struct FModioReportParams
 	{
 	public:
-		unsigned char                                              UnknownData_U19T[0x58];                                  // 0x0000(0x0058) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_HVOF[0x58];                                  // 0x0000(0x0058) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -830,7 +830,7 @@ namespace CG
 		class FString                                              Text;                                                    // 0x0000(0x0010) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		class FString                                              URL;                                                     // 0x0010(0x0010) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		bool                                                       bRequired;                                               // 0x0020(0x0001) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_1E89[0x7];                                   // 0x0021(0x0007) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_52EN[0x7];                                   // 0x0021(0x0007) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -846,7 +846,7 @@ namespace CG
 		struct FModioLink                                          TermsLink;                                               // 0x0048(0x0028) BlueprintVisible, BlueprintReadOnly, NativeAccessSpecifierPublic
 		struct FModioLink                                          PrivacyLink;                                             // 0x0070(0x0028) BlueprintVisible, BlueprintReadOnly, NativeAccessSpecifierPublic
 		struct FModioLink                                          ManageLink;                                              // 0x0098(0x0028) BlueprintVisible, BlueprintReadOnly, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_KV74[0x10];                                  // 0x00C0(0x0010) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_6LG0[0x10];                                  // 0x00C0(0x0010) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -856,7 +856,7 @@ namespace CG
 	struct FModioOptionalUser
 	{
 	public:
-		unsigned char                                              UnknownData_Q822[0x38];                                  // 0x0000(0x0038) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_691H[0x38];                                  // 0x0000(0x0038) MISSED OFFSET (PADDING)
 	};
 
 	/**

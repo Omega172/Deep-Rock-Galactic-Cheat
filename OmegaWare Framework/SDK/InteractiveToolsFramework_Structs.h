@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -208,7 +208,7 @@ namespace CG
 	struct FBrushStampData
 	{
 	public:
-		unsigned char                                              UnknownData_GN4C[0xA8];                                  // 0x0000(0x00A8) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_I2FG[0xA8];                                  // 0x0000(0x00A8) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -219,7 +219,7 @@ namespace CG
 	{
 	public:
 		class UInputBehavior*                                      Behavior;                                                // 0x0000(0x0008) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_SJ64[0x18];                                  // 0x0008(0x0018) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_O6Y6[0x18];                                  // 0x0008(0x0018) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -229,7 +229,7 @@ namespace CG
 	struct FActiveGizmo
 	{
 	public:
-		unsigned char                                              UnknownData_3TFC[0x30];                                  // 0x0000(0x0030) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_JU4X[0x30];                                  // 0x0000(0x0030) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -261,7 +261,7 @@ namespace CG
 	struct FInputRayHit
 	{
 	public:
-		unsigned char                                              UnknownData_QMM3[0x28];                                  // 0x0000(0x0028) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_O6C6[0x28];                                  // 0x0000(0x0028) MISSED OFFSET (PADDING)
 	};
 
 }

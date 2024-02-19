@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -23,7 +23,7 @@ namespace CG
 	public:
 		float                                                      Width;                                                   // 0x00B0(0x0004) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		float                                                      LODBias;                                                 // 0x00B4(0x0004) Edit, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_AT21[0x20];                                  // 0x00B8(0x0020) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_T986[0x20];                                  // 0x00B8(0x0020) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();

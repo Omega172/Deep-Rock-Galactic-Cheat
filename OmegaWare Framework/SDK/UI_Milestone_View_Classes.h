@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -30,7 +30,7 @@ namespace CG
 		TArray<class UTexture2D*>                                  Categories;                                              // 0x0298(0x0010) Edit, BlueprintVisible, DisableEditOnInstance
 		TArray<class UTexture2D*>                                  CategoryFilter;                                          // 0x02A8(0x0010) Edit, BlueprintVisible, DisableEditOnInstance
 		bool                                                       HasClaimableMilestones;                                  // 0x02B8(0x0001) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, IsPlainOldData, NoDestructor
-		unsigned char                                              UnknownData_YY4P[0x7];                                   // 0x02B9(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_DTFP[0x7];                                   // 0x02B9(0x0007) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		class FScriptMulticastDelegate                             OnHasClaimableChanged;                                   // 0x02C0(0x0010) Edit, BlueprintVisible, ZeroConstructor, DisableEditOnInstance, BlueprintAssignable, BlueprintCallable
 		TArray<class UMilestoneAsset*>                             Milestones;                                              // 0x02D0(0x0010) Edit, BlueprintVisible, DisableEditOnInstance
 

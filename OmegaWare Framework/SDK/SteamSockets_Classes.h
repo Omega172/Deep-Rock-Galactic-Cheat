@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -21,7 +21,7 @@ namespace CG
 	class USteamSocketsNetConnection : public UNetConnection
 	{
 	public:
-		unsigned char                                              UnknownData_BUNH[0x10];                                  // 0x1BA8(0x0010) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_1VQ9[0x10];                                  // 0x1BA8(0x0010) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -34,7 +34,7 @@ namespace CG
 	class USteamSocketsNetDriver : public UNetDriver
 	{
 	public:
-		unsigned char                                              UnknownData_6P9Z[0x10];                                  // 0x0760(0x0010) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_UM8F[0x10];                                  // 0x0760(0x0010) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();

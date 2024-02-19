@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -21,7 +21,6 @@ namespace CG
 	class UITM_Wardrobe_ItemSlot_ArmorVanity_C : public UITM_Wardrobe_ItemSlot_Vanity_C
 	{
 	public:
-		void ReceivePreviewItem(int32_t Index, bool Show, bool* OutSuccess);
 		void SetSelectedItem(class UVanityItem* Item, bool Equip);
 		void ReceiveToggleType(bool* success);
 		static UClass* StaticClass();

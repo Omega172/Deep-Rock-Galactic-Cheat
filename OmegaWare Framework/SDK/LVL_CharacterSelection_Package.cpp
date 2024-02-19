@@ -1,6 +1,6 @@
 ﻿/**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #include "pch.h"
@@ -10,6 +10,32 @@ namespace CG
 	// --------------------------------------------------
 	// # Structs Functions
 	// --------------------------------------------------
+	/**
+	 * Function:
+	 * 		RVA    -> 0x00000000
+	 * 		Name   -> Function LVL_CharacterSelection.LVL_CharacterSelection_C.MakeVanity
+	 * 		Flags  -> ()
+	 * Parameters:
+	 * 		bool                                               UseSleves                                                  (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+	 * 		struct FEquippedVanity                             UseSleveless                                               (Parm, OutParm)
+	 */
+	void ALVL_CharacterSelection_C::MakeVanity(bool UseSleves, struct FEquippedVanity* UseSleveless)
+	{
+		static UFunction* fn = nullptr;
+		if (!fn)
+			fn = UObject::FindObject<UFunction>("Function LVL_CharacterSelection.LVL_CharacterSelection_C.MakeVanity");
+		
+		ALVL_CharacterSelection_C_MakeVanity_Params params {};
+		params.UseSleves = UseSleves;
+		
+		auto flags = fn->FunctionFlags;
+		UObject::ProcessEvent(fn, &params);
+		fn->FunctionFlags = flags;
+		
+		if (UseSleveless != nullptr)
+			*UseSleveless = params.UseSleveless;
+	}
+
 	/**
 	 * Function:
 	 * 		RVA    -> 0x00000000

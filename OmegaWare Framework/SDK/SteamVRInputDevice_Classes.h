@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -63,7 +63,7 @@ namespace CG
 		float                                                      ActiveDevicePollFrequency;                               // 0x00D0(0x0004) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		struct FVector                                             TrackingReferenceScale;                                  // 0x00D4(0x000C) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		TArray<class UStaticMeshComponent*>                        TrackingReferences;                                      // 0x00E0(0x0010) BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ContainsInstancedReference, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_8J5P[0x18];                                  // 0x00F0(0x0018) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_MN1L[0x18];                                  // 0x00F0(0x0018) MISSED OFFSET (PADDING)
 
 	public:
 		bool ShowTrackingReferences(class UStaticMesh* TrackingReferenceMesh);

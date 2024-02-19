@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -93,7 +93,7 @@ namespace CG
 		class UFunction*                                           Function;                                                // 0x0030(0x0008) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
 		int32_t                                                    ArrayIndex;                                              // 0x0038(0x0004) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
 		uint16_t                                                   Flags;                                                   // 0x003C(0x0002) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
-		unsigned char                                              UnknownData_3MPK[0x2];                                   // 0x003E(0x0002) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_RC9O[0x2];                                   // 0x003E(0x0002) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -106,7 +106,7 @@ namespace CG
 		int32_t                                                    PathSegmentStartIndex;                                   // 0x0000(0x0004) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
 		int32_t                                                    PathSegmentCount;                                        // 0x0004(0x0004) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
 		bool                                                       bHasEvents : 1;                                          // 0x0008(0x0001) BIT_FIELD NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
-		unsigned char                                              UnknownData_U1CY[0x3];                                   // 0x0009(0x0003) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_1UI2[0x3];                                   // 0x0009(0x0003) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -120,7 +120,7 @@ namespace CG
 		int32_t                                                    DestAccessStartIndex;                                    // 0x0004(0x0004) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
 		int32_t                                                    DestAccessEndIndex;                                      // 0x0008(0x0004) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
 		EPropertyAccessCopyType                                    Type;                                                    // 0x000C(0x0001) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
-		unsigned char                                              UnknownData_5XMY[0x3];                                   // 0x000D(0x0003) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_KAW6[0x3];                                   // 0x000D(0x0003) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -144,7 +144,7 @@ namespace CG
 		int32_t                                                    IndirectionStartIndex;                                   // 0x0020(0x0004) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
 		int32_t                                                    IndirectionEndIndex;                                     // 0x0024(0x0004) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
 		int32_t                                                    EventId;                                                 // 0x0028(0x0004) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
-		unsigned char                                              UnknownData_ZZSY[0x4];                                   // 0x002C(0x0004) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_Q9MK[0x4];                                   // 0x002C(0x0004) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -162,7 +162,7 @@ namespace CG
 		uint32_t                                                   Offset;                                                  // 0x0034(0x0004) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
 		EPropertyAccessObjectType                                  ObjectType;                                              // 0x0038(0x0001) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
 		EPropertyAccessIndirectionType                             Type;                                                    // 0x0039(0x0001) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
-		unsigned char                                              UnknownData_J7UZ[0x6];                                   // 0x003A(0x0006) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_IAM7[0x6];                                   // 0x003A(0x0006) MISSED OFFSET (PADDING)
 	};
 
 	/**
@@ -180,7 +180,7 @@ namespace CG
 		TArray<struct FPropertyAccessIndirectionChain>             DestAccesses;                                            // 0x0080(0x0010) ZeroConstructor, Transient, NativeAccessSpecifierPrivate
 		TArray<struct FPropertyAccessIndirection>                  Indirections;                                            // 0x0090(0x0010) ZeroConstructor, Transient, NativeAccessSpecifierPrivate
 		TArray<int32_t>                                            EventAccessIndices;                                      // 0x00A0(0x0010) ZeroConstructor, NativeAccessSpecifierPrivate
-		unsigned char                                              UnknownData_TO6A[0x18];                                  // 0x00B0(0x0018) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_4AHC[0x18];                                  // 0x00B0(0x0018) MISSED OFFSET (PADDING)
 	};
 
 }

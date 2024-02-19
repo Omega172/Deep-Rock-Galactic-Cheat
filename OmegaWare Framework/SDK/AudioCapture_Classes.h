@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -21,7 +21,7 @@ namespace CG
 	class UAudioCapture : public UAudioGenerator
 	{
 	public:
-		unsigned char                                              UnknownData_1CSZ[0x8];                                   // 0x00A8(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_5YT3[0x8];                                   // 0x00A8(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		void StopCapturingAudio();
@@ -50,7 +50,7 @@ namespace CG
 	{
 	public:
 		int32_t                                                    JitterLatencyFrames;                                     // 0x06C0(0x0004) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_RUMV[0xBC];                                  // 0x06C4(0x00BC) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_CZ1W[0xBC];                                  // 0x06C4(0x00BC) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();

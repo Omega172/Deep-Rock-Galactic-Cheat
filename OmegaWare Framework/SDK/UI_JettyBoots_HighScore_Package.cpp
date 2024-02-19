@@ -1,6 +1,6 @@
 ﻿/**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #include "pch.h"
@@ -18,9 +18,9 @@ namespace CG
 	 * Parameters:
 	 * 		int32_t                                            InIndex                                                    (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 	 * 		struct FJettyBootsScore                            InHighscore                                                (BlueprintVisible, BlueprintReadOnly, Parm)
-	 * 		bool                                               InHighlight                                                (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
+	 * 		bool                                               inHighlight                                                (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, IsPlainOldData, NoDestructor)
 	 */
-	void UUI_JettyBoots_HighScore_C::SetHighScore(int32_t InIndex, const struct FJettyBootsScore& InHighscore, bool InHighlight)
+	void UUI_JettyBoots_HighScore_C::SetHighScore(int32_t InIndex, const struct FJettyBootsScore& InHighscore, bool inHighlight)
 	{
 		static UFunction* fn = nullptr;
 		if (!fn)
@@ -29,7 +29,7 @@ namespace CG
 		UUI_JettyBoots_HighScore_C_SetHighScore_Params params {};
 		params.InIndex = InIndex;
 		params.InHighscore = InHighscore;
-		params.InHighlight = InHighlight;
+		params.inHighlight = inHighlight;
 		
 		auto flags = fn->FunctionFlags;
 		UObject::ProcessEvent(fn, &params);

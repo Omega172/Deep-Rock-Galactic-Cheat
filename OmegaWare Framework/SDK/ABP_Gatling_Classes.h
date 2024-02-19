@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -44,7 +44,7 @@ namespace CG
 		struct FAnimNode_StateResult                               AnimGraphNode_StateResult;                               // 0x0948(0x0030)
 		struct FAnimNode_StateMachine                              AnimGraphNode_StateMachine;                              // 0x0978(0x00B0)
 		struct FAnimNode_ConvertLocalToComponentSpace              AnimGraphNode_LocalToComponentSpace;                     // 0x0A28(0x0020)
-		unsigned char                                              UnknownData_2YRU[0x8];                                   // 0x0A48(0x0008) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_N8LV[0x8];                                   // 0x0A48(0x0008) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		struct FAnimNode_RigidBody                                 AnimGraphNode_RigidBody;                                 // 0x0A50(0x0830)
 		struct FAnimNode_ConvertComponentToLocalSpace              AnimGraphNode_ComponentToLocalSpace;                     // 0x1280(0x0020)
 

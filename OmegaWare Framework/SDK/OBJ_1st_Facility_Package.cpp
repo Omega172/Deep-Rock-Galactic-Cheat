@@ -1,6 +1,6 @@
 ﻿/**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #include "pch.h"
@@ -229,19 +229,16 @@ namespace CG
 	/**
 	 * Function:
 	 * 		RVA    -> 0x00000000
-	 * 		Name   -> Function OBJ_1st_Facility.OBJ_1st_Facility_C.OBJ_Updated
+	 * 		Name   -> Function OBJ_1st_Facility.OBJ_1st_Facility_C.OnAllRequiredReturnObjectivesCompleted_Event_1
 	 * 		Flags  -> ()
-	 * Parameters:
-	 * 		class UObjective*                                  Objective                                                  (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash)
 	 */
-	void UOBJ_1st_Facility_C::OBJ_Updated(class UObjective* Objective)
+	void UOBJ_1st_Facility_C::OnAllRequiredReturnObjectivesCompleted_Event_1()
 	{
 		static UFunction* fn = nullptr;
 		if (!fn)
-			fn = UObject::FindObject<UFunction>("Function OBJ_1st_Facility.OBJ_1st_Facility_C.OBJ_Updated");
+			fn = UObject::FindObject<UFunction>("Function OBJ_1st_Facility.OBJ_1st_Facility_C.OnAllRequiredReturnObjectivesCompleted_Event_1");
 		
-		UOBJ_1st_Facility_C_OBJ_Updated_Params params {};
-		params.Objective = Objective;
+		UOBJ_1st_Facility_C_OnAllRequiredReturnObjectivesCompleted_Event_1_Params params {};
 		
 		auto flags = fn->FunctionFlags;
 		UObject::ProcessEvent(fn, &params);

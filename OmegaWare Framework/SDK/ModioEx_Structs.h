@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -22,7 +22,7 @@ namespace CG
 	{
 	public:
 		TArray<unsigned char>                                      ModMemory;                                               // 0x0000(0x0010) Edit, BlueprintVisible, ZeroConstructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_O24Y[0x50];                                  // 0x0010(0x0050) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_FLRB[0x50];                                  // 0x0010(0x0050) MISSED OFFSET (PADDING)
 	};
 
 }

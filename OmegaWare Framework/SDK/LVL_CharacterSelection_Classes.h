@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -29,6 +29,7 @@ namespace CG
 		class ACameraActor*                                        CameraActor_1_ExecuteUbergraph_LVL_CharacterSelection_RefProperty; // 0x0258(0x0008) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash
 
 	public:
+		void MakeVanity(bool UseSleves, struct FEquippedVanity* UseSleveless);
 		void PlaySpecificSequence(class ULevelSequence* LevelSequence);
 		void StopPlayer();
 		void StartPlayer(ECharselectionCameraLocation CamSetting);

@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -43,7 +43,7 @@ namespace CG
 	public:
 		class USoundWave*                                          Sound;                                                   // 0x0028(0x0008) Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		float                                                      DurationInSeconds;                                       // 0x0030(0x0004) BlueprintVisible, BlueprintReadOnly, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_AQM7[0x44];                                  // 0x0034(0x0044) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_L1TE[0x44];                                  // 0x0034(0x0044) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();

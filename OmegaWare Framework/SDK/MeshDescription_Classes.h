@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -31,7 +31,7 @@ namespace CG
 	class UMeshDescriptionBase : public UObject
 	{
 	public:
-		unsigned char                                              UnknownData_TTP4[0x368];                                 // 0x0028(0x0368) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_QO8T[0x368];                                 // 0x0028(0x0368) MISSED OFFSET (PADDING)
 
 	public:
 		void SetVertexPosition(const struct FVertexID& VertexID, const struct FVector& Position);

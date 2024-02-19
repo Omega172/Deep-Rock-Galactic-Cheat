@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -65,7 +65,7 @@ namespace CG
 	class UClothingInteractor : public UObject
 	{
 	public:
-		unsigned char                                              UnknownData_B40Q[0x8];                                   // 0x0028(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_WFHE[0x8];                                   // 0x0028(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -79,7 +79,7 @@ namespace CG
 	{
 	public:
 		TMap<class FName, class UClothingInteractor*>              ClothingInteractors;                                     // 0x0028(0x0050) NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_7A9H[0x18];                                  // 0x0078(0x0018) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_FKHR[0x18];                                  // 0x0078(0x0018) MISSED OFFSET (PADDING)
 
 	public:
 		void SetNumSubsteps(int32_t NumSubsteps);
@@ -114,7 +114,7 @@ namespace CG
 		int32_t                                                    NumFixedVerts;                                           // 0x0078(0x0004) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		int32_t                                                    MaxBoneWeights;                                          // 0x007C(0x0004) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		TArray<uint32_t>                                           SelfCollisionIndices;                                    // 0x0080(0x0010) ZeroConstructor, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_DC16[0x50];                                  // 0x0090(0x0050) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_93X1[0x50];                                  // 0x0090(0x0050) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();

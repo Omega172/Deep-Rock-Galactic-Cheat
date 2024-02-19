@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -16,7 +16,7 @@ namespace CG
 	// --------------------------------------------------
 	/**
 	 * BlueprintGeneratedClass BP_BarGlass_BlacklockLager.BP_BarGlass_BlacklockLager_C
-	 * Size -> 0x0000 (FullSize[0x0278] - InheritedSize[0x0278])
+	 * Size -> 0x0000 (FullSize[0x0280] - InheritedSize[0x0280])
 	 */
 	class ABP_BarGlass_BlacklockLager_C : public ABP_BarGlass_Standard_C
 	{

@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -21,7 +21,7 @@ namespace CG
 	class UDJSONArray : public UObject
 	{
 	public:
-		unsigned char                                              UnknownData_RJC9[0x10];                                  // 0x0028(0x0010) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_YPDP[0x10];                                  // 0x0028(0x0010) MISSED OFFSET (PADDING)
 
 	public:
 		class UDJSONArray* CreateJSONArray(class UObject* WorldContextObject);
@@ -50,7 +50,7 @@ namespace CG
 	class UDJSONObject : public UObject
 	{
 	public:
-		unsigned char                                              UnknownData_P7RA[0x18];                                  // 0x0028(0x0018) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_AD2M[0x18];                                  // 0x0028(0x0018) MISSED OFFSET (PADDING)
 
 	public:
 		class UDJSONObject* CreateJSONObject(class UObject* WorldContextObject);
@@ -79,7 +79,7 @@ namespace CG
 	class UDSTelemetry : public UObject
 	{
 	public:
-		unsigned char                                              UnknownData_TI92[0x8];                                   // 0x0028(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_2SBK[0x8];                                   // 0x0028(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		void Terminate();

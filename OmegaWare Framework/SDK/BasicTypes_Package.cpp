@@ -1,6 +1,6 @@
 ﻿/**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #include "pch.h"
@@ -36,7 +36,7 @@ namespace CG
 	 */
 	bool InitSdk()
 	{
-		return InitSdk(L"FSD-Win64-Shipping.exe", 0x62DB7D0, 0x629F200, 0x6421DF0);
+		return InitSdk(L"FSD-Win64-Shipping.exe", 0x62F5C10, 0x62B9640, 0x643C230);
 	}
 
 	// --------------------------------------------------

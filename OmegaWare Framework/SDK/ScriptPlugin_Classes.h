@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -38,7 +38,7 @@ namespace CG
 		TArray<unsigned char>                                      ByteCode;                                                // 0x0328(0x0010) ZeroConstructor, NativeAccessSpecifierPublic
 		class FString                                              SourceCode;                                              // 0x0338(0x0010) ZeroConstructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		TArray<class UProperty*>                                   ScriptProperties;                                        // 0x0348(0x0010) ZeroConstructor, Deprecated, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_CW3F[0x10];                                  // 0x0358(0x0010) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_8WSC[0x10];                                  // 0x0358(0x0010) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
@@ -51,7 +51,7 @@ namespace CG
 	class UScriptContext : public UObject
 	{
 	public:
-		unsigned char                                              UnknownData_NVXV[0x8];                                   // 0x0028(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_JOPC[0x8];                                   // 0x0028(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		void CallScriptFunction(const class FString& FunctionName);
@@ -65,7 +65,7 @@ namespace CG
 	class UScriptContextComponent : public UActorComponent
 	{
 	public:
-		unsigned char                                              UnknownData_LRRG[0x8];                                   // 0x00B0(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_YMS5[0x8];                                   // 0x00B0(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		void CallScriptFunction(const class FString& FunctionName);
@@ -79,7 +79,7 @@ namespace CG
 	class UScriptPluginComponent : public UActorComponent
 	{
 	public:
-		unsigned char                                              UnknownData_1DQH[0x8];                                   // 0x00B0(0x0008) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_776X[0x8];                                   // 0x00B0(0x0008) MISSED OFFSET (PADDING)
 
 	public:
 		bool CallScriptFunction(const class FString& FunctionName);
@@ -96,7 +96,7 @@ namespace CG
 		class FString                                              TestString;                                              // 0x0220(0x0010) Edit, BlueprintVisible, ZeroConstructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		float                                                      TestValue;                                               // 0x0230(0x0004) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		bool                                                       TestBool;                                                // 0x0234(0x0001) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_P567[0x3];                                   // 0x0235(0x0003) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_4FN5[0x3];                                   // 0x0235(0x0003) MISSED OFFSET (PADDING)
 
 	public:
 		float TestFunction(float InValue, float InFactor, bool bMultiply);

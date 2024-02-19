@@ -1,6 +1,6 @@
 ﻿/**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #include "pch.h"
@@ -61,6 +61,25 @@ namespace CG
 			fn = UObject::FindObject<UFunction>("Function Options_Tab_Audio.Options_Tab_Audio_C.ShowOptions");
 		
 		UOptions_Tab_Audio_C_ShowOptions_Params params {};
+		
+		auto flags = fn->FunctionFlags;
+		UObject::ProcessEvent(fn, &params);
+		fn->FunctionFlags = flags;
+	}
+
+	/**
+	 * Function:
+	 * 		RVA    -> 0x00000000
+	 * 		Name   -> Function Options_Tab_Audio.Options_Tab_Audio_C.BndEvt__Options_Tab_Audio_Button_OpenSteamSettings_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature
+	 * 		Flags  -> ()
+	 */
+	void UOptions_Tab_Audio_C::BndEvt__Options_Tab_Audio_Button_OpenSteamSettings_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature()
+	{
+		static UFunction* fn = nullptr;
+		if (!fn)
+			fn = UObject::FindObject<UFunction>("Function Options_Tab_Audio.Options_Tab_Audio_C.BndEvt__Options_Tab_Audio_Button_OpenSteamSettings_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature");
+		
+		UOptions_Tab_Audio_C_BndEvt__Options_Tab_Audio_Button_OpenSteamSettings_K2Node_ComponentBoundEvent_0_OnClicked__DelegateSignature_Params params {};
 		
 		auto flags = fn->FunctionFlags;
 		UObject::ProcessEvent(fn, &params);

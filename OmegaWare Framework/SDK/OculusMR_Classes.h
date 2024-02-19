@@ -2,7 +2,7 @@
 
 /**
  * Name: Deep_Rock_Galactic
- * Version: 1.38.94396.0
+ * Version: 1.38.96489.0
  */
 
 #ifdef _MSC_VER
@@ -31,7 +31,7 @@ namespace CG
 		class UMaterialInstanceDynamic*                            CameraFrameMaterialInstance;                             // 0x0270(0x0008) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		class UMaterialInstanceDynamic*                            BackdropMaterialInstance;                                // 0x0278(0x0008) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		class UTexture2D*                                          DefaultTexture_White;                                    // 0x0280(0x0008) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_KZV2[0x50];                                  // 0x0288(0x0050) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_NTHG[0x50];                                  // 0x0288(0x0050) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		TArray<class UTextureRenderTarget2D*>                      BackgroundRenderTargets;                                 // 0x02D8(0x0010) ZeroConstructor, NativeAccessSpecifierPrivate
 		class ASceneCapture2D*                                     ForegroundCaptureActor;                                  // 0x02E8(0x0008) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
 		TArray<class UTextureRenderTarget2D*>                      ForegroundRenderTargets;                                 // 0x02F0(0x0010) ZeroConstructor, NativeAccessSpecifierPrivate
@@ -50,8 +50,8 @@ namespace CG
 	class UOculusMR_PlaneMeshComponent : public UMeshComponent
 	{
 	public:
-		unsigned char                                              UnknownData_QQY3[0x8];                                   // 0x0478(0x0008) Fix Super Size
-		unsigned char                                              UnknownData_Z66I[0x10];                                  // 0x0480(0x0010) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_51BP[0x8];                                   // 0x0478(0x0008) Fix Super Size
+		unsigned char                                              UnknownData_SMER[0x10];                                  // 0x0480(0x0010) MISSED OFFSET (PADDING)
 
 	public:
 		bool SetCustomMeshTriangles(TArray<struct FOculusMR_PlaneMeshTriangle> Triangles);
@@ -69,7 +69,7 @@ namespace CG
 	public:
 		EOculusMR_ClippingReference                                ClippingReference;                                       // 0x0028(0x0001) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		bool                                                       bUseTrackedCameraResolution;                             // 0x0029(0x0001) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_VT2H[0x2];                                   // 0x002A(0x0002) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_1DA2[0x2];                                   // 0x002A(0x0002) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		int32_t                                                    WidthPerView;                                            // 0x002C(0x0004) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		int32_t                                                    HeightPerView;                                           // 0x0030(0x0004) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		float                                                      CastingLatency;                                          // 0x0034(0x0004) Edit, BlueprintVisible, ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
@@ -83,7 +83,7 @@ namespace CG
 		bool                                                       bIsCasting;                                              // 0x0051(0x0001) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
 		EOculusMR_CompositionMethod                                CompositionMethod;                                       // 0x0052(0x0001) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
 		EOculusMR_CameraDeviceEnum                                 CapturingCamera;                                         // 0x0053(0x0001) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate
-		unsigned char                                              UnknownData_RYSZ[0x44];                                  // 0x0054(0x0044) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_WPEF[0x44];                                  // 0x0054(0x0044) MISSED OFFSET (PADDING)
 
 	public:
 		void SetIsCasting(bool Val);
@@ -109,10 +109,10 @@ namespace CG
 		struct FTrackedCamera                                      TrackedCamera;                                           // 0x0028(0x0078) NativeAccessSpecifierPublic
 		class USceneComponent*                                     TrackingReferenceComponent;                              // 0x00A0(0x0008) ExportObject, ZeroConstructor, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		double                                                     ScalingFactor;                                           // 0x00A8(0x0008) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_NNGD[0x4];                                   // 0x00B0(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
+		unsigned char                                              UnknownData_PH12[0x4];                                   // 0x00B0(0x0004) MISSED OFFSET (FIX SPACE BETWEEN PREVIOUS PROPERTY)
 		bool                                                       ChangeCameraStateRequested;                              // 0x00B4(0x0001) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
 		bool                                                       BindToTrackedCameraIndexRequested;                       // 0x00B5(0x0001) ZeroConstructor, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic
-		unsigned char                                              UnknownData_O7Y0[0x2];                                   // 0x00B6(0x0002) MISSED OFFSET (PADDING)
+		unsigned char                                              UnknownData_5C9U[0x2];                                   // 0x00B6(0x0002) MISSED OFFSET (PADDING)
 
 	public:
 		static UClass* StaticClass();
