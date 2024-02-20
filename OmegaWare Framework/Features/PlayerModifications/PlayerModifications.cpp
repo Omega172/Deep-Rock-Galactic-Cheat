@@ -4,29 +4,21 @@ PlayerModifications::PlayerModifications() {};
 
 bool PlayerModifications::Setup()
 {
-	if (!Cheat::localization->AddToLocale("ENG", "GODMODE", "Godmode"))
-		return false;
+	std::vector<LocaleData> EnglishData = {
+		{ HASH("GODMODE"), "Godmode" },
+		{ HASH("RUNNING_SPEED"), "Run Speed" },
+		{ HASH("FLY_HACK"), "Jetpack" },
+		{ HASH("FLY_FORCE"), "Force" }
+	};
+	Cheat::localization->AddToLocale("ENG", EnglishData);
 
-	if (!Cheat::localization->AddToLocale("GER", "GODMODE", "Gottmodus"))
-		return false;
-
-	if (!Cheat::localization->AddToLocale("ENG", "RUNNING_SPEED", "Run Speed"))
-		return false;
-
-	if (!Cheat::localization->AddToLocale("GER", "RUNNING_SPEED", "Laufgeschwindigkeit"))
-		return false;
-
-	if (!Cheat::localization->AddToLocale("ENG", "FLY_HACK", "Jetpack"))
-		return false;
-
-	if (!Cheat::localization->AddToLocale("GER", "FLY_HACK", "Raketenrucksack"))
-		return false;
-
-	if (!Cheat::localization->AddToLocale("ENG", "FLY_FORCE", "Force"))
-		return false;
-
-	if (!Cheat::localization->AddToLocale("GER", "FLY_FORCE", "Gewalt"))
-		return false;
+	std::vector<LocaleData> GermanData = {
+		{ HASH("GODMODE"), "Gottmodus" },
+		{ HASH("RUNNING_SPEED"), "Laufgeschwindigkeit" },
+		{ HASH("FLY_HACK"), "Raketenrucksack" },
+		{ HASH("FLY_FORCE"), "Gewalt" }
+	};
+	Cheat::localization->AddToLocale("GER", GermanData);
 
 	Cheat::localization->UpdateLocale();
 

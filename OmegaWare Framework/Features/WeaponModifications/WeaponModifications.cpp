@@ -44,41 +44,25 @@ bool WeaponModifications::Setup()
 	FNAME_INITIALIZATION_MACRO(WPN_ZipLineGun_C);
 #undef FNAME_INITIALIZATION_MACRO
 
-	if (!Cheat::localization->AddToLocale("ENG", "INFINITE_AMMO", "Infinite Ammo"))
-		return false;
+	std::vector<LocaleData> EnglishData = {
+		{ HASH("INFINITE_AMMO"), "Infinite Ammo" },
+		{ HASH("NO_OVERHEATING"), "No Overheating" },
+		{ HASH("NO_RELOAD"), "No Reload" },
+		{ HASH("NO_RECOIL"), "No Recoil" },
+		{ HASH("GRAPPLE_RESTRICTIONS"), "No Grapple Restrictions" },
+		{ HASH("GRAPPLE_MAX_SPEED"), "Speed" }
+	};
+	Cheat::localization->AddToLocale("ENG", EnglishData);
 
-	if (!Cheat::localization->AddToLocale("GER", "INFINITE_AMMO", "Unbegrenzte Munition"))
-		return false;
-
-	if (!Cheat::localization->AddToLocale("ENG", "NO_OVERHEATING", "No Overheating"))
-		return false;
-
-	if (!Cheat::localization->AddToLocale("GER", "NO_OVERHEATING", "Keine Überhitzung"))
-		return false;
-
-	if (!Cheat::localization->AddToLocale("ENG", "NO_RELOAD", "No Reload"))
-		return false;
-
-	if (!Cheat::localization->AddToLocale("GER", "NO_RELOAD", "Kein Nachladen"))
-		return false;
-
-	if (!Cheat::localization->AddToLocale("ENG", "NO_RECOIL", "No Recoil"))
-		return false;
-
-	if (!Cheat::localization->AddToLocale("GER", "NO_RECOIL", "Kein Rückstoss"))
-		return false;
-
-	if (!Cheat::localization->AddToLocale("ENG", "GRAPPLE_RESTRICTIONS", "No Grapple Restrictions"))
-		return false;
-
-	if (!Cheat::localization->AddToLocale("GER", "GRAPPLE_RESTRICTIONS", u8"Keine Grappling-Einschränkungen"))
-		return false;
-
-	if (!Cheat::localization->AddToLocale("ENG", "GRAPPLE_MAX_SPEED", "Speed"))
-		return false;
-
-	if (!Cheat::localization->AddToLocale("GER", "GRAPPLE_MAX_SPEED", "Geschwindigkeit"))
-		return false;
+	std::vector<LocaleData> GermanData = {
+		{ HASH("INFINITE_AMMO"), "Unbegrenzte Munition" },
+		{ HASH("NO_OVERHEATING"), "Keine Überhitzung" },
+		{ HASH("NO_RELOAD"), "Kein Nachladen" },
+		{ HASH("NO_RECOIL"), "Kein Rückstoss" },
+		{ HASH("GRAPPLE_RESTRICTIONS"), u8"Keine Grappling-Einschränkungen" },
+		{ HASH("GRAPPLE_MAX_SPEED"), "Geschwindigkeit" }
+	};
+	Cheat::localization->AddToLocale("GER", GermanData);
 
 	Cheat::localization->UpdateLocale();
 

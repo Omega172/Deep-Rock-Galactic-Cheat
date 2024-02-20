@@ -4,29 +4,21 @@ Aimbot::Aimbot() {};
 
 bool Aimbot::Setup()
 {
-	if (!Cheat::localization->AddToLocale("ENG", "AIMBOT", "Aimbot"))
-		return false;
+	std::vector<LocaleData> EnglishData = {
+		{ HASH("AIMBOT"), "Aimbot" },
+		{ HASH("AIMBOT_AUTO_FIRE"), "Auto Fire" },
+		{ HASH("AIMBOT_KEY"), "Aim Key" },
+		{ HASH("AIMBOT_FOV"), "FOV" }
+	};
+	Cheat::localization->AddToLocale("ENG", EnglishData);
 
-	if (!Cheat::localization->AddToLocale("GER", "AIMBOT", "Zielbot"))
-		return false;
-
-	if (!Cheat::localization->AddToLocale("ENG", "AIMBOT_AUTO_FIRE", "Auto Fire"))
-		return false;
-
-	if (!Cheat::localization->AddToLocale("GER", "AIMBOT_AUTO_FIRE", "Automatisches Feuer"))
-		return false;
-
-	if (!Cheat::localization->AddToLocale("ENG", "AIMBOT_KEY", "Aim Key"))
-		return false;
-
-	if (!Cheat::localization->AddToLocale("GER", "AIMBOT_KEY", u8"Zielbot-Schlüssel"))
-		return false;
-
-	if (!Cheat::localization->AddToLocale("ENG", "AIMBOT_FOV", "FOV"))
-		return false;
-
-	if (!Cheat::localization->AddToLocale("GER", "AIMBOT_FOV", "Sichtfeld"))
-		return false;
+	std::vector<LocaleData> GermanData = {
+		{ HASH("AIMBOT"), "Zielbot" },
+		{ HASH("AIMBOT_AUTO_FIRE"), "Automatisches Feuer" },
+		{ HASH("AIMBOT_KEY"), u8"Zielbot-Schlüssel" },
+		{ HASH("AIMBOT_FOV"), "Sichtfeld" }
+	};
+	Cheat::localization->AddToLocale("GER", GermanData);
 
 	Cheat::localization->UpdateLocale();
 
