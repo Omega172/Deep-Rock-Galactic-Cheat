@@ -7,20 +7,28 @@ bool Aimbot::Setup()
 	if (!Cheat::localization->AddToLocale("ENG", "AIMBOT", "Aimbot"))
 		return false;
 
+	if (!Cheat::localization->AddToLocale("GER", "AIMBOT", "Zielbot"))
+		return false;
+
 	if (!Cheat::localization->AddToLocale("ENG", "AIMBOT_KEY", "Aim Key"))
+		return false;
+
+	if (!Cheat::localization->AddToLocale("GER", "AIMBOT_KEY", "Zielbot-Schlüssel"))
 		return false;
 
 	if (!Cheat::localization->AddToLocale("ENG", "AIMBOT_FOV", "FOV"))
 		return false;
 
+	if (!Cheat::localization->AddToLocale("GER", "AIMBOT_FOV", "Sichtfeld"))
+		return false;
+
 	if (!Cheat::localization->AddToLocale("ENG", "AIMBOT_SMOOTH", "Smoothing"))
 		return false;
 
-	if (!Cheat::localization->SetLocale("ENG"))
-	{
-		Utils::LogError(Utils::GetLocation(CurrentLoc), "Failed to update locale ENG");
+	if (!Cheat::localization->AddToLocale("GER", "AIMBOT_SMOOTH", "Glätten"))
 		return false;
-	}
+
+	Cheat::localization->UpdateLocale();
 
 	Initialized = true;
 	return Initialized;

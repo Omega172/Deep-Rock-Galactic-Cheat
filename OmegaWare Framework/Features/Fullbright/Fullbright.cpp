@@ -7,11 +7,7 @@ bool Fullbright::Setup()
 	if (!Cheat::localization->AddToLocale("ENG", "FULLBRIGHT", "Fullbright"))
 		return false;
 
-	if (!Cheat::localization->SetLocale("ENG"))
-	{
-		Utils::LogError(Utils::GetLocation(CurrentLoc), "Failed to update locale ENG");
-		return false;
-	}
+	Cheat::localization->UpdateLocale();
 
 	Initialized = true;
 	return Initialized;

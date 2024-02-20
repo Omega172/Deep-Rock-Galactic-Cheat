@@ -67,6 +67,7 @@
     <ClInclude Include="Features\PlayerModifications\PlayerModifications.h" />
     <ClInclude Include="Features\Fullbright\Fullbright.h" />
     <ClInclude Include="Features\Aimbot\Aimbot.h" />
+    <ClInclude Include="Localization\Locales\German.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

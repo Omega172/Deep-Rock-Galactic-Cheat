@@ -62,11 +62,7 @@ bool WeaponModifications::Setup()
 	if (!Cheat::localization->AddToLocale("ENG", "GRAPPLE_MAX_SPEED", "Speed"))
 		return false;
 
-	if (!Cheat::localization->SetLocale("ENG"))
-	{
-		Utils::LogError(Utils::GetLocation(CurrentLoc), "Failed to update locale ENG");
-		return false;
-	}
+	Cheat::localization->UpdateLocale();
 
 	Initialized = true;
 	return Initialized;
