@@ -72,9 +72,10 @@ void WeaponModifications::Run() {
 	if (!IsValidObjectPtr(pLocalPlayer))
 		return;
 
-	auto pDRGPlayer = static_cast<CG::ABP_PlayerCharacter_C*>(pUnreal->GetAcknowledgedPawn());
+	CG::ABP_PlayerCharacter_C* pDRGPlayer = static_cast<CG::ABP_PlayerCharacter_C*>(pUnreal->GetAcknowledgedPawn());
 	if (!IsValidObjectPtr(pDRGPlayer))
 		return;
+
 
 
 	CG::AItem* pItem = pDRGPlayer->GetEquippedItem();
@@ -89,7 +90,7 @@ void WeaponModifications::Run() {
 		return;
 
 	if (pItem->IsA(CG::AWPN_GrapplingGun_C::StaticClass())) {
-		auto pGrapplingGun = static_cast<CG::AWPN_GrapplingGun_C*>(pItem);
+		CG::AWPN_GrapplingGun_C* pGrapplingGun = static_cast<CG::AWPN_GrapplingGun_C*>(pItem);
 		if (!IsValidObjectPtr(pGrapplingGun))
 			return;
 		
