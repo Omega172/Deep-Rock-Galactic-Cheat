@@ -8,6 +8,7 @@ bool Aimbot::Setup()
 		{ HASH("AIMBOT"), "Aimbot" },
 		{ HASH("AIMBOT_AUTO_FIRE"), "Auto Fire" },
 		{ HASH("AIMBOT_KEY"), "Aim Key" },
+		{ HASH("MAGIC_BULLET"), "Magic Bullet" },
 		{ HASH("AIMBOT_FOV"), "FOV" }
 	};
 	Cheat::localization->AddToLocale("ENG", EnglishData);
@@ -51,6 +52,7 @@ void Aimbot::DrawMenuItems()
 				ImGui::Hotkey("#AimbotKey", keyAimbot, &bSetKeyAimbot);
 			}
 
+			ImGui::Checkbox(Cheat::localization->Get("MAGIC_BULLET").c_str(), &bMagicBullet);
 			ImGui::SliderFloat(Cheat::localization->Get("AIMBOT_FOV").c_str(), &flAimFOV, 0.0f, 180.0f);
 		}
 	}
@@ -111,8 +113,12 @@ void Aimbot::Render()
 
 
 	if (bAutoFire || keyAimbot.IsDown()) {
-		pWeaponFire->Fire(pDRGPlayer->K2_GetActorLocation(), CG::FVector_NetQuantizeNormal(vecDirection), true);
-		bWasFiring = true;
+		pWeaponFire->Fire(
+			bMagicBullet ? (vecHeadLocation - vecDirection) : pDRGPlayer->K2_GetActorLocation(), 
+			CG::FVector_NetQuantizeNormal(vecDirection), true);
+		
+		
+		//bWasFiring = true;
 	}
 }
 
@@ -134,24 +140,26 @@ bool Aimbot::ActorChecks(CG::AEnemyDeepPathfinderCharacter* pActor)
 
 	CG::FVector vecHeadLocation = pMesh->GetSocketLocation(pMesh->GetBoneName(13));
 
-	CG::FHitResult hrResult;
-	if (Cheat::unreal->GetSystemLibrary()->LineTraceSingle(
-		(*CG::UWorld::GWorld),
-		vecCameraLocation,
-		vecHeadLocation,
-		CG::ETraceTypeQuery::TraceTypeQuery1,
-		true, {},
-		CG::EDrawDebugTrace::ForDuration,
-		&hrResult, true,
-		{ 1.f, 1.f, 1.f, 1.f },
-		{ 1.f, 0.f, 0.f, 1.f },
-		300.f
-	)) {
+	if (!bMagicBullet) {
+		CG::FHitResult hrResult;
+		if (Cheat::unreal->GetSystemLibrary()->LineTraceSingle(
+			(*CG::UWorld::GWorld),
+			vecCameraLocation,
+			vecHeadLocation,
+			CG::ETraceTypeQuery::TraceTypeQuery1,
+			true, {},
+			CG::EDrawDebugTrace::ForDuration,
+			&hrResult, true,
+			{ 1.f, 1.f, 1.f, 1.f },
+			{ 1.f, 0.f, 0.f, 1.f },
+			300.f
+		)) {
 
-		// Voodoo magic
-		CG::AActor* pHitActor = hrResult.Actor.Get();
-		if (IsValidObjectPtr(pHitActor))
-			return false;
+			// Voodoo magic
+			CG::AActor* pHitActor = hrResult.Actor.Get();
+			if (IsValidObjectPtr(pHitActor))
+				return false;
+		}
 	}
 
 	CG::FRotator rotGoalRotation = Cheat::unreal->GetMathLibrary()->FindLookAtRotation(vecCameraLocation, vecHeadLocation);
@@ -185,6 +193,7 @@ void Aimbot::SaveConfig()
 	Cheat::config->PushEntry("AIMBOT_ENABLED", "bool", std::to_string(bEnabled));
 	Cheat::config->PushEntry("AIMBOT_AUTO_FIRE", "bool", std::to_string(bAutoFire));
 	Cheat::config->PushEntry("AIMBOT_KEY", "int", std::to_string(keyAimbot.key));
+	Cheat::config->PushEntry("MAGIC_BULLET", "bool", std::to_string(bMagicBullet));
 	Cheat::config->PushEntry("AIMBOT_FOV", "float", std::to_string(flAimFOV));
 }
 
@@ -201,6 +210,10 @@ void Aimbot::LoadConfig()
 	entry = Cheat::config->GetEntryByName("AIMBOT_KEY");
 	if (entry.Name == "AIMBOT_KEY")
 		keyAimbot.key = static_cast<ImGuiKey>(std::stoi(entry.Value));
+
+	entry = Cheat::config->GetEntryByName("MAGIC_BULLET");
+	if (entry.Name == "MAGIC_BULLET")
+		bMagicBullet = std::stoi(entry.Value);
 
 	entry = Cheat::config->GetEntryByName("AIMBOT_FOV");
 	if (entry.Name == "AIMBOT_FOV")

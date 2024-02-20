@@ -11,6 +11,7 @@ private:
 	KeyBind keyAimbot = KeyBind(ImGuiKey_MouseX1);
 	bool bSetKeyAimbot = false;
 	float flAimFOV = 90.0f;
+	bool bMagicBullet = true;
 
 	bool bWasFiring = false;
 	CG::FVector vecCameraLocation;
