@@ -128,9 +128,7 @@ HRESULT __stdcall hkPresent(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT 
 	}
 
 	if (!mainRenderTargetView)
-	{
-		
-	}
+		CreateRenderTarget(pSwapChain);
 
 	// Begin rendering ImGui
 	GUI::BeginRender();
