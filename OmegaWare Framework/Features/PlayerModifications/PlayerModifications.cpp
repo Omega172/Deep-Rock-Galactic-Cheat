@@ -34,7 +34,8 @@ void PlayerModifications::Destroy() {
 	if (!IsValidObjectPtr(pDRGPlayer))
 		return;
 
-	pDRGPlayer->RunningSpeed = 435.f;
+	if (flDefaultRunningSpeed > 0.f) 
+		pDRGPlayer->RunningSpeed = flDefaultRunningSpeed;
 
 	Initialized = false;
 }
@@ -52,7 +53,7 @@ void PlayerModifications::DrawMenuItems()
 	{
 		ImGui::Checkbox(Cheat::localization->Get("GODMODE").c_str(), &bGodMode);
 
-		ImGui::SliderFloat(Cheat::localization->Get("RUNNING_SPEED").c_str(), &flRunningSpeed, 100.f, 500.f);
+		ImGui::SliderFloat(Cheat::localization->Get("RUNNING_SPEED").c_str(), &flRunningSpeed, 1.f, 10.f);
 
 		ImGui::Checkbox(Cheat::localization->Get("FLY_HACK").c_str(), &bFlyHack);
 
@@ -80,7 +81,11 @@ void PlayerModifications::Run() {
 	if (!IsValidObjectPtr(pPlayerController))
 		return;
 	
-	pDRGPlayer->RunningSpeed = 4.35f * flRunningSpeed;
+
+	if (pDRGPlayer->RunningSpeed != flLastRunningSpeed)
+		flDefaultRunningSpeed = pDRGPlayer->RunningSpeed;
+
+	pDRGPlayer->RunningSpeed = flLastRunningSpeed = flDefaultRunningSpeed * flRunningSpeed;
 
 	if (pDRGPlayer->IsJumpPressed() && !pDRGPlayer->CanJump() && bFlyHack)
 		pDRGPlayer->Client_AddImpulse(CG::FVector_NetQuantizeNormal(CG::FVector(0.f, 0.f, 1.f)), flFlyForce);
