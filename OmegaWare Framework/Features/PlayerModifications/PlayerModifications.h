@@ -7,6 +7,10 @@ private:
 	bool Initialized = false;
 	bool bGodMode = false;
 
+	float flRunningSpeed = 100.f;
+	bool bFlyHack = false;
+	float flFlyForce = 200.f;
+	
 public:
 	PlayerModifications();
 
