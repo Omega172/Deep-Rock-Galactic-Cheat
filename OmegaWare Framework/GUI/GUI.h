@@ -18,7 +18,7 @@ inline ImU32 Magenta = ImGui::ColorConvertFloat4ToU32({ 1.f, 0.f, 1.f, 1.f });
 namespace GUI
 {
 	inline bool bMenuOpen = false;
-	constexpr float WIDTH = 700;
+	constexpr float WIDTH = 900;
 	constexpr float HEIGHT = 400;
 
 	inline float sWIDTH = float(GetSystemMetrics(SM_CXSCREEN));
