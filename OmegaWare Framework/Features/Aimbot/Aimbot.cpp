@@ -95,31 +95,54 @@ void Aimbot::Render()
 	vecCameraLocation = pCameraManager->GetCameraLocation();
 	rotCameraRotation = pPlayerController->GetControlRotation();
 
-	if (pTarget == nullptr) {
+	if (!bAutoFire && !keyAimbot.IsDown())
+		return;
+
+	if (bMagicBullet) {
+		std::vector<CG::AEnemyDeepPathfinderCharacter*> apUnsortedActors = Cheat::unreal->GetActors<CG::AEnemyDeepPathfinderCharacter>();
+		std::vector<CG::AEnemyDeepPathfinderCharacter*> apActors = Cheat::unreal->SortActorsByDistance<CG::AEnemyDeepPathfinderCharacter*>(apUnsortedActors);
+
+		for (CG::AEnemyDeepPathfinderCharacter* pActor : apActors)
+		{
+			if (!IsValidObjectPtr(pActor) || pActor->InternalIndex <= 0 || pActor->Name.ComparisonIndex <= 0)
+				continue;
+
+			CG::UHealthComponentBase* pHealthComponent = pActor->HealthComponent;
+			if (!IsValidObjectPtr(pHealthComponent) || pHealthComponent->InternalIndex <= 0 || pHealthComponent->Name.ComparisonIndex == 0 || pHealthComponent->IsDead())
+				continue;
+
+			if (pActor->GetAttitude() == CG::EPawnAttitude::Friendly)
+				continue;
+
+			CG::USkeletalMeshComponent* pMesh = pActor->Mesh;
+			if (!IsValidObjectPtr(pMesh))
+				continue;
+
+			CG::FVector vecHeadLocation = pMesh->GetSocketLocation(pMesh->GetBoneName(13));
+
+			CG::FRotator rotGoalRotation = Cheat::unreal->GetMathLibrary()->FindLookAtRotation(vecCameraLocation, vecHeadLocation);
+			if (flAimFOV <= (rotGoalRotation - rotCameraRotation).Clamp().Size())
+				continue;
+
+			CG::FVector vecDirection = (vecHeadLocation - vecCameraLocation).Unit();
+			pWeaponFire->Fire(vecHeadLocation - vecDirection, CG::FVector_NetQuantizeNormal(vecDirection), true);
+		}
+
 		return;
 	}
 
-	if (!ActorChecks(pTarget)) {
+	if (pTarget == nullptr)
 		return;
-	}
+
+	if (!ActorChecks(pTarget))
+		return;
 
 	CG::USkeletalMeshComponent* pMesh = pTarget->Mesh;
 	if (!IsValidObjectPtr(pMesh))
 		return;
 
 	CG::FVector vecHeadLocation = pMesh->GetSocketLocation(pMesh->GetBoneName(13));
-
-	CG::FVector vecDirection = (vecHeadLocation - vecCameraLocation).Unit();
-
-
-	if (bAutoFire || keyAimbot.IsDown()) {
-		pWeaponFire->Fire(
-			bMagicBullet ? (vecHeadLocation - vecDirection) : pDRGPlayer->K2_GetActorLocation(), 
-			CG::FVector_NetQuantizeNormal(vecDirection), true);
-		
-		
-		//bWasFiring = true;
-	}
+	pWeaponFire->Fire(pDRGPlayer->K2_GetActorLocation(), CG::FVector_NetQuantizeNormal((vecHeadLocation - vecCameraLocation).Unit()), true);
 }
 
 bool Aimbot::ActorChecks(CG::AEnemyDeepPathfinderCharacter* pActor)
@@ -171,6 +194,9 @@ bool Aimbot::ActorChecks(CG::AEnemyDeepPathfinderCharacter* pActor)
 void Aimbot::Run()
 {
 	if (!bEnabled)
+		return;
+
+	if (bMagicBullet)
 		return;
 
 	std::vector<CG::AEnemyDeepPathfinderCharacter*> apUnsortedActors = Cheat::unreal->GetActors<CG::AEnemyDeepPathfinderCharacter>();
