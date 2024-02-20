@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 
 Aimbot::Aimbot() {};
 
@@ -13,7 +13,7 @@ bool Aimbot::Setup()
 	if (!Cheat::localization->AddToLocale("ENG", "AIMBOT_KEY", "Aim Key"))
 		return false;
 
-	if (!Cheat::localization->AddToLocale("GER", "AIMBOT_KEY", "Zielbot-Schlüssel"))
+	if (!Cheat::localization->AddToLocale("GER", "AIMBOT_KEY", "Zielbot-SchlÃ¼ssel"))
 		return false;
 
 	if (!Cheat::localization->AddToLocale("ENG", "AIMBOT_FOV", "FOV"))
@@ -25,7 +25,7 @@ bool Aimbot::Setup()
 	if (!Cheat::localization->AddToLocale("ENG", "AIMBOT_SMOOTH", "Smoothing"))
 		return false;
 
-	if (!Cheat::localization->AddToLocale("GER", "AIMBOT_SMOOTH", "Glätten"))
+	if (!Cheat::localization->AddToLocale("GER", "AIMBOT_SMOOTH", "GlÃ¤tten"))
 		return false;
 
 	Cheat::localization->UpdateLocale();

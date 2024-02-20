@@ -101,7 +101,7 @@ inline void ImportFonts()
 {
 	ImGuiIO& io = ImGui::GetIO();
 	defaultFont = io.Fonts->AddFontDefault();
-	tahomaFont = io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\Tahoma.ttf", 14.0f);
+	tahomaFont = io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\Tahoma.ttf", 14.0f, NULL, io.Fonts->GetGlyphRangesDefault());
 
 	ImFontConfig Config;
 	Config.GlyphExtraSpacing.x = 1.f;
