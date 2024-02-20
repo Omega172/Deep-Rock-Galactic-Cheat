@@ -133,7 +133,7 @@ void WeaponModifications::Run() {
 		CG::AWPN_GrapplingGun_C* pGrapplingGun = static_cast<CG::AWPN_GrapplingGun_C*>(pItem);
 		if (!IsValidObjectPtr(pGrapplingGun))
 			return;
-		
+
 		if (!bNoGrappleRestrictions) {
 			pGrapplingGun->MaxSpeed = 2250.f;
 			return;
@@ -145,10 +145,34 @@ void WeaponModifications::Run() {
 		CG::UCoolDownItemAggregator* pCoolDown = pGrapplingGun->CoolDownAggregator;
 		if (IsValidObjectPtr(pCoolDown))
 			pCoolDown->CooldownRemaining = 0.f;
-		
+
 		return;
 	}
 
+	if (iNameCompIndex == DRG::WPN_Pickaxe_Driller_C.ComparisonIndex ||
+		iNameCompIndex == DRG::WPN_Pickaxe_Engineer_C.ComparisonIndex ||
+		iNameCompIndex == DRG::WPN_Pickaxe_Gunner_C.ComparisonIndex ||
+		iNameCompIndex == DRG::WPN_Pickaxe_Scout_C.ComparisonIndex) 
+	{
+
+		CG::AWPN_Pickaxe_C* pPickaxe = static_cast<CG::AWPN_Pickaxe_C*>(pItem);
+		if (!IsValidObjectPtr(pPickaxe))
+			return;
+
+		pPickaxe->DamageRange = (true) ? 999999.f : 200.f;
+		pPickaxe->SpecialCooldownRemaining = 0.f;
+
+		return;
+	}
+
+	if (iNameCompIndex == DRG::WPN_SawedOffShotgun_C.ComparisonIndex) {
+		CG::AWPN_SawedOffShotgun_C* pShotgun = static_cast<CG::AWPN_SawedOffShotgun_C*>(pItem);
+		if (!IsValidObjectPtr(pShotgun))
+			return;
+
+		pShotgun->ShotgunJumpEnabled = true;
+
+	}
 
 
 	if (bInfiniteAmmo)
@@ -161,8 +185,6 @@ void WeaponModifications::Run() {
 	else {
 		pItem->ManualCooldownDelay = 1.f;
 	}
-
-	//std::cout << (pItem->IsA(CG::AWPN_GrapplingGun_C::StaticClass()) ? "true" : "false") << '\n';
 
 	if (!pItem->IsA(CG::AAmmoDrivenWeapon::StaticClass()))
 		return;	
