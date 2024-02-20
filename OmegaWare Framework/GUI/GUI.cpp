@@ -35,8 +35,9 @@ void GUI::Render()
 					if (bSelected)
 						ImGui::SetItemDefaultFocus();
 				}
+
+				ImGui::EndCombo();
 			}
-			ImGui::EndCombo();
 
 			//ImGui::Checkbox("Extra Debug Info", &bExtraDebug);
 
