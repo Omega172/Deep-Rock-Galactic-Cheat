@@ -28,6 +28,9 @@ bool WeaponModifications::Setup()
 		return false;
 	}
 
+	DRG::GrappleGun = CG::FName("WPN_GrapplingGun_C");
+	DRG::DoubleDrills = CG::FName("WPN_DoubleDrills_C");
+
 	Initialized = true;
 	return Initialized;
 }
@@ -89,7 +92,7 @@ void WeaponModifications::Run() {
 	if (!IsValidObjectPtr(pItemID->GetItemData())) // Important we check this, will stop us from resupplying the "pipeline" LOL
 		return;
 
-	if (pItem->IsA(CG::AWPN_GrapplingGun_C::StaticClass())) {
+	if (pItem->Name.ComparisonIndex == DRG::GrappleGun.ComparisonIndex) {
 		CG::AWPN_GrapplingGun_C* pGrapplingGun = static_cast<CG::AWPN_GrapplingGun_C*>(pItem);
 		if (!IsValidObjectPtr(pGrapplingGun))
 			return;

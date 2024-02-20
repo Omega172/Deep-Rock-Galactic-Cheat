@@ -27,6 +27,8 @@
     <ClCompile Include="Features\Fullbright\Fullbright.cpp" />
     <ClCompile Include="SDK\WPN_GrapplingGun_Package.cpp" />
     <ClCompile Include="SDK\BP_PlayerCharacter_Package.cpp" />
+    <ClCompile Include="SDK\WPN_DoubleDrills_Package.cpp" />
+    <ClCompile Include="SDK\WPN_Pickaxe_Package.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utils\Console\Console.h" />

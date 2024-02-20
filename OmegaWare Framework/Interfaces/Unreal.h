@@ -2,6 +2,13 @@
 #include "pch.h"
 #if FRAMEWORK_UNREAL // Not sure if this is needed but it's here anyway
 
+namespace DRG
+{
+	inline CG::FName GrappleGun;
+	inline CG::FName DoubleDrills;
+	inline CG::FName Pickaxe;
+}
+
 class Unreal
 {
 public:

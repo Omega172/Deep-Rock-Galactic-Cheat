@@ -130,7 +130,9 @@
     <ClCompile Include="SDK\CoreUObject_Package.cpp" />
     <ClCompile Include="SDK\Engine_Package.cpp" />
     <ClCompile Include="SDK\FSD_Package.cpp" />
+    <ClCompile Include="SDK\WPN_DoubleDrills_Package.cpp" />
     <ClCompile Include="SDK\WPN_GrapplingGun_Package.cpp" />
+    <ClCompile Include="SDK\WPN_Pickaxe_Package.cpp" />
     <ClCompile Include="Utils\Console\Console.cpp" />
     <ClCompile Include="Utils\Logging\Logging.cpp" />
     <ClCompile Include="Utils\Utils.cpp" />
