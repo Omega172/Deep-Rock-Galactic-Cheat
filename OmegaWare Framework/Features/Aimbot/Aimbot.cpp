@@ -66,6 +66,36 @@ void Aimbot::Render()
 {
 	if (!bEnabled)
 		return;
+
+	auto PlayerController = Cheat::unreal->GetPlayerController();
+	if (!PlayerController)
+		return;
+
+	CG::FRotator CameraRotation = PlayerController->GetControlRotation();
+
+	CG::APlayerCameraManager* CameraManager = Cheat::unreal->GetPlayerCameraManager();
+	if (!CameraManager)
+		return;
+
+	CG::FVector CameraLocation = CameraManager->GetCameraLocation();
+
+	if (Target == nullptr)
+		return;
+
+	if (!ActorChecks(Target))
+		return;
+
+	CG::USkeletalMeshComponent* Mesh = Target->Mesh;
+	if (!IsValidObjectPtr(Mesh))
+		return;
+
+	CG::FVector HeadPos = Mesh->GetSocketLocation(Mesh->GetBoneName(13));
+
+	CG::FRotator AimAngles = Cheat::unreal->GetMathLibrary()->FindLookAtRotation(CameraLocation, HeadPos);
+	CG::FRotator Delta = (AimAngles - CameraRotation);
+
+	if (AimbotKey.IsDown())
+		PlayerController->SetControlRotation(CameraRotation + (Delta * fAimbotSmooth));
 }
 
 bool Aimbot::ActorChecks(CG::AEnemyDeepPathfinderCharacter* Actor)
@@ -163,23 +193,6 @@ void Aimbot::Run()
 
 		Target = Actor;
 	}
-	if (Target == nullptr)
-		return;
-
-	if (!ActorChecks(Target))
-		return;
-
-	CG::USkeletalMeshComponent* Mesh = Target->Mesh;
-	if (!IsValidObjectPtr(Mesh))
-		return;
-
-	CG::FVector HeadPos = Mesh->GetSocketLocation(Mesh->GetBoneName(13));
-
-	CG::FRotator AimAngles = Cheat::unreal->GetMathLibrary()->FindLookAtRotation(CameraLocation, HeadPos);
-	CG::FRotator Delta = (AimAngles - CameraRotation);
-
-	if (AimbotKey.IsDown())
-		PlayerController->SetControlRotation(CameraRotation + (Delta * fAimbotSmooth));
 }
 
 void Aimbot::SaveConfig()
