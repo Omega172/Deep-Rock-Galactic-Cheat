@@ -10,6 +10,9 @@ bool Aimbot::Setup()
 	if (!Cheat::localization->AddToLocale("GER", "AIMBOT", "Zielbot"))
 		return false;
 
+	if (!Cheat::localization->AddToLocale("ENG", "AIMBOT_AUTO_FIRE", "Auto Fire"))
+		return false;
+
 	if (!Cheat::localization->AddToLocale("ENG", "AIMBOT_KEY", "Aim Key"))
 		return false;
 
@@ -20,9 +23,6 @@ bool Aimbot::Setup()
 		return false;
 
 	if (!Cheat::localization->AddToLocale("GER", "AIMBOT_FOV", "Sichtfeld"))
-		return false;
-
-	if (!Cheat::localization->AddToLocale("ENG", "AIMBOT_AUTOFIRE", "Auto Fire"))
 		return false;
 
 	Cheat::localization->UpdateLocale();
@@ -49,13 +49,14 @@ void Aimbot::DrawMenuItems()
 		ImGui::Checkbox(Cheat::localization->Get("AIMBOT").c_str(), &bEnabled);
 		if (bEnabled)
 		{
-			ImGui::SameLine();
-			ImGui::Checkbox(Cheat::localization->Get("AIMBOT_AUTOFIRE").c_str(), &bAutoFire);
+			ImGui::Checkbox(Cheat::localization->Get("AIMBOT_AUTO_FIRE").c_str(), &bAutoFire);
 
-			ImGui::Text(Cheat::localization->Get("AIMBOT_KEY").c_str());
-			ImGui::Hotkey("#AimbotKey", AimbotKey, &bSetAimbotKey);
+			if (!bAutoFire) {
+				ImGui::Text(Cheat::localization->Get("AIMBOT_KEY").c_str());
+				ImGui::Hotkey("#AimbotKey", keyAimbot, &bSetKeyAimbot);
+			}
 
-			ImGui::SliderFloat(Cheat::localization->Get("AIMBOT_FOV").c_str(), &fAimbotFOV, 0.0f, 180.0f);
+			ImGui::SliderFloat(Cheat::localization->Get("AIMBOT_FOV").c_str(), &flAimFOV, 0.0f, 180.0f);
 		}
 	}
 	ImGui::EndChild();
@@ -66,34 +67,16 @@ void Aimbot::Render()
 	if (!bEnabled)
 		return;
 
-	auto PlayerController = Cheat::unreal->GetPlayerController();
-	if (!PlayerController)
-		return;
-
-	CG::FRotator CameraRotation = PlayerController->GetControlRotation();
-
-	CG::APlayerCameraManager* CameraManager = Cheat::unreal->GetPlayerCameraManager();
-	if (!CameraManager)
-		return;
-
-	CG::FVector CameraLocation = CameraManager->GetCameraLocation();
-
-	if (Target == nullptr)
-		return;
-
-	if (!ActorChecks(Target))
-		return;
-
-	CG::USkeletalMeshComponent* Mesh = Target->Mesh;
-	if (!IsValidObjectPtr(Mesh))
-		return;
-
-	CG::FVector HeadPos = Mesh->GetSocketLocation(Mesh->GetBoneName(13));
-
-	CG::FVector vecDirection = (HeadPos - CameraLocation).Unit();
-
 	Unreal* pUnreal = Cheat::unreal.get();
 	if (!IsValidObjectPtr(pUnreal))
+		return;
+
+	CG::APlayerController* pPlayerController = pUnreal->GetPlayerController();
+	if (!IsValidObjectPtr(pPlayerController))
+		return;
+
+	CG::APlayerCameraManager* pCameraManager = Cheat::unreal->GetPlayerCameraManager();
+	if (!IsValidObjectPtr(pCameraManager))
 		return;
 
 	CG::ABP_PlayerCharacter_C* pDRGPlayer = static_cast<CG::ABP_PlayerCharacter_C*>(pUnreal->GetAcknowledgedPawn());
@@ -104,94 +87,82 @@ void Aimbot::Render()
 	if (!IsValidObjectPtr(pItem))
 		return;
 
-	CG::UItemID* pItemID = pItem->ItemID;
-	if (!IsValidObjectPtr(pItemID))
-		return;
-
-	if (!IsValidObjectPtr(pItemID->GetItemData())) // Important we check this, will stop us from resupplying the "pipeline" LOL
-		return;
-
-	if (!pItem->IsA(CG::AAmmoDrivenWeapon::StaticClass()))
-		return;
-
 	CG::AAmmoDrivenWeapon* pWeapon = static_cast<CG::AAmmoDrivenWeapon*>(pItem);
-	if (!IsValidObjectPtr(pWeapon))
+	if (!IsValidObjectPtr(pWeapon) || !pItem->IsA(CG::AAmmoDrivenWeapon::StaticClass()))
 		return;
 
 	CG::UWeaponFireComponent* pWeaponFire = pWeapon->WeaponFire;
 	if (!IsValidObjectPtr(pWeaponFire))
 		return;
 
-	if (AimbotKey.IsDown() || bAutoFire)
-		pWeaponFire->Fire(pDRGPlayer->K2_GetActorLocation(), CG::FVector_NetQuantizeNormal(vecDirection), true);
-}
+	vecCameraLocation = pCameraManager->GetCameraLocation();
+	rotCameraRotation = pPlayerController->GetControlRotation();
 
-bool Aimbot::ActorChecks(CG::AEnemyDeepPathfinderCharacter* Actor)
-{
-	auto PlayerController = Cheat::unreal->GetPlayerController();
-	if (!PlayerController)
-		return false;
-
-	CG::FRotator CameraRotation = PlayerController->GetControlRotation();
-
-	CG::APlayerCameraManager* CameraManager = Cheat::unreal->GetPlayerCameraManager();
-	if (!CameraManager)
-		return false;
-
-	CG::FVector CameraLocation = CameraManager->GetCameraLocation();
-
-	if (!IsValidObjectPtr(Actor) || Actor->InternalIndex <= 0 || Actor->Name.ComparisonIndex <= 0)
-		return false;
-
-	if (!IsValidObjectPtr(Actor->HealthComponent))
-		return false;
-
-	CG::UHealthComponentBase* HealthComponent = Actor->HealthComponent;
-	if (!IsValidObjectPtr(HealthComponent))
-		return false;
-
-	if (HealthComponent->InternalIndex <= 0 || HealthComponent->Name.ComparisonIndex == 0)
-		return false;
-
-	if (HealthComponent->IsDead())
-		return false;
-
-	if (Actor->GetAttitude() == CG::EPawnAttitude::Friendly)
-		return false;
-
-	CG::USkeletalMeshComponent* Mesh = Actor->Mesh;
-	if (!IsValidObjectPtr(Mesh))
-		return false;
-
-	CG::FVector HeadPos = Mesh->GetSocketLocation(Mesh->GetBoneName(13));
-	CG::FVector2D Screen = Cheat::unreal->W2S(HeadPos);
-	if (Screen.IsValid())
-		return false;
-
-	bool bIsOccluded = false;
-	CG::FHitResult HitResult;
-	bool Trace = Cheat::unreal->GetSystemLibrary()->LineTraceSingle((*CG::UWorld::GWorld),
-		CameraLocation, HeadPos, CG::ETraceTypeQuery::TraceTypeQuery1,
-		true, {}, CG::EDrawDebugTrace::ForDuration, &HitResult, true,
-		{ 1.f, 1.f, 1.f, 1.f }, { 1.f, 0.f, 0.f, 1.f }, 300.f);
-	if (Trace)
-	{
-		auto Actor = HitResult.Actor.Get();
-		if (Actor != nullptr)
-			bIsOccluded = true;
+	if (pTarget == nullptr) {
+		return;
 	}
 
-	if (bIsOccluded)
+	if (!ActorChecks(pTarget)) {
+		return;
+	}
+
+	CG::USkeletalMeshComponent* pMesh = pTarget->Mesh;
+	if (!IsValidObjectPtr(pMesh))
+		return;
+
+	CG::FVector vecHeadLocation = pMesh->GetSocketLocation(pMesh->GetBoneName(13));
+
+	CG::FVector vecDirection = (vecHeadLocation - vecCameraLocation).Unit();
+
+
+	if (bAutoFire || keyAimbot.IsDown()) {
+		pWeaponFire->Fire(pDRGPlayer->K2_GetActorLocation(), CG::FVector_NetQuantizeNormal(vecDirection), true);
+		bWasFiring = true;
+	}
+}
+
+bool Aimbot::ActorChecks(CG::AEnemyDeepPathfinderCharacter* pActor)
+{
+	if (!IsValidObjectPtr(pActor) || pActor->InternalIndex <= 0 || pActor->Name.ComparisonIndex <= 0)
 		return false;
 
-	CG::FRotator AimAngles = Cheat::unreal->GetMathLibrary()->FindLookAtRotation(CameraLocation, HeadPos);
-	CG::FRotator Delta = AimAngles - CameraRotation;
-	auto FOV = Delta.Clamp().Size();
-
-	if (fAimbotFOV <= FOV)
+	CG::UHealthComponentBase* pHealthComponent = pActor->HealthComponent;
+	if (!IsValidObjectPtr(pHealthComponent) || pHealthComponent->InternalIndex <= 0 || pHealthComponent->Name.ComparisonIndex == 0 || pHealthComponent->IsDead())
 		return false;
 
-	return true;
+	if (pActor->GetAttitude() == CG::EPawnAttitude::Friendly)
+		return false;
+
+	CG::USkeletalMeshComponent* pMesh = pActor->Mesh;
+	if (!IsValidObjectPtr(pMesh))
+		return false;
+
+	CG::FVector vecHeadLocation = pMesh->GetSocketLocation(pMesh->GetBoneName(13));
+
+	CG::FHitResult hrResult;
+	if (Cheat::unreal->GetSystemLibrary()->LineTraceSingle(
+		(*CG::UWorld::GWorld),
+		vecCameraLocation,
+		vecHeadLocation,
+		CG::ETraceTypeQuery::TraceTypeQuery1,
+		true, {},
+		CG::EDrawDebugTrace::ForDuration,
+		&hrResult, true,
+		{ 1.f, 1.f, 1.f, 1.f },
+		{ 1.f, 0.f, 0.f, 1.f },
+		300.f
+	)) {
+
+		// Voodoo magic
+		CG::AActor* pHitActor = hrResult.Actor.Get();
+		if (IsValidObjectPtr(pHitActor))
+			return false;
+	}
+
+	CG::FRotator rotGoalRotation = Cheat::unreal->GetMathLibrary()->FindLookAtRotation(vecCameraLocation, vecHeadLocation);
+	float flTargetFOV = (rotGoalRotation - rotCameraRotation).Clamp().Size();
+
+	return flAimFOV > flTargetFOV;
 }
 
 void Aimbot::Run()
@@ -199,39 +170,27 @@ void Aimbot::Run()
 	if (!bEnabled)
 		return;
 
-	auto PlayerController = Cheat::unreal->GetPlayerController();
-	if (!PlayerController)
-		return;
+	std::vector<CG::AEnemyDeepPathfinderCharacter*> apUnsortedActors = Cheat::unreal->GetActors<CG::AEnemyDeepPathfinderCharacter>();
+	std::vector<CG::AEnemyDeepPathfinderCharacter*> apActors = Cheat::unreal->SortActorsByDistance<CG::AEnemyDeepPathfinderCharacter*>(apUnsortedActors);
 
-	CG::FRotator CameraRotation = PlayerController->GetControlRotation();
-
-	CG::APlayerCameraManager* CameraManager = Cheat::unreal->GetPlayerCameraManager();
-	if (!CameraManager)
-		return;
-
-	CG::FVector CameraLocation = CameraManager->GetCameraLocation();
-
-	std::vector<CG::AEnemyDeepPathfinderCharacter*> UnsortedActors = Cheat::unreal->GetActors<CG::AEnemyDeepPathfinderCharacter>();
-	std::vector<CG::AEnemyDeepPathfinderCharacter*> Actors = Cheat::unreal->SortActorsByDistance<CG::AEnemyDeepPathfinderCharacter*>(UnsortedActors);
-
-	for (CG::AEnemyDeepPathfinderCharacter* Actor : Actors)
+	for (CG::AEnemyDeepPathfinderCharacter* pActor : apActors)
 	{
-		if (!Actor)
+		if (!IsValidObjectPtr(pActor))
 			continue;
 
-		if (!ActorChecks(Actor))
+		if (!ActorChecks(pActor))
 			continue;
 
-		Target = Actor;
+		pTarget = pActor;
 	}
 }
 
 void Aimbot::SaveConfig()
 {
 	Cheat::config->PushEntry("AIMBOT_ENABLED", "bool", std::to_string(bEnabled));
-	Cheat::config->PushEntry("AIMBOT_KEY", "int", std::to_string(AimbotKey.key));
-	Cheat::config->PushEntry("AIMBOT_FOV", "float", std::to_string(fAimbotFOV));
-	Cheat::config->PushEntry("AIMBOT_AUTOFIRE", "bool", std::to_string(bAutoFire));
+	Cheat::config->PushEntry("AIMBOT_AUTO_FIRE", "bool", std::to_string(bAutoFire));
+	Cheat::config->PushEntry("AIMBOT_KEY", "int", std::to_string(keyAimbot.key));
+	Cheat::config->PushEntry("AIMBOT_FOV", "float", std::to_string(flAimFOV));
 }
 
 void Aimbot::LoadConfig()
@@ -240,15 +199,15 @@ void Aimbot::LoadConfig()
 	if (entry.Name == "AIMBOT_ENABLED")
 		bEnabled = std::stoi(entry.Value);
 
+	entry = Cheat::config->GetEntryByName("AIMBOT_AUTO_FIRE");
+	if (entry.Name == "AIMBOT_AUTO_FIRE")
+		bAutoFire = std::stoi(entry.Value);
+
 	entry = Cheat::config->GetEntryByName("AIMBOT_KEY");
 	if (entry.Name == "AIMBOT_KEY")
-		AimbotKey.key = static_cast<ImGuiKey>(std::stoi(entry.Value));
+		keyAimbot.key = static_cast<ImGuiKey>(std::stoi(entry.Value));
 
 	entry = Cheat::config->GetEntryByName("AIMBOT_FOV");
 	if (entry.Name == "AIMBOT_FOV")
-		fAimbotFOV = std::stof(entry.Value);
-
-	entry = Cheat::config->GetEntryByName("AIMBOT_AUTOFIRE");
-	if (entry.Name == "AIMBOT_AUTOFIRE")
-		bAutoFire = std::stoi(entry.Value);
+		flAimFOV = std::stof(entry.Value);
 }
