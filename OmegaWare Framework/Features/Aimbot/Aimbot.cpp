@@ -22,12 +22,6 @@ bool Aimbot::Setup()
 	if (!Cheat::localization->AddToLocale("GER", "AIMBOT_FOV", "Sichtfeld"))
 		return false;
 
-	if (!Cheat::localization->AddToLocale("ENG", "AIMBOT_SMOOTH", "Smoothing"))
-		return false;
-
-	if (!Cheat::localization->AddToLocale("GER", "AIMBOT_SMOOTH", "Glätten"))
-		return false;
-
 	Cheat::localization->UpdateLocale();
 
 	Initialized = true;
@@ -56,7 +50,6 @@ void Aimbot::DrawMenuItems()
 			ImGui::Hotkey("#AimbotKey", AimbotKey, &bSetAimbotKey);
 
 			ImGui::SliderFloat(Cheat::localization->Get("AIMBOT_FOV").c_str(), &fAimbotFOV, 0.0f, 180.0f);
-			ImGui::SliderFloat(Cheat::localization->Get("AIMBOT_SMOOTH").c_str(), &fAimbotSmooth, 0.001f, 1.0f);
 		}
 	}
 	ImGui::EndChild();
@@ -232,7 +225,6 @@ void Aimbot::SaveConfig()
 	Cheat::config->PushEntry("AIMBOT_ENABLED", "bool", std::to_string(bEnabled));
 	Cheat::config->PushEntry("AIMBOT_KEY", "int", std::to_string(AimbotKey.key));
 	Cheat::config->PushEntry("AIMBOT_FOV", "float", std::to_string(fAimbotFOV));
-	Cheat::config->PushEntry("AIMBOT_SMOOTH", "float", std::to_string(fAimbotSmooth));
 }
 
 void Aimbot::LoadConfig()
@@ -248,8 +240,4 @@ void Aimbot::LoadConfig()
 	entry = Cheat::config->GetEntryByName("AIMBOT_FOV");
 	if (entry.Name == "AIMBOT_FOV")
 		fAimbotFOV = std::stof(entry.Value);
-
-	entry = Cheat::config->GetEntryByName("AIMBOT_SMOOTH");
-	if (entry.Name == "AIMBOT_SMOOTH")
-		fAimbotSmooth = std::stof(entry.Value);
 }
