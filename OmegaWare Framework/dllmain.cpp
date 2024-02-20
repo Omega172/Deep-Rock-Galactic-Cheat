@@ -23,7 +23,7 @@ namespace Cheat
 				return false;
 
 			//if (kiero::bind(13, reinterpret_cast<void**>(&oResizeBuffers), hkResizeBuffers) != kiero::Status::Success)
-				//return false;
+			//	return false;
 		}
 		else
 			return false;
@@ -74,14 +74,19 @@ namespace Cheat
 		Features.push_back(std::make_unique<PlayerModifications>());
 		Features.push_back(std::make_unique<WeaponModifications>());
 
-		for (size_t i = 0; i < Features.size(); i++) // A loop to grap the feature pointers and call their respective setup functions
-		{
-			bool bResult = Features[i]->Setup();
-			if (!bResult)
+
+		try {
+			for (size_t i = 0; i < Features.size(); i++) // A loop to grap the feature pointers and call their respective setup functions
 			{
-				Utils::LogError(Utils::GetLocation(CurrentLoc), "Failed to setup feature: " + std::to_string(i));
-				return false;
+				bool bResult = Features[i]->Setup();
+				if (!bResult)
+				{
+					Utils::LogError(Utils::GetLocation(CurrentLoc), "Failed to setup feature: " + std::to_string(i));
+					return false;
+				}
 			}
+		} catch (char* e) {
+			Utils::LogDebug(Utils::GetLocation(CurrentLoc), std::string(e));
 		}
 
 		config = std::make_unique<Config>(); // Initalize the config class
