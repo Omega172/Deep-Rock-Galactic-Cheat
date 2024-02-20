@@ -7,6 +7,15 @@ bool PlayerModifications::Setup()
 	if (!Cheat::localization->AddToLocale("ENG", "GODMODE", "Godmode"))
 		return false;
 
+	if (!Cheat::localization->AddToLocale("ENG", "RUNNING_SPEED", "Run Speed"))
+		return false;
+
+	if (!Cheat::localization->AddToLocale("ENG", "FLY_HACK", "Fly Hack"))
+		return false;
+
+	if (!Cheat::localization->AddToLocale("ENG", "FLY_FORCE", "Force"))
+		return false;
+
 	Cheat::localization->UpdateLocale();
 
 	Initialized = true;
@@ -31,6 +40,12 @@ void PlayerModifications::DrawMenuItems()
 	{
 		ImGui::Checkbox(Cheat::localization->Get("GODMODE").c_str(), &bGodMode);
 
+		ImGui::SliderFloat(Cheat::localization->Get("RUNNING_SPEED").c_str(), &flRunningSpeed, 100.f, 500.f);
+
+		ImGui::Checkbox(Cheat::localization->Get("FLY_HACK").c_str(), &bFlyHack);
+
+		if (bFlyHack)
+			ImGui::SliderFloat(Cheat::localization->Get("FLY_FORCE").c_str(), &flFlyForce, 100.f, 500.f);
 	}
 	ImGui::EndChild();
 }
@@ -49,18 +64,15 @@ void PlayerModifications::Run() {
 	if (!IsValidObjectPtr(pDRGPlayer))
 		return;
 
-	pDRGPlayer->RunningSpeed = 99999.f; //435.f
-	//pDRGPlayer->CarryingMovementSpeedPenalty = 0.f;
-
-	struct CG::FVector_NetQuantizeNormal vecUpwards {};
-
-	vecUpwards.X = 0.f;
-	vecUpwards.Y = 0.f;
-	vecUpwards.Z = 1.f;
-
-	if (pDRGPlayer->IsJumpPressed())
-		pDRGPlayer->Client_AddImpulse(vecUpwards, 200.f);
+	CG::ABP_PlayerController_C* pPlayerController = static_cast<CG::ABP_PlayerController_C*>(pUnreal->GetPlayerController());
+	if (!IsValidObjectPtr(pPlayerController))
+		return;
 	
+	pDRGPlayer->RunningSpeed = 4.35f * flRunningSpeed;
+
+	if (pDRGPlayer->IsJumpPressed() && !pDRGPlayer->CanJump() && bFlyHack)
+		pDRGPlayer->Client_AddImpulse(CG::FVector_NetQuantizeNormal(CG::FVector(0.f, 0.f, 1.f)), flFlyForce);
+
 	CG::UPlayerHealthComponent* pHealthComponent = pDRGPlayer->HealthComponent;
 	if (!IsValidObjectPtr(pHealthComponent))
 		return;
@@ -74,11 +86,28 @@ void PlayerModifications::Run() {
 	}
 }
 
-void PlayerModifications::SaveConfig() { Cheat::config->PushEntry("GODMODE", "bool", std::to_string(bGodMode)); }
+void PlayerModifications::SaveConfig() { 
+	Cheat::config->PushEntry("GODMODE", "bool", std::to_string(bGodMode)); 
+	Cheat::config->PushEntry("RUNNING_SPEED", "float", std::to_string(flRunningSpeed));
+	Cheat::config->PushEntry("FLY_HACK", "bool", std::to_string(bFlyHack));
+	Cheat::config->PushEntry("FLY_FORCE", "float", std::to_string(flFlyForce));
+}
 
 void PlayerModifications::LoadConfig()
 {
 	ConfigEntry entry = Cheat::config->GetEntryByName("GODMODE");
 	if (entry.Name == "GODMODE")
+		bGodMode = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("RUNNING_SPEED");
+	if (entry.Name == "RUNNING_SPEED")
+		bGodMode = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("FLY_HACK");
+	if (entry.Name == "FLY_HACK")
+		bGodMode = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("FLY_FORCE");
+	if (entry.Name == "FLY_FORCE")
 		bGodMode = std::stoi(entry.Value);
 }
