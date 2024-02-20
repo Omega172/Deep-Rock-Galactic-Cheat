@@ -51,6 +51,16 @@ void PlayerModifications::Run() {
 
 	
 	pDRGPlayer->RunningSpeed = 99999.f; //435.f
+	pDRGPlayer->CarryingMovementSpeedPenalty = 0.f;
+
+	struct CG::FVector_NetQuantizeNormal vecUpwards {};
+
+	vecUpwards.X = 0.f;
+	vecUpwards.Y = 0.f;
+	vecUpwards.Z = 1.f;
+
+	if (pDRGPlayer->IsJumpPressed())
+		pDRGPlayer->Client_AddImpulse(vecUpwards, 200.f);
 	
 	CG::UPlayerHealthComponent* pHealthComponent = pDRGPlayer->HealthComponent;
 	if (!IsValidObjectPtr(pHealthComponent))
