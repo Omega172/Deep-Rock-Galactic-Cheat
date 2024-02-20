@@ -1153,6 +1153,13 @@ namespace CG
 	 */
 	bool UObject::IsA(UClass* cmp) const
 	{
+		auto pKlass = Class;
+		if (!IsValidObjectPtr(pKlass))
+			return false;
+
+		if (!IsValidObjectPtr(pKlass->SuperField))
+			return false;
+
 		for (auto super = Class; super; super = static_cast<UClass*>(super->SuperField))
 		{
 			if (super == cmp)

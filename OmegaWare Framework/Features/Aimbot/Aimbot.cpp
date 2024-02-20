@@ -112,7 +112,7 @@ bool Aimbot::ActorChecks(CG::AEnemyDeepPathfinderCharacter* Actor)
 
 	CG::FVector CameraLocation = CameraManager->GetCameraLocation();
 
-	if (!IsValidObjectPtr(Actor))
+	if (!IsValidObjectPtr(Actor) || Actor->InternalIndex <= 0 || Actor->Name.ComparisonIndex <= 0)
 		return false;
 
 	if (!IsValidObjectPtr(Actor->HealthComponent))
@@ -122,13 +122,10 @@ bool Aimbot::ActorChecks(CG::AEnemyDeepPathfinderCharacter* Actor)
 	if (!IsValidObjectPtr(HealthComponent))
 		return false;
 
-	if (HealthComponent->InternalIndex == 0 || HealthComponent->Name.ComparisonIndex == 0)
+	if (HealthComponent->InternalIndex <= 0 || HealthComponent->Name.ComparisonIndex == 0)
 		return false;
 
 	if (HealthComponent->IsDead())
-		return false;
-
-	if (Actor->IsControlled())
 		return false;
 
 	if (Actor->GetAttitude() == CG::EPawnAttitude::Friendly)
