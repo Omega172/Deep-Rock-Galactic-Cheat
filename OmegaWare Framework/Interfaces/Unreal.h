@@ -4,9 +4,45 @@
 
 namespace DRG
 {
-	inline CG::FName GrappleGun;
-	inline CG::FName DoubleDrills;
-	inline CG::FName Pickaxe;
+	inline CG::FName WPN_AssaultRifle_C;
+	inline CG::FName WPN_Autocannon_C;
+	inline CG::FName WPN_BurstPistol_C;
+	inline CG::FName WPN_ChargeBlaster_C;
+	inline CG::FName WPN_CoilGun_C;
+	inline CG::FName WPN_CombatShotgun_C;
+	inline CG::FName WPN_Crossbow_C;
+	inline CG::FName WPN_Cryospray_C;
+	inline CG::FName WPN_DetPack_Detonator_C;
+	inline CG::FName WPN_DetPack_Detonator_Driller_C;
+	inline CG::FName WPN_DoubleDrills_C;
+	inline CG::FName WPN_DualMPs_C;
+	inline CG::FName WPN_FlameThrower_C;
+	inline CG::FName WPN_FlareGun_C;
+	inline CG::FName WPN_FuelLine_Builder_C;
+	inline CG::FName WPN_Gatling_C;
+	inline CG::FName WPN_GooCannon_C;
+	inline CG::FName WPN_GrapplingGun_C;
+	inline CG::FName WPN_GrenadeLauncher_C;
+	inline CG::FName WPN_HeavyParticleCannon_C;
+	inline CG::FName WPN_LaserPointer_C;
+	inline CG::FName WPN_LineCutter_C;
+	inline CG::FName WPN_LockOnRifle_C;
+	inline CG::FName WPN_M1000_C;
+	inline CG::FName WPN_MicroMissileLauncher_C;
+	inline CG::FName WPN_MicrowaveGun_C;
+	inline CG::FName WPN_Pickaxe_Driller_C;
+	inline CG::FName WPN_Pickaxe_Engineer_C;
+	inline CG::FName WPN_Pickaxe_Gunner_C;
+	inline CG::FName WPN_Pickaxe_Scout_C;
+	inline CG::FName WPN_Pistol_A_C;
+	inline CG::FName WPN_PlasmaCarbine_C;
+	inline CG::FName WPN_PlatformGun_C;
+	inline CG::FName WPN_RecallableSentryGun_C;
+	inline CG::FName WPN_Revolver_C;
+	inline CG::FName WPN_SawedOffShotgun_C;
+	inline CG::FName WPN_ShieldRegeneratorItem_C;
+	inline CG::FName WPN_SMG_OneHand_C;
+	inline CG::FName WPN_ZipLineGun_C;
 }
 
 class Unreal
