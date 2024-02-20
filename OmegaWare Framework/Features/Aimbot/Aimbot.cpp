@@ -91,11 +91,40 @@ void Aimbot::Render()
 
 	CG::FVector HeadPos = Mesh->GetSocketLocation(Mesh->GetBoneName(13));
 
-	CG::FRotator AimAngles = Cheat::unreal->GetMathLibrary()->FindLookAtRotation(CameraLocation, HeadPos);
-	CG::FRotator Delta = (AimAngles - CameraRotation);
+	CG::FVector vecDirection = (HeadPos - CameraLocation).Unit();
+
+	Unreal* pUnreal = Cheat::unreal.get();
+	if (!IsValidObjectPtr(pUnreal))
+		return;
+
+	CG::ABP_PlayerCharacter_C* pDRGPlayer = static_cast<CG::ABP_PlayerCharacter_C*>(pUnreal->GetAcknowledgedPawn());
+	if (!IsValidObjectPtr(pDRGPlayer))
+		return;
+
+	CG::AItem* pItem = pDRGPlayer->GetEquippedItem();
+	if (!IsValidObjectPtr(pItem))
+		return;
+
+	CG::UItemID* pItemID = pItem->ItemID;
+	if (!IsValidObjectPtr(pItemID))
+		return;
+
+	if (!IsValidObjectPtr(pItemID->GetItemData())) // Important we check this, will stop us from resupplying the "pipeline" LOL
+		return;
+
+	if (!pItem->IsA(CG::AAmmoDrivenWeapon::StaticClass()))
+		return;
+
+	CG::AAmmoDrivenWeapon* pWeapon = static_cast<CG::AAmmoDrivenWeapon*>(pItem);
+	if (!IsValidObjectPtr(pWeapon))
+		return;
+
+	CG::UWeaponFireComponent* pWeaponFire = pWeapon->WeaponFire;
+	if (!IsValidObjectPtr(pWeaponFire))
+		return;
 
 	if (AimbotKey.IsDown())
-		PlayerController->SetControlRotation(CameraRotation + (Delta * fAimbotSmooth));
+		pWeaponFire->Fire(pDRGPlayer->K2_GetActorLocation(), CG::FVector_NetQuantizeNormal(vecDirection), true);
 }
 
 bool Aimbot::ActorChecks(CG::AEnemyDeepPathfinderCharacter* Actor)

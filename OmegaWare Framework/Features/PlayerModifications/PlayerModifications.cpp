@@ -58,7 +58,7 @@ void PlayerModifications::DrawMenuItems()
 		ImGui::Checkbox(Cheat::localization->Get("FLY_HACK").c_str(), &bFlyHack);
 
 		if (bFlyHack)
-			ImGui::SliderFloat(Cheat::localization->Get("FLY_FORCE").c_str(), &flFlyForce, 100.f, 500.f);
+			ImGui::SliderFloat(Cheat::localization->Get("FLY_FORCE").c_str(), &flFlyForce, 1.f, 10.f);
 	}
 	ImGui::EndChild();
 }
@@ -71,6 +71,10 @@ void PlayerModifications::Run() {
 
 	Unreal* pUnreal = Cheat::unreal.get();
 	if (!IsValidObjectPtr(pUnreal))
+		return;
+
+	CG::AGameStateBase* pGameState = pUnreal->GetGameStateBase();
+	if (!IsValidObjectPtr(pGameState))
 		return;
 
 	CG::ABP_PlayerCharacter_C* pDRGPlayer = static_cast<CG::ABP_PlayerCharacter_C*>(pUnreal->GetAcknowledgedPawn());

@@ -195,6 +195,10 @@ void WeaponModifications::Run() {
 	if (!IsValidObjectPtr(pWeapon))
 		return;
 
+	CG::UWeaponFireComponent* pWeaponFire = pWeapon->WeaponFire;
+	if (!IsValidObjectPtr(pWeaponFire))
+		return;
+
 	pWeapon->HasAutomaticFire = true;
 	if (bNoReload && !pWeapon->IsClipFull())
 		pWeapon->InstantlyReload();
