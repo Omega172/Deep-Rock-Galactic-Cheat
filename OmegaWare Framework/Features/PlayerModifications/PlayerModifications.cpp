@@ -34,6 +34,7 @@ void PlayerModifications::DrawMenuItems()
 	ImGui::BeginChild("GODMODE", ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y / 2), ImGuiChildFlags_Border);
 	{
 		ImGui::Checkbox(Cheat::localization->Get("GODMODE").c_str(), &bGodMode);
+
 	}
 	ImGui::EndChild();
 }
@@ -51,6 +52,9 @@ void PlayerModifications::Run() {
 	CG::ABP_PlayerCharacter_C* pDRGPlayer = static_cast<CG::ABP_PlayerCharacter_C*>(pUnreal->GetAcknowledgedPawn());
 	if (!IsValidObjectPtr(pDRGPlayer))
 		return;
+
+	
+	pDRGPlayer->RunningSpeed = 99999.f; //435.f
 	
 	CG::UPlayerHealthComponent* pHealthComponent = pDRGPlayer->HealthComponent;
 	if (!IsValidObjectPtr(pHealthComponent))

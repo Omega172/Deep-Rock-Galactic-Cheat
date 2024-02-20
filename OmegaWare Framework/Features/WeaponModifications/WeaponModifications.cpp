@@ -68,9 +68,6 @@ bool WeaponModifications::Setup()
 		return false;
 	}
 
-	DRG::GrappleGun = CG::FName("WPN_GrapplingGun_C");
-	DRG::DoubleDrills = CG::FName("WPN_DoubleDrills_C");
-
 	Initialized = true;
 	return Initialized;
 }
@@ -132,13 +129,14 @@ void WeaponModifications::Run() {
 	if (!IsValidObjectPtr(pItemID->GetItemData())) // Important we check this, will stop us from resupplying the "pipeline" LOL
 		return;
 
-	std::cout << pItem->Name.GetName() << '\n';
+	int32_t iNameCompIndex = pItem->Name.ComparisonIndex;
 
-	if (pItem->Name.ComparisonIndex == DRG::GrappleGun.ComparisonIndex) {
+
+	if (iNameCompIndex == DRG::WPN_GrapplingGun_C.ComparisonIndex) {
 		CG::AWPN_GrapplingGun_C* pGrapplingGun = static_cast<CG::AWPN_GrapplingGun_C*>(pItem);
 		if (!IsValidObjectPtr(pGrapplingGun))
 			return;
-		
+
 		if (!bNoGrappleRestrictions) {
 			pGrapplingGun->MaxSpeed = 2250.f;
 			return;
@@ -150,10 +148,34 @@ void WeaponModifications::Run() {
 		CG::UCoolDownItemAggregator* pCoolDown = pGrapplingGun->CoolDownAggregator;
 		if (IsValidObjectPtr(pCoolDown))
 			pCoolDown->CooldownRemaining = 0.f;
-		
+
 		return;
 	}
 
+	if (iNameCompIndex == DRG::WPN_Pickaxe_Driller_C.ComparisonIndex ||
+		iNameCompIndex == DRG::WPN_Pickaxe_Engineer_C.ComparisonIndex ||
+		iNameCompIndex == DRG::WPN_Pickaxe_Gunner_C.ComparisonIndex ||
+		iNameCompIndex == DRG::WPN_Pickaxe_Scout_C.ComparisonIndex) 
+	{
+
+		CG::AWPN_Pickaxe_C* pPickaxe = static_cast<CG::AWPN_Pickaxe_C*>(pItem);
+		if (!IsValidObjectPtr(pPickaxe))
+			return;
+
+		pPickaxe->DamageRange = (true) ? 999999.f : 200.f;
+		pPickaxe->SpecialCooldownRemaining = 0.f;
+
+		return;
+	}
+
+	if (iNameCompIndex == DRG::WPN_SawedOffShotgun_C.ComparisonIndex) {
+		CG::AWPN_SawedOffShotgun_C* pShotgun = static_cast<CG::AWPN_SawedOffShotgun_C*>(pItem);
+		if (!IsValidObjectPtr(pShotgun))
+			return;
+
+		pShotgun->ShotgunJumpEnabled = true;
+
+	}
 
 
 	if (bInfiniteAmmo)
@@ -166,8 +188,6 @@ void WeaponModifications::Run() {
 	else {
 		pItem->ManualCooldownDelay = 1.f;
 	}
-
-	//std::cout << (pItem->IsA(CG::AWPN_GrapplingGun_C::StaticClass()) ? "true" : "false") << '\n';
 
 	if (!pItem->IsA(CG::AAmmoDrivenWeapon::StaticClass()))
 		return;	

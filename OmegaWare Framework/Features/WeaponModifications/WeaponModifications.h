@@ -10,6 +10,8 @@ private:
 	bool bNoReload = false;
 	bool bNoRecoil = false;
 
+	bool bPickaxeReach = false;
+
 	bool bNoGrappleRestrictions = false;
 	float fGrappleMaxSpeed = 100.f;
 
