@@ -6,6 +6,7 @@ class Aimbot : public Feature
 private:
 	bool Initialized = false;
 	bool bEnabled = false;
+	bool bAutoFire = false;
 	KeyBind AimbotKey = KeyBind(ImGuiKey_MouseX1);
 	bool bSetAimbotKey = false;
 

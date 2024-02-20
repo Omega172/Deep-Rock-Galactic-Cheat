@@ -122,13 +122,13 @@ void PlayerModifications::LoadConfig()
 
 	entry = Cheat::config->GetEntryByName("RUNNING_SPEED");
 	if (entry.Name == "RUNNING_SPEED")
-		flRunningSpeed = std::stoi(entry.Value);
+		bGodMode = std::stoi(entry.Value);
 
 	entry = Cheat::config->GetEntryByName("FLY_HACK");
 	if (entry.Name == "FLY_HACK")
-		bFlyHack = std::stoi(entry.Value);
+		bGodMode = std::stoi(entry.Value);
 
 	entry = Cheat::config->GetEntryByName("FLY_FORCE");
 	if (entry.Name == "FLY_FORCE")
-		flFlyForce = std::stoi(entry.Value);
+		bGodMode = std::stoi(entry.Value);
 }

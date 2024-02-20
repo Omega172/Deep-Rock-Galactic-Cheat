@@ -22,6 +22,9 @@ bool Aimbot::Setup()
 	if (!Cheat::localization->AddToLocale("GER", "AIMBOT_FOV", "Sichtfeld"))
 		return false;
 
+	if (!Cheat::localization->AddToLocale("ENG", "AIMBOT_AUTOFIRE", "Auto Fire"))
+		return false;
+
 	Cheat::localization->UpdateLocale();
 
 	Initialized = true;
@@ -46,6 +49,9 @@ void Aimbot::DrawMenuItems()
 		ImGui::Checkbox(Cheat::localization->Get("AIMBOT").c_str(), &bEnabled);
 		if (bEnabled)
 		{
+			ImGui::SameLine();
+			ImGui::Checkbox(Cheat::localization->Get("AIMBOT_AUTOFIRE").c_str(), &bAutoFire);
+
 			ImGui::Text(Cheat::localization->Get("AIMBOT_KEY").c_str());
 			ImGui::Hotkey("#AimbotKey", AimbotKey, &bSetAimbotKey);
 
@@ -116,7 +122,7 @@ void Aimbot::Render()
 	if (!IsValidObjectPtr(pWeaponFire))
 		return;
 
-	if (AimbotKey.IsDown())
+	if (AimbotKey.IsDown() || bAutoFire)
 		pWeaponFire->Fire(pDRGPlayer->K2_GetActorLocation(), CG::FVector_NetQuantizeNormal(vecDirection), true);
 }
 
@@ -225,6 +231,7 @@ void Aimbot::SaveConfig()
 	Cheat::config->PushEntry("AIMBOT_ENABLED", "bool", std::to_string(bEnabled));
 	Cheat::config->PushEntry("AIMBOT_KEY", "int", std::to_string(AimbotKey.key));
 	Cheat::config->PushEntry("AIMBOT_FOV", "float", std::to_string(fAimbotFOV));
+	Cheat::config->PushEntry("AIMBOT_AUTOFIRE", "bool", std::to_string(bAutoFire));
 }
 
 void Aimbot::LoadConfig()
@@ -240,4 +247,8 @@ void Aimbot::LoadConfig()
 	entry = Cheat::config->GetEntryByName("AIMBOT_FOV");
 	if (entry.Name == "AIMBOT_FOV")
 		fAimbotFOV = std::stof(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("AIMBOT_AUTOFIRE");
+	if (entry.Name == "AIMBOT_AUTOFIRE")
+		bAutoFire = std::stoi(entry.Value);
 }
