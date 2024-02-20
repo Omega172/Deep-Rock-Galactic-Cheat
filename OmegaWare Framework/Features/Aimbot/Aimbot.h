@@ -10,7 +10,6 @@ private:
 	bool bSetAimbotKey = false;
 
 	float fAimbotFOV = 90.0f;
-	float fAimbotSmooth = 1.0f;
 
 	CG::AEnemyDeepPathfinderCharacter* Target = nullptr;
 
