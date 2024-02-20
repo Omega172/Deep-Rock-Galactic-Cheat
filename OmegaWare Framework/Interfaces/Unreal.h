@@ -97,10 +97,7 @@ public:
 		for (CG::AActor* actor : Actors)
 		{
 			// I'm not sure if these are the best way to check if the actor is valid but it works for me
-			if (!actor || !actor->bCanBeDamaged) 
-				continue;
-
-			if (!Utils::IsReadableMemory(actor, sizeof(actor)))
+			if (!IsValidObjectPtr(actor) || !actor->bCanBeDamaged)
 				continue;
 
 			if (actor->IsA(T::StaticClass())) // Check if the actor is of the type we want

@@ -49,9 +49,8 @@ void PlayerModifications::Run() {
 	if (!IsValidObjectPtr(pDRGPlayer))
 		return;
 
-	
 	pDRGPlayer->RunningSpeed = 99999.f; //435.f
-	pDRGPlayer->CarryingMovementSpeedPenalty = 0.f;
+	//pDRGPlayer->CarryingMovementSpeedPenalty = 0.f;
 
 	struct CG::FVector_NetQuantizeNormal vecUpwards {};
 

@@ -112,7 +112,13 @@ void WeaponModifications::Run() {
 	if (!IsValidObjectPtr(pDRGPlayer))
 		return;
 
+	CG::UInventoryComponent* pInventoryComponent = pDRGPlayer->InventoryComponent;
+	if (!pInventoryComponent || !IsValidObjectPtr(pInventoryComponent))
+		return;
 
+	CG::UInventoryList* pInventoryList = pInventoryComponent->InventoryList;
+	if (!pInventoryList || !IsValidObjectPtr(pInventoryList))
+		return;
 
 	CG::AItem* pItem = pDRGPlayer->GetEquippedItem();
 	if (!IsValidObjectPtr(pItem))
