@@ -94,13 +94,25 @@ public:
 	{
 		std::vector<T*> actors;
 
+		if (!IsValidObjectPtr((*CG::UWorld::GWorld)->GameState))
+			return actors;
+
+		if ((*CG::UWorld::GWorld)->GameState->ReplicatedWorldTimeSeconds <= 5)
+			return actors;
+
+		CG::ULocalPlayer* pLocalPlayer = GetLocalPlayer();
+		if (!IsValidObjectPtr(pLocalPlayer))
+			return actors;
+
 		for (CG::AActor* actor : Actors)
 		{
 			// I'm not sure if these are the best way to check if the actor is valid but it works for me
 			if (!IsValidObjectPtr(actor) || !actor->bCanBeDamaged)
 				continue;
 
-			if (actor->IsA(T::StaticClass())) // Check if the actor is of the type we want
+			CG::UClass* pClass = T::StaticClass();
+
+			if (actor->IsA(pClass)) // Check if the actor is of the type we want
 				actors.push_back(reinterpret_cast<T*>(actor)); // If it is add it to the vector
 		}
 
