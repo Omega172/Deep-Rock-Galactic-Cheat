@@ -149,10 +149,10 @@ void WeaponModifications::Run() {
 		return;
 	}
 
-	if (iNameCompIndex == DRG::WPN_Pickaxe_Driller_C.ComparisonIndex ||
-		iNameCompIndex == DRG::WPN_Pickaxe_Engineer_C.ComparisonIndex ||
-		iNameCompIndex == DRG::WPN_Pickaxe_Gunner_C.ComparisonIndex ||
-		iNameCompIndex == DRG::WPN_Pickaxe_Scout_C.ComparisonIndex) 
+	if (pItem->Name.ComparisonIndex == DRG::WPN_Pickaxe_Driller_C.ComparisonIndex ||
+		pItem->Name.ComparisonIndex == DRG::WPN_Pickaxe_Engineer_C.ComparisonIndex ||
+		pItem->Name.ComparisonIndex == DRG::WPN_Pickaxe_Gunner_C.ComparisonIndex ||
+		pItem->Name.ComparisonIndex == DRG::WPN_Pickaxe_Scout_C.ComparisonIndex)
 	{
 
 		CG::AWPN_Pickaxe_C* pPickaxe = static_cast<CG::AWPN_Pickaxe_C*>(pItem);
@@ -165,7 +165,7 @@ void WeaponModifications::Run() {
 		return;
 	}
 
-	if (iNameCompIndex == DRG::WPN_SawedOffShotgun_C.ComparisonIndex) {
+	if (pItem->Name.ComparisonIndex == DRG::WPN_SawedOffShotgun_C.ComparisonIndex) {
 		CG::AWPN_SawedOffShotgun_C* pShotgun = static_cast<CG::AWPN_SawedOffShotgun_C*>(pItem);
 		if (!IsValidObjectPtr(pShotgun))
 			return;
