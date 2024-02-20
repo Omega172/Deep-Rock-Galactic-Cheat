@@ -23,8 +23,20 @@ bool PlayerModifications::Setup()
 }
 
 void PlayerModifications::Destroy() {
-	Initialized = false;
+	if (!Initialized)
+		return;
 
+	Unreal* pUnreal = Cheat::unreal.get();
+	if (!IsValidObjectPtr(pUnreal))
+		return;
+
+	CG::ABP_PlayerCharacter_C* pDRGPlayer = static_cast<CG::ABP_PlayerCharacter_C*>(pUnreal->GetAcknowledgedPawn());
+	if (!IsValidObjectPtr(pDRGPlayer))
+		return;
+
+	pDRGPlayer->RunningSpeed = 435.f;
+
+	Initialized = false;
 }
 
 void PlayerModifications::HandleKeys() {}
