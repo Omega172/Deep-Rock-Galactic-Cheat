@@ -4,6 +4,46 @@ WeaponModifications::WeaponModifications() {};
 
 bool WeaponModifications::Setup()
 {
+#define FNAME_INITIALIZATION_MACRO(n) DRG::n = CG::FName(#n)
+	FNAME_INITIALIZATION_MACRO(WPN_AssaultRifle_C);
+	FNAME_INITIALIZATION_MACRO(WPN_Autocannon_C);
+	FNAME_INITIALIZATION_MACRO(WPN_BurstPistol_C);
+	FNAME_INITIALIZATION_MACRO(WPN_ChargeBlaster_C);
+	FNAME_INITIALIZATION_MACRO(WPN_CoilGun_C);
+	FNAME_INITIALIZATION_MACRO(WPN_CombatShotgun_C);
+	FNAME_INITIALIZATION_MACRO(WPN_Crossbow_C);
+	FNAME_INITIALIZATION_MACRO(WPN_Cryospray_C);
+	FNAME_INITIALIZATION_MACRO(WPN_DetPack_Detonator_C);
+	FNAME_INITIALIZATION_MACRO(WPN_DetPack_Detonator_Driller_C);
+	FNAME_INITIALIZATION_MACRO(WPN_DoubleDrills_C);
+	FNAME_INITIALIZATION_MACRO(WPN_DualMPs_C);
+	FNAME_INITIALIZATION_MACRO(WPN_FlameThrower_C);
+	FNAME_INITIALIZATION_MACRO(WPN_FlareGun_C);
+	FNAME_INITIALIZATION_MACRO(WPN_FuelLine_Builder_C);
+	FNAME_INITIALIZATION_MACRO(WPN_Gatling_C);
+	FNAME_INITIALIZATION_MACRO(WPN_GrapplingGun_C);
+	FNAME_INITIALIZATION_MACRO(WPN_GrenadeLauncher_C);
+	FNAME_INITIALIZATION_MACRO(WPN_HeavyParticleCannon_C);
+	FNAME_INITIALIZATION_MACRO(WPN_LineCutter_C);
+	FNAME_INITIALIZATION_MACRO(WPN_LockOnRifle_C);
+	FNAME_INITIALIZATION_MACRO(WPN_M1000_C);
+	FNAME_INITIALIZATION_MACRO(WPN_MicroMissileLauncher_C);
+	FNAME_INITIALIZATION_MACRO(WPN_MicrowaveGun_C);
+	FNAME_INITIALIZATION_MACRO(WPN_Pickaxe_Driller_C);
+	FNAME_INITIALIZATION_MACRO(WPN_Pickaxe_Engineer_C);
+	FNAME_INITIALIZATION_MACRO(WPN_Pickaxe_Gunner_C);
+	FNAME_INITIALIZATION_MACRO(WPN_Pickaxe_Scout_C);
+	FNAME_INITIALIZATION_MACRO(WPN_Pistol_A_C);
+	FNAME_INITIALIZATION_MACRO(WPN_PlasmaCarbine_C);
+	FNAME_INITIALIZATION_MACRO(WPN_PlatformGun_C);
+	FNAME_INITIALIZATION_MACRO(WPN_RecallableSentryGun_C);
+	FNAME_INITIALIZATION_MACRO(WPN_Revolver_C);
+	FNAME_INITIALIZATION_MACRO(WPN_SawedOffShotgun_C);
+	FNAME_INITIALIZATION_MACRO(WPN_ShieldRegeneratorItem_C);
+	FNAME_INITIALIZATION_MACRO(WPN_SMG_OneHand_C);
+	FNAME_INITIALIZATION_MACRO(WPN_ZipLineGun_C);
+#undef FNAME_INITIALIZATION_MACRO
+
 	if (!Cheat::localization->AddToLocale("ENG", "INFINITE_AMMO", "Infinite Ammo"))
 		return false;
 
@@ -91,6 +131,8 @@ void WeaponModifications::Run() {
 
 	if (!IsValidObjectPtr(pItemID->GetItemData())) // Important we check this, will stop us from resupplying the "pipeline" LOL
 		return;
+
+	std::cout << pItem->Name.GetName() << '\n';
 
 	if (pItem->Name.ComparisonIndex == DRG::GrappleGun.ComparisonIndex) {
 		CG::AWPN_GrapplingGun_C* pGrapplingGun = static_cast<CG::AWPN_GrapplingGun_C*>(pItem);
