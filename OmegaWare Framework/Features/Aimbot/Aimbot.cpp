@@ -128,6 +128,12 @@ bool Aimbot::ActorChecks(CG::AEnemyDeepPathfinderCharacter* Actor)
 	if (HealthComponent->IsDead())
 		return false;
 
+	if (Actor->IsControlled())
+		return false;
+
+	if (Actor->GetAttitude() == CG::EPawnAttitude::Friendly)
+		return false;
+
 	CG::USkeletalMeshComponent* Mesh = Actor->Mesh;
 	if (!IsValidObjectPtr(Mesh))
 		return false;
