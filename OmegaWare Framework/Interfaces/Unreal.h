@@ -157,17 +157,18 @@ public:
 	}
 
 	// Completely untested at the moment but I think it should work
-	static std::vector<CG::AActor*> SortActorsByDistance(std::vector<CG::AActor*> actors)
+	template <typename T>
+	static std::vector<T> SortActorsByDistance(std::vector<T> actors)
 	{
-		std::vector<CG::AActor*> SortedActors = actors;
+		std::vector<T> SortedActors = actors;
 
 		// Remove invalid actors
-		SortedActors.erase(std::remove_if(SortedActors.begin(), SortedActors.end(), [](CG::AActor* Actor)
+		SortedActors.erase(std::remove_if(SortedActors.begin(), SortedActors.end(), [](T Actor)
 		{
 			return !IsActorValid(Actor);
 		}), SortedActors.end());
 
-		std::sort(SortedActors.begin(), SortedActors.end(), [](CG::AActor* ActorA, CG::AActor* ActorB)
+		std::sort(SortedActors.begin(), SortedActors.end(), [](T ActorA, T ActorB)
 		{
 			CG::APlayerController* PlayerController = GetPlayerController();
 			if (!PlayerController)

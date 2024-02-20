@@ -29,6 +29,7 @@
     <ClCompile Include="SDK\BP_PlayerCharacter_Package.cpp" />
     <ClCompile Include="SDK\WPN_DoubleDrills_Package.cpp" />
     <ClCompile Include="SDK\WPN_Pickaxe_Package.cpp" />
+    <ClCompile Include="Features\Aimbot\Aimbot.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utils\Console\Console.h" />
@@ -65,6 +66,7 @@
     <ClInclude Include="Features\WeaponModifications\WeaponModifications.h" />
     <ClInclude Include="Features\PlayerModifications\PlayerModifications.h" />
     <ClInclude Include="Features\Fullbright\Fullbright.h" />
+    <ClInclude Include="Features\Aimbot\Aimbot.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

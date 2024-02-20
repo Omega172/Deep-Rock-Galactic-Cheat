@@ -107,6 +107,7 @@
   <ItemGroup>
     <ClCompile Include="Config\Config.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="Features\Aimbot\Aimbot.cpp" />
     <ClCompile Include="Features\Fullbright\Fullbright.cpp" />
     <ClCompile Include="Features\PlayerModifications\PlayerModifications.cpp" />
     <ClCompile Include="Features\WeaponModifications\WeaponModifications.cpp" />
@@ -139,6 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Config\Config.h" />
+    <ClInclude Include="Features\Aimbot\Aimbot.h" />
     <ClInclude Include="Features\Feature.h" />
     <ClInclude Include="Features\Fullbright\Fullbright.h" />
     <ClInclude Include="Features\PlayerModifications\PlayerModifications.h" />

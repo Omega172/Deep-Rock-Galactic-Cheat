@@ -73,6 +73,7 @@ namespace Cheat
 		Features.push_back(std::make_unique<Fullbright>());
 		Features.push_back(std::make_unique<PlayerModifications>());
 		Features.push_back(std::make_unique<WeaponModifications>());
+		Features.push_back(std::make_unique<Aimbot>());
 
 		try {
 			for (size_t i = 0; i < Features.size(); i++) // A loop to grap the feature pointers and call their respective setup functions
