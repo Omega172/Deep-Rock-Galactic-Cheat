@@ -85,6 +85,22 @@ bool Localization::AddToLocale(std::string LocaleCode, std::string Key, std::str
 	return false;
 }
 
+bool Localization::AddToLocale(std::string LocaleCode, std::vector<LocaleData> arrLocaleData)
+{
+	for (LocalizationData& Locale : Cheat::Locales)
+	{
+		if (Locale.LocaleCode == HASH(LocaleCode))
+		{
+			for (LocaleData LocaleData : arrLocaleData)
+				Locale.Locales.push_back(LocaleData);
+
+			return true;
+		}
+	}
+
+	return false;
+}
+
 bool Localization::UpdateLocale()
 {
 	Cheat::CurrentLocale.LocaleCode;
