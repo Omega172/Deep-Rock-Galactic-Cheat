@@ -13,7 +13,7 @@ bool Aimbot::Setup()
 	if (!Cheat::localization->AddToLocale("ENG", "AIMBOT_KEY", "Aim Key"))
 		return false;
 
-	if (!Cheat::localization->AddToLocale("GER", "AIMBOT_KEY", "Zielbot-Schlüssel"))
+	if (!Cheat::localization->AddToLocale("GER", "AIMBOT_KEY", u8"Zielbot-Schlüssel"))
 		return false;
 
 	if (!Cheat::localization->AddToLocale("ENG", "AIMBOT_FOV", "FOV"))
@@ -23,6 +23,9 @@ bool Aimbot::Setup()
 		return false;
 
 	if (!Cheat::localization->AddToLocale("ENG", "AIMBOT_AUTOFIRE", "Auto Fire"))
+		return false;
+
+	if (!Cheat::localization->AddToLocale("GER", "AIMBOT_AUTOFIRE", "Automatisches Feuer"))
 		return false;
 
 	Cheat::localization->UpdateLocale();

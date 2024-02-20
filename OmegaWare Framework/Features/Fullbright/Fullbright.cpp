@@ -7,6 +7,9 @@ bool Fullbright::Setup()
 	if (!Cheat::localization->AddToLocale("ENG", "FULLBRIGHT", "Fullbright"))
 		return false;
 
+	if (!Cheat::localization->AddToLocale("GER", "FULLBRIGHT", "Vollhelligkeit"))
+		return false;
+
 	Cheat::localization->UpdateLocale();
 
 	Initialized = true;

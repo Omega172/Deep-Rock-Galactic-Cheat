@@ -1,4 +1,4 @@
-#include "pch.h"
+﻿#include "pch.h"
 
 WeaponModifications::WeaponModifications() {};
 
@@ -47,19 +47,37 @@ bool WeaponModifications::Setup()
 	if (!Cheat::localization->AddToLocale("ENG", "INFINITE_AMMO", "Infinite Ammo"))
 		return false;
 
+	if (!Cheat::localization->AddToLocale("GER", "INFINITE_AMMO", "Unbegrenzte Munition"))
+		return false;
+
 	if (!Cheat::localization->AddToLocale("ENG", "NO_OVERHEATING", "No Overheating"))
+		return false;
+
+	if (!Cheat::localization->AddToLocale("GER", "NO_OVERHEATING", "Keine Überhitzung"))
 		return false;
 
 	if (!Cheat::localization->AddToLocale("ENG", "NO_RELOAD", "No Reload"))
 		return false;
 
+	if (!Cheat::localization->AddToLocale("GER", "NO_RELOAD", "Kein Nachladen"))
+		return false;
+
 	if (!Cheat::localization->AddToLocale("ENG", "NO_RECOIL", "No Recoil"))
+		return false;
+
+	if (!Cheat::localization->AddToLocale("GER", "NO_RECOIL", "Kein Rückstoss"))
 		return false;
 
 	if (!Cheat::localization->AddToLocale("ENG", "GRAPPLE_RESTRICTIONS", "No Grapple Restrictions"))
 		return false;
 
+	if (!Cheat::localization->AddToLocale("GER", "GRAPPLE_RESTRICTIONS", u8"Keine Grappling-Einschränkungen"))
+		return false;
+
 	if (!Cheat::localization->AddToLocale("ENG", "GRAPPLE_MAX_SPEED", "Speed"))
+		return false;
+
+	if (!Cheat::localization->AddToLocale("GER", "GRAPPLE_MAX_SPEED", "Geschwindigkeit"))
 		return false;
 
 	Cheat::localization->UpdateLocale();

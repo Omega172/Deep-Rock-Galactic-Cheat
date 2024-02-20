@@ -105,5 +105,5 @@ inline void ImportFonts()
 
 	ImFontConfig Config;
 	Config.GlyphExtraSpacing.x = 1.f;
-	tahomaFontESP = io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\Tahoma.ttf", 14.0f, &Config);
+	tahomaFontESP = io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\Tahoma.ttf", 14.0f, &Config, io.Fonts->GetGlyphRangesDefault());
 }

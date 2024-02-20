@@ -7,13 +7,25 @@ bool PlayerModifications::Setup()
 	if (!Cheat::localization->AddToLocale("ENG", "GODMODE", "Godmode"))
 		return false;
 
+	if (!Cheat::localization->AddToLocale("GER", "GODMODE", "Gottmodus"))
+		return false;
+
 	if (!Cheat::localization->AddToLocale("ENG", "RUNNING_SPEED", "Run Speed"))
 		return false;
 
-	if (!Cheat::localization->AddToLocale("ENG", "FLY_HACK", "Fly Hack"))
+	if (!Cheat::localization->AddToLocale("GER", "RUNNING_SPEED", "Laufgeschwindigkeit"))
+		return false;
+
+	if (!Cheat::localization->AddToLocale("ENG", "FLY_HACK", "Jetpack"))
+		return false;
+
+	if (!Cheat::localization->AddToLocale("GER", "FLY_HACK", "Raketenrucksack"))
 		return false;
 
 	if (!Cheat::localization->AddToLocale("ENG", "FLY_FORCE", "Force"))
+		return false;
+
+	if (!Cheat::localization->AddToLocale("GER", "FLY_FORCE", "Gewalt"))
 		return false;
 
 	Cheat::localization->UpdateLocale();
