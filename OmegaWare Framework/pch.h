@@ -184,6 +184,7 @@ namespace Cheat
 #include "Features/PlayerModifications/PlayerModifications.h"
 #include "Features/WeaponModifications/WeaponModifications.h"
 #include "Features/Aimbot/Aimbot.h"
+#include "Features/ESP/ESP.h"
 
 // https://stackoverflow.com/questions/13048301/pointer-to-array-of-base-class-populate-with-derived-class
 inline std::vector<std::unique_ptr<Feature>> Features; // A vector of unique pointers to the Feature class that is used to store the features for the framework

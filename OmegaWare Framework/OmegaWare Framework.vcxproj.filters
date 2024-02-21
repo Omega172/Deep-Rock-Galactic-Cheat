@@ -30,6 +30,7 @@
     <ClCompile Include="SDK\WPN_DoubleDrills_Package.cpp" />
     <ClCompile Include="SDK\WPN_Pickaxe_Package.cpp" />
     <ClCompile Include="Features\Aimbot\Aimbot.cpp" />
+    <ClCompile Include="Features\ESP\ESP.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utils\Console\Console.h" />
@@ -68,6 +69,7 @@
     <ClInclude Include="Features\Fullbright\Fullbright.h" />
     <ClInclude Include="Features\Aimbot\Aimbot.h" />
     <ClInclude Include="Localization\Locales\German.h" />
+    <ClInclude Include="Features\ESP\ESP.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

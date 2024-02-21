@@ -94,6 +94,9 @@ public:
 	{
 		std::vector<T*> actors;
 
+		if (!IsValidObjectPtr(*CG::UWorld::GWorld))
+			return actors;
+
 		if (!IsValidObjectPtr((*CG::UWorld::GWorld)->GameState))
 			return actors;
 
