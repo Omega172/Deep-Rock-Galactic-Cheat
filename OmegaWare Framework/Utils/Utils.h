@@ -8,8 +8,6 @@
 
 namespace Utils
 {
-	std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> StringConverter;
-
 	// Functions to check if memory is readable
 	bool IsReadableMemory(void* ptr, size_t byteCount);
 	bool IsReadableMemory(const void* ptr, size_t byteCount); 
