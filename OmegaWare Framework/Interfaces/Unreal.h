@@ -282,10 +282,13 @@ public:
 		// Remove invalid actors
 		SortedActors.erase(std::remove_if(SortedActors.begin(), SortedActors.end(), [](T Actor)
 		{
-			return !IsActorValid(Actor);
+			if (!IsActorValid(Actor))
+				return true;
+
+			return false;
 		}), SortedActors.end());
 
-		std::sort(SortedActors.begin(), SortedActors.end(), [](T ActorA, T ActorB)
+		std::stable_sort(SortedActors.begin(), SortedActors.end(), [](T ActorA, T ActorB)
 		{
 			CG::APlayerController* PlayerController = GetPlayerController();
 			if (!PlayerController)
