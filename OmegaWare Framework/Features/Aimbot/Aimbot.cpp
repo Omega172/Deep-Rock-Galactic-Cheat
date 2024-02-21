@@ -100,9 +100,6 @@ void Aimbot::Render()
 	if (!bAutoFire && !keyAimbot.IsDown())
 		return;
 
-	std::vector<CG::AEnemyPawn*> apUnsortedEnemyPawns = Cheat::unreal->GetActors<CG::AEnemyPawn>();
-	std::vector<CG::AEnemyPawn*> apEnemyPawns = Cheat::unreal->SortActorsByDistance<CG::AEnemyPawn*>(apUnsortedEnemyPawns);
-
 	for (CG::AEnemyPawn* pActor : apEnemyPawns) {
 		if (!IsValidObjectPtr(pActor) || pActor->InternalIndex <= 0 || pActor->Name.ComparisonIndex <= 0)
 			continue;
@@ -161,10 +158,7 @@ void Aimbot::Render()
 			return;
 	}
 
-	std::vector<CG::AEnemyDeepPathfinderCharacter*> apUnsortedPathfinderCharacters = Cheat::unreal->GetActors<CG::AEnemyDeepPathfinderCharacter>();
-	std::vector<CG::AEnemyDeepPathfinderCharacter*> apPathfinderCharacters = Cheat::unreal->SortActorsByDistance<CG::AEnemyDeepPathfinderCharacter*>(apUnsortedPathfinderCharacters);
-
-	for (CG::AEnemyDeepPathfinderCharacter* pActor : apPathfinderCharacters) {
+	for (CG::AEnemyDeepPathfinderCharacter* pActor : apEnemyPathFinders) {
 		if (!IsValidObjectPtr(pActor) || pActor->InternalIndex <= 0 || pActor->Name.ComparisonIndex <= 0)
 			continue;
 
@@ -184,8 +178,6 @@ void Aimbot::Render()
 		CG::FRotator rotGoalRotation = Cheat::unreal->GetMathLibrary()->FindLookAtRotation(vecCameraLocation, vecHeadLocation);
 		if (flAimFOV <= (rotGoalRotation - rotCameraRotation).Clamp().Size())
 			continue;
-
-		CG::FVector vecDirection = (vecHeadLocation - vecCameraLocation).Unit();
 
 		if (!bMagicBullet) {
 			CG::FHitResult hrResult;
@@ -218,7 +210,17 @@ void Aimbot::Render()
 	}
 }
 
-void Aimbot::Run() {}
+void Aimbot::Run() 
+{
+	if (!Initialized)
+		return;
+
+	std::vector<CG::AEnemyPawn*> apUnsortedEnemyPawns = Cheat::unreal->GetActors<CG::AEnemyPawn>();
+	apEnemyPawns = Cheat::unreal->SortActorsByDistance<CG::AEnemyPawn*>(apUnsortedEnemyPawns);
+
+	std::vector<CG::AEnemyDeepPathfinderCharacter*> apUnsortedEnemyPathFinders = Cheat::unreal->GetActors<CG::AEnemyDeepPathfinderCharacter>();
+	apEnemyPathFinders = Cheat::unreal->SortActorsByDistance<CG::AEnemyDeepPathfinderCharacter*>(apUnsortedEnemyPathFinders);
+}
 
 void Aimbot::SaveConfig()
 {

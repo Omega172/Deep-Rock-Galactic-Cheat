@@ -14,6 +14,9 @@ private:
 	bool bMagicBullet = true;
 	bool bMultiTarget = false;
 
+	std::vector<CG::AEnemyPawn*> apEnemyPawns;
+	std::vector<CG::AEnemyDeepPathfinderCharacter*> apEnemyPathFinders;
+
 public:
 	Aimbot();
 
