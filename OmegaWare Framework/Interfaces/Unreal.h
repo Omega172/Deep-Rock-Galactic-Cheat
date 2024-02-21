@@ -110,7 +110,7 @@ public:
 		for (CG::AActor* actor : Actors)
 		{
 			// I'm not sure if these are the best way to check if the actor is valid but it works for me
-			if (!IsValidObjectPtr(actor) || !actor->bCanBeDamaged)
+			if (!IsActorValid(actor))
 				continue;
 
 			CG::UClass* pClass = T::StaticClass();
@@ -195,10 +195,7 @@ public:
 
 	static bool IsActorValid(CG::AActor* actor)
 	{
-		if (!actor || !actor->bCanBeDamaged)
-			return false;
-
-		if (!Utils::IsReadableMemory(actor, sizeof(actor)))
+		if (!IsValidObjectPtr(actor) || !actor->bCanBeDamaged)
 			return false;
 
 		return true;
