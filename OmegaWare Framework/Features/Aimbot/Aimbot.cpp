@@ -108,15 +108,12 @@ void Aimbot::Render()
 		if (!IsValidObjectPtr(pHealthComponent) || pHealthComponent->InternalIndex <= 0 || pHealthComponent->Name.ComparisonIndex == 0 || pHealthComponent->IsDead())
 			continue;
 
-		CG::USkeletalMeshComponent* pMesh = pActor->GetMesh();
-		if (!IsValidObjectPtr(pMesh))
-			continue;
-
-		CG::FVector vecHeadLocation = pMesh->GetSocketLocation(pMesh->GetBoneName(13));
+		CG::FVector vecAimLocation, vecExtent;
+		pActor->GetActorBounds(true, &vecAimLocation, &vecExtent, false);
 
 		pWeaponFire->Fire(
-			bMagicBullet ? vecHeadLocation : vecCameraLocation, 
-			CG::FVector_NetQuantizeNormal((vecHeadLocation - vecCameraLocation).Unit()), 
+			bMagicBullet ? vecAimLocation : vecCameraLocation,
+			CG::FVector_NetQuantizeNormal((vecAimLocation - vecCameraLocation).Unit()),
 			true);
 
 		if (!bMultiTarget)
@@ -201,17 +198,13 @@ void Aimbot::Run()
 			if (!IsValidObjectPtr(pHealthComponent) || pHealthComponent->InternalIndex <= 0 || pHealthComponent->Name.ComparisonIndex == 0 || pHealthComponent->IsDead())
 				return true;
 
-			if (pActor->GetAttitude() == CG::EPawnAttitude::Friendly)
+			if (pActor->GetAttitude() <= CG::EPawnAttitude::Neutral)
 				return true;
 
-			CG::USkeletalMeshComponent* pMesh = pActor->GetMesh();
-			if (!IsValidObjectPtr(pMesh)) {
-				return true;
-			}
+			CG::FVector vecAimLocation, vecExtent;
+			pActor->GetActorBounds(true, &vecAimLocation, &vecExtent, false);
 
-			CG::FVector vecHeadLocation = pMesh->GetSocketLocation(pMesh->GetBoneName(13));
-
-			CG::FRotator rotGoalRotation = Cheat::unreal->GetMathLibrary()->FindLookAtRotation(vecCameraLocation, vecHeadLocation);
+			CG::FRotator rotGoalRotation = Cheat::unreal->GetMathLibrary()->FindLookAtRotation(vecCameraLocation, vecAimLocation);
 			if (flAimFOV_copy <= (rotGoalRotation - rotCameraRotation).Clamp().Size())
 				return true;
 
@@ -220,7 +213,7 @@ void Aimbot::Run()
 				if (Cheat::unreal->GetSystemLibrary()->LineTraceSingle(
 					(*CG::UWorld::GWorld),
 					vecCameraLocation,
-					vecHeadLocation,
+					vecAimLocation,
 					CG::ETraceTypeQuery::TraceTypeQuery1,
 					true, {},
 					CG::EDrawDebugTrace::ForDuration,
@@ -252,7 +245,7 @@ void Aimbot::Run()
 			if (!IsValidObjectPtr(pHealthComponent) || pHealthComponent->InternalIndex <= 0 || pHealthComponent->Name.ComparisonIndex == 0 || pHealthComponent->IsDead())
 				return true;
 
-			if (pActor->GetAttitude() == CG::EPawnAttitude::Friendly)
+			if (pActor->GetAttitude() <= CG::EPawnAttitude::Neutral)
 				return true;
 
 			CG::USkeletalMeshComponent* pMesh = pActor->Mesh;
@@ -260,7 +253,7 @@ void Aimbot::Run()
 				return true;
 			}
 
-			CG::FVector vecHeadLocation = pMesh->GetSocketLocation(pMesh->GetBoneName(1));
+			CG::FVector vecHeadLocation = pMesh->GetSocketLocation(pMesh->GetBoneName(13));
 
 			CG::FRotator rotGoalRotation = Cheat::unreal->GetMathLibrary()->FindLookAtRotation(vecCameraLocation, vecHeadLocation);
 			if (flAimFOV_copy <= (rotGoalRotation - rotCameraRotation).Clamp().Size())
