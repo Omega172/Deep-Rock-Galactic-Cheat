@@ -112,42 +112,10 @@ void Aimbot::Render()
 			continue;
 
 		CG::USkeletalMeshComponent* pMesh = pActor->GetMesh();
-		if (!IsValidObjectPtr(pMesh)) {
-			std::cout << "NOMESH \n";
-			continue;
-		}
-
-		for (int i = 0; i < pMesh->GetNumBones(); i++)
-		{
-			std::cout << i << ": " << pMesh->GetBoneName(i).GetName() << std::endl;
-		}
-
-		CG::FVector vecHeadLocation = pMesh->GetSocketLocation(pMesh->GetBoneName(1));
-
-		CG::FRotator rotGoalRotation = Cheat::unreal->GetMathLibrary()->FindLookAtRotation(vecCameraLocation, vecHeadLocation);
-		if (flAimFOV <= (rotGoalRotation - rotCameraRotation).Clamp().Size())
+		if (!IsValidObjectPtr(pMesh))
 			continue;
 
-		if (!bMagicBullet) {
-			CG::FHitResult hrResult;
-			if (Cheat::unreal->GetSystemLibrary()->LineTraceSingle(
-				(*CG::UWorld::GWorld),
-				vecCameraLocation,
-				vecHeadLocation,
-				CG::ETraceTypeQuery::TraceTypeQuery1,
-				true, {},
-				CG::EDrawDebugTrace::ForDuration,
-				&hrResult, true,
-				{ 1.f, 1.f, 1.f, 1.f },
-				{ 1.f, 0.f, 0.f, 1.f },
-				300.f
-			)) {
-				// Vischeck, will be a valid object ptr if we hit a wall :|
-				CG::AActor* pHitActor = hrResult.Actor.Get();
-				if (IsValidObjectPtr(pHitActor))
-					continue;
-			}
-		}
+		CG::FVector vecHeadLocation = pMesh->GetSocketLocation(pMesh->GetBoneName(13));
 
 		pWeaponFire->Fire(
 			bMagicBullet ? vecHeadLocation : vecCameraLocation, 
@@ -166,40 +134,11 @@ void Aimbot::Render()
 		if (!IsValidObjectPtr(pHealthComponent) || pHealthComponent->InternalIndex <= 0 || pHealthComponent->Name.ComparisonIndex == 0 || pHealthComponent->IsDead())
 			continue;
 
-		if (pActor->GetAttitude() == CG::EPawnAttitude::Friendly)
-			continue;
-
 		CG::USkeletalMeshComponent* pMesh = pActor->Mesh;
 		if (!IsValidObjectPtr(pMesh))
 			continue;
 
 		CG::FVector vecHeadLocation = pMesh->GetSocketLocation(pMesh->GetBoneName(13));
-
-		CG::FRotator rotGoalRotation = Cheat::unreal->GetMathLibrary()->FindLookAtRotation(vecCameraLocation, vecHeadLocation);
-		if (flAimFOV <= (rotGoalRotation - rotCameraRotation).Clamp().Size())
-			continue;
-
-		if (!bMagicBullet) {
-			CG::FHitResult hrResult;
-			if (Cheat::unreal->GetSystemLibrary()->LineTraceSingle(
-				(*CG::UWorld::GWorld),
-				vecCameraLocation,
-				vecHeadLocation,
-				CG::ETraceTypeQuery::TraceTypeQuery1,
-				true, {},
-				CG::EDrawDebugTrace::ForDuration,
-				&hrResult, true,
-				{ 1.f, 1.f, 1.f, 1.f },
-				{ 1.f, 0.f, 0.f, 1.f },
-				300.f
-			)) {
-				// Vischeck, will be a valid object ptr if we hit a wall :|
-				CG::AActor* pHitActor = hrResult.Actor.Get();
-				if (IsValidObjectPtr(pHitActor))
-					continue;
-			}
-		}
-
 		pWeaponFire->Fire(
 			bMagicBullet ? vecHeadLocation : vecCameraLocation,
 			CG::FVector_NetQuantizeNormal((vecHeadLocation - vecCameraLocation).Unit()),
@@ -212,14 +151,147 @@ void Aimbot::Render()
 
 void Aimbot::Run() 
 {
+
+	apEnemyPawns.clear();
+	apEnemyPathFinders.clear();
+
 	if (!Initialized)
 		return;
 
+	Unreal* pUnreal = Cheat::unreal.get();
+	if (!IsValidObjectPtr(pUnreal))
+		return;
+
+	CG::APlayerController* pPlayerController = pUnreal->GetPlayerController();
+	if (!IsValidObjectPtr(pPlayerController))
+		return;
+
+	CG::APlayerCameraManager* pCameraManager = Cheat::unreal->GetPlayerCameraManager();
+	if (!IsValidObjectPtr(pCameraManager))
+		return;
+
+	CG::ABP_PlayerCharacter_C* pDRGPlayer = static_cast<CG::ABP_PlayerCharacter_C*>(pUnreal->GetAcknowledgedPawn());
+	if (!IsValidObjectPtr(pDRGPlayer))
+		return;
+
+	CG::AItem* pItem = pDRGPlayer->GetEquippedItem();
+	if (!IsValidObjectPtr(pItem))
+		return;
+
+	CG::AAmmoDrivenWeapon* pWeapon = static_cast<CG::AAmmoDrivenWeapon*>(pItem);
+	if (!IsValidObjectPtr(pWeapon) || !pItem->IsA(CG::AAmmoDrivenWeapon::StaticClass()))
+		return;
+
+	CG::UWeaponFireComponent* pWeaponFire = pWeapon->WeaponFire;
+	if (!IsValidObjectPtr(pWeaponFire))
+		return;
+
+	CG::FVector vecCameraLocation = pCameraManager->GetCameraLocation();
+	CG::FRotator rotCameraRotation = pPlayerController->GetControlRotation();
+
+	float flAimFOV_copy = flAimFOV;
+	bool bMagicBullet_copy = bMagicBullet;
+
 	std::vector<CG::AEnemyPawn*> apUnsortedEnemyPawns = Cheat::unreal->GetActors<CG::AEnemyPawn>();
 	apEnemyPawns = Cheat::unreal->SortActorsByDistance<CG::AEnemyPawn*>(apUnsortedEnemyPawns);
+	
+	apEnemyPawns.erase(std::remove_if(apEnemyPawns.begin(), apEnemyPawns.end(), [vecCameraLocation, rotCameraRotation, flAimFOV_copy, bMagicBullet_copy](CG::AEnemyPawn* pActor)
+		{
+			if (!IsValidObjectPtr(pActor) || pActor->InternalIndex <= 0 || pActor->Name.ComparisonIndex <= 0)
+				return true;
+
+			CG::UEnemyHealthComponent* pHealthComponent = pActor->Health;
+			if (!IsValidObjectPtr(pHealthComponent) || pHealthComponent->InternalIndex <= 0 || pHealthComponent->Name.ComparisonIndex == 0 || pHealthComponent->IsDead())
+				return true;
+
+			if (pActor->GetAttitude() == CG::EPawnAttitude::Friendly)
+				return true;
+
+			CG::USkeletalMeshComponent* pMesh = pActor->GetMesh();
+			if (!IsValidObjectPtr(pMesh)) {
+				return true;
+			}
+
+			CG::FVector vecHeadLocation = pMesh->GetSocketLocation(pMesh->GetBoneName(13));
+
+			CG::FRotator rotGoalRotation = Cheat::unreal->GetMathLibrary()->FindLookAtRotation(vecCameraLocation, vecHeadLocation);
+			if (flAimFOV_copy <= (rotGoalRotation - rotCameraRotation).Clamp().Size())
+				return true;
+
+			if (!bMagicBullet_copy) {
+				CG::FHitResult hrResult{};
+				if (Cheat::unreal->GetSystemLibrary()->LineTraceSingle(
+					(*CG::UWorld::GWorld),
+					vecCameraLocation,
+					vecHeadLocation,
+					CG::ETraceTypeQuery::TraceTypeQuery1,
+					true, {},
+					CG::EDrawDebugTrace::ForDuration,
+					&hrResult, true,
+					{ 1.f, 1.f, 1.f, 1.f },
+					{ 1.f, 0.f, 0.f, 1.f },
+					300.f
+				)) {
+					// Vischeck, will be a valid object ptr if we hit a wall :|
+					CG::AActor* pHitActor = hrResult.Actor.Get();
+					if (IsValidObjectPtr(pHitActor))
+						return true;
+				}
+			}
+
+			return false;
+		}), apEnemyPawns.end());
+
 
 	std::vector<CG::AEnemyDeepPathfinderCharacter*> apUnsortedEnemyPathFinders = Cheat::unreal->GetActors<CG::AEnemyDeepPathfinderCharacter>();
 	apEnemyPathFinders = Cheat::unreal->SortActorsByDistance<CG::AEnemyDeepPathfinderCharacter*>(apUnsortedEnemyPathFinders);
+
+	apEnemyPathFinders.erase(std::remove_if(apEnemyPathFinders.begin(), apEnemyPathFinders.end(), [vecCameraLocation, rotCameraRotation, flAimFOV_copy, bMagicBullet_copy](CG::AEnemyDeepPathfinderCharacter* pActor)
+		{
+			if (!IsValidObjectPtr(pActor) || pActor->InternalIndex <= 0 || pActor->Name.ComparisonIndex <= 0)
+				return true;
+
+			CG::UEnemyHealthComponent* pHealthComponent = pActor->HealthComponent;
+			if (!IsValidObjectPtr(pHealthComponent) || pHealthComponent->InternalIndex <= 0 || pHealthComponent->Name.ComparisonIndex == 0 || pHealthComponent->IsDead())
+				return true;
+
+			if (pActor->GetAttitude() == CG::EPawnAttitude::Friendly)
+				return true;
+
+			CG::USkeletalMeshComponent* pMesh = pActor->Mesh;
+			if (!IsValidObjectPtr(pMesh)) {
+				return true;
+			}
+
+			CG::FVector vecHeadLocation = pMesh->GetSocketLocation(pMesh->GetBoneName(1));
+
+			CG::FRotator rotGoalRotation = Cheat::unreal->GetMathLibrary()->FindLookAtRotation(vecCameraLocation, vecHeadLocation);
+			if (flAimFOV_copy <= (rotGoalRotation - rotCameraRotation).Clamp().Size())
+				return true;
+
+			if (!bMagicBullet_copy) {
+				CG::FHitResult hrResult{};
+				if (Cheat::unreal->GetSystemLibrary()->LineTraceSingle(
+					(*CG::UWorld::GWorld),
+					vecCameraLocation,
+					vecHeadLocation,
+					CG::ETraceTypeQuery::TraceTypeQuery1,
+					true, {},
+					CG::EDrawDebugTrace::ForDuration,
+					&hrResult, true,
+					{ 1.f, 1.f, 1.f, 1.f },
+					{ 1.f, 0.f, 0.f, 1.f },
+					300.f
+				)) {
+					// Vischeck, will be a valid object ptr if we hit a wall :|
+					CG::AActor* pHitActor = hrResult.Actor.Get();
+					if (IsValidObjectPtr(pHitActor))
+						return true;
+				}
+			}
+
+			return false;
+		}), apEnemyPathFinders.end());
 }
 
 void Aimbot::SaveConfig()
