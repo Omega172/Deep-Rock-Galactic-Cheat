@@ -16,7 +16,7 @@ private:
 
 	CG::FName Root;
 	
-	ImRect GetBoxFromBBox(CG::FVector vecLocation, CG::FVector vecExtent);
+	bool GetBoxFromBBox(CG::FVector& vecLocation, CG::FVector& vecExtent, ImRect& rectOut);
 
 public:
 	ESP();

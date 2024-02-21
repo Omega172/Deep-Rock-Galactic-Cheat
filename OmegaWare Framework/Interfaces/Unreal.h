@@ -243,13 +243,13 @@ public:
 		return pPlayerCameraManager;
 	}
 
-	static bool WorldToScreen(CG::FVector in, CG::FVector2D* out, bool relative = false)
+	static bool WorldToScreen(CG::FVector in, CG::FVector2D& out, bool relative = false)
 	{
 		CG::APlayerController* pPlayerController = GetPlayerController();
 		if (!pPlayerController)
 			return false;
 
-		return pPlayerController->ProjectWorldLocationToScreen(in, out, relative);
+		return pPlayerController->ProjectWorldLocationToScreen(in, &out, relative);
 	}
 
 	// I made this function so I would have to type less to get the screen position of a world position

@@ -78,7 +78,7 @@ void ESP::DrawMenuItems()
 
 void ESP::Render()
 {
-	if (!bEnabled || !iESPMaxDistance)
+	if (!bEnabled)
 		return;
 
 	Unreal* pUnreal = Cheat::unreal.get();
@@ -106,42 +106,23 @@ void ESP::Render()
 		pActor->GetActorBounds(true, &vecLocation, &vecExtent, false);
 
 		int iDistance = static_cast<int>(pDRGPlayer->K2_GetActorLocation().DistanceMeter(vecLocation));
-		if (iDistance > iESPMaxDistance)
+		if (iESPMaxDistance && iDistance > iESPMaxDistance)
 			continue;
 
-		CG::FVector2D HeadPos = pUnreal->W2S({ Origin.X, Origin.Y, Origin.Z + BoxExtent.Z });
-		CG::FVector2D FeetPos = pUnreal->W2S({ Origin.X, Origin.Y, Origin.Z - BoxExtent.Z });
+		ImRect rectBox{};
+		if (!GetBoxFromBBox(vecLocation, vecExtent, rectBox))
+			return;
 
-		if (HeadPos.IsValid() || FeetPos.IsValid())
-			continue;
+		ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, Black, 0.f, ImDrawFlags_None, 3.f);
+		ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, Cyan);
 
-		const float Height = abs(FeetPos.Y - HeadPos.Y);
-		const float Width = Height * 0.6f;
+		if (bBoxName) {
+			std::string sName = pActor->Name.GetName();
+			ImVec2 vecTextSize = ImGui::CalcTextSize(sName.c_str());
 
-		CG::FVector2D TopLeft = { HeadPos.X - Width * 0.5f, HeadPos.Y };
-		CG::FVector2D DownRight = { HeadPos.X + Width * 0.5f, FeetPos.Y };
-
-		float h = DownRight.Y - TopLeft.Y;
-		float w = DownRight.X - TopLeft.X;
-
-		CG::FVector2D TopRight = CG::FVector2D(DownRight.X, TopLeft.Y);
-		CG::FVector2D DownLeft = CG::FVector2D(TopLeft.X, DownRight.Y);
-
-		ImGui::GetBackgroundDrawList()->AddRect(TopRight, DownLeft, Black, 0.f, ImDrawFlags_None, 3.f);
-		ImGui::GetBackgroundDrawList()->AddRect(TopRight, DownLeft, Cyan);
-
-		std::string sName = pActor->Name.GetName();
-		ImVec2 TextSize = ImGui::CalcTextSize(sName.c_str());
-
-		if (bBoxName)
-		{
-			float val = TopLeft.X - TopRight.X;
-			ImVec2 Pos = CG::FVector2D(TopRight.X + (val / 2), TopLeft.Y);
-			Pos.x = Pos.x - (TextSize.x / 2);
-			Pos.y = Pos.y - 17.f; // TextSize.y = 14.f
-
-			ImGui::OutlinedText(Pos, White, sName);
+			ImGui::OutlinedText({ rectBox.Min.x + (rectBox.GetWidth() - vecTextSize.x) / 2, rectBox.Min.y - 17.f }, White, sName);
 		}
+			
 
 		if (bBoxDistance)
 		{
@@ -149,57 +130,54 @@ void ESP::Render()
 			ssDistance << "[ " << std::to_string(iDistance) << "m ]";
 
 			std::string sDistance = ssDistance.str();
-			ImVec2 TextSize = ImGui::CalcTextSize(sDistance.c_str());
+			ImVec2 vecTextSize = ImGui::CalcTextSize(sDistance.c_str());
 
-			float val = DownLeft.X - DownRight.X;
-			ImVec2 Pos = CG::FVector2D(DownRight.X + (val / 2), DownLeft.Y);
-			Pos.x = Pos.x - (TextSize.x / 2);
-			Pos.y = Pos.y + 2.f; // TextSize.y = 14.f
-
-			ImGui::OutlinedText(Pos, White, sDistance.c_str());
+			ImGui::OutlinedText({ rectBox.Min.x + (rectBox.GetWidth() - vecTextSize.x) / 2, rectBox.Max.y + 2.f }, White, sDistance.c_str());
 		}
 
-		ImVec2 vecFlags = TopRight;
+		ImVec2 vecFlags(rectBox.Max.x, rectBox.Min.y + 5.f);
 
 		if (bBoxHealthBar)
 		{
 			float g = pHealthComponent->GetHealthPct();
 
-			ImGui::GetBackgroundDrawList()->AddRect({ DownRight.X + 9, DownRight.Y }, { TopRight.X + 5, TopRight.Y }, Black);
-			ImGui::GetBackgroundDrawList()->AddRectFilled({ DownRight.X + 9, DownRight.Y }, { DownRight.X + 6, DownRight.Y - (h * g) }, ImGui::ColorConvertFloat4ToU32({ 1.f - g, g, 0.f, 1.f }));
+			ImGui::GetBackgroundDrawList()->AddRect({ rectBox.Max.x + 9, rectBox.Max.y }, { rectBox.Max.x + 5, rectBox.Min.y }, Black);
+			ImGui::GetBackgroundDrawList()->AddRectFilled({ rectBox.Max.x + 9, rectBox.Max.y }, { rectBox.Max.x + 6, rectBox.Max.y - (rectBox.GetHeight() * g) }, ImGui::ColorConvertFloat4ToU32({ 1.f - g, g, 0.f, 1.f }));
 		}
-
-		// Flags
-		ImVec2 Pos = TopRight;
-		Pos.x = Pos.x + 5.f;
 
 		if (bInvincibleFlag && !pHealthComponent->canTakeDamage)
 		{
-			ImGui::OutlinedText(Pos, Green, "Invuln");
-			Pos.y += 16.f;
+			ImGui::OutlinedText(vecFlags, Green, "Invuln");
+			vecFlags.y += 16.f;
 		}
 	}
 }
 
-bool GetBoxFromBBox(CG::FVector vecLocation, CG::FVector vecExtent, ImRect& rectOut) {
+bool ESP::GetBoxFromBBox(CG::FVector & vecLocation, CG::FVector & vecExtent, ImRect & rectOut) {
 
 	Unreal* pUnreal = Cheat::unreal.get();
 	CG::FVector2D v1, v2, v3, v4, v5, v6, v7, v8;
 
 	if (!(
-		pUnreal->WorldToScreen({ vecLocation.X + vecExtent.X, vecLocation.Y + vecExtent.Y, vecLocation.Z + vecExtent.Z }, &v1) &&
-		pUnreal->WorldToScreen({ vecLocation.X - vecExtent.X, vecLocation.Y + vecExtent.Y, vecLocation.Z + vecExtent.Z }, &v2) &&
-		pUnreal->WorldToScreen({ vecLocation.X + vecExtent.X, vecLocation.Y - vecExtent.Y, vecLocation.Z + vecExtent.Z }, &v3) &&
-		pUnreal->WorldToScreen({ vecLocation.X - vecExtent.X, vecLocation.Y - vecExtent.Y, vecLocation.Z + vecExtent.Z }, &v4) &&
-		pUnreal->WorldToScreen({ vecLocation.X + vecExtent.X, vecLocation.Y + vecExtent.Y, vecLocation.Z - vecExtent.Z }, &v5) &&
-		pUnreal->WorldToScreen({ vecLocation.X - vecExtent.X, vecLocation.Y + vecExtent.Y, vecLocation.Z - vecExtent.Z }, &v6) &&
-		pUnreal->WorldToScreen({ vecLocation.X + vecExtent.X, vecLocation.Y - vecExtent.Y, vecLocation.Z - vecExtent.Z }, &v7) &&
-		pUnreal->WorldToScreen({ vecLocation.X - vecExtent.X, vecLocation.Y - vecExtent.Y, vecLocation.Z - vecExtent.Z }, &v8)
+		pUnreal->WorldToScreen({ vecLocation.X + vecExtent.X, vecLocation.Y + vecExtent.Y, vecLocation.Z + vecExtent.Z }, v1) &&
+		pUnreal->WorldToScreen({ vecLocation.X - vecExtent.X, vecLocation.Y + vecExtent.Y, vecLocation.Z + vecExtent.Z }, v2) &&
+		pUnreal->WorldToScreen({ vecLocation.X + vecExtent.X, vecLocation.Y - vecExtent.Y, vecLocation.Z + vecExtent.Z }, v3) &&
+		pUnreal->WorldToScreen({ vecLocation.X - vecExtent.X, vecLocation.Y - vecExtent.Y, vecLocation.Z + vecExtent.Z }, v4) &&
+		pUnreal->WorldToScreen({ vecLocation.X + vecExtent.X, vecLocation.Y + vecExtent.Y, vecLocation.Z - vecExtent.Z }, v5) &&
+		pUnreal->WorldToScreen({ vecLocation.X - vecExtent.X, vecLocation.Y + vecExtent.Y, vecLocation.Z - vecExtent.Z }, v6) &&
+		pUnreal->WorldToScreen({ vecLocation.X + vecExtent.X, vecLocation.Y - vecExtent.Y, vecLocation.Z - vecExtent.Z }, v7) &&
+		pUnreal->WorldToScreen({ vecLocation.X - vecExtent.X, vecLocation.Y - vecExtent.Y, vecLocation.Z - vecExtent.Z }, v8)
 		)) {
 		return false;
 	}
 
+	rectOut.Min.x = std::min({ v1.X, v2.X, v3.X, v4.X, v5.X, v6.X, v7.X, v8.X });
+	rectOut.Max.x = std::max({ v1.X, v2.X, v3.X, v4.X, v5.X, v6.X, v7.X, v8.X });
 
+	rectOut.Min.y = std::min({ v1.Y, v2.Y, v3.Y, v4.Y, v5.Y, v6.Y, v7.Y, v8.Y });
+	rectOut.Max.y = std::max({ v1.Y, v2.Y, v3.Y, v4.Y, v5.Y, v6.Y, v7.Y, v8.Y });
+
+	return true;
 }
 
 void ESP::Run() {}
