@@ -15,6 +15,8 @@ private:
 	bool bInvincibleFlag = true;
 
 	CG::FName Root;
+	
+	ImRect GetBoxFromBBox(CG::FVector vecLocation, CG::FVector vecExtent);
 
 public:
 	ESP();

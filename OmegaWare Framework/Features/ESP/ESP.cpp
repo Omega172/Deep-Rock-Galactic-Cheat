@@ -78,7 +78,7 @@ void ESP::DrawMenuItems()
 
 void ESP::Render()
 {
-	if (!bEnabled)
+	if (!bEnabled || !iESPMaxDistance)
 		return;
 
 	Unreal* pUnreal = Cheat::unreal.get();
@@ -95,18 +95,18 @@ void ESP::Render()
 		if (!IsValidObjectPtr(pActor))
 			continue;
 
-		if (pActor->GetAttitude() != CG::EPawnAttitude::Hostile)
+		if (pActor->GetAttitude() < CG::EPawnAttitude::Hostile)
 			continue;
 
 		CG::UHealthComponent* pHealthComponent = reinterpret_cast<CG::UHealthComponent*>(pActor->GetHealthComponent());
 		if (!IsValidObjectPtr(pHealthComponent) || pHealthComponent->InternalIndex <= 0 || pHealthComponent->Name.ComparisonIndex == 0 || pHealthComponent->IsDead())
 			continue;
 
-		CG::FVector Origin, BoxExtent;
-		pActor->GetActorBounds(true, &Origin, &BoxExtent, false);
+		CG::FVector vecLocation, vecExtent;
+		pActor->GetActorBounds(true, &vecLocation, &vecExtent, false);
 
-		int iDistance = static_cast<int>(pDRGPlayer->K2_GetActorLocation().DistanceMeter(Origin));
-		if (iESPMaxDistance && iDistance > iESPMaxDistance)
+		int iDistance = static_cast<int>(pDRGPlayer->K2_GetActorLocation().DistanceMeter(vecLocation));
+		if (iDistance > iESPMaxDistance)
 			continue;
 
 		CG::FVector2D HeadPos = pUnreal->W2S({ Origin.X, Origin.Y, Origin.Z + BoxExtent.Z });
@@ -159,18 +159,14 @@ void ESP::Render()
 			ImGui::OutlinedText(Pos, White, sDistance.c_str());
 		}
 
+		ImVec2 vecFlags = TopRight;
+
 		if (bBoxHealthBar)
 		{
-			float Height = DownRight.Y - (TopRight.Y + 1);
-
 			float g = pHealthComponent->GetHealthPct();
-			float r = 1.f - g;
 
-			// Outline
 			ImGui::GetBackgroundDrawList()->AddRect({ DownRight.X + 9, DownRight.Y }, { TopRight.X + 5, TopRight.Y }, Black);
-
-			// Health Bar
-			ImGui::GetBackgroundDrawList()->AddRectFilled({ DownRight.X + 9, DownRight.Y }, { DownRight.X + 6, DownRight.Y - (Height * g) }, ImGui::ColorConvertFloat4ToU32({ r, g, 0.f, 1.f }));
+			ImGui::GetBackgroundDrawList()->AddRectFilled({ DownRight.X + 9, DownRight.Y }, { DownRight.X + 6, DownRight.Y - (h * g) }, ImGui::ColorConvertFloat4ToU32({ 1.f - g, g, 0.f, 1.f }));
 		}
 
 		// Flags
@@ -183,6 +179,27 @@ void ESP::Render()
 			Pos.y += 16.f;
 		}
 	}
+}
+
+bool GetBoxFromBBox(CG::FVector vecLocation, CG::FVector vecExtent, ImRect& rectOut) {
+
+	Unreal* pUnreal = Cheat::unreal.get();
+	CG::FVector2D v1, v2, v3, v4, v5, v6, v7, v8;
+
+	if (!(
+		pUnreal->WorldToScreen({ vecLocation.X + vecExtent.X, vecLocation.Y + vecExtent.Y, vecLocation.Z + vecExtent.Z }, &v1) &&
+		pUnreal->WorldToScreen({ vecLocation.X - vecExtent.X, vecLocation.Y + vecExtent.Y, vecLocation.Z + vecExtent.Z }, &v2) &&
+		pUnreal->WorldToScreen({ vecLocation.X + vecExtent.X, vecLocation.Y - vecExtent.Y, vecLocation.Z + vecExtent.Z }, &v3) &&
+		pUnreal->WorldToScreen({ vecLocation.X - vecExtent.X, vecLocation.Y - vecExtent.Y, vecLocation.Z + vecExtent.Z }, &v4) &&
+		pUnreal->WorldToScreen({ vecLocation.X + vecExtent.X, vecLocation.Y + vecExtent.Y, vecLocation.Z - vecExtent.Z }, &v5) &&
+		pUnreal->WorldToScreen({ vecLocation.X - vecExtent.X, vecLocation.Y + vecExtent.Y, vecLocation.Z - vecExtent.Z }, &v6) &&
+		pUnreal->WorldToScreen({ vecLocation.X + vecExtent.X, vecLocation.Y - vecExtent.Y, vecLocation.Z - vecExtent.Z }, &v7) &&
+		pUnreal->WorldToScreen({ vecLocation.X - vecExtent.X, vecLocation.Y - vecExtent.Y, vecLocation.Z - vecExtent.Z }, &v8)
+		)) {
+		return false;
+	}
+
+
 }
 
 void ESP::Run() {}

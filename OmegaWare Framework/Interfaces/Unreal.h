@@ -163,31 +163,47 @@ public:
 		if (!(*CG::UWorld::GWorld))
 			return nullptr;
 
-		return (*CG::UWorld::GWorld)->GameState;
+		CG::AGameStateBase* pGameState = (*CG::UWorld::GWorld)->GameState;
+		if (!IsValidObjectPtr(pGameState))
+			return nullptr;
+
+		return pGameState;
 	}
 	static CG::UGameInstance* GetGameInstance()
 	{
 		if (!(*CG::UWorld::GWorld))
 			return nullptr;
 
-		return (*CG::UWorld::GWorld)->OwningGameInstance;
+		CG::UGameInstance* pGameInstance = (*CG::UWorld::GWorld)->OwningGameInstance;
+		if (!IsValidObjectPtr(pGameInstance))
+			return nullptr;
+
+		return pGameInstance;
 	}
 
 	static CG::ULocalPlayer* GetLocalPlayer(int index = 0)
 	{
-		CG::UGameInstance* GameInstance = GetGameInstance();
-		if (!GameInstance)
+		CG::UGameInstance* pGameInstance = GetGameInstance();
+		if (!pGameInstance)
 			return nullptr;
 
-		return GameInstance->LocalPlayers[index];
+		CG::ULocalPlayer* pLocalPlayer = pGameInstance->LocalPlayers[index];
+		if (!IsValidObjectPtr(pLocalPlayer))
+			return nullptr;
+
+		return pLocalPlayer;
 	}
 	static CG::UGameViewportClient* GetViewportClient()
 	{
-		CG::ULocalPlayer* LocalPlayer = GetLocalPlayer();
-		if (!LocalPlayer)
+		CG::ULocalPlayer* pLocalPlayer = GetLocalPlayer();
+		if (!pLocalPlayer)
 			return nullptr;
 
-		return LocalPlayer->ViewportClient;
+		CG::UGameViewportClient* pViewportClient = pLocalPlayer->ViewportClient;
+		if (!IsValidObjectPtr(pViewportClient))
+			return;
+
+		return pViewportClient;
 	}
 	static CG::APlayerController* GetPlayerController()
 	{
@@ -195,24 +211,45 @@ public:
 		if (!LocalPlayer)
 			return nullptr;
 
-		return LocalPlayer->PlayerController;
+		CG::APlayerController* pPlayerController = LocalPlayer->PlayerController;
+		if (!IsValidObjectPtr(pPlayerController))
+			return nullptr;
+
+		return pPlayerController;
 	}
 	static CG::APawn* GetAcknowledgedPawn()
 	{
-		CG::APlayerController* PlayerController = GetPlayerController();
-		if (!PlayerController)
+		CG::APlayerController* pPlayerController = GetPlayerController();
+		if (!pPlayerController)
 			return nullptr;
 
-		return PlayerController->AcknowledgedPawn;
+		CG::APawn* pAcknowledgedPawn = pPlayerController->AcknowledgedPawn;
+		if (!IsValidObjectPtr(pAcknowledgedPawn))
+			return nullptr;
+
+		return pAcknowledgedPawn;
 	}
 
 	static CG::APlayerCameraManager* GetPlayerCameraManager()
 	{
-		CG::APlayerController* PlayerController = GetPlayerController();
-		if (!PlayerController)
+		CG::APlayerController* pPlayerController = GetPlayerController();
+		if (!pPlayerController)
 			return nullptr;
 
-		return PlayerController->PlayerCameraManager;
+		CG::APlayerCameraManager* pPlayerCameraManager = pPlayerController->PlayerCameraManager;
+		if (!IsValidObjectPtr(pPlayerCameraManager))
+			return nullptr;
+
+		return pPlayerCameraManager;
+	}
+
+	static bool WorldToScreen(CG::FVector in, CG::FVector2D* out, bool relative = false)
+	{
+		CG::APlayerController* pPlayerController = GetPlayerController();
+		if (!pPlayerController)
+			return false;
+
+		return pPlayerController->ProjectWorldLocationToScreen(in, out, relative);
 	}
 
 	// I made this function so I would have to type less to get the screen position of a world position
