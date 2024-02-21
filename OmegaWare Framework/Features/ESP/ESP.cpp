@@ -9,8 +9,10 @@ bool ESP::Setup()
 		{ HASH("ESP_ENABLE"), "Enable ESP" },
 		{ HASH("ESP_MAX_DISTANCE"), "Max Distance" },
 		{ HASH("ESP_FLAGS"), "Flags" },
-		{ HASH("ESP_BOX_SHOW_NAME"), "Name" },
-		{ HASH("ESP_BOX_SHOW_DISTANCE"), "Distance" },
+		{ HASH("ESP_BOX_SHOW_NAME"), "Show Name" },
+		{ HASH("ESP_BOX_SHOW_DISTANCE"), "Show Distance" },
+		{ HASH("ESP_INVINCIBLE_FLAG"), "Invincible Flag" },
+		{ HASH("ESP_INVINCIBLE_FLAG_TEXT"), "lnvuln" }
 	};
 	Cheat::localization->AddToLocale("ENG", EnglishLocale);
 
@@ -61,6 +63,7 @@ void ESP::DrawMenuItems()
 			{
 				ImGui::Selectable(Cheat::localization->Get("ESP_BOX_SHOW_NAME").c_str(), &bBoxName);
 				ImGui::Selectable(Cheat::localization->Get("ESP_BOX_SHOW_DISTANCE").c_str(), &bBoxDistance);
+				ImGui::Selectable(Cheat::localization->Get("ESP_INVINCIBLE_FLAG").c_str(), &bInvincibleFlag);
 
 				ImGui::EndCombo();
 			}
@@ -153,6 +156,16 @@ void ESP::Render()
 
 			ImGui::OutlinedText(Pos, White, sDistance.c_str());
 		}
+
+		// Flags
+		ImVec2 Pos = TopRight;
+		Pos.x = Pos.x + 5.f;
+
+		if (bInvincibleFlag && !pHealthComponent->canTakeDamage)
+		{
+			ImGui::OutlinedText(Pos, Green, "Invuln");
+			Pos.y += 16.f;
+		}
 	}
 }
 
@@ -164,6 +177,7 @@ void ESP::SaveConfig()
 	Cheat::config->PushEntry("ESP_MAX_DISTANCE", "int", std::to_string(iESPMaxDistance));
 	Cheat::config->PushEntry("ESP_BOX_SHOW_NAME", "bool", std::to_string(bBoxName));
 	Cheat::config->PushEntry("ESP_BOX_SHOW_DISTANCE", "bool", std::to_string(bBoxDistance));
+	Cheat::config->PushEntry("ESP_INVINCIBLE_FLAG", "bool", std::to_string(bInvincibleFlag));
 }
 
 void ESP::LoadConfig()
@@ -183,4 +197,8 @@ void ESP::LoadConfig()
 	entry = Cheat::config->GetEntryByName("ESP_BOX_SHOW_DISTANCE");
 	if (entry.Name == "ESP_BOX_SHOW_DISTANCE")
 		bBoxDistance = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_INVINCIBLE_FLAG");
+	if (entry.Name == "ESP_INVINCIBLE_FLAG")
+		bInvincibleFlag = std::stoi(entry.Value);
 }

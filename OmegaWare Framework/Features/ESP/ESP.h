@@ -11,6 +11,8 @@ private:
 	bool bBoxName = true;
 	bool bBoxDistance = true;
 
+	bool bInvincibleFlag = true;
+
 	CG::FName Root;
 
 public:
