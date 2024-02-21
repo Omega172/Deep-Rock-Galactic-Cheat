@@ -165,8 +165,8 @@ void ESP::Render()
 			float CurrentHealth = pHealthComponent->GetHealth();
 			float Height = DownRight.Y - (TopRight.Y + 1);
 
-			float g = ((CurrentHealth / MaxHealth) * 255);
-			float r = 255 - g;
+			float g = CurrentHealth / MaxHealth;
+			float r = 1.f - g;
 
 			// Outline
 			ImGui::GetBackgroundDrawList()->AddRect({ DownRight.X + 10, DownRight.Y + 1 }, { TopRight.X + 5, TopRight.Y }, Black);
