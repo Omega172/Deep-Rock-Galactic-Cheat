@@ -103,11 +103,9 @@ void WeaponModifications::Run() {
 		return;
 
 	Unreal* pUnreal = Cheat::unreal.get();
-	if (!IsValidObjectPtr(pUnreal))
-		return;
 
 	CG::ULocalPlayer* pLocalPlayer = pUnreal->GetLocalPlayer();
-	if (!IsValidObjectPtr(pLocalPlayer))
+	if (!pLocalPlayer)
 		return;
 
 	CG::ABP_PlayerCharacter_C* pDRGPlayer = static_cast<CG::ABP_PlayerCharacter_C*>(pUnreal->GetAcknowledgedPawn());
@@ -217,22 +215,6 @@ void WeaponModifications::Run() {
 		pWeapon->RecoilSettings.SpringStiffness = 0.f;
 		pWeapon->RecoilSettings.CriticalDampening = 0.f;
 	}
-
-
-	/*
-	
-	PrimaryWeapon   = 0,
-	SecondaryWeapon = 1,
-	TraversalTool   = 2,
-	ClassTool       = 3,
-	Grenade         = 4,
-	Flare           = 5,
-	MiningTool      = 6,
-	Armor           = 7,
-	MAX             = 8
-	
-	UInventoryList
-	*/
 }
 
 void WeaponModifications::SaveConfig() { 

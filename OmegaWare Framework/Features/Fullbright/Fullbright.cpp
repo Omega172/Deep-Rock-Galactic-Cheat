@@ -20,11 +20,9 @@ void Fullbright::Destroy() {
 	Initialized = false;
 
 	Unreal* pUnreal = Cheat::unreal.get();
-	if (!IsValidObjectPtr(pUnreal))
-		return;
 
 	CG::UGameViewportClient* pViewportClient = pUnreal->GetViewportClient();
-	if (!IsValidObjectPtr(pViewportClient))
+	if (!pViewportClient)
 		return;
 
 	pViewportClient->ViewMode = 3;
@@ -53,11 +51,9 @@ void Fullbright::Run() {
 		return;
 
 	Unreal* pUnreal = Cheat::unreal.get();
-	if (!IsValidObjectPtr(pUnreal))
-		return;
 
 	CG::UGameViewportClient* pViewportClient = pUnreal->GetViewportClient();
-	if (!IsValidObjectPtr(pViewportClient))
+	if (!pViewportClient)
 		return;
 
 	pViewportClient->ViewMode = bFullbright ? 2 : 3;

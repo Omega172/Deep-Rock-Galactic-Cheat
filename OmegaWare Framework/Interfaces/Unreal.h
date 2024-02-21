@@ -187,7 +187,11 @@ public:
 		if (!pGameInstance)
 			return nullptr;
 
-		CG::ULocalPlayer* pLocalPlayer = pGameInstance->LocalPlayers[index];
+		CG::ULocalPlayer** aLocalPlayers = pGameInstance->LocalPlayers;
+		if (!IsValidPtr(aLocalPlayer))
+			return nullptr;
+
+		CG::ULocalPlayer* pLocalPlayer = aLocalPlayers[index];
 		if (!IsValidObjectPtr(pLocalPlayer))
 			return nullptr;
 
