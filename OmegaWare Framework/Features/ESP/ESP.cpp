@@ -82,30 +82,24 @@ void ESP::Render()
 	if (!IsValidObjectPtr(pDRGPlayer))
 		return;
 
-	std::vector<CG::AEnemyDeepPathfinderCharacter*> apUnsortedActors = Cheat::unreal->GetActors<CG::AEnemyDeepPathfinderCharacter>();
-	std::vector<CG::AEnemyDeepPathfinderCharacter*> apActors = Cheat::unreal->SortActorsByDistance<CG::AEnemyDeepPathfinderCharacter*>(apUnsortedActors);
+	std::vector<CG::AFSDPawn*> apUnsortedActors = Cheat::unreal->GetActors<CG::AFSDPawn>();
+	std::vector<CG::AFSDPawn*> apActors = Cheat::unreal->SortActorsByDistance<CG::AFSDPawn*>(apUnsortedActors);
 
-	for (CG::AEnemyDeepPathfinderCharacter* pActor : apActors)
+	for (CG::AFSDPawn* pActor : apActors)
 	{
 		if (!IsValidObjectPtr(pActor))
 			continue;
 
-		CG::USkeletalMeshComponent* pMesh = pActor->Mesh;
-		if (!IsValidObjectPtr(pMesh))
-			continue;
-
-		CG::UHealthComponentBase* pHealthComponent = pActor->HealthComponent;
+		CG::UHealthComponentBase* pHealthComponent = pActor->GetHealthComponent();
 		if (!IsValidObjectPtr(pHealthComponent) || pHealthComponent->InternalIndex <= 0 || pHealthComponent->Name.ComparisonIndex == 0 || pHealthComponent->IsDead())
-			continue;
-
-		CG::FVector WorldPos = pMesh->GetSocketLocation(Root);
-
-		int iDistance= static_cast<int>(pDRGPlayer->K2_GetActorLocation().DistanceMeter(WorldPos));
-		if (iESPMaxDistance && iDistance > iESPMaxDistance)
 			continue;
 
 		CG::FVector Origin, BoxExtent;
 		pActor->GetActorBounds(true, &Origin, &BoxExtent, false);
+
+		int iDistance = static_cast<int>(pDRGPlayer->K2_GetActorLocation().DistanceMeter(Origin));
+		if (iESPMaxDistance && iDistance > iESPMaxDistance)
+			continue;
 
 		CG::FVector2D HeadPos = pUnreal->W2S({ Origin.X, Origin.Y, Origin.Z + BoxExtent.Z });
 		CG::FVector2D FeetPos = pUnreal->W2S({ Origin.X, Origin.Y, Origin.Z - BoxExtent.Z });
