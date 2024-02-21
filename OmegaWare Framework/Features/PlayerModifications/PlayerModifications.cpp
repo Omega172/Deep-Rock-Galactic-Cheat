@@ -102,7 +102,7 @@ void PlayerModifications::Run() {
 	if (!IsValidObjectPtr(pPlayerState))
 		return;
 
-	if (wsOriginalName.size() == 0)
+	if (!wsOriginalName.size())
 		wsOriginalName = pPlayerState->GetPlayerName().ToStringW();
 
 	if (!strlen(szNameBuffer)) {
