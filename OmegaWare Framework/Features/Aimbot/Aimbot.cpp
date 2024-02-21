@@ -108,9 +108,6 @@ void Aimbot::Render()
 		if (!IsValidObjectPtr(pHealthComponent) || pHealthComponent->InternalIndex <= 0 || pHealthComponent->Name.ComparisonIndex == 0 || pHealthComponent->IsDead())
 			continue;
 
-		if (pActor->GetAttitude() == CG::EPawnAttitude::Friendly)
-			continue;
-
 		CG::USkeletalMeshComponent* pMesh = pActor->GetMesh();
 		if (!IsValidObjectPtr(pMesh))
 			continue;

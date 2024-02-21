@@ -729,6 +729,11 @@ namespace CG
 		return X == 0 && Y == 0;
 	}
 
+	bool FVector2D::IsEmpty()
+	{
+		return X == 0 && Y == 0;
+	}
+
 	/**
 	 * Function:
 	 * 		RVA    -> 0x00000000

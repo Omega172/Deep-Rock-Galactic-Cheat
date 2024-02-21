@@ -495,6 +495,7 @@ namespace CG
 		FVector2D();
 		FVector2D(float x, float y);
 		bool IsValid();
+		bool IsEmpty();
 		float Distance(FVector2D& v) const;
 		FVector2D operator +(const FVector2D& other) const;
 		FVector2D operator +(float scalar) const;
