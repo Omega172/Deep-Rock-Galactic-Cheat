@@ -9,6 +9,7 @@ bool Aimbot::Setup()
 		{ HASH("AIMBOT_AUTO_FIRE"), "Auto Fire" },
 		{ HASH("AIMBOT_KEY"), "Aim Key" },
 		{ HASH("MAGIC_BULLET"), "Magic Bullet" },
+		{ HASH("MULTI_TARGET"), "Multi-Target" },
 		{ HASH("AIMBOT_FOV"), "FOV" }
 	};
 	Cheat::localization->AddToLocale("ENG", EnglishData);
@@ -53,6 +54,7 @@ void Aimbot::DrawMenuItems()
 			}
 
 			ImGui::Checkbox(Cheat::localization->Get("MAGIC_BULLET").c_str(), &bMagicBullet);
+			ImGui::Checkbox(Cheat::localization->Get("MULTI_TARGET").c_str(), &bMultiTarget);
 			ImGui::SliderFloat(Cheat::localization->Get("AIMBOT_FOV").c_str(), &flAimFOV, 0.0f, 180.0f);
 		}
 	}
@@ -91,128 +93,132 @@ void Aimbot::Render()
 	CG::UWeaponFireComponent* pWeaponFire = pWeapon->WeaponFire;
 	if (!IsValidObjectPtr(pWeaponFire))
 		return;
-
-	vecCameraLocation = pCameraManager->GetCameraLocation();
-	rotCameraRotation = pPlayerController->GetControlRotation();
+	
+	CG::FVector vecCameraLocation = pCameraManager->GetCameraLocation();
+	CG::FRotator rotCameraRotation = pPlayerController->GetControlRotation();
 
 	if (!bAutoFire && !keyAimbot.IsDown())
 		return;
 
-	if (bMagicBullet) {
-		std::vector<CG::AEnemyDeepPathfinderCharacter*> apUnsortedActors = Cheat::unreal->GetActors<CG::AEnemyDeepPathfinderCharacter>();
-		std::vector<CG::AEnemyDeepPathfinderCharacter*> apActors = Cheat::unreal->SortActorsByDistance<CG::AEnemyDeepPathfinderCharacter*>(apUnsortedActors);
+	std::vector<CG::AEnemyPawn*> apUnsortedEnemyPawns = Cheat::unreal->GetActors<CG::AEnemyPawn>();
+	std::vector<CG::AEnemyPawn*> apEnemyPawns = Cheat::unreal->SortActorsByDistance<CG::AEnemyPawn*>(apUnsortedEnemyPawns);
 
-		for (CG::AEnemyDeepPathfinderCharacter* pActor : apActors)
+	for (CG::AEnemyPawn* pActor : apEnemyPawns) {
+		if (!IsValidObjectPtr(pActor) || pActor->InternalIndex <= 0 || pActor->Name.ComparisonIndex <= 0)
+			continue;
+
+		CG::UEnemyHealthComponent* pHealthComponent = pActor->Health;
+		if (!IsValidObjectPtr(pHealthComponent) || pHealthComponent->InternalIndex <= 0 || pHealthComponent->Name.ComparisonIndex == 0 || pHealthComponent->IsDead())
+			continue;
+
+		if (pActor->GetAttitude() == CG::EPawnAttitude::Friendly)
+			continue;
+
+		CG::USkeletalMeshComponent* pMesh = pActor->GetMesh();
+		if (!IsValidObjectPtr(pMesh)) {
+			std::cout << "NOMESH \n";
+			continue;
+		}
+
+		for (int i = 0; i < pMesh->GetNumBones(); i++)
 		{
-			if (!IsValidObjectPtr(pActor) || pActor->InternalIndex <= 0 || pActor->Name.ComparisonIndex <= 0)
-				continue;
-
-			CG::UHealthComponentBase* pHealthComponent = pActor->HealthComponent;
-			if (!IsValidObjectPtr(pHealthComponent) || pHealthComponent->InternalIndex <= 0 || pHealthComponent->Name.ComparisonIndex == 0 || pHealthComponent->IsDead())
-				continue;
-
-			if (pActor->GetAttitude() == CG::EPawnAttitude::Friendly)
-				continue;
-
-			CG::USkeletalMeshComponent* pMesh = pActor->Mesh;
-			if (!IsValidObjectPtr(pMesh))
-				continue;
-
-			CG::FVector vecHeadLocation = pMesh->GetSocketLocation(pMesh->GetBoneName(13));
-
-			CG::FRotator rotGoalRotation = Cheat::unreal->GetMathLibrary()->FindLookAtRotation(vecCameraLocation, vecHeadLocation);
-			if (flAimFOV <= (rotGoalRotation - rotCameraRotation).Clamp().Size())
-				continue;
-
-			CG::FVector vecDirection = (vecHeadLocation - vecCameraLocation).Unit();
-			pWeaponFire->Fire(vecHeadLocation - vecDirection, CG::FVector_NetQuantizeNormal(vecDirection), true);
+			std::cout << i << ": " << pMesh->GetBoneName(i).GetName() << std::endl;
 		}
 
-		return;
-	}
+		CG::FVector vecHeadLocation = pMesh->GetSocketLocation(pMesh->GetBoneName(1));
 
-	if (pTarget == nullptr)
-		return;
+		CG::FRotator rotGoalRotation = Cheat::unreal->GetMathLibrary()->FindLookAtRotation(vecCameraLocation, vecHeadLocation);
+		if (flAimFOV <= (rotGoalRotation - rotCameraRotation).Clamp().Size())
+			continue;
 
-	if (!ActorChecks(pTarget))
-		return;
-
-	CG::USkeletalMeshComponent* pMesh = pTarget->Mesh;
-	if (!IsValidObjectPtr(pMesh))
-		return;
-
-	CG::FVector vecHeadLocation = pMesh->GetSocketLocation(pMesh->GetBoneName(13));
-	pWeaponFire->Fire(pDRGPlayer->K2_GetActorLocation(), CG::FVector_NetQuantizeNormal((vecHeadLocation - vecCameraLocation).Unit()), true);
-}
-
-bool Aimbot::ActorChecks(CG::AEnemyDeepPathfinderCharacter* pActor)
-{
-	if (!IsValidObjectPtr(pActor) || pActor->InternalIndex <= 0 || pActor->Name.ComparisonIndex <= 0)
-		return false;
-
-	CG::UHealthComponentBase* pHealthComponent = pActor->HealthComponent;
-	if (!IsValidObjectPtr(pHealthComponent) || pHealthComponent->InternalIndex <= 0 || pHealthComponent->Name.ComparisonIndex == 0 || pHealthComponent->IsDead())
-		return false;
-
-	if (pActor->GetAttitude() == CG::EPawnAttitude::Friendly)
-		return false;
-
-	CG::USkeletalMeshComponent* pMesh = pActor->Mesh;
-	if (!IsValidObjectPtr(pMesh))
-		return false;
-
-	CG::FVector vecHeadLocation = pMesh->GetSocketLocation(pMesh->GetBoneName(13));
-
-	if (!bMagicBullet) {
-		CG::FHitResult hrResult;
-		if (Cheat::unreal->GetSystemLibrary()->LineTraceSingle(
-			(*CG::UWorld::GWorld),
-			vecCameraLocation,
-			vecHeadLocation,
-			CG::ETraceTypeQuery::TraceTypeQuery1,
-			true, {},
-			CG::EDrawDebugTrace::ForDuration,
-			&hrResult, true,
-			{ 1.f, 1.f, 1.f, 1.f },
-			{ 1.f, 0.f, 0.f, 1.f },
-			300.f
-		)) {
-
-			// Voodoo magic
-			CG::AActor* pHitActor = hrResult.Actor.Get();
-			if (IsValidObjectPtr(pHitActor))
-				return false;
+		if (!bMagicBullet) {
+			CG::FHitResult hrResult;
+			if (Cheat::unreal->GetSystemLibrary()->LineTraceSingle(
+				(*CG::UWorld::GWorld),
+				vecCameraLocation,
+				vecHeadLocation,
+				CG::ETraceTypeQuery::TraceTypeQuery1,
+				true, {},
+				CG::EDrawDebugTrace::ForDuration,
+				&hrResult, true,
+				{ 1.f, 1.f, 1.f, 1.f },
+				{ 1.f, 0.f, 0.f, 1.f },
+				300.f
+			)) {
+				// Vischeck, will be a valid object ptr if we hit a wall :|
+				CG::AActor* pHitActor = hrResult.Actor.Get();
+				if (IsValidObjectPtr(pHitActor))
+					continue;
+			}
 		}
+
+		pWeaponFire->Fire(
+			bMagicBullet ? vecHeadLocation : vecCameraLocation, 
+			CG::FVector_NetQuantizeNormal((vecHeadLocation - vecCameraLocation).Unit()), 
+			true);
+
+		if (!bMultiTarget)
+			return;
 	}
 
-	CG::FRotator rotGoalRotation = Cheat::unreal->GetMathLibrary()->FindLookAtRotation(vecCameraLocation, vecHeadLocation);
-	float flTargetFOV = (rotGoalRotation - rotCameraRotation).Clamp().Size();
+	std::vector<CG::AEnemyDeepPathfinderCharacter*> apUnsortedPathfinderCharacters = Cheat::unreal->GetActors<CG::AEnemyDeepPathfinderCharacter>();
+	std::vector<CG::AEnemyDeepPathfinderCharacter*> apPathfinderCharacters = Cheat::unreal->SortActorsByDistance<CG::AEnemyDeepPathfinderCharacter*>(apUnsortedPathfinderCharacters);
 
-	return flAimFOV > flTargetFOV;
-}
-
-void Aimbot::Run()
-{
-	if (!bEnabled)
-		return;
-
-	if (bMagicBullet)
-		return;
-
-	std::vector<CG::AEnemyDeepPathfinderCharacter*> apUnsortedActors = Cheat::unreal->GetActors<CG::AEnemyDeepPathfinderCharacter>();
-	std::vector<CG::AEnemyDeepPathfinderCharacter*> apActors = Cheat::unreal->SortActorsByDistance<CG::AEnemyDeepPathfinderCharacter*>(apUnsortedActors);
-
-	for (CG::AEnemyDeepPathfinderCharacter* pActor : apActors)
-	{
-		if (!IsValidObjectPtr(pActor))
+	for (CG::AEnemyDeepPathfinderCharacter* pActor : apPathfinderCharacters) {
+		if (!IsValidObjectPtr(pActor) || pActor->InternalIndex <= 0 || pActor->Name.ComparisonIndex <= 0)
 			continue;
 
-		if (!ActorChecks(pActor))
+		CG::UEnemyHealthComponent* pHealthComponent = pActor->HealthComponent;
+		if (!IsValidObjectPtr(pHealthComponent) || pHealthComponent->InternalIndex <= 0 || pHealthComponent->Name.ComparisonIndex == 0 || pHealthComponent->IsDead())
 			continue;
 
-		pTarget = pActor;
+		if (pActor->GetAttitude() == CG::EPawnAttitude::Friendly)
+			continue;
+
+		CG::USkeletalMeshComponent* pMesh = pActor->Mesh;
+		if (!IsValidObjectPtr(pMesh))
+			continue;
+
+		CG::FVector vecHeadLocation = pMesh->GetSocketLocation(pMesh->GetBoneName(13));
+
+		CG::FRotator rotGoalRotation = Cheat::unreal->GetMathLibrary()->FindLookAtRotation(vecCameraLocation, vecHeadLocation);
+		if (flAimFOV <= (rotGoalRotation - rotCameraRotation).Clamp().Size())
+			continue;
+
+		CG::FVector vecDirection = (vecHeadLocation - vecCameraLocation).Unit();
+
+		if (!bMagicBullet) {
+			CG::FHitResult hrResult;
+			if (Cheat::unreal->GetSystemLibrary()->LineTraceSingle(
+				(*CG::UWorld::GWorld),
+				vecCameraLocation,
+				vecHeadLocation,
+				CG::ETraceTypeQuery::TraceTypeQuery1,
+				true, {},
+				CG::EDrawDebugTrace::ForDuration,
+				&hrResult, true,
+				{ 1.f, 1.f, 1.f, 1.f },
+				{ 1.f, 0.f, 0.f, 1.f },
+				300.f
+			)) {
+				// Vischeck, will be a valid object ptr if we hit a wall :|
+				CG::AActor* pHitActor = hrResult.Actor.Get();
+				if (IsValidObjectPtr(pHitActor))
+					continue;
+			}
+		}
+
+		pWeaponFire->Fire(
+			bMagicBullet ? vecHeadLocation : vecCameraLocation,
+			CG::FVector_NetQuantizeNormal((vecHeadLocation - vecCameraLocation).Unit()),
+			true);
+
+		if (!bMultiTarget)
+			return;
 	}
 }
+
+void Aimbot::Run() {}
 
 void Aimbot::SaveConfig()
 {
@@ -220,6 +226,7 @@ void Aimbot::SaveConfig()
 	Cheat::config->PushEntry("AIMBOT_AUTO_FIRE", "bool", std::to_string(bAutoFire));
 	Cheat::config->PushEntry("AIMBOT_KEY", "int", std::to_string(keyAimbot.key));
 	Cheat::config->PushEntry("MAGIC_BULLET", "bool", std::to_string(bMagicBullet));
+	Cheat::config->PushEntry("MULTI_TARGET", "bool", std::to_string(bMultiTarget));
 	Cheat::config->PushEntry("AIMBOT_FOV", "float", std::to_string(flAimFOV));
 }
 
@@ -240,6 +247,10 @@ void Aimbot::LoadConfig()
 	entry = Cheat::config->GetEntryByName("MAGIC_BULLET");
 	if (entry.Name == "MAGIC_BULLET")
 		bMagicBullet = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("MULTI_TARGET");
+	if (entry.Name == "MULTI_TARGET")
+		bMultiTarget = std::stoi(entry.Value);
 
 	entry = Cheat::config->GetEntryByName("AIMBOT_FOV");
 	if (entry.Name == "AIMBOT_FOV")

@@ -12,14 +12,7 @@ private:
 	bool bSetKeyAimbot = false;
 	float flAimFOV = 90.0f;
 	bool bMagicBullet = true;
-
-	bool bWasFiring = false;
-	CG::FVector vecCameraLocation;
-	CG::FRotator rotCameraRotation;
-
-	CG::AEnemyDeepPathfinderCharacter* pTarget = nullptr;
-
-	bool ActorChecks(CG::AEnemyDeepPathfinderCharacter* pActor);
+	bool bMultiTarget = false;
 
 public:
 	Aimbot();
