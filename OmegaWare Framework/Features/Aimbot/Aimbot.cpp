@@ -105,7 +105,7 @@ void Aimbot::Render()
 			continue;
 
 		CG::UEnemyHealthComponent* pHealthComponent = pActor->Health;
-		if (!IsValidObjectPtr(pHealthComponent) || pHealthComponent->InternalIndex <= 0 || pHealthComponent->Name.ComparisonIndex == 0 || pHealthComponent->IsDead())
+		if (!IsValidObjectPtr(pHealthComponent) || pHealthComponent->InternalIndex <= 0 || pHealthComponent->Name.ComparisonIndex == 0 || pHealthComponent->IsDead() || !pHealthComponent->canTakeDamage)
 			continue;
 
 		CG::FVector vecAimLocation, vecExtent;
