@@ -75,6 +75,7 @@ static_assert((FRAMEWORK_RENDER_D3D11 + FRAMEWORK_RENDER_D3D12) == 1, "Must use 
 #endif
 
 // Include standard libraries that are used in the project
+#define NOMINMAX
 #include <thread>
 #include <chrono>
 #include <memory>

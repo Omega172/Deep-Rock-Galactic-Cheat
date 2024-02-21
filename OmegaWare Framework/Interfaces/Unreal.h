@@ -201,7 +201,7 @@ public:
 
 		CG::UGameViewportClient* pViewportClient = pLocalPlayer->ViewportClient;
 		if (!IsValidObjectPtr(pViewportClient))
-			return;
+			return nullptr;
 
 		return pViewportClient;
 	}
