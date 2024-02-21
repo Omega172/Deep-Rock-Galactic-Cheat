@@ -90,6 +90,9 @@ void ESP::Render()
 		if (!IsValidObjectPtr(pActor))
 			continue;
 
+		if (pActor->GetAttitude() != CG::EPawnAttitude::Hostile)
+			continue;
+
 		CG::UHealthComponentBase* pHealthComponent = pActor->GetHealthComponent();
 		if (!IsValidObjectPtr(pHealthComponent) || pHealthComponent->InternalIndex <= 0 || pHealthComponent->Name.ComparisonIndex == 0 || pHealthComponent->IsDead())
 			continue;
