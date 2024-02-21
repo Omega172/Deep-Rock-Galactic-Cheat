@@ -10,6 +10,7 @@ private:
 	int iESPMaxDistance = 0;
 	bool bBoxName = true;
 	bool bBoxDistance = true;
+	bool bBoxHealthBar = true;
 
 	bool bInvincibleFlag = true;
 

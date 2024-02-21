@@ -11,6 +11,7 @@ bool ESP::Setup()
 		{ HASH("ESP_FLAGS"), "Flags" },
 		{ HASH("ESP_BOX_SHOW_NAME"), "Show Name" },
 		{ HASH("ESP_BOX_SHOW_DISTANCE"), "Show Distance" },
+		{ HASH("ESP_HEALTH_BAR"), "Health Bar" },
 		{ HASH("ESP_INVINCIBLE_FLAG"), "Invincible Flag" },
 		{ HASH("ESP_INVINCIBLE_FLAG_TEXT"), "lnvuln" }
 	};
@@ -63,6 +64,7 @@ void ESP::DrawMenuItems()
 			{
 				ImGui::Selectable(Cheat::localization->Get("ESP_BOX_SHOW_NAME").c_str(), &bBoxName);
 				ImGui::Selectable(Cheat::localization->Get("ESP_BOX_SHOW_DISTANCE").c_str(), &bBoxDistance);
+				ImGui::Selectable(Cheat::localization->Get("ESP_HEALTH_BAR").c_str(), &bBoxHealthBar);
 				ImGui::Selectable(Cheat::localization->Get("ESP_INVINCIBLE_FLAG").c_str(), &bInvincibleFlag);
 
 				ImGui::EndCombo();
@@ -96,7 +98,7 @@ void ESP::Render()
 		if (pActor->GetAttitude() != CG::EPawnAttitude::Hostile)
 			continue;
 
-		CG::UHealthComponentBase* pHealthComponent = pActor->GetHealthComponent();
+		CG::UEnemyHealthComponent* pHealthComponent = reinterpret_cast<CG::UEnemyHealthComponent*>(pActor->GetHealthComponent());
 		if (!IsValidObjectPtr(pHealthComponent) || pHealthComponent->InternalIndex <= 0 || pHealthComponent->Name.ComparisonIndex == 0 || pHealthComponent->IsDead())
 			continue;
 
@@ -157,6 +159,22 @@ void ESP::Render()
 			ImGui::OutlinedText(Pos, White, sDistance.c_str());
 		}
 
+		if (bBoxHealthBar)
+		{
+			float MaxHealth = pHealthComponent->GetMaxHealth();
+			float CurrentHealth = pHealthComponent->GetHealth();
+			float Height = DownRight.Y - (TopRight.Y + 1);
+
+			float g = ((CurrentHealth / MaxHealth) * 255);
+			float r = 255 - g;
+
+			// Outline
+			ImGui::GetBackgroundDrawList()->AddRect({ DownRight.X + 10, DownRight.Y + 1 }, { TopRight.X + 5, TopRight.Y }, Black);
+
+			// Health Bar
+			ImGui::GetBackgroundDrawList()->AddRectFilled({ DownRight.X + 9, DownRight.Y }, { DownRight.X + 6, DownRight.Y - (Height * (CurrentHealth / MaxHealth)) }, ImGui::ColorConvertFloat4ToU32({ r, g, 0.f, 1.f }));
+		}
+
 		// Flags
 		ImVec2 Pos = TopRight;
 		Pos.x = Pos.x + 5.f;
@@ -177,6 +195,7 @@ void ESP::SaveConfig()
 	Cheat::config->PushEntry("ESP_MAX_DISTANCE", "int", std::to_string(iESPMaxDistance));
 	Cheat::config->PushEntry("ESP_BOX_SHOW_NAME", "bool", std::to_string(bBoxName));
 	Cheat::config->PushEntry("ESP_BOX_SHOW_DISTANCE", "bool", std::to_string(bBoxDistance));
+	Cheat::config->PushEntry("ESP_HEALTH_BAR", "bool", std::to_string(bBoxHealthBar));
 	Cheat::config->PushEntry("ESP_INVINCIBLE_FLAG", "bool", std::to_string(bInvincibleFlag));
 }
 
@@ -197,6 +216,10 @@ void ESP::LoadConfig()
 	entry = Cheat::config->GetEntryByName("ESP_BOX_SHOW_DISTANCE");
 	if (entry.Name == "ESP_BOX_SHOW_DISTANCE")
 		bBoxDistance = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_HEALTH_BAR");
+	if (entry.Name == "ESP_HEALTH_BAR")
+		bBoxHealthBar = std::stoi(entry.Value);
 
 	entry = Cheat::config->GetEntryByName("ESP_INVINCIBLE_FLAG");
 	if (entry.Name == "ESP_INVINCIBLE_FLAG")
