@@ -98,7 +98,7 @@ void ESP::Render()
 		if (pActor->GetAttitude() != CG::EPawnAttitude::Hostile)
 			continue;
 
-		CG::UEnemyHealthComponent* pHealthComponent = reinterpret_cast<CG::UEnemyHealthComponent*>(pActor->GetHealthComponent());
+		CG::UHealthComponent* pHealthComponent = reinterpret_cast<CG::UHealthComponent*>(pActor->GetHealthComponent());
 		if (!IsValidObjectPtr(pHealthComponent) || pHealthComponent->InternalIndex <= 0 || pHealthComponent->Name.ComparisonIndex == 0 || pHealthComponent->IsDead())
 			continue;
 
@@ -161,18 +161,16 @@ void ESP::Render()
 
 		if (bBoxHealthBar)
 		{
-			float MaxHealth = pHealthComponent->GetMaxHealth();
-			float CurrentHealth = pHealthComponent->GetHealth();
 			float Height = DownRight.Y - (TopRight.Y + 1);
 
-			float g = CurrentHealth / MaxHealth;
+			float g = pHealthComponent->GetHealthPct();
 			float r = 1.f - g;
 
 			// Outline
-			ImGui::GetBackgroundDrawList()->AddRect({ DownRight.X + 10, DownRight.Y + 1 }, { TopRight.X + 5, TopRight.Y }, Black);
+			ImGui::GetBackgroundDrawList()->AddRect({ DownRight.X + 9, DownRight.Y }, { TopRight.X + 5, TopRight.Y }, Black);
 
 			// Health Bar
-			ImGui::GetBackgroundDrawList()->AddRectFilled({ DownRight.X + 9, DownRight.Y }, { DownRight.X + 6, DownRight.Y - (Height * (CurrentHealth / MaxHealth)) }, ImGui::ColorConvertFloat4ToU32({ r, g, 0.f, 1.f }));
+			ImGui::GetBackgroundDrawList()->AddRectFilled({ DownRight.X + 9, DownRight.Y }, { DownRight.X + 6, DownRight.Y - (Height * g) }, ImGui::ColorConvertFloat4ToU32({ r, g, 0.f, 1.f }));
 		}
 
 		// Flags
