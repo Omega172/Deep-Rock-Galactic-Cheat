@@ -1,6 +1,15 @@
 #pragma once
 #include "pch.h"
 
+inline CG::UFont* pFont = nullptr;
+inline DWORD dwOldProtect = NULL;
+
+typedef void(__thiscall* PostRender) (CG::UObject* pViewportClient, CG::UCanvas* pCanvas);
+inline PostRender oPostRender = nullptr;
+inline void hkPostRender(CG::UObject* pViewportClient, CG::UCanvas* pCanvas);
+
+inline bool bDrawPostRenderText = false;
+
 class ESP : public Feature
 {
 private:

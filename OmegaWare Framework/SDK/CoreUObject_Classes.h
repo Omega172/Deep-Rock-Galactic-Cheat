@@ -22,7 +22,7 @@ namespace CG
 	{
 	public:
 		static class TUObjectArray*                                GObjects;                                                // 0x0000(0x0008) PREDEFINED PROPERTY
-		void*                                                      VfTable;                                                 // 0x0000(0x0008) PRE-DEFINED PROPERTY
+		void**                                                     VfTable;                                                 // 0x0000(0x0008) PRE-DEFINED PROPERTY
 		int32_t                                                    Flags;                                                   // 0x0008(0x0004) PRE-DEFINED PROPERTY
 		int32_t                                                    InternalIndex;                                           // 0x000C(0x0004) PRE-DEFINED PROPERTY
 		class UClass*                                              Class;                                                   // 0x0010(0x0008) PRE-DEFINED PROPERTY

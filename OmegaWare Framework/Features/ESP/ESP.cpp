@@ -1,5 +1,26 @@
 #include "pch.h"
 
+inline void hkPostRender(CG::UObject* pViewportClient, CG::UCanvas* pCanvas)
+{
+	CG::ULocalPlayer* pLocalPlayer = Cheat::unreal->GetLocalPlayer();
+	if (!IsValidObjectPtr(pLocalPlayer))
+		return oPostRender(pViewportClient, pCanvas);
+
+	if (!bDrawPostRenderText)
+		return oPostRender(pViewportClient, pCanvas);
+
+	CG::FLinearColor Cyan = { 0.f, 1.f, 1.f, 1.f };
+	CG::FLinearColor Black = { 0.f, 0.f, 0.f, 1.f };
+
+	// The canvas reports its size as the current resolution but in my testing it is always 2048, 1280
+	CG::FVector2D TextSize = pCanvas->K2_TextSize(pFont, L"OmegaWare.xyz", { 1.f, 1.f });
+	pCanvas->K2_DrawText(pFont, L"OmegaWare.xyz", { 1024.f - ( TextSize.X / 2 ), 0.f }, { 1.f, 1.f }, Cyan, 1.f, Black, { 0.f, 0.f }, false, false, true, Black);
+
+	//pCanvas->K2_DrawLine({ 0.f, 0.f }, { 1024.f, 640.f }, 1.f, Cyan);
+
+	oPostRender(pViewportClient, pCanvas);
+}
+
 ESP::ESP() {};
 
 bool ESP::Setup()
@@ -28,11 +49,40 @@ bool ESP::Setup()
 
 	Root = CG::FName("Root");
 
+	pFont = CG::UObject::FindObject<CG::UFont>("Font Roboto.Roboto");
+	if (!IsValidObjectPtr(pFont))
+		return false;
+
+	CG::UGameViewportClient* pViewportClient = Cheat::unreal->GetViewportClient();
+	if (!IsValidObjectPtr(pViewportClient))
+		return false;
+
+	void** VFTable = pViewportClient->VfTable;
+	VirtualProtect(&VFTable[POST_RENDER_INDEX], 8, PAGE_EXECUTE_READWRITE, &dwOldProtect);
+	oPostRender = reinterpret_cast<PostRender>(VFTable[POST_RENDER_INDEX]);
+	VFTable[POST_RENDER_INDEX] = &hkPostRender;
+	VirtualProtect(&VFTable[POST_RENDER_INDEX], 8, dwOldProtect, &dwOldProtect);
+
 	Initialized = true;
 	return Initialized;
 }
 
-void ESP::Destroy() { Initialized = false; }
+void ESP::Destroy()
+{
+	if (!Initialized)
+		return;
+
+	CG::UGameViewportClient* pViewportClient = Cheat::unreal->GetViewportClient();
+	if (!IsValidObjectPtr(pViewportClient))
+		return;
+
+	void** VFTable = pViewportClient->VfTable;
+	VirtualProtect(&VFTable[POST_RENDER_INDEX], 8, PAGE_EXECUTE_READWRITE, &dwOldProtect);
+	VFTable[POST_RENDER_INDEX] = oPostRender;
+	VirtualProtect(&VFTable[POST_RENDER_INDEX], 8, dwOldProtect, &dwOldProtect);
+
+	Initialized = false;
+}
 
 void ESP::HandleKeys() {}
 
@@ -61,6 +111,9 @@ void ESP::DrawMenuItems()
 
 			ImGui::SliderInt(Cheat::localization->Get("ESP_MAX_DISTANCE").c_str(), &iESPMaxDistance, 0, 1000);
 		}
+
+		ImGui::Spacing();
+		ImGui::Checkbox("Draw PostRender Text", &bDrawPostRenderText);
 	}
 	ImGui::EndChild();
 }
