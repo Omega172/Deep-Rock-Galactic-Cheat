@@ -11,6 +11,7 @@ private:
 	bool bBoxName = true;
 	bool bBoxDistance = true;
 	bool bBoxHealthBar = true;
+	bool bBoxArmorBar = true;
 
 	bool bInvincibleFlag = true;
 

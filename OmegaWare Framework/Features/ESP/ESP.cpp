@@ -12,6 +12,7 @@ bool ESP::Setup()
 		{ HASH("ESP_BOX_SHOW_NAME"), "Show Name" },
 		{ HASH("ESP_BOX_SHOW_DISTANCE"), "Show Distance" },
 		{ HASH("ESP_HEALTH_BAR"), "Health Bar" },
+		{ HASH("ESP_ARMOR_BAR"), "Armor Bar" },
 		{ HASH("ESP_INVINCIBLE_FLAG"), "Invincible Flag" },
 		{ HASH("ESP_INVINCIBLE_FLAG_TEXT"), "lnvuln" }
 	};
@@ -65,6 +66,7 @@ void ESP::DrawMenuItems()
 				ImGui::Selectable(Cheat::localization->Get("ESP_BOX_SHOW_NAME").c_str(), &bBoxName);
 				ImGui::Selectable(Cheat::localization->Get("ESP_BOX_SHOW_DISTANCE").c_str(), &bBoxDistance);
 				ImGui::Selectable(Cheat::localization->Get("ESP_HEALTH_BAR").c_str(), &bBoxHealthBar);
+				ImGui::Selectable(Cheat::localization->Get("ESP_ARMOR_BAR").c_str(), &bBoxArmorBar);
 				ImGui::Selectable(Cheat::localization->Get("ESP_INVINCIBLE_FLAG").c_str(), &bInvincibleFlag);
 
 				ImGui::EndCombo();
@@ -135,14 +137,28 @@ void ESP::Render()
 			ImGui::OutlinedText({ rectBox.Min.x + (rectBox.GetWidth() - vecTextSize.x) / 2, rectBox.Max.y + 2.f }, White, sDistance.c_str());
 		}
 
-		ImVec2 vecFlags(rectBox.Max.x, rectBox.Min.y + 5.f);
+		ImVec2 vecFlags(rectBox.Max.x + 4.f, rectBox.Min.y);
 
 		if (bBoxHealthBar)
 		{
 			float g = pHealthComponent->GetHealthPct();
 
-			ImGui::GetBackgroundDrawList()->AddRect({ rectBox.Max.x + 9, rectBox.Max.y }, { rectBox.Max.x + 5, rectBox.Min.y }, Black);
-			ImGui::GetBackgroundDrawList()->AddRectFilled({ rectBox.Max.x + 9, rectBox.Max.y }, { rectBox.Max.x + 6, rectBox.Max.y - (rectBox.GetHeight() * g) }, ImGui::ColorConvertFloat4ToU32({ 1.f - g, g, 0.f, 1.f }));
+			ImGui::GetBackgroundDrawList()->AddRect({ vecFlags.x - 1.f, rectBox.Min.y - 1 }, { vecFlags.x + 4.f, rectBox.Max.y + 1.f }, Black);
+			ImGui::GetBackgroundDrawList()->AddRectFilled({ vecFlags.x, rectBox.Min.y }, { vecFlags.x + 3.f, rectBox.Max.y }, ImGui::ColorConvertFloat4ToU32({ 0.f, 0.f, 0.f, 0.2f }));
+			ImGui::GetBackgroundDrawList()->AddRectFilled({ vecFlags.x, rectBox.Max.y }, { vecFlags.x + 3.f, rectBox.Max.y - (rectBox.GetHeight() * g) }, ImGui::ColorConvertFloat4ToU32({ 1.f - g, g, 0.f, 1.f }));
+
+			vecFlags.x += 7.f;
+		}
+
+		if (bBoxArmorBar && pHealthComponent->GetMaxArmor() > 0.f)
+		{
+			float g = pHealthComponent->GetArmorPct();
+
+			ImGui::GetBackgroundDrawList()->AddRect({ vecFlags.x - 1.f, rectBox.Min.y - 1 }, { vecFlags.x + 4.f, rectBox.Max.y + 1.f }, Black);
+			ImGui::GetBackgroundDrawList()->AddRectFilled({ vecFlags.x, rectBox.Min.y }, { vecFlags.x + 3.f, rectBox.Max.y }, ImGui::ColorConvertFloat4ToU32({ 0.f, 0.f, 0.f, 0.2f }));
+			ImGui::GetBackgroundDrawList()->AddRectFilled({ vecFlags.x, rectBox.Max.y }, { vecFlags.x + 3.f, rectBox.Max.y - (rectBox.GetHeight() * g) }, Cyan);
+
+			vecFlags.x += 7.f;
 		}
 
 		if (bInvincibleFlag && !pHealthComponent->canTakeDamage)
@@ -189,6 +205,7 @@ void ESP::SaveConfig()
 	Cheat::config->PushEntry("ESP_BOX_SHOW_NAME", "bool", std::to_string(bBoxName));
 	Cheat::config->PushEntry("ESP_BOX_SHOW_DISTANCE", "bool", std::to_string(bBoxDistance));
 	Cheat::config->PushEntry("ESP_HEALTH_BAR", "bool", std::to_string(bBoxHealthBar));
+	Cheat::config->PushEntry("ESP_ARMOR_BAR", "bool", std::to_string(bBoxArmorBar));
 	Cheat::config->PushEntry("ESP_INVINCIBLE_FLAG", "bool", std::to_string(bInvincibleFlag));
 }
 
@@ -213,6 +230,10 @@ void ESP::LoadConfig()
 	entry = Cheat::config->GetEntryByName("ESP_HEALTH_BAR");
 	if (entry.Name == "ESP_HEALTH_BAR")
 		bBoxHealthBar = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_ARMOR_BAR");
+	if (entry.Name == "ESP_ARMOR_BAR")
+		bBoxArmorBar = std::stoi(entry.Value);
 
 	entry = Cheat::config->GetEntryByName("ESP_INVINCIBLE_FLAG");
 	if (entry.Name == "ESP_INVINCIBLE_FLAG")
