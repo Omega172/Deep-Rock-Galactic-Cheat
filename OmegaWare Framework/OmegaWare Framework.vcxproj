@@ -44,7 +44,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LinkIncremental>true</LinkIncremental>
+    <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)Build\$(Platform)\$(Configuration)\Output\</OutDir>
     <IntDir>Build\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
@@ -92,7 +92,7 @@
       <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ExceptionHandling>Async</ExceptionHandling>
       <AdditionalOptions>/bigobj /Zc:threadSafeInit- /utf-8 /Zc:char8_t- %(AdditionalOptions)</AdditionalOptions>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DebugInformationFormat>None</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

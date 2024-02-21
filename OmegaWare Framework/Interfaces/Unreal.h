@@ -187,11 +187,7 @@ public:
 		if (!pGameInstance)
 			return nullptr;
 
-		CG::ULocalPlayer** aLocalPlayers = pGameInstance->LocalPlayers;
-		if (!IsValidPtr(aLocalPlayer))
-			return nullptr;
-
-		CG::ULocalPlayer* pLocalPlayer = aLocalPlayers[index];
+		CG::ULocalPlayer* pLocalPlayer = pGameInstance->LocalPlayers[index];
 		if (!IsValidObjectPtr(pLocalPlayer))
 			return nullptr;
 
@@ -283,24 +279,28 @@ public:
 	{
 		std::vector<T> SortedActors = actors;
 
+		CG::APlayerController* PlayerController = GetPlayerController();
+		if (!IsValidObjectPtr(PlayerController))
+			return {};
+
+		CG::APawn* Pawn = PlayerController->AcknowledgedPawn;
+		if (!IsValidObjectPtr(Pawn))
+			return {};
+
 		// Remove invalid actors
 		SortedActors.erase(std::remove_if(SortedActors.begin(), SortedActors.end(), [](T Actor)
 		{
 			return !IsActorValid(Actor);
 		}), SortedActors.end());
 
-		std::stable_sort(SortedActors.begin(), SortedActors.end(), [](T ActorA, T ActorB)
+		CG::AActor* pActor = reinterpret_cast<CG::AActor*>(Pawn);
+
+		std::stable_sort(SortedActors.begin(), SortedActors.end(), [Pawn](T ActorA, T ActorB)
 		{
-			CG::APlayerController* PlayerController = GetPlayerController();
-			if (!IsValidObjectPtr(PlayerController))
-				return false;
-
-			CG::APawn* Pawn = PlayerController->AcknowledgedPawn;
-			if (!IsValidObjectPtr(Pawn))
-				return false;
-
 			float ActorADistance = ActorA->GetDistanceTo(Pawn);
 			float ActorBDistance = ActorB->GetDistanceTo(Pawn);
+			if (ActorADistance == ActorBDistance)
+				return ActorA->K2_GetActorRotation().Size() < K2_GetActorRotation().Size();
 
 			return ActorADistance < ActorBDistance;
 		});
