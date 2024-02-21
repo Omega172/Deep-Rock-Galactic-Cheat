@@ -3,6 +3,7 @@
 #include "Console/Console.h" // Include the console header file which contains the console class used to create a console window
 
 #define IsValidObjectPtr(lpAddress) (lpAddress && Utils::IsReadableMemory(lpAddress, sizeof(*lpAddress)))
+#define IsValidPtr(lpAddress) (lpAddress && Utils::IsReadableMemory(lpAddress, sizeof(void*)))
 #define MemoryIsReadable(lpAddress) Utils::IsReadableMemory(lpAddress, sizeof(*lpAddress))
 
 namespace Utils

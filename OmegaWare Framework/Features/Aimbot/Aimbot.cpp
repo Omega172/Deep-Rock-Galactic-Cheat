@@ -67,15 +67,9 @@ void Aimbot::Render()
 		return;
 
 	Unreal* pUnreal = Cheat::unreal.get();
-	if (!IsValidObjectPtr(pUnreal))
-		return;
 
-	CG::APlayerController* pPlayerController = pUnreal->GetPlayerController();
-	if (!IsValidObjectPtr(pPlayerController))
-		return;
-
-	CG::APlayerCameraManager* pCameraManager = Cheat::unreal->GetPlayerCameraManager();
-	if (!IsValidObjectPtr(pCameraManager))
+	CG::APlayerCameraManager* pCameraManager = pUnreal->GetPlayerCameraManager();
+	if (!pCameraManager)
 		return;
 
 	CG::ABP_PlayerCharacter_C* pDRGPlayer = static_cast<CG::ABP_PlayerCharacter_C*>(pUnreal->GetAcknowledgedPawn());
@@ -95,7 +89,6 @@ void Aimbot::Render()
 		return;
 	
 	CG::FVector vecCameraLocation = pCameraManager->GetCameraLocation();
-	CG::FRotator rotCameraRotation = pPlayerController->GetControlRotation();
 
 	if (!bAutoFire && !keyAimbot.IsDown())
 		return;
@@ -153,15 +146,10 @@ void Aimbot::Run()
 		return;
 
 	Unreal* pUnreal = Cheat::unreal.get();
-	if (!IsValidObjectPtr(pUnreal))
-		return;
-
+	
 	CG::APlayerController* pPlayerController = pUnreal->GetPlayerController();
-	if (!IsValidObjectPtr(pPlayerController))
-		return;
-
-	CG::APlayerCameraManager* pCameraManager = Cheat::unreal->GetPlayerCameraManager();
-	if (!IsValidObjectPtr(pCameraManager))
+	CG::APlayerCameraManager* pCameraManager = pUnreal->GetPlayerCameraManager();
+	if (!pPlayerController || !pCameraManager)
 		return;
 
 	CG::ABP_PlayerCharacter_C* pDRGPlayer = static_cast<CG::ABP_PlayerCharacter_C*>(pUnreal->GetAcknowledgedPawn());
@@ -180,16 +168,16 @@ void Aimbot::Run()
 	if (!IsValidObjectPtr(pWeaponFire))
 		return;
 
+	CG::UKismetMathLibrary* pMathLibrary = Cheat::unreal->GetMathLibrary();
+	CG::UKismetSystemLibrary* pSystemLibrary = Cheat::unreal->GetSystemLibrary();
 	CG::FVector vecCameraLocation = pCameraManager->GetCameraLocation();
 	CG::FRotator rotCameraRotation = pPlayerController->GetControlRotation();
-
 	float flAimFOV_copy = flAimFOV;
 	bool bMagicBullet_copy = bMagicBullet;
 
-	std::vector<CG::AEnemyPawn*> apUnsortedEnemyPawns = Cheat::unreal->GetActors<CG::AEnemyPawn>();
-	apEnemyPawns = Cheat::unreal->SortActorsByDistance<CG::AEnemyPawn*>(apUnsortedEnemyPawns);
-	
-	apEnemyPawns.erase(std::remove_if(apEnemyPawns.begin(), apEnemyPawns.end(), [vecCameraLocation, rotCameraRotation, flAimFOV_copy, bMagicBullet_copy](CG::AEnemyPawn* pActor)
+	std::vector<CG::AEnemyPawn*> apUnsortedEnemyPawns = pUnreal->GetActors<CG::AEnemyPawn>();
+	apEnemyPawns = pUnreal->SortActorsByDistance<CG::AEnemyPawn*>(apUnsortedEnemyPawns);
+	apEnemyPawns.erase(std::remove_if(apEnemyPawns.begin(), apEnemyPawns.end(), [pMathLibrary, pSystemLibrary, vecCameraLocation, rotCameraRotation, flAimFOV_copy, bMagicBullet_copy](CG::AEnemyPawn* pActor)
 		{
 			if (!IsValidObjectPtr(pActor) || pActor->InternalIndex <= 0 || pActor->Name.ComparisonIndex <= 0)
 				return true;
@@ -204,13 +192,13 @@ void Aimbot::Run()
 			CG::FVector vecAimLocation, vecExtent;
 			pActor->GetActorBounds(true, &vecAimLocation, &vecExtent, false);
 
-			CG::FRotator rotGoalRotation = Cheat::unreal->GetMathLibrary()->FindLookAtRotation(vecCameraLocation, vecAimLocation);
+			CG::FRotator rotGoalRotation = pMathLibrary->FindLookAtRotation(vecCameraLocation, vecAimLocation);
 			if (flAimFOV_copy <= (rotGoalRotation - rotCameraRotation).Clamp().Size())
 				return true;
 
 			if (!bMagicBullet_copy) {
 				CG::FHitResult hrResult{};
-				if (Cheat::unreal->GetSystemLibrary()->LineTraceSingle(
+				if (pSystemLibrary->LineTraceSingle(
 					(*CG::UWorld::GWorld),
 					vecCameraLocation,
 					vecAimLocation,
@@ -233,10 +221,9 @@ void Aimbot::Run()
 		}), apEnemyPawns.end());
 
 
-	std::vector<CG::AEnemyDeepPathfinderCharacter*> apUnsortedEnemyPathFinders = Cheat::unreal->GetActors<CG::AEnemyDeepPathfinderCharacter>();
-	apEnemyPathFinders = Cheat::unreal->SortActorsByDistance<CG::AEnemyDeepPathfinderCharacter*>(apUnsortedEnemyPathFinders);
-
-	apEnemyPathFinders.erase(std::remove_if(apEnemyPathFinders.begin(), apEnemyPathFinders.end(), [vecCameraLocation, rotCameraRotation, flAimFOV_copy, bMagicBullet_copy](CG::AEnemyDeepPathfinderCharacter* pActor)
+	std::vector<CG::AEnemyDeepPathfinderCharacter*> apUnsortedEnemyPathFinders = pUnreal->GetActors<CG::AEnemyDeepPathfinderCharacter>();
+	apEnemyPathFinders = pUnreal->SortActorsByDistance<CG::AEnemyDeepPathfinderCharacter*>(apUnsortedEnemyPathFinders);
+	apEnemyPathFinders.erase(std::remove_if(apEnemyPathFinders.begin(), apEnemyPathFinders.end(), [pMathLibrary, pSystemLibrary, vecCameraLocation, rotCameraRotation, flAimFOV_copy, bMagicBullet_copy](CG::AEnemyDeepPathfinderCharacter* pActor)
 		{
 			if (!IsValidObjectPtr(pActor) || pActor->InternalIndex <= 0 || pActor->Name.ComparisonIndex <= 0)
 				return true;
@@ -256,13 +243,13 @@ void Aimbot::Run()
 
 			CG::FVector vecHeadLocation = pMesh->GetSocketLocation(pMesh->GetBoneName(13));
 
-			CG::FRotator rotGoalRotation = Cheat::unreal->GetMathLibrary()->FindLookAtRotation(vecCameraLocation, vecHeadLocation);
+			CG::FRotator rotGoalRotation = pMathLibrary->FindLookAtRotation(vecCameraLocation, vecHeadLocation);
 			if (flAimFOV_copy <= (rotGoalRotation - rotCameraRotation).Clamp().Size())
 				return true;
 
 			if (!bMagicBullet_copy) {
 				CG::FHitResult hrResult{};
-				if (Cheat::unreal->GetSystemLibrary()->LineTraceSingle(
+				if (pSystemLibrary->LineTraceSingle(
 					(*CG::UWorld::GWorld),
 					vecCameraLocation,
 					vecHeadLocation,

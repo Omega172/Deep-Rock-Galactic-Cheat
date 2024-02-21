@@ -87,12 +87,12 @@ void ESP::Render()
 
 	Unreal* pUnreal = Cheat::unreal.get();
 
-	CG::ABP_PlayerCharacter_C* pDRGPlayer = reinterpret_cast<CG::ABP_PlayerCharacter_C*>(pUnreal->GetAcknowledgedPawn());
-	if (!IsValidObjectPtr(pDRGPlayer))
+	CG::APawn* pDRGPlayer = pUnreal->GetAcknowledgedPawn();
+	if (!pDRGPlayer)
 		return;
 
-	std::vector<CG::AFSDPawn*> apUnsortedActors = Cheat::unreal->GetActors<CG::AFSDPawn>();
-	std::vector<CG::AFSDPawn*> apActors = Cheat::unreal->SortActorsByDistance<CG::AFSDPawn*>(apUnsortedActors);
+	std::vector<CG::AFSDPawn*> apUnsortedActors = pUnreal->GetActors<CG::AFSDPawn>();
+	std::vector<CG::AFSDPawn*> apActors = pUnreal->SortActorsByDistance<CG::AFSDPawn*>(apUnsortedActors);
 
 	for (CG::AFSDPawn* pActor : apActors)
 	{
