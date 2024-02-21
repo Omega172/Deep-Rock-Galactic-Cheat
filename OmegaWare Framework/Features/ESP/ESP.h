@@ -6,7 +6,7 @@ class ESP : public Feature
 private:
 	bool Initialized = false;
 	bool bEnabled = false;
-
+	bool bAccurateBox = true;
 	int iESPMaxDistance = 0;
 	bool bBoxName = true;
 	bool bBoxDistance = true;
