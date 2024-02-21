@@ -8,7 +8,8 @@ bool PlayerModifications::Setup()
 		{ HASH("GODMODE"), "Godmode" },
 		{ HASH("RUNNING_SPEED"), "Run Speed" },
 		{ HASH("FLY_HACK"), "Jetpack" },
-		{ HASH("FLY_FORCE"), "Force" }
+		{ HASH("FLY_FORCE"), "Force" },
+		{ HASH("NAME_CHANGER"), "Name Changer" }
 	};
 	Cheat::localization->AddToLocale("ENG", EnglishData);
 
@@ -38,6 +39,13 @@ void PlayerModifications::Destroy() {
 	if (!IsValidObjectPtr(pDRGPlayer))
 		return;
 
+	CG::ABP_PlayerController_C* pPlayerController = static_cast<CG::ABP_PlayerController_C*>(pUnreal->GetPlayerController());
+	if (!IsValidObjectPtr(pPlayerController))
+		return;
+
+	if (wsOriginalName.size())
+		pPlayerController->SetName(CG::FString(wsOriginalName.c_str()));
+
 	if (flDefaultRunningSpeed > 0.f) 
 		pDRGPlayer->RunningSpeed = flDefaultRunningSpeed;
 
@@ -60,9 +68,10 @@ void PlayerModifications::DrawMenuItems()
 		ImGui::SliderFloat(Cheat::localization->Get("RUNNING_SPEED").c_str(), &flRunningSpeed, 1.f, 10.f);
 
 		ImGui::Checkbox(Cheat::localization->Get("FLY_HACK").c_str(), &bFlyHack);
-
 		if (bFlyHack)
 			ImGui::SliderFloat(Cheat::localization->Get("FLY_FORCE").c_str(), &flFlyForce, 100.f, 500.f);
+
+		ImGui::InputText(Cheat::localization->Get("NAME_CHANGER").c_str(), szNameBuffer, sizeNameBuffer);
 	}
 	ImGui::EndChild();
 }
@@ -88,8 +97,23 @@ void PlayerModifications::Run() {
 	CG::ABP_PlayerController_C* pPlayerController = static_cast<CG::ABP_PlayerController_C*>(pUnreal->GetPlayerController());
 	if (!IsValidObjectPtr(pPlayerController))
 		return;
-	
 
+	CG::APlayerState* pPlayerState = pPlayerController->PlayerState;
+	if (!IsValidObjectPtr(pPlayerState))
+		return;
+
+	if (!wsOriginalName.size())
+		wsOriginalName = pPlayerState->GetPlayerName().ToStringW();
+
+	if (!strlen(szNameBuffer)) {
+		pPlayerController->SetName(CG::FString(wsOriginalName.c_str()));
+	}
+	else {
+		std::wstring wszName(szNameBuffer, szNameBuffer + sizeNameBuffer);
+		pPlayerController->SetName(CG::FString(wszName.c_str()));
+	}
+
+	
 	if (pDRGPlayer->RunningSpeed != flLastRunningSpeed)
 		flDefaultRunningSpeed = pDRGPlayer->RunningSpeed;
 

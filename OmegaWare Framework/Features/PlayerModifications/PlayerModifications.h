@@ -13,7 +13,12 @@ private:
 	
 	bool bFlyHack = false;
 	float flFlyForce = 200.f;
-	
+
+	char szNameBuffer[64] = "";
+	const size_t sizeNameBuffer = sizeof(szNameBuffer);
+
+	std::wstring wsOriginalName = L"";
+
 public:
 	PlayerModifications();
 
