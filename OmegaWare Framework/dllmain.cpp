@@ -92,7 +92,7 @@ namespace Cheat
 
 		config = std::make_unique<Config>(); // Initalize the config class
 
-		Unreal::HookPostRender();
+		//Unreal::HookPostRender();
 
 		return true; // Return true if the initalization was successful
 	}
@@ -170,7 +170,7 @@ namespace Cheat
 			Features[i]->Destroy();
 		}
 
-		Unreal::RestorePostRender();
+		//Unreal::RestorePostRender();
 
 		std::this_thread::sleep_for(std::chrono::seconds(3)); // Sleep for 3 seconds to make sure the console is destroyed and that the hooks are released before unloading the module
 
