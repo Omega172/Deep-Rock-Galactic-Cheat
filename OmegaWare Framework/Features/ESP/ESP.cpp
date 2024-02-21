@@ -90,11 +90,11 @@ void ESP::Render()
 
 		CG::UHealthComponentBase* pHealthComponent = pActor->HealthComponent;
 		if (!IsValidObjectPtr(pHealthComponent) || pHealthComponent->InternalIndex <= 0 || pHealthComponent->Name.ComparisonIndex == 0 || pHealthComponent->IsDead())
-			return;
+			continue;
 
 		CG::FVector WorldPos = pMesh->GetSocketLocation(Root);
 
-		int iDistance= static_cast<int>(round(pDRGPlayer->K2_GetActorLocation().DistanceMeter(WorldPos)));
+		int iDistance= static_cast<int>(pDRGPlayer->K2_GetActorLocation().DistanceMeter(WorldPos));
 		if (iESPMaxDistance && iDistance > iESPMaxDistance)
 			continue;
 
