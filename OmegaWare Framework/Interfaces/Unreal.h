@@ -45,9 +45,44 @@ namespace DRG
 	inline CG::FName WPN_ZipLineGun_C;
 }
 
+static CG::UFont* pFont;
+static DWORD dwOldProtect;
+
+typedef void(__thiscall* PostRender) (CG::UObject* pViewportClient, CG::UCanvas* pCanvas);
+static PostRender oPostRender;
+
 class Unreal
 {
 public:
+	static void HookPostRender()
+	{
+		pFont = CG::UObject::FindObject<CG::UFont>("Font Roboto.Roboto");
+		if (!IsValidObjectPtr(pFont))
+			return;
+
+		CG::UGameViewportClient* pViewportClient = GetViewportClient();
+		if (!IsValidObjectPtr(pViewportClient))
+			return;
+
+		void** VFTable = pViewportClient->VfTable;
+		VirtualProtect(&VFTable[POST_RENDER_INDEX], 8, PAGE_EXECUTE_READWRITE, &dwOldProtect);
+		oPostRender = reinterpret_cast<PostRender>(VFTable[POST_RENDER_INDEX]);
+		VFTable[POST_RENDER_INDEX] = &hkPostRender;
+		VirtualProtect(&VFTable[POST_RENDER_INDEX], 8, dwOldProtect, &dwOldProtect);
+	}
+
+	static void RestorePostRender()
+	{
+		CG::UGameViewportClient* pViewportClient = GetViewportClient();
+		if (!IsValidObjectPtr(pViewportClient))
+			return;
+
+		void** VFTable = pViewportClient->VfTable;
+		VirtualProtect(&VFTable[POST_RENDER_INDEX], 8, PAGE_EXECUTE_READWRITE, &dwOldProtect);
+		VFTable[POST_RENDER_INDEX] = oPostRender;
+		VirtualProtect(&VFTable[POST_RENDER_INDEX], 8, dwOldProtect, &dwOldProtect);
+	}
+
 	// A vector to store all the actors in the game which is refreshed every frame
 	// I should probably not update in the GUI thread but I'm not sure where to put it yet, maybe in the main loop?
 	std::vector<CG::AActor*> Actors;
@@ -234,6 +269,24 @@ public:
 		});
 
 		return SortedActors;
+	}
+
+	static void hkPostRender(CG::UObject* pViewportClient, CG::UCanvas* pCanvas)
+	{
+		CG::ULocalPlayer* pLocalPlayer = GetLocalPlayer();
+		if (!IsValidObjectPtr(pLocalPlayer))
+			return oPostRender(pViewportClient, pCanvas);
+
+		CG::FLinearColor Cyan = { 0.f, 1.f, 1.f, 1.f };
+		CG::FLinearColor Black = { 0.f, 0.f, 0.f, 1.f };
+
+		// The canvas reports its size as the current resolution but in my testing it is always 2048, 1280
+		CG::FVector2D TextSize = pCanvas->K2_TextSize(pFont, L"OmegaWare.xyz", { 1.f, 1.f });
+		pCanvas->K2_DrawText(pFont, L"OmegaWare.xyz", { 1024.f - (TextSize.X / 2), 0.f }, { 1.f, 1.f }, Cyan, 1.f, Black, { 0.f, 0.f }, false, false, true, Black);
+
+		//pCanvas->K2_DrawLine({ 0.f, 0.f }, { 1024.f, 640.f }, 1.f, Cyan);
+
+		oPostRender(pViewportClient, pCanvas);
 	}
 };
 #endif
