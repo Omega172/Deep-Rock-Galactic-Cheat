@@ -13,6 +13,8 @@
 	#pragma pack(push, 0x01)
 #endif
 
+#include "../Utils/Utils.h"
+
 namespace CG
 {
 	// --------------------------------------------------
@@ -28,7 +30,11 @@ namespace CG
 	template<typename Fn>
 	Fn GetVFunction(const void* instance, size_t index)
 	{
+		if (!instance || !Utils::IsReadableMemory(instance, sizeof(void*)))
+			return nullptr;
+
 		auto vtable = *static_cast<const void***>(const_cast<void*>(instance));
+
 		return reinterpret_cast<Fn>(const_cast<void (*)>(vtable[index]));
 	}
 

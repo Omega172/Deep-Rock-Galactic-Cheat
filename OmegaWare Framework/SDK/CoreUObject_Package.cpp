@@ -1208,6 +1208,9 @@ namespace CG
 	void UObject::ProcessEvent(class UFunction* function, void* parms)
 	{
 		auto FN = GetVFunction<void(*)(UObject*, class UFunction*, void*)>(this, PROCESS_EVENTS_INDEX);
+		if (!FN)
+			return;
+
 		FN(this, function, parms);
 	}
 

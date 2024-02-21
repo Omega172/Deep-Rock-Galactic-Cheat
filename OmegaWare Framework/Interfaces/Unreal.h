@@ -288,19 +288,15 @@ public:
 		std::stable_sort(SortedActors.begin(), SortedActors.end(), [](T ActorA, T ActorB)
 		{
 			CG::APlayerController* PlayerController = GetPlayerController();
-			if (!PlayerController)
+			if (!IsValidObjectPtr(PlayerController))
 				return false;
 
 			CG::APawn* Pawn = PlayerController->AcknowledgedPawn;
-			if (!Pawn)
+			if (!IsValidObjectPtr(Pawn))
 				return false;
 
-			CG::FVector ActorALocation = ActorA->K2_GetActorLocation();
-			CG::FVector ActorBLocation = ActorB->K2_GetActorLocation();
-			CG::FVector PawnLocation = Pawn->K2_GetActorLocation();
-
-			float ActorADistance = ActorALocation.DistanceMeter(PawnLocation);
-			float ActorBDistance = ActorBLocation.DistanceMeter(PawnLocation);
+			float ActorADistance = ActorA->GetDistanceTo(Pawn);
+			float ActorBDistance = ActorB->GetDistanceTo(Pawn);
 
 			return ActorADistance < ActorBDistance;
 		});
