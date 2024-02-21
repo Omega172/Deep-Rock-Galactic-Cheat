@@ -300,7 +300,7 @@ public:
 			float ActorADistance = ActorA->GetDistanceTo(Pawn);
 			float ActorBDistance = ActorB->GetDistanceTo(Pawn);
 			if (ActorADistance == ActorBDistance)
-				return ActorA->K2_GetActorRotation().Size() < K2_GetActorRotation().Size();
+				return ActorA->K2_GetActorRotation().Size() < ActorB->K2_GetActorRotation().Size();
 
 			return ActorADistance < ActorBDistance;
 		});
