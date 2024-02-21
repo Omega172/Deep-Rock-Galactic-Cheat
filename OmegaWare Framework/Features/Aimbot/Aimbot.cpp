@@ -245,7 +245,10 @@ void Aimbot::Run()
 			if (!IsValidObjectPtr(pHealthComponent) || pHealthComponent->InternalIndex <= 0 || pHealthComponent->Name.ComparisonIndex == 0 || pHealthComponent->IsDead())
 				return true;
 
-			if (pActor->GetAttitude() <= CG::EPawnAttitude::Neutral)
+			std::string Name = pActor->Class->Name.GetName();
+
+			static CG::FName Flea("ENE_Flea_C");
+			if (pActor->GetAttitude() <= CG::EPawnAttitude::Neutral && pActor->Class->Name.ComparisonIndex != Flea.ComparisonIndex)
 				return true;
 
 			CG::USkeletalMeshComponent* pMesh = pActor->Mesh;

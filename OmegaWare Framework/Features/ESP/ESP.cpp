@@ -97,7 +97,8 @@ void ESP::Render()
 		if (!IsValidObjectPtr(pActor))
 			continue;
 
-		if (pActor->GetAttitude() < CG::EPawnAttitude::Hostile)
+		static CG::FName Flea("ENE_Flea_C");
+		if (pActor->GetAttitude() <= CG::EPawnAttitude::Neutral && pActor->Class->Name.ComparisonIndex != Flea.ComparisonIndex)
 			continue;
 
 		CG::UHealthComponent* pHealthComponent = reinterpret_cast<CG::UHealthComponent*>(pActor->GetHealthComponent());
