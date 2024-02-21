@@ -75,7 +75,6 @@ static_assert((FRAMEWORK_RENDER_D3D11 + FRAMEWORK_RENDER_D3D12) == 1, "Must use 
 #endif
 
 // Include standard libraries that are used in the project
-#define NOMINMAX
 #include <thread>
 #include <chrono>
 #include <memory>
@@ -85,6 +84,7 @@ static_assert((FRAMEWORK_RENDER_D3D11 + FRAMEWORK_RENDER_D3D12) == 1, "Must use 
 #include <sstream>
 #include <cstdio>
 #include <vector>
+#include <algorithm>
 #include <eh.h> // I dont remember what this was for, but I think it was for a scuffed try catch block to stop crashes on memory access violations
 
 #ifndef FRAMEWORK_INJECTOR
