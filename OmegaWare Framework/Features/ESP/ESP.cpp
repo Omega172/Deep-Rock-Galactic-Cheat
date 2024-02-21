@@ -141,7 +141,7 @@ void ESP::Render()
 		if (bBoxDistance)
 		{
 			std::stringstream ssDistance;
-			ssDistance << "[ " << std::to_string(iDistance) << " ]";
+			ssDistance << "[ " << std::to_string(iDistance) << "m ]";
 
 			std::string sDistance = ssDistance.str();
 			ImVec2 TextSize = ImGui::CalcTextSize(sDistance.c_str());
