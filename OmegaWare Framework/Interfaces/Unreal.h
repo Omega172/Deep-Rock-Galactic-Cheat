@@ -282,10 +282,7 @@ public:
 		// Remove invalid actors
 		SortedActors.erase(std::remove_if(SortedActors.begin(), SortedActors.end(), [](T Actor)
 		{
-			if (!IsActorValid(Actor))
-				return true;
-
-			return false;
+			return !IsActorValid(Actor);
 		}), SortedActors.end());
 
 		std::stable_sort(SortedActors.begin(), SortedActors.end(), [](T ActorA, T ActorB)
