@@ -7,6 +7,7 @@ bool ESP::Setup()
 	std::vector<LocaleData> EnglishLocale = {
 		{ HASH("ESP"), "ESP" },
 		{ HASH("ESP_ENABLE"), "Enable ESP" },
+		{ HASH("ESP_ACCURATE_BOX"), "Accurate Box" },
 		{ HASH("ESP_MAX_DISTANCE"), "Max Distance" },
 		{ HASH("ESP_FLAGS"), "Flags" },
 		{ HASH("ESP_BOX_SHOW_NAME"), "Show Name" },
@@ -72,6 +73,7 @@ void ESP::DrawMenuItems()
 				ImGui::EndCombo();
 			}
 
+			ImGui::Checkbox(Cheat::localization->Get("ESP_ACCURATE_BOX").c_str(), &bAccurateBox);
 			ImGui::SliderInt(Cheat::localization->Get("ESP_MAX_DISTANCE").c_str(), &iESPMaxDistance, 0, 1000);
 		}
 	}
@@ -114,7 +116,7 @@ void ESP::Render()
 
 		ImRect rectBox{};
 		if (!GetBoxFromBBox(vecLocation, vecExtent, rectBox))
-			return;
+			continue;
 
 		ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, Black, 0.f, ImDrawFlags_None, 3.f);
 		ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, Cyan);
@@ -173,26 +175,47 @@ void ESP::Render()
 bool ESP::GetBoxFromBBox(CG::FVector & vecLocation, CG::FVector & vecExtent, ImRect & rectOut) {
 
 	Unreal* pUnreal = Cheat::unreal.get();
-	CG::FVector2D v1, v2, v3, v4, v5, v6, v7, v8;
 
+	if (bAccurateBox) {
+		CG::FVector2D v1, v2, v3, v4, v5, v6, v7, v8;
+		if (!(
+			pUnreal->WorldToScreen({ vecLocation.X + vecExtent.X, vecLocation.Y + vecExtent.Y, vecLocation.Z + vecExtent.Z }, v1) &&
+			pUnreal->WorldToScreen({ vecLocation.X - vecExtent.X, vecLocation.Y + vecExtent.Y, vecLocation.Z + vecExtent.Z }, v2) &&
+			pUnreal->WorldToScreen({ vecLocation.X + vecExtent.X, vecLocation.Y - vecExtent.Y, vecLocation.Z + vecExtent.Z }, v3) &&
+			pUnreal->WorldToScreen({ vecLocation.X - vecExtent.X, vecLocation.Y - vecExtent.Y, vecLocation.Z + vecExtent.Z }, v4) &&
+			pUnreal->WorldToScreen({ vecLocation.X + vecExtent.X, vecLocation.Y + vecExtent.Y, vecLocation.Z - vecExtent.Z }, v5) &&
+			pUnreal->WorldToScreen({ vecLocation.X - vecExtent.X, vecLocation.Y + vecExtent.Y, vecLocation.Z - vecExtent.Z }, v6) &&
+			pUnreal->WorldToScreen({ vecLocation.X + vecExtent.X, vecLocation.Y - vecExtent.Y, vecLocation.Z - vecExtent.Z }, v7) &&
+			pUnreal->WorldToScreen({ vecLocation.X - vecExtent.X, vecLocation.Y - vecExtent.Y, vecLocation.Z - vecExtent.Z }, v8)
+			)) {
+			return false;
+		}
+
+		rectOut.Min.x = std::min({ v1.X, v2.X, v3.X, v4.X, v5.X, v6.X, v7.X, v8.X });
+		rectOut.Max.x = std::max({ v1.X, v2.X, v3.X, v4.X, v5.X, v6.X, v7.X, v8.X });
+
+		rectOut.Min.y = std::min({ v1.Y, v2.Y, v3.Y, v4.Y, v5.Y, v6.Y, v7.Y, v8.Y });
+		rectOut.Max.y = std::max({ v1.Y, v2.Y, v3.Y, v4.Y, v5.Y, v6.Y, v7.Y, v8.Y });
+
+		return true;
+	}
+
+	CG::FVector2D v1, v2;
 	if (!(
-		pUnreal->WorldToScreen({ vecLocation.X + vecExtent.X, vecLocation.Y + vecExtent.Y, vecLocation.Z + vecExtent.Z }, v1) &&
-		pUnreal->WorldToScreen({ vecLocation.X - vecExtent.X, vecLocation.Y + vecExtent.Y, vecLocation.Z + vecExtent.Z }, v2) &&
-		pUnreal->WorldToScreen({ vecLocation.X + vecExtent.X, vecLocation.Y - vecExtent.Y, vecLocation.Z + vecExtent.Z }, v3) &&
-		pUnreal->WorldToScreen({ vecLocation.X - vecExtent.X, vecLocation.Y - vecExtent.Y, vecLocation.Z + vecExtent.Z }, v4) &&
-		pUnreal->WorldToScreen({ vecLocation.X + vecExtent.X, vecLocation.Y + vecExtent.Y, vecLocation.Z - vecExtent.Z }, v5) &&
-		pUnreal->WorldToScreen({ vecLocation.X - vecExtent.X, vecLocation.Y + vecExtent.Y, vecLocation.Z - vecExtent.Z }, v6) &&
-		pUnreal->WorldToScreen({ vecLocation.X + vecExtent.X, vecLocation.Y - vecExtent.Y, vecLocation.Z - vecExtent.Z }, v7) &&
-		pUnreal->WorldToScreen({ vecLocation.X - vecExtent.X, vecLocation.Y - vecExtent.Y, vecLocation.Z - vecExtent.Z }, v8)
+		pUnreal->WorldToScreen({ vecLocation.X, vecLocation.Y, vecLocation.Z + vecExtent.Z }, v1) &&
+		pUnreal->WorldToScreen({ vecLocation.X, vecLocation.Y, vecLocation.Z - vecExtent.Z }, v2)
 		)) {
 		return false;
 	}
 
-	rectOut.Min.x = std::min({ v1.X, v2.X, v3.X, v4.X, v5.X, v6.X, v7.X, v8.X });
-	rectOut.Max.x = std::max({ v1.X, v2.X, v3.X, v4.X, v5.X, v6.X, v7.X, v8.X });
+	rectOut.Min.x = rectOut.Max.x = 0.f;
+	
+	rectOut.Min.y = std::min(v1.Y, v2.Y);
+	rectOut.Max.y = std::max(v1.Y, v2.Y);
 
-	rectOut.Min.y = std::min({ v1.Y, v2.Y, v3.Y, v4.Y, v5.Y, v6.Y, v7.Y, v8.Y });
-	rectOut.Max.y = std::max({ v1.Y, v2.Y, v3.Y, v4.Y, v5.Y, v6.Y, v7.Y, v8.Y });
+	float flHalfWidth = rectOut.GetHeight() * 0.3f;
+	rectOut.Min.x = std::min(v1.X, v2.X) - flHalfWidth;
+	rectOut.Max.x = std::max(v1.X, v2.X) + flHalfWidth;
 
 	return true;
 }
@@ -202,6 +225,7 @@ void ESP::Run() {}
 void ESP::SaveConfig()
 {
 	Cheat::config->PushEntry("ESP_ENABLED", "bool", std::to_string(bEnabled));
+	Cheat::config->PushEntry("ESP_ACCURATE_BOX", "bool", std::to_string(bAccurateBox));
 	Cheat::config->PushEntry("ESP_MAX_DISTANCE", "int", std::to_string(iESPMaxDistance));
 	Cheat::config->PushEntry("ESP_BOX_SHOW_NAME", "bool", std::to_string(bBoxName));
 	Cheat::config->PushEntry("ESP_BOX_SHOW_DISTANCE", "bool", std::to_string(bBoxDistance));
@@ -215,6 +239,10 @@ void ESP::LoadConfig()
 	ConfigEntry entry = Cheat::config->GetEntryByName("ESP_ENABLED");
 	if (entry.Name == "ESP_ENABLED")
 		bEnabled = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_ACCURATE_BOX");
+	if (entry.Name == "ESP_ACCURATE_BOX")
+		bAccurateBox = std::stoi(entry.Value);
 
 	entry = Cheat::config->GetEntryByName("ESP_MAX_DISTANCE");
 	if (entry.Name == "ESP_MAX_DISTANCE")
