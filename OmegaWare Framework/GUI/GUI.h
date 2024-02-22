@@ -24,25 +24,6 @@ namespace GUI
 	inline float sWIDTH = float(GetSystemMetrics(SM_CXSCREEN));
 	inline float sHEIGHT = float(GetSystemMetrics(SM_CYSCREEN));
 
-	inline void BeginRender()
-	{
-		#if FRAMEWORK_RENDER_D3D11
-		ImGui_ImplDX11_NewFrame();
-		#endif
-
-		#if FRAMEWORK_RENDER_D3D12
-		ImGui_ImplDX12_NewFrame();
-		#endif
-
-		ImGui_ImplWin32_NewFrame();
-		ImGui::NewFrame();
-	}
-
 	void Render();
 
-	inline void EndRender()
-	{
-		ImGui::EndFrame();
-		ImGui::Render();
-	}
 }

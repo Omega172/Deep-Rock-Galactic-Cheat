@@ -32,7 +32,7 @@
     <ClCompile Include="Features\Aimbot\Aimbot.cpp" />
     <ClCompile Include="Features\ESP\ESP.cpp" />
     <ClCompile Include="Hooks\WndProc\WndProcHooks.cpp" />
-    <ClCompile Include="Hooks\Renderer\D3D11Hooks.cpp" />
+    <ClCompile Include="Hooks\Renderer\D3D11\D3D11Hooks.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utils\Console\Console.h" />
@@ -71,8 +71,9 @@
     <ClInclude Include="Localization\Locales\German.h" />
     <ClInclude Include="Features\ESP\ESP.h" />
     <ClInclude Include="Hooks\WndProc\WndProcHooks.h" />
-    <ClInclude Include="Hooks\Renderer\D3D12Hooks.h" />
+    <ClInclude Include="Hooks\Renderer\D3D12\D3D12Hooks.h" />
     <ClInclude Include="Hooks\Renderer\RendererHooks.h" />
+    <ClInclude Include="Hooks\Renderer\D3D11\D3D11Hooks.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -142,7 +142,6 @@ namespace Cheat
 
 		MH_Uninitialize();
 
-
 		// Destroy features
 		for (size_t i = 0; i < Features.size(); i++) // A loop to grab the feature pointers and call their respective destroy functions to clean up any resources that were used and restore any settings that were changed
 		{
