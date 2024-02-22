@@ -113,11 +113,7 @@ void WeaponModifications::Run() {
 		return;
 
 	CG::UInventoryComponent* pInventoryComponent = pDRGPlayer->InventoryComponent;
-	if (!pInventoryComponent || !IsValidObjectPtr(pInventoryComponent))
-		return;
-
-	CG::UInventoryList* pInventoryList = pInventoryComponent->InventoryList;
-	if (!pInventoryList || !IsValidObjectPtr(pInventoryList))
+	if (!IsValidObjectPtr(pInventoryComponent) || !pInventoryComponent->bItemsLoaded)
 		return;
 
 	CG::AItem* pItem = pDRGPlayer->GetEquippedItem();
@@ -130,6 +126,20 @@ void WeaponModifications::Run() {
 
 	if (!IsValidObjectPtr(pItemID->GetItemData())) // Important we check this, will stop us from resupplying the "pipeline" LOL
 		return;
+
+	if (bInfiniteAmmo) {
+		pInventoryComponent->FlareProductionTimeLeft = 0.f;
+		pInventoryComponent->FlareCooldownRemaining = 0.f;
+		pInventoryComponent->Resupply(100.f);
+	}
+
+	CG::APickaxeItem* pPickaxe = pInventoryComponent->MiningItem;
+	if (IsValidObjectPtr(pPickaxe)) {
+		pPickaxe->DamageRange = (true) ? 999999.f : 200.f;
+
+		if (bInfiniteAmmo)
+			pPickaxe->SpecialCooldownRemaining = 0.f;
+	}
 
 	if (pItem->Name.ComparisonIndex == DRG::WPN_GrapplingGun_C.ComparisonIndex) {
 		CG::AWPN_GrapplingGun_C* pGrapplingGun = static_cast<CG::AWPN_GrapplingGun_C*>(pItem);
@@ -151,34 +161,13 @@ void WeaponModifications::Run() {
 		return;
 	}
 
-	if (pItem->Name.ComparisonIndex == DRG::WPN_Pickaxe_Driller_C.ComparisonIndex ||
-		pItem->Name.ComparisonIndex == DRG::WPN_Pickaxe_Engineer_C.ComparisonIndex ||
-		pItem->Name.ComparisonIndex == DRG::WPN_Pickaxe_Gunner_C.ComparisonIndex ||
-		pItem->Name.ComparisonIndex == DRG::WPN_Pickaxe_Scout_C.ComparisonIndex)
-	{
-
-		CG::AWPN_Pickaxe_C* pPickaxe = static_cast<CG::AWPN_Pickaxe_C*>(pItem);
-		if (!IsValidObjectPtr(pPickaxe))
-			return;
-
-		pPickaxe->DamageRange = (true) ? 999999.f : 200.f;
-		pPickaxe->SpecialCooldownRemaining = 0.f;
-
-		return;
-	}
-
 	if (pItem->Name.ComparisonIndex == DRG::WPN_SawedOffShotgun_C.ComparisonIndex) {
 		CG::AWPN_SawedOffShotgun_C* pShotgun = static_cast<CG::AWPN_SawedOffShotgun_C*>(pItem);
 		if (!IsValidObjectPtr(pShotgun))
 			return;
 
 		pShotgun->ShotgunJumpEnabled = true;
-
 	}
-
-
-	if (bInfiniteAmmo)
-		pItem->Resupply(100.f);
 
 	if (bNoOverheating) {
 		pItem->ManualCooldownDelay = 0.f;
@@ -193,10 +182,6 @@ void WeaponModifications::Run() {
 
 	CG::AAmmoDrivenWeapon* pWeapon = static_cast<CG::AAmmoDrivenWeapon*>(pItem);
 	if (!IsValidObjectPtr(pWeapon))
-		return;
-
-	CG::UWeaponFireComponent* pWeaponFire = pWeapon->WeaponFire;
-	if (!IsValidObjectPtr(pWeaponFire))
 		return;
 
 	pWeapon->HasAutomaticFire = true;

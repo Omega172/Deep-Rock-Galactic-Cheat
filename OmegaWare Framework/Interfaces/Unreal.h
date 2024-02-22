@@ -271,12 +271,12 @@ public:
 
 		std::stable_sort(SortedActors.begin(), SortedActors.end(), [pAcknowledgedPawn](T ActorA, T ActorB) {
 
-			float DistanceA = ActorA->GetDistanceTo(pAcknowledgedPawn);
-			float DistanceB = ActorB->GetDistanceTo(pAcknowledgedPawn);
-			if (DistanceA == DistanceB)
-				return ActorA->Name.ComparisonIndex < ActorB->Name.ComparisonIndex;
+			//float DistanceA = ActorA->GetDistanceTo(pAcknowledgedPawn);
+			//float DistanceB = ActorB->GetDistanceTo(pAcknowledgedPawn);
+			//if (DistanceA == DistanceB)
+			//	return ActorA->Name.ComparisonIndex < ActorB->Name.ComparisonIndex;
 
-			return DistanceA < DistanceB;
+			return ActorA->GetDistanceTo(pAcknowledgedPawn) < ActorB->GetDistanceTo(pAcknowledgedPawn);
 		});
 
 		return SortedActors;

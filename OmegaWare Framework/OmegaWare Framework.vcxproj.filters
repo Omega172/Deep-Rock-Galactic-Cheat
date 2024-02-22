@@ -33,6 +33,8 @@
     <ClCompile Include="Hooks\WndProc\WndProcHooks.cpp" />
     <ClCompile Include="Hooks\Renderer\D3D11\D3D11Hooks.cpp" />
     <ClCompile Include="Hooks\Renderer\D3D12\D3D12Hooks.cpp" />
+    <ClCompile Include="SDK\BP_DropPod_Escape_Base_Package.cpp" />
+    <ClCompile Include="SDK\BP_DropPod_Base_Package.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utils\Console\Console.h" />
