@@ -11,8 +11,8 @@
 // Framework defines
 #pragma execution_character_set("utf-8")
 
-#define FRAMEWORK_VERSION 3.0.0
-#define FRAMEWORK_MAJOR_VERSION 3
+#define FRAMEWORK_VERSION 5.0.0
+#define FRAMEWORK_MAJOR_VERSION 5
 #define FRAMEWORK_MINOR_VERSION 0
 #define FRAMEWORK_REWORK_VERSION 1
 
