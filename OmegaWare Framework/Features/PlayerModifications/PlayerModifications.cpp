@@ -111,55 +111,6 @@ void PlayerModifications::Run() {
 		pPlayerController->SetName(CG::FString(wszName.c_str()));
 	}
 
-
-	std::vector<CG::AMolly*> apMollys = pUnreal->GetActors<CG::AMolly>();
-	for (CG::AMolly* pMolly : apMollys) {
-		if (!IsValidObjectPtr(pMolly))
-			continue;
-
-		CG::UResourceBank* pResourceBank = pMolly->ResourceBank;
-		if (!IsValidObjectPtr(pResourceBank))
-			continue;
-		
-		pResourceBank->DepositesPerSecond = 9999999.f; // 4
-	}
-
-	std::vector<CG::AEscortMule*> apEscortMules = pUnreal->GetActors<CG::AEscortMule>();
-	for (CG::AEscortMule* pEscortMule : apEscortMules) {
-		if (!IsValidObjectPtr(pEscortMule))
-			continue;
-
-		CG::UResourceBank* pResourceBank = pEscortMule->ResourceBank;
-		if (!IsValidObjectPtr(pResourceBank))
-			continue;
-
-		pResourceBank->DepositesPerSecond = 9999999.f; // 4
-	}
-
-	std::vector<CG::ABP_DropPod_Escape_Base_C*> apDropPods = pUnreal->GetActors<CG::ABP_DropPod_Escape_Base_C>();
-	for (CG::ABP_DropPod_Escape_Base_C* pDropPod : apDropPods) {
-		if (!IsValidObjectPtr(pDropPod))
-			continue;
-
-		CG::UResourceBank* pResourceBank = pDropPod->ResourceBank;
-		if (!IsValidObjectPtr(pResourceBank))
-			continue;
-
-		pResourceBank->DepositesPerSecond = 9999999.f; // 4
-	}
-
-	std::vector<CG::AFSDMiningHead*> apMiningHeads = pUnreal->GetActors< CG::AFSDMiningHead>();
-	for (CG::AFSDMiningHead* pMiningHead : apMiningHeads) {
-		if (!IsValidObjectPtr(pMiningHead))
-			continue;
-
-		CG::UResourceBank* pResourceBank = pMiningHead->ResourceBank;
-		if (!IsValidObjectPtr(pResourceBank))
-			continue;
-
-		pResourceBank->DepositesPerSecond = 9999999.f; // 4
-	}
-	
 	if (pDRGPlayer->RunningSpeed != flLastRunningSpeed)
 		flDefaultRunningSpeed = pDRGPlayer->RunningSpeed;
 
