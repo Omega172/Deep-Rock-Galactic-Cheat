@@ -88,7 +88,7 @@ namespace Cheat
 		if (GetAsyncKeyState(dwConsoleKey) & 0x1)
 			console->ToggleVisibility();
 
-		if (GetAsyncKeyState(dwUnloadKey))
+		if (GetAsyncKeyState(dwUnloadKey1) || GetAsyncKeyState(dwUnloadKey2))
 			bShouldRun = false;
 
 		for (size_t i = 0; i < Features.size(); i++)

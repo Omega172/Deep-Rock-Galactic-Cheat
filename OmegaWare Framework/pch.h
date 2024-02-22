@@ -159,7 +159,8 @@ namespace Cheat
 	inline HMODULE hModule = NULL; // A HMODULE to store the module handle of the cheat used for unloading the module
 
 	constexpr DWORD dwMenuKey = VK_INSERT; // A DWORD to store the key that opens and closes the menu
-	constexpr DWORD dwUnloadKey = VK_DELETE; // A DWORD to store the key that unloads the cheat
+	constexpr DWORD dwUnloadKey1 = VK_DELETE; // A DWORD to store the key that unloads the cheat (Cool one)
+	constexpr DWORD dwUnloadKey2 = VK_END; // A DWORD to store the key that unloads the cheat (Lame one)
 	constexpr DWORD dwConsoleKey = VK_HOME; // A DWORD to store the key that opens and closes the console
 
 	inline std::unique_ptr<Console> console = std::make_unique<Console>(false, Title);  // A unique pointer to the console class that is used to create the console for the framework
