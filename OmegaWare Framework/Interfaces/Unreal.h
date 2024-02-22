@@ -174,7 +174,7 @@ public:
 	static CG::ULocalPlayer* GetLocalPlayer(int index = 0)
 	{
 		CG::UGameInstance* pGameInstance = GetGameInstance();
-		if (!pGameInstance)
+		if (!IsValidObjectPtr(pGameInstance))
 			return nullptr;
 
 		CG::ULocalPlayer* pLocalPlayer = pGameInstance->LocalPlayers[index];
@@ -186,7 +186,7 @@ public:
 	static CG::UGameViewportClient* GetViewportClient()
 	{
 		CG::ULocalPlayer* pLocalPlayer = GetLocalPlayer();
-		if (!pLocalPlayer)
+		if (!IsValidObjectPtr(pLocalPlayer))
 			return nullptr;
 
 		CG::UGameViewportClient* pViewportClient = pLocalPlayer->ViewportClient;
@@ -198,7 +198,7 @@ public:
 	static CG::APlayerController* GetPlayerController()
 	{
 		CG::ULocalPlayer* LocalPlayer = GetLocalPlayer();
-		if (!LocalPlayer)
+		if (!IsValidObjectPtr(LocalPlayer))
 			return nullptr;
 
 		CG::APlayerController* pPlayerController = LocalPlayer->PlayerController;
@@ -210,7 +210,7 @@ public:
 	static CG::APawn* GetAcknowledgedPawn()
 	{
 		CG::APlayerController* pPlayerController = GetPlayerController();
-		if (!pPlayerController)
+		if (!IsValidObjectPtr(pPlayerController))
 			return nullptr;
 
 		CG::APawn* pAcknowledgedPawn = pPlayerController->AcknowledgedPawn;
@@ -223,7 +223,7 @@ public:
 	static CG::APlayerCameraManager* GetPlayerCameraManager()
 	{
 		CG::APlayerController* pPlayerController = GetPlayerController();
-		if (!pPlayerController)
+		if (!IsValidObjectPtr(pPlayerController))
 			return nullptr;
 
 		CG::APlayerCameraManager* pPlayerCameraManager = pPlayerController->PlayerCameraManager;
@@ -236,7 +236,7 @@ public:
 	static bool WorldToScreen(CG::FVector in, CG::FVector2D& out, bool relative = false)
 	{
 		CG::APlayerController* pPlayerController = GetPlayerController();
-		if (!pPlayerController)
+		if (!IsValidObjectPtr(pPlayerController))
 			return false;
 
 		return pPlayerController->ProjectWorldLocationToScreen(in, &out, relative);
@@ -247,7 +247,7 @@ public:
 	{
 		CG::FVector2D out = { 0, 0 };
 		CG::APlayerController* PlayerController = GetPlayerController();
-		if (!PlayerController)
+		if (!IsValidObjectPtr(PlayerController))
 			return out;
 
 		PlayerController->ProjectWorldLocationToScreen(in, &out, relative);
@@ -258,8 +258,8 @@ public:
 	template <typename T>
 	static std::vector<T> SortActorsByDistance(std::vector<T> actors)
 	{
-		CG::APawn* pDRGPlayer = GetAcknowledgedPawn();
-		if (!pDRGPlayer)
+		CG::APawn* pAcknowledgedPawn = GetAcknowledgedPawn();
+		if (!IsValidObjectPtr(pAcknowledgedPawn))
 			return actors;
 
 		std::vector<T> SortedActors = actors;
@@ -269,8 +269,14 @@ public:
 			return !IsValidObjectPtr(pActor);
 		}), SortedActors.end());
 
-		std::stable_sort(SortedActors.begin(), SortedActors.end(), [pDRGPlayer](T ActorA, T ActorB) {
-			return ActorA->GetDistanceTo(pDRGPlayer) < ActorB->GetDistanceTo(pDRGPlayer);
+		std::stable_sort(SortedActors.begin(), SortedActors.end(), [pAcknowledgedPawn](T ActorA, T ActorB) {
+
+			float DistanceA = ActorA->GetDistanceTo(pAcknowledgedPawn);
+			float DistanceB = ActorB->GetDistanceTo(pAcknowledgedPawn);
+			if (DistanceA == DistanceB)
+				return ActorA->Name.ComparisonIndex < ActorB->Name.ComparisonIndex;
+
+			return DistanceA < DistanceB;
 		});
 
 		return SortedActors;
