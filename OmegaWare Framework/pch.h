@@ -110,6 +110,9 @@ static_assert((FRAMEWORK_RENDER_D3D11 + FRAMEWORK_RENDER_D3D12) == 1, "Must use 
 #endif
 
 #if FRAMEWORK_RENDER_D3D12
+#pragma comment(lib, "d3d12.lib") // WHY DO I NEED THIS WTF
+#include <D3D12.h>
+#include <dxgi1_4.h>
 #include "ImGUI/imgui_impl_dx12.h"
 #endif
 

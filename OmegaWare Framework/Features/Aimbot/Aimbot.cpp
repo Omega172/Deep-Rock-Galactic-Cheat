@@ -188,7 +188,7 @@ void Aimbot::Run()
 				return true;
 
 			CG::UEnemyHealthComponent* pHealthComponent = pActor->Health;
-			if (!IsValidObjectPtr(pHealthComponent) || pHealthComponent->InternalIndex <= 0 || pHealthComponent->Name.ComparisonIndex == 0 || pHealthComponent->IsDead())
+			if (!IsValidObjectPtr(pHealthComponent) || pHealthComponent->InternalIndex <= 0 || pHealthComponent->Name.ComparisonIndex == 0 || pHealthComponent->IsDead() || !pHealthComponent->canTakeDamage)
 				return true;
 
 			if (pActor->GetAttitude() <= CG::EPawnAttitude::Neutral)
@@ -233,7 +233,7 @@ void Aimbot::Run()
 				return true;
 
 			CG::UEnemyHealthComponent* pHealthComponent = pActor->HealthComponent;
-			if (!IsValidObjectPtr(pHealthComponent) || pHealthComponent->InternalIndex <= 0 || pHealthComponent->Name.ComparisonIndex == 0 || pHealthComponent->IsDead())
+			if (!IsValidObjectPtr(pHealthComponent) || pHealthComponent->InternalIndex <= 0 || pHealthComponent->Name.ComparisonIndex == 0 || pHealthComponent->IsDead() || !pHealthComponent->canTakeDamage)
 				return true;
 
 			static CG::FName Flea("ENE_Flea_C");
