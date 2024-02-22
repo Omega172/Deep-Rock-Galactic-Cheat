@@ -1,14 +1,5 @@
 #include "pch.h"
 
-// Include the respective rendering API hooks
-#if FRAMEWORK_RENDER_D3D11
-#include "Hooks/D3D11/D3D11Hooks.h"
-#endif
-
-#if FRAMEWORK_RENDER_D3D12
-#include "Hooks/D3D12/D3D12Hooks.h"
-#endif
-
 #define DO_THREAD_SLEEP 1
 #define THREAD_SLEEP_TIME 100
 
@@ -16,18 +7,14 @@ namespace Cheat
 {
 	bool Init()
 	{
-	#if FRAMEWORK_RENDER_D3D11
-		if (kiero::init(kiero::RenderType::D3D11) == kiero::Status::Success)
-		{
-			if (kiero::bind(8, reinterpret_cast<void**>(&oPresent), hkPresent) != kiero::Status::Success)
-				return false;
-
-			//if (kiero::bind(13, reinterpret_cast<void**>(&oResizeBuffers), hkResizeBuffers) != kiero::Status::Success)
-			//	return false;
-		}
-		else
+		if (MH_Initialize() != MH_STATUS::MH_OK)
 			return false;
-	#endif
+
+		if (!wndproc.get()->Setup())
+			return false;
+
+		if (!renderer.get()->Setup())
+			return false;
 
 	#if FRAMEWORK_UNREAL // If the framework is Unreal initalize the SDK assuming the SDK was generated with CheatGeat by Cormm
 		if (!CG::InitSdk())
@@ -38,19 +25,6 @@ namespace Cheat
 
 		while (!(*CG::UWorld::GWorld))
 			continue;
-	#endif
-
-	#if FRAMEWORK_RENDER_D3D12
-		if (kiero::init(kiero::RenderType::D3D12) == kiero::Status::Success)
-		{
-			if (kiero::bind(54, (void**)&oExecuteCommandLists, hkExecuteCommandLists) != kiero::Status::Success)
-				return false;
-
-			if (kiero::bind(140, (void**)&oPresent, hkPresent) != kiero::Status::Success)
-				return false;
-		}
-		else
-			return false;
 	#endif
 
 		Utils::LogDebug(Utils::GetLocation(CurrentLoc), "Initalizing Globals, this can take a bit"); // Log that the globals are being initalized
@@ -148,8 +122,7 @@ namespace Cheat
 			HandleKeys();
 
 #if FRAMEWORK_UNREAL
-			auto pUnreal = Cheat::unreal.get();
-			pUnreal->RefreshActorList();
+			Cheat::unreal.get()->RefreshActorList();
 #endif
 
 			for (size_t i = 0; i < Features.size(); i++)
@@ -169,10 +142,12 @@ namespace Cheat
 		console->SetVisibility(true); // Set the console to be visible when the cheat is unloading
 		Utils::LogDebug(Utils::GetLocation(CurrentLoc), Cheat::Title + ": Unloading..."); // Log that the cheat is unloading
 
-		#if FRAMEWORK_RENDER_D3D12 // If the framework is using D3D12 unbind the hooks and shutdown kiero, we do this here because the game might crash if we do it in the D3D12Hooks.cpp file like we do with D3D11
-		D3D12Release();
-		kiero::shutdown();
-		#endif
+
+		renderer.get()->Destroy();
+		wndproc.get()->Destroy();
+
+		MH_Uninitialize();
+
 
 		// Destroy features
 		for (size_t i = 0; i < Features.size(); i++) // A loop to grab the feature pointers and call their respective destroy functions to clean up any resources that were used and restore any settings that were changed

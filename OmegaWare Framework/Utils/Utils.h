@@ -15,5 +15,7 @@ namespace Utils
 	size_t Strlen(char*    lpAddress, size_t dwMaxSize = 1024);
 	size_t Wcslen(wchar_t* lpAddress, size_t dwMaxSize = 1024);
 
+	void* GetVirtualMethod(void* ptr, size_t index);
+
 	std::string GetDocumentsFolder();
 }

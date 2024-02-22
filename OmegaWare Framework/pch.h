@@ -114,6 +114,9 @@ static_assert((FRAMEWORK_RENDER_D3D11 + FRAMEWORK_RENDER_D3D12) == 1, "Must use 
 
 // Include the ImGui implementation for the rendering API that is being used
 #if FRAMEWORK_RENDER_D3D11
+#pragma comment(lib, "d3d11.lib") // WHY DO I NEED THIS WTF
+#include <d3d11.h>
+#include <dxgi1_2.h>
 #include "ImGUI/imgui_impl_dx11.h"
 #endif
 
@@ -125,6 +128,9 @@ static_assert((FRAMEWORK_RENDER_D3D11 + FRAMEWORK_RENDER_D3D12) == 1, "Must use 
 
 #include "GUI/Custom.h" // Include the Custom.h file that contains the custom ImGui widgets for the framework
 #include "GUI/GUI.h" // Include the GUI.h file that contains the GUI class that is used to create the framework's menu
+
+#include "Hooks/WndProc/WndProcHooks.h"
+#include "Hooks/Renderer/RendererHooks.h"
 
 #define DEG2RAD(deg) deg * M_PI / 180 // A macro to convert degrees to radians
 #define RAD2DEG(rad) rad * 180.0 / M_PI; // A macro to convert radians to degrees
@@ -153,10 +159,13 @@ namespace Cheat
 	inline HMODULE hModule = NULL; // A HMODULE to store the module handle of the cheat used for unloading the module
 
 	constexpr DWORD dwMenuKey = VK_INSERT; // A DWORD to store the key that opens and closes the menu
-	constexpr DWORD dwUnloadKey = VK_END; // A DWORD to store the key that unloads the cheat
+	constexpr DWORD dwUnloadKey = VK_DELETE; // A DWORD to store the key that unloads the cheat
 	constexpr DWORD dwConsoleKey = VK_HOME; // A DWORD to store the key that opens and closes the console
 
 	inline std::unique_ptr<Console> console = std::make_unique<Console>(false, Title);  // A unique pointer to the console class that is used to create the console for the framework
+
+	inline std::unique_ptr<WndProcHooks> wndproc = std::make_unique<WndProcHooks>();
+	inline std::unique_ptr<RendererHooks> renderer = std::make_unique<RendererHooks>();
 
 #if FRAMEWORK_UNREAL // If the framework set is Unreal create a unique pointer to the Unreal interface class
 	inline std::unique_ptr<Unreal> unreal = std::make_unique<Unreal>();
