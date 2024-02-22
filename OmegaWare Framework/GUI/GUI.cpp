@@ -57,7 +57,9 @@ void GUI::Render()
 
 		for (size_t i = 0; i < Features.size(); i++)
 		{
+			Features[i]->Mutex.lock();
 			Features[i]->DrawMenuItems();
+			Features[i]->Mutex.unlock();
 		}
 
 		ImGui::End();
@@ -67,14 +69,13 @@ void GUI::Render()
 	//	Other Render Stuff
 	//
 
-#if FRAMEWORK_UNREAL
-	auto pUnreal = Cheat::unreal.get();
-	pUnreal->RefreshActorList();
-#endif
+
 
 	for (size_t i = 0; i < Features.size(); i++)
 	{
+		Features[i]->Mutex.lock();
 		Features[i]->Render();
+		Features[i]->Mutex.unlock();
 	}
 
 	//

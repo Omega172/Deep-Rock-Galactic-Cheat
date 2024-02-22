@@ -20,6 +20,8 @@ private:
 	std::wstring wsOriginalName = L"";
 
 public:
+	std::mutex Mutex;
+
 	PlayerModifications();
 
 	bool Setup();

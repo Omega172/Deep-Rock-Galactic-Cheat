@@ -7,6 +7,9 @@ private:
 	bool Initialized = false;
 
 public:
+	// Prevent problems with multithreading by using locks!
+	std::mutex Mutex;
+
 	Feature() {};
 
 	// Handle setup, like hook creation and variable initalization

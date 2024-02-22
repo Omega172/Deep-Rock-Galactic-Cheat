@@ -8,6 +8,8 @@ private:
 	bool bFullbright = false;
 
 public:
+	std::mutex Mutex;
+
 	Fullbright();
 
 	bool Setup();

@@ -78,6 +78,7 @@ static_assert((FRAMEWORK_RENDER_D3D11 + FRAMEWORK_RENDER_D3D12) == 1, "Must use 
 #include <thread>
 #include <chrono>
 #include <memory>
+#include <mutex>
 #include <format>
 #include <string>
 #include <cmath>

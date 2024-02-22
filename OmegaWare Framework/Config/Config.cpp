@@ -43,7 +43,9 @@ bool Config::SaveConfig()
 
 	for (size_t i = 0; i < Features.size(); i++)
 	{
+		Features[i]->Mutex.lock();
 		Features[i]->SaveConfig();
+		Features[i]->Mutex.unlock();
 	}
 
 	for (ConfigEntry Entry : Cheat::Entries)
@@ -96,7 +98,9 @@ bool Config::LoadConfig()
 
 	for (size_t i = 0; i < Features.size(); i++)
 	{
+		Features[i]->Mutex.lock();
 		Features[i]->LoadConfig();
+		Features[i]->Mutex.unlock();
 	}
 
 	return true;

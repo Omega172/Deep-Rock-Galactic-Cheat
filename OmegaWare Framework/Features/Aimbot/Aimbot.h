@@ -18,6 +18,8 @@ private:
 	std::vector<CG::AEnemyDeepPathfinderCharacter*> apEnemyPathFinders;
 
 public:
+	std::mutex Mutex;
+
 	Aimbot();
 
 	bool Setup();

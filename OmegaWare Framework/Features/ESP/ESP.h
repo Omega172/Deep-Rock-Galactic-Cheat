@@ -5,6 +5,7 @@ class ESP : public Feature
 {
 private:
 	bool Initialized = false;
+
 	bool bEnabled = false;
 	bool bAccurateBox = true;
 	int iESPMaxDistance = 0;
@@ -20,6 +21,8 @@ private:
 	bool GetBoxFromBBox(CG::FVector& vecLocation, CG::FVector& vecExtent, ImRect& rectOut);
 
 public:
+	std::mutex Mutex;
+
 	ESP();
 
 	bool Setup();

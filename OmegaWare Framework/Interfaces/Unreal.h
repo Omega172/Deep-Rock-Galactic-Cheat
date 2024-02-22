@@ -129,29 +129,18 @@ public:
 	{
 		std::vector<T*> actors;
 
-		if (!IsValidObjectPtr(*CG::UWorld::GWorld))
+		CG::AGameStateBase* pGameState = GetGameStateBase();
+		CG::UClass* pComparisonClass = T::StaticClass();
+		if (!IsValidObjectPtr(pComparisonClass) || !pGameState || pGameState->ReplicatedWorldTimeSeconds <= 5.f)
 			return actors;
 
-		if (!IsValidObjectPtr((*CG::UWorld::GWorld)->GameState))
-			return actors;
-
-		if ((*CG::UWorld::GWorld)->GameState->ReplicatedWorldTimeSeconds <= 5)
-			return actors;
-
-		CG::ULocalPlayer* pLocalPlayer = GetLocalPlayer();
-		if (!IsValidObjectPtr(pLocalPlayer))
-			return actors;
-
-		for (CG::AActor* actor : Actors)
+		for (CG::AActor* pActor : Actors)
 		{
-			// I'm not sure if these are the best way to check if the actor is valid but it works for me
-			if (!IsActorValid(actor))
+			if (!IsValidObjectPtr(reinterpret_cast<T*>(pActor)))
 				continue;
 
-			CG::UClass* pClass = T::StaticClass();
-
-			if (actor->IsA(pClass)) // Check if the actor is of the type we want
-				actors.push_back(reinterpret_cast<T*>(actor)); // If it is add it to the vector
+			if (pActor->IsA(pComparisonClass)) // Check if the actor is of the type we want
+				actors.push_back(reinterpret_cast<T*>(pActor)); // If it is add it to the vector
 		}
 
 		return actors; // Return the vector
@@ -265,44 +254,22 @@ public:
 		return out;
 	}
 
-	static bool IsActorValid(CG::AActor* actor)
-	{
-		if (!IsValidObjectPtr(actor) || !actor->bCanBeDamaged)
-			return false;
-
-		return true;
-	}
-
-	// Completely untested at the moment but I think it should work
 	template <typename T>
 	static std::vector<T> SortActorsByDistance(std::vector<T> actors)
 	{
+		CG::APawn* pDRGPlayer = GetAcknowledgedPawn();
+		if (!pDRGPlayer)
+			return actors;
+
 		std::vector<T> SortedActors = actors;
 
-		CG::APlayerController* PlayerController = GetPlayerController();
-		if (!IsValidObjectPtr(PlayerController))
-			return {};
-
-		CG::APawn* Pawn = PlayerController->AcknowledgedPawn;
-		if (!IsValidObjectPtr(Pawn))
-			return {};
-
 		// Remove invalid actors
-		SortedActors.erase(std::remove_if(SortedActors.begin(), SortedActors.end(), [](T Actor)
-		{
-			return !IsActorValid(Actor);
+		SortedActors.erase(std::remove_if(SortedActors.begin(), SortedActors.end(), [](T pActor) {
+			return !IsValidObjectPtr(pActor);
 		}), SortedActors.end());
 
-		CG::AActor* pActor = reinterpret_cast<CG::AActor*>(Pawn);
-
-		std::stable_sort(SortedActors.begin(), SortedActors.end(), [Pawn](T ActorA, T ActorB)
-		{
-			float ActorADistance = ActorA->GetDistanceTo(Pawn);
-			float ActorBDistance = ActorB->GetDistanceTo(Pawn);
-			if (ActorADistance == ActorBDistance)
-				return ActorA->K2_GetActorRotation().Size() < ActorB->K2_GetActorRotation().Size();
-
-			return ActorADistance < ActorBDistance;
+		std::stable_sort(SortedActors.begin(), SortedActors.end(), [pDRGPlayer](T ActorA, T ActorB) {
+			return ActorA->GetDistanceTo(pDRGPlayer) < ActorB->GetDistanceTo(pDRGPlayer);
 		});
 
 		return SortedActors;

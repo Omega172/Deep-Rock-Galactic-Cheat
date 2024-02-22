@@ -16,6 +16,8 @@ private:
 	float fGrappleMaxSpeed = 100.f;
 
 public:
+	std::mutex Mutex;
+
 	WeaponModifications();
 
 	bool Setup();
