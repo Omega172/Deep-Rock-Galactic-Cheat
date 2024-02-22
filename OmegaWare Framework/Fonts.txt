@@ -1,0 +1,25 @@
+Font: Font Engine.Default__Font
+Font: Font RobotoDistanceField.RobotoDistanceField
+Font: Font Roboto.Roboto
+Font: Font Transient.DefaultTinyFont
+Font: Font Transient.DefaultRegularFont
+Font: Font Carbon.Carbon
+Font: Font Acumin_Pro_Condensed.Acumin_Pro_Condensed
+Font: Font Rift_Soft.Rift_Soft
+Font: Font RigidSquare_ExtraBold_Font.RigidSquare_ExtraBold_Font
+Font: Font Led_Small02.Led_Small02
+Font: Font FNT_Retro_IBM.FNT_Retro_IBM
+Font: Font FNT_Retro_Amstrad.FNT_Retro_Amstrad
+Font: Font Bungee.Bungee
+Font: Font FNT_Arial.FNT_Arial
+Font: Font DroidSansMono.DroidSansMono
+Font: Font Led_Small01.Led_Small01
+Font: Font Led_Header.Led_Header
+
+std::vector<CG::UFont*> Fonts = CG::UObject::FindObjects<CG::UFont>();
+for (CG::UFont* pFont : Fonts) {
+	if (IsValidObjectPtr(pFont) && pFont->Name.ComparisonIndex != 0) {
+		std::cout << "Font: " << pFont->GetFullName() << std::endl;
+	}
+}
+std::cout << std::endl;

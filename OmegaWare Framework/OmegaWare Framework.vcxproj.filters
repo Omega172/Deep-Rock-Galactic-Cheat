@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="Utils\Console\Console.cpp" />
+    <ClCompile Include="Utils\Logging\Logging.cpp" />
+    <ClCompile Include="Utils\Utils.cpp" />
+    <ClCompile Include="GUI\GUI.cpp" />
+    <ClCompile Include="ImGUI\imgui.cpp" />
+    <ClCompile Include="ImGUI\imgui_demo.cpp" />
+    <ClCompile Include="ImGUI\imgui_draw.cpp" />
+    <ClCompile Include="ImGUI\imgui_impl_dx11.cpp" />
+    <ClCompile Include="ImGUI\imgui_impl_win32.cpp" />
+    <ClCompile Include="ImGUI\imgui_tables.cpp" />
+    <ClCompile Include="ImGUI\imgui_widgets.cpp" />
+    <ClCompile Include="ImGUI\imgui_impl_dx12.cpp" />
+    <ClCompile Include="Config\Config.cpp" />
+    <ClCompile Include="Localization\Localization.cpp" />
+    <ClCompile Include="SDK\BasicTypes_Package.cpp" />
+    <ClCompile Include="SDK\CoreUObject_Package.cpp" />
+    <ClCompile Include="SDK\Engine_Package.cpp" />
+    <ClCompile Include="SDK\FSD_Package.cpp" />
+    <ClCompile Include="Features\WeaponModifications\WeaponModifications.cpp" />
+    <ClCompile Include="Features\PlayerModifications\PlayerModifications.cpp" />
+    <ClCompile Include="Features\Fullbright\Fullbright.cpp" />
+    <ClCompile Include="SDK\WPN_GrapplingGun_Package.cpp" />
+    <ClCompile Include="SDK\BP_PlayerCharacter_Package.cpp" />
+    <ClCompile Include="SDK\WPN_DoubleDrills_Package.cpp" />
+    <ClCompile Include="SDK\WPN_Pickaxe_Package.cpp" />
+    <ClCompile Include="Features\Aimbot\Aimbot.cpp" />
+    <ClCompile Include="Features\ESP\ESP.cpp" />
+    <ClCompile Include="Hooks\WndProc\WndProcHooks.cpp" />
+    <ClCompile Include="Hooks\Renderer\D3D11\D3D11Hooks.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Utils\Console\Console.h" />
+    <ClInclude Include="Utils\Logging\Colors.hpp" />
+    <ClInclude Include="Utils\Logging\Logging.h" />
+    <ClInclude Include="Utils\Utils.h" />
+    <ClInclude Include="Features\Feature.h" />
+    <ClInclude Include="GUI\Custom.h" />
+    <ClInclude Include="GUI\GUI.h" />
+    <ClInclude Include="GUI\Watermark.h" />
+    <ClInclude Include="ImGUI\imconfig.h" />
+    <ClInclude Include="ImGUI\imgui.h" />
+    <ClInclude Include="ImGUI\imgui_impl_dx11.h" />
+    <ClInclude Include="ImGUI\imgui_impl_win32.h" />
+    <ClInclude Include="ImGUI\imgui_internal.h" />
+    <ClInclude Include="ImGUI\imstb_rectpack.h" />
+    <ClInclude Include="ImGUI\imstb_textedit.h" />
+    <ClInclude Include="ImGUI\imstb_truetype.h" />
+    <ClInclude Include="ImGUI\Styles.h" />
+    <ClInclude Include="MinHook\include\MinHook.h" />
+    <ClInclude Include="ImGUI\imgui_impl_dx12.h" />
+    <ClInclude Include="Interfaces\Unreal.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="Interfaces\Mono.h" />
+    <ClInclude Include="Interfaces\EasyHook.h" />
+    <ClInclude Include="Config\Config.h" />
+    <ClInclude Include="Localization\Localization.h" />
+    <ClInclude Include="Localization\Locales\English.h" />
+    <ClInclude Include="Localization\LocaleStructs.h" />
+    <ClInclude Include="SDK.h" />
+    <ClInclude Include="Features\WeaponModifications\WeaponModifications.h" />
+    <ClInclude Include="Features\PlayerModifications\PlayerModifications.h" />
+    <ClInclude Include="Features\Fullbright\Fullbright.h" />
+    <ClInclude Include="Features\Aimbot\Aimbot.h" />
+    <ClInclude Include="Localization\Locales\German.h" />
+    <ClInclude Include="Features\ESP\ESP.h" />
+    <ClInclude Include="Hooks\WndProc\WndProcHooks.h" />
+    <ClInclude Include="Hooks\Renderer\D3D12\D3D12Hooks.h" />
+    <ClInclude Include="Hooks\Renderer\RendererHooks.h" />
+    <ClInclude Include="Hooks\Renderer\D3D11\D3D11Hooks.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Fonts.txt" />
+  </ItemGroup>
+</Project>
