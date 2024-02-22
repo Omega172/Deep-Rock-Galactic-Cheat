@@ -5,11 +5,11 @@ class Fullbright : public Feature
 {
 private:
 	bool Initialized = false;
+	std::mutex Mutex;
+
 	bool bFullbright = false;
 
 public:
-	std::mutex Mutex;
-
 	Fullbright();
 
 	bool Setup();

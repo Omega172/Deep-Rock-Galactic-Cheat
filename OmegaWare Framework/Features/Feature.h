@@ -5,11 +5,9 @@ class Feature
 {
 private:
 	bool Initialized = false;
+	std::mutex Mutex; // Prevent problems with multithreading by using locks!
 
 public:
-	// Prevent problems with multithreading by using locks!
-	std::mutex Mutex;
-
 	Feature() {};
 
 	// Handle setup, like hook creation and variable initalization

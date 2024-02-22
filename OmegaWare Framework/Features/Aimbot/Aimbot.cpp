@@ -93,6 +93,7 @@ void Aimbot::Render()
 	if (!bAutoFire && !keyAimbot.IsDown())
 		return;
 
+	Mutex.lock();
 	for (CG::AEnemyPawn* pActor : apEnemyPawns) {
 		if (!IsValidObjectPtr(pActor) || pActor->InternalIndex <= 0 || pActor->Name.ComparisonIndex <= 0)
 			continue;
@@ -134,6 +135,7 @@ void Aimbot::Render()
 		if (!bMultiTarget)
 			return;
 	}
+	Mutex.unlock();
 }
 
 void Aimbot::Run() 
@@ -176,6 +178,9 @@ void Aimbot::Run()
 	bool bMagicBullet_copy = bMagicBullet;
 
 	std::vector<CG::AEnemyPawn*> apUnsortedEnemyPawns = pUnreal->GetActors<CG::AEnemyPawn>();
+	std::vector<CG::AEnemyDeepPathfinderCharacter*> apUnsortedEnemyPathFinders = pUnreal->GetActors<CG::AEnemyDeepPathfinderCharacter>();
+
+	Mutex.lock();
 	apEnemyPawns = pUnreal->SortActorsByDistance<CG::AEnemyPawn*>(apUnsortedEnemyPawns);
 	apEnemyPawns.erase(std::remove_if(apEnemyPawns.begin(), apEnemyPawns.end(), [pMathLibrary, pSystemLibrary, vecCameraLocation, rotCameraRotation, flAimFOV_copy, bMagicBullet_copy](CG::AEnemyPawn* pActor)
 		{
@@ -221,7 +226,6 @@ void Aimbot::Run()
 		}), apEnemyPawns.end());
 
 
-	std::vector<CG::AEnemyDeepPathfinderCharacter*> apUnsortedEnemyPathFinders = pUnreal->GetActors<CG::AEnemyDeepPathfinderCharacter>();
 	apEnemyPathFinders = pUnreal->SortActorsByDistance<CG::AEnemyDeepPathfinderCharacter*>(apUnsortedEnemyPathFinders);
 	apEnemyPathFinders.erase(std::remove_if(apEnemyPathFinders.begin(), apEnemyPathFinders.end(), [pMathLibrary, pSystemLibrary, vecCameraLocation, rotCameraRotation, flAimFOV_copy, bMagicBullet_copy](CG::AEnemyDeepPathfinderCharacter* pActor)
 		{
@@ -270,6 +274,7 @@ void Aimbot::Run()
 
 			return false;
 		}), apEnemyPathFinders.end());
+	Mutex.unlock();
 }
 
 void Aimbot::SaveConfig()

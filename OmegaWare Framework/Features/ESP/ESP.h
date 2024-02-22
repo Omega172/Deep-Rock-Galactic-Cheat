@@ -5,6 +5,7 @@ class ESP : public Feature
 {
 private:
 	bool Initialized = false;
+	std::mutex Mutex;
 
 	bool bEnabled = false;
 	bool bAccurateBox = true;
@@ -21,8 +22,6 @@ private:
 	bool GetBoxFromBBox(CG::FVector& vecLocation, CG::FVector& vecExtent, ImRect& rectOut);
 
 public:
-	std::mutex Mutex;
-
 	ESP();
 
 	bool Setup();

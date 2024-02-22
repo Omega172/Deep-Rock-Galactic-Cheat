@@ -5,6 +5,7 @@ class Aimbot : public Feature
 {
 private:
 	bool Initialized = false;
+	std::mutex Mutex;
 
 	bool bEnabled = false;
 	bool bAutoFire = false;
@@ -18,8 +19,6 @@ private:
 	std::vector<CG::AEnemyDeepPathfinderCharacter*> apEnemyPathFinders;
 
 public:
-	std::mutex Mutex;
-
 	Aimbot();
 
 	bool Setup();

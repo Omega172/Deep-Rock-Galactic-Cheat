@@ -5,6 +5,8 @@ class PlayerModifications : public Feature
 {
 private:
 	bool Initialized = false;
+	std::mutex Mutex;
+
 	bool bGodMode = false;
 
 	float flRunningSpeed = 1.f;
@@ -20,8 +22,6 @@ private:
 	std::wstring wsOriginalName = L"";
 
 public:
-	std::mutex Mutex;
-
 	PlayerModifications();
 
 	bool Setup();

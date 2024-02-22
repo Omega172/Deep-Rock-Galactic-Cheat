@@ -83,9 +83,8 @@ public:
 		VirtualProtect(&VFTable[POST_RENDER_INDEX], 8, dwOldProtect, &dwOldProtect);
 	}
 
-	// A vector to store all the actors in the game which is refreshed every frame
-	// I should probably not update in the GUI thread but I'm not sure where to put it yet, maybe in the main loop?
 	std::vector<CG::AActor*> Actors;
+	std::mutex ActorLock;
 
 	// Shortcut functions to get pointers to important classes used for many things
 	static CG::UKismetMathLibrary* GetMathLibrary() { return reinterpret_cast<CG::UKismetMathLibrary*>(CG::UKismetMathLibrary::StaticClass()); }
@@ -101,6 +100,7 @@ public:
 		if (!(*CG::UWorld::GWorld))
 			return;
 		
+		ActorLock.lock();
 		Actors.clear();
 
 		for (int i = 0; i < (**CG::UWorld::GWorld).Levels.Count(); i++)
@@ -122,6 +122,7 @@ public:
 				Actors.push_back(Actor);
 			}
 		}
+		ActorLock.unlock();
 	}
 
 	template <typename T>

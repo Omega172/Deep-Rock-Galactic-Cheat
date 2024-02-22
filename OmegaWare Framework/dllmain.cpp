@@ -53,9 +53,7 @@ namespace Cheat
 		try {
 			for (size_t i = 0; i < Features.size(); i++) // A loop to grap the feature pointers and call their respective setup functions
 			{
-				Features[i]->Mutex.lock();
 				bool bResult = Features[i]->Setup();
-				Features[i]->Mutex.unlock();
 				if (!bResult)
 				{
 					Utils::LogError(Utils::GetLocation(CurrentLoc), "Failed to setup feature: " + std::to_string(i));
@@ -93,9 +91,7 @@ namespace Cheat
 
 		for (size_t i = 0; i < Features.size(); i++)
 		{
-			Features[i]->Mutex.lock();
 			Features[i]->HandleKeys(); // Call the handle keys function for each feature
-			Features[i]->Mutex.unlock();
 			// This is mostly outdated but is still useful for some things, using the ImGui::Hotkey function is better which is located in GUI/Custom.h
 		}
 	}
@@ -127,9 +123,7 @@ namespace Cheat
 
 			for (size_t i = 0; i < Features.size(); i++)
 			{
-				Features[i]->Mutex.lock();
 				Features[i]->Run();
-				Features[i]->Mutex.unlock();
 			}
 
 // If the thread sleep is enabled sleep for the specified amount of time
@@ -152,9 +146,7 @@ namespace Cheat
 		// Destroy features
 		for (size_t i = 0; i < Features.size(); i++) // A loop to grab the feature pointers and call their respective destroy functions to clean up any resources that were used and restore any settings that were changed
 		{
-			Features[i]->Mutex.lock();
 			Features[i]->Destroy();
-			Features[i]->Mutex.unlock();
 		}
 
 		//Unreal::RestorePostRender();

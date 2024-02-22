@@ -15,8 +15,10 @@ static LRESULT hkWndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
         ImportFonts();
     });
 
+   
     LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
     ImGui_ImplWin32_WndProcHandler(hWnd, uMsg, wParam, lParam);
+    
     if (GUI::bMenuOpen) {
         switch (uMsg) {
         case WM_MOUSEMOVE:
@@ -77,7 +79,7 @@ bool WndProcHooks::Setup()
         return false;
     }
     
-    Utils::LogDebug(Utils::GetLocation(CurrentLoc), (std::stringstream() << "Window: " << reinterpret_cast<void*>(hwndWindow)).str());
+    Utils::LogDebug(Utils::GetLocation(CurrentLoc), (std::stringstream() << "Window: 0x" << reinterpret_cast<void*>(hwndWindow)).str());
     oWndProc = reinterpret_cast<WNDPROC>(SetWindowLongPtr(hwndWindow, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(hkWndProc)));
 
     return true;

@@ -5,6 +5,8 @@ class WeaponModifications : public Feature
 {
 private:
 	bool Initialized = false;
+	std::mutex Mutex;
+
 	bool bInfiniteAmmo = false;
 	bool bNoOverheating = false;
 	bool bNoReload = false;
@@ -16,8 +18,6 @@ private:
 	float fGrappleMaxSpeed = 100.f;
 
 public:
-	std::mutex Mutex;
-
 	WeaponModifications();
 
 	bool Setup();
