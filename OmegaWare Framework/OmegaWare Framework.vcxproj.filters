@@ -78,6 +78,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Fonst.txt" />
+    <Text Include="Fonts.txt" />
   </ItemGroup>
 </Project>
