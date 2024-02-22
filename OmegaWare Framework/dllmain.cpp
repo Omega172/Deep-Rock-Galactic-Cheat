@@ -132,7 +132,6 @@ namespace Cheat
 			std::this_thread::sleep_for(std::chrono::milliseconds(THREAD_SLEEP_TIME));
 #endif
 		}
-
 		console->SetVisibility(true); // Set the console to be visible when the cheat is unloading
 		Utils::LogDebug(Utils::GetLocation(CurrentLoc), Cheat::Title + ": Unloading..."); // Log that the cheat is unloading
 

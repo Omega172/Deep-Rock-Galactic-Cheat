@@ -86,7 +86,7 @@ bool WndProcHooks::Setup()
 
     return true;
 }
-
+    
 void WndProcHooks::Destroy()
 {
     if (!oWndProc)
