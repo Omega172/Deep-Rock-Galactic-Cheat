@@ -52,26 +52,20 @@ void PlayerModifications::Destroy() {
 
 void PlayerModifications::HandleKeys() {}
 
-void PlayerModifications::DrawMenuItems()
+void PlayerModifications::PopulateMenu()
 {
 	if (!Initialized)
 		return;
 
-	ImGui::SameLine();
+	Child* PlayerModifications = new Child("PlayerModifications", []() { return ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y / 2); }, ImGuiChildFlags_Border);
+	PlayerModifications->AddElement(new Checkbox(Cheat::localization->Get("GODMODE"), &bGodMode));
+	PlayerModifications->AddElement(new SliderFloat(Cheat::localization->Get("RUNNING_SPEED"), &flRunningSpeed, 1.f, 10.f));
+	PlayerModifications->AddElement(new Checkbox(Cheat::localization->Get("FLY_HACK"), &bFlyHack));
+	if (bFlyHack)
+		PlayerModifications->AddElement(new SliderFloat(Cheat::localization->Get("FLY_FORCE").c_str(), &flFlyForce, 100.f, 500.f));
+	PlayerModifications->AddElement(new InputText(Cheat::localization->Get("NAME_CHANGER").c_str(), szNameBuffer, sizeNameBuffer));
 
-	ImGui::BeginChild("GODMODE", ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y / 2), ImGuiChildFlags_Border);
-	{
-		ImGui::Checkbox(Cheat::localization->Get("GODMODE").c_str(), &bGodMode);
-
-		ImGui::SliderFloat(Cheat::localization->Get("RUNNING_SPEED").c_str(), &flRunningSpeed, 1.f, 10.f);
-
-		ImGui::Checkbox(Cheat::localization->Get("FLY_HACK").c_str(), &bFlyHack);
-		if (bFlyHack)
-			ImGui::SliderFloat(Cheat::localization->Get("FLY_FORCE").c_str(), &flFlyForce, 100.f, 500.f);
-
-		ImGui::InputText(Cheat::localization->Get("NAME_CHANGER").c_str(), szNameBuffer, sizeNameBuffer);
-	}
-	ImGui::EndChild();
+	Cheat::menu->AddElement(PlayerModifications, true);
 }
 
 void PlayerModifications::Render() {}

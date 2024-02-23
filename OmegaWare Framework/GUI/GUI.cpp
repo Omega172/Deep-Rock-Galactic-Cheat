@@ -41,14 +41,12 @@ void GUI::Render()
 			}), true);
 		Cheat::menu->AddElement(child);
 
-		Cheat::menu->StartRender();
-
 		for (size_t i = 0; i < Features.size(); i++)
 		{
-			Features[i]->DrawMenuItems();
+			Features[i]->PopulateMenu();
 		}
 
-		Cheat::menu->EndRender();
+		Cheat::menu->Render();
 	}
 
 	//

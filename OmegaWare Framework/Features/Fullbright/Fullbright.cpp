@@ -30,18 +30,15 @@ void Fullbright::Destroy() {
 
 void Fullbright::HandleKeys() {}
 
-void Fullbright::DrawMenuItems()
+void Fullbright::PopulateMenu()
 {
 	if (!Initialized)
 		return;
 
-	ImGui::SameLine();
+	Child* Fullbright = new Child("Fullbright", []() { return ImVec2(ImGui::GetContentRegionAvail().x / 2, ImGui::GetContentRegionAvail().y / 2); }, ImGuiChildFlags_Border);
+	Fullbright->AddElement(new Checkbox(Cheat::localization->Get("FULLBRIGHT"), &bFullbright));
 
-	ImGui::BeginChild("Fullbright", ImVec2(ImGui::GetContentRegionAvail().x / 2, ImGui::GetContentRegionAvail().y / 2), ImGuiChildFlags_Border);
-	{
-		ImGui::Checkbox(Cheat::localization->Get("FULLBRIGHT").c_str(), &bFullbright);
-	}
-	ImGui::EndChild();
+	Cheat::menu->AddElement(Fullbright, true);
 }
 
 void Fullbright::Render() {}

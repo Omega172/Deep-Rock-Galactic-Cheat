@@ -76,24 +76,22 @@ void WeaponModifications::Destroy() {
 
 void WeaponModifications::HandleKeys() {}
 
-void WeaponModifications::DrawMenuItems()
+void WeaponModifications::PopulateMenu()
 {
 	if (!Initialized)
 		return;
 
-	ImGui::BeginChild("WeaponModifications", ImVec2(ImGui::GetContentRegionAvail().x / 3, ImGui::GetContentRegionAvail().y), ImGuiChildFlags_Border);
-	{
-		ImGui::Checkbox(Cheat::localization->Get("INFINITE_AMMO").c_str(), &bInfiniteAmmo);
-		ImGui::Checkbox(Cheat::localization->Get("NO_OVERHEATING").c_str(), &bNoOverheating);
-		ImGui::Checkbox(Cheat::localization->Get("NO_RELOAD").c_str(), &bNoReload);
-		ImGui::Checkbox(Cheat::localization->Get("NO_RECOIL").c_str(), &bNoRecoil);
+	Child* WeaponModifications = new Child("WeaponModifications", []() { return ImVec2(ImGui::GetContentRegionAvail().x / 3, ImGui::GetContentRegionAvail().y); }, ImGuiChildFlags_Border);
+	WeaponModifications->AddElement(new Checkbox(Cheat::localization->Get("INFINITE_AMMO"), &bInfiniteAmmo));
+	WeaponModifications->AddElement(new Checkbox(Cheat::localization->Get("NO_OVERHEATING"), &bNoOverheating));
+	WeaponModifications->AddElement(new Checkbox(Cheat::localization->Get("NO_RELOAD"), &bNoReload));
+	WeaponModifications->AddElement(new Checkbox(Cheat::localization->Get("NO_RECOIL"), &bNoRecoil));
 
-		ImGui::Checkbox(Cheat::localization->Get("GRAPPLE_RESTRICTIONS").c_str(), &bNoGrappleRestrictions);
-		
-		if (bNoGrappleRestrictions)
-			ImGui::SliderFloat(Cheat::localization->Get("GRAPPLE_MAX_SPEED").c_str(), &fGrappleMaxSpeed, 50.f, 500.f);
-	}
-	ImGui::EndChild();
+	WeaponModifications->AddElement(new Checkbox(Cheat::localization->Get("GRAPPLE_RESTRICTIONS"), &bNoGrappleRestrictions));
+	if (bNoGrappleRestrictions)
+		WeaponModifications->AddElement(new SliderFloat(Cheat::localization->Get("GRAPPLE_MAX_SPEED"), &fGrappleMaxSpeed, 50.f, 500.f));
+
+	Cheat::menu->AddElement(WeaponModifications);
 }
 
 void WeaponModifications::Render() {}

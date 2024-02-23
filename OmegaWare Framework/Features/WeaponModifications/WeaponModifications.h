@@ -26,7 +26,7 @@ public:
 
 	void HandleKeys();
 
-	void DrawMenuItems();
+	void PopulateMenu();
 
 	void Render();
 

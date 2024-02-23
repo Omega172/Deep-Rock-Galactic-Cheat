@@ -32,33 +32,29 @@ void Aimbot::Destroy() { Initialized = false; }
 
 void Aimbot::HandleKeys() {}
 
-void Aimbot::DrawMenuItems()
+void Aimbot::PopulateMenu()
 {
 	if (!Initialized)
 		return;
 
-	ImGui::SameLine();
-
-	ImGui::BeginChild("ExampleFeature", ImVec2(ImGui::GetContentRegionAvail().x / 2, ImGui::GetContentRegionAvail().y), ImGuiChildFlags_Border);
+	Child* Aimbot = new Child("ExampleFeature", []() { return ImVec2(ImGui::GetContentRegionAvail().x / 2, ImGui::GetContentRegionAvail().y); }, ImGuiChildFlags_Border);
+	Aimbot->AddElement(new Text(Cheat::localization->Get("AIMBOT")));
+	Aimbot->AddElement(new Checkbox(Cheat::localization->Get("AIMBOT"), &bEnabled));
+	if (bEnabled)
 	{
-		ImGui::Text(Cheat::localization->Get("AIMBOT").c_str());
-
-		ImGui::Checkbox(Cheat::localization->Get("AIMBOT").c_str(), &bEnabled);
-		if (bEnabled)
+		Aimbot->AddElement(new Checkbox(Cheat::localization->Get("AIMBOT_AUTO_FIRE"), &bAutoFire));
+		if (!bAutoFire)
 		{
-			ImGui::Checkbox(Cheat::localization->Get("AIMBOT_AUTO_FIRE").c_str(), &bAutoFire);
-
-			if (!bAutoFire) {
-				ImGui::Text(Cheat::localization->Get("AIMBOT_KEY").c_str());
-				ImGui::Hotkey("#AimbotKey", keyAimbot, &bSetKeyAimbot);
-			}
-
-			ImGui::Checkbox(Cheat::localization->Get("MAGIC_BULLET").c_str(), &bMagicBullet);
-			ImGui::Checkbox(Cheat::localization->Get("MULTI_TARGET").c_str(), &bMultiTarget);
-			ImGui::SliderFloat(Cheat::localization->Get("AIMBOT_FOV").c_str(), &flAimFOV, 0.0f, 180.0f);
+			Aimbot->AddElement(new Text(Cheat::localization->Get("AIMBOT_KEY")));
+			Aimbot->AddElement(new Hotkey("#AimbotKey", keyAimbot, &bSetKeyAimbot));
 		}
+
+		Aimbot->AddElement(new Checkbox(Cheat::localization->Get("MAGIC_BULLET"), &bMagicBullet));
+		Aimbot->AddElement(new Checkbox(Cheat::localization->Get("MULTI_TARGET"), &bMultiTarget));
+		Aimbot->AddElement(new SliderFloat(Cheat::localization->Get("AIMBOT_FOV"), &flAimFOV, 0.0f, 180.0f));
 	}
-	ImGui::EndChild();
+
+	Cheat::menu->AddElement(Aimbot, true);
 }
 
 void Aimbot::Render()
