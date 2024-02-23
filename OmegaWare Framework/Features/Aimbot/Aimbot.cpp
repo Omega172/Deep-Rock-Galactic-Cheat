@@ -181,7 +181,11 @@ void Aimbot::Run()
 	if (!IsValidObjectPtr(pDRGPlayer))
 		return;
 
-	CG::AItem* pItem = pDRGPlayer->GetEquippedItem();
+	CG::UInventoryComponent* pInventoryComponenet = pDRGPlayer->InventoryComponent;
+	if (!IsValidObjectPtr(pInventoryComponenet))
+		return;
+
+	CG::AItem* pItem = pInventoryComponenet->GetEquippedItem();
 	if (!IsValidObjectPtr(pItem))
 		return;
 
