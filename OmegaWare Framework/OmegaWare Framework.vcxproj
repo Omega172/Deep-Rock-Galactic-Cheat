@@ -153,6 +153,7 @@
     <ClInclude Include="Features\WeaponModifications\WeaponModifications.h" />
     <ClInclude Include="GUI\Custom.h" />
     <ClInclude Include="GUI\GUI.h" />
+    <ClInclude Include="GUI\Menu\Menu.h" />
     <ClInclude Include="GUI\Watermark.h" />
     <ClInclude Include="Hooks\Renderer\RendererHooks.h" />
     <ClInclude Include="Hooks\WndProc\WndProcHooks.h" />

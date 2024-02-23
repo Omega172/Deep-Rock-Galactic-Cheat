@@ -1,5 +1,6 @@
 #pragma once
 #include "pch.h"
+#include "Menu/Menu.h"
 
 // Colors for ImGui
 inline ImU32 Black = ImGui::ColorConvertFloat4ToU32({ 0.f, 0.f, 0.f, 1.f });

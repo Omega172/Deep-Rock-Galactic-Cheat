@@ -11,9 +11,9 @@
 // Framework defines
 #pragma execution_character_set("utf-8")
 
-#define FRAMEWORK_VERSION 5.1.0
+#define FRAMEWORK_VERSION 5.2.0
 #define FRAMEWORK_MAJOR_VERSION 5
-#define FRAMEWORK_MINOR_VERSION 0
+#define FRAMEWORK_MINOR_VERSION 2
 #define FRAMEWORK_REWORK_VERSION 0
 
 #define FRAMEWORK_CODENAME "OmegaWare"
@@ -157,6 +157,7 @@ namespace Cheat
 
 	inline std::unique_ptr<Console> console = std::make_unique<Console>(false, Title);  // A unique pointer to the console class that is used to create the console for the framework
 
+	inline std::unique_ptr<Menu> menu = std::make_unique<Menu>(ImVec2(GUI::WIDTH, GUI::HEIGHT), Cheat::Title.c_str(), (bool*)NULL, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoCollapse);
 	inline std::unique_ptr<WndProcHooks> wndproc = std::make_unique<WndProcHooks>();
 	inline std::unique_ptr<RendererHooks> renderer = std::make_unique<RendererHooks>();
 
