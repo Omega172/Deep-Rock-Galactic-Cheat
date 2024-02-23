@@ -10,7 +10,8 @@ bool Aimbot::Setup()
 		{ HASH("AIMBOT_KEY"), "Aim Key" },
 		{ HASH("MAGIC_BULLET"), "Magic Bullet" },
 		{ HASH("MULTI_TARGET"), "Multi-Target" },
-		{ HASH("AIMBOT_FOV"), "FOV" }
+		{ HASH("AIMBOT_FOV"), "FOV" },
+		{ HASH("AIMBOT_KEY_MODE"), "Use as Toggle" }
 	};
 	if (!Cheat::localization->AddToLocale("ENG", EnglishData))
 		return false;
@@ -45,7 +46,11 @@ bool Aimbot::Setup()
 
 void Aimbot::Destroy() { Initialized = false; }
 
-void Aimbot::HandleKeys() {}
+void Aimbot::HandleKeys()
+{
+	if (bUseAsToggle)
+		keyAimbot.HandleToggle();
+}
 
 void Aimbot::PopulateMenu()
 {
@@ -62,6 +67,9 @@ void Aimbot::PopulateMenu()
 		{
 			Aimbot->AddElement(new Text(Cheat::localization->Get("AIMBOT_KEY")));
 			Aimbot->AddElement(new Hotkey("#AimbotKey", keyAimbot, &bSetKeyAimbot));
+			Aimbot->AddElement(new Checkbox(Cheat::localization->Get("AIMBOT_KEY_MODE"), &bUseAsToggle), true);
+			if (bUseAsToggle)
+				Aimbot->AddElement(new Text(std::to_string(keyAimbot.IsToggled())), true);
 		}
 
 		Aimbot->AddElement(new Checkbox(Cheat::localization->Get("MAGIC_BULLET"), &bMagicBullet));
@@ -101,13 +109,8 @@ void Aimbot::Render()
 	
 	CG::FVector vecCameraLocation = pCameraManager->GetCameraLocation();
 
-	if (!bAutoFire && !keyAimbot.IsDown())
+	if (!bAutoFire && !keyAimbot.IsDown() && !keyAimbot.IsToggled())
 		return;
-
-	for (DRG::ActorInfo_t stActorInfo : pUnreal->ActorList) {
-		if (stActorInfo.iLookupIndex == DRG::EFNames::Invalid)
-			std::cout << stActorInfo.pActor->Name.GetName() << '\n';
-	}
 
 	Mutex.lock();
 	for (CG::AEnemyPawn* pActor : apEnemyPawns) {
@@ -305,6 +308,7 @@ void Aimbot::SaveConfig()
 	Cheat::config->PushEntry("MAGIC_BULLET", "bool", std::to_string(bMagicBullet));
 	Cheat::config->PushEntry("MULTI_TARGET", "bool", std::to_string(bMultiTarget));
 	Cheat::config->PushEntry("AIMBOT_FOV", "float", std::to_string(flAimFOV));
+	Cheat::config->PushEntry("AIMBOT_KEY_MODE", "bool", std::to_string(bUseAsToggle));
 }
 
 void Aimbot::LoadConfig()
@@ -332,4 +336,8 @@ void Aimbot::LoadConfig()
 	entry = Cheat::config->GetEntryByName("AIMBOT_FOV");
 	if (entry.Name == "AIMBOT_FOV")
 		flAimFOV = std::stof(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("AIMBOT_KEY_MODE");
+	if (entry.Name == "AIMBOT_KEY_MODE")
+		bUseAsToggle = std::stoi(entry.Value);
 }

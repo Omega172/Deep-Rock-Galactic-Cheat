@@ -9,7 +9,8 @@ private:
 
 	bool bEnabled = false;
 	bool bAutoFire = false;
-	KeyBind keyAimbot = KeyBind(ImGuiKey_MouseX1);
+	KeyBindToggle keyAimbot = KeyBindToggle(ImGuiKey_MouseX1);
+	bool bUseAsToggle = false;
 	bool bSetKeyAimbot = false;
 	float flAimFOV = 90.0f;
 	bool bMagicBullet = true;
