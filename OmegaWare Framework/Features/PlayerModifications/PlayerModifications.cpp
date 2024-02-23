@@ -9,7 +9,8 @@ bool PlayerModifications::Setup()
 		{ HASH("RUNNING_SPEED"), "Run Speed" },
 		{ HASH("FLY_HACK"), "Jetpack" },
 		{ HASH("FLY_FORCE"), "Force" },
-		{ HASH("NAME_CHANGER"), "Name Changer" }
+		{ HASH("NAME_CHANGER"), "Name Changer" },
+		{ HASH("NAME_CHANGER_SET"), "Set Name" }
 	};
 	if (!Cheat::localization->AddToLocale("ENG", EnglishData))
 		return false;
@@ -78,6 +79,19 @@ void PlayerModifications::PopulateMenu()
 	if (bFlyHack)
 		PlayerModifications->AddElement(new SliderFloat(Cheat::localization->Get("FLY_FORCE").c_str(), &flFlyForce, 100.f, 500.f));
 	PlayerModifications->AddElement(new InputText(Cheat::localization->Get("NAME_CHANGER").c_str(), szNameBuffer, sizeNameBuffer));
+	PlayerModifications->AddElement(new Button(Cheat::localization->Get("NAME_CHANGER_SET").c_str(), [this]() {
+		CG::ABP_PlayerController_C* pPlayerController = static_cast<CG::ABP_PlayerController_C*>(Cheat::unreal->GetPlayerController());
+		if (!IsValidObjectPtr(pPlayerController))
+			return;
+
+		if (!strlen(szNameBuffer)) {
+			pPlayerController->SetName(CG::FString(wsOriginalName.c_str()));
+		}
+		else {
+			std::wstring wszName(szNameBuffer, szNameBuffer + sizeNameBuffer);
+			pPlayerController->SetName(CG::FString(wszName.c_str()));
+		}
+	}));
 
 	Cheat::menu->AddElement(PlayerModifications, true);
 }
@@ -110,14 +124,6 @@ void PlayerModifications::Run() {
 
 	if (!wsOriginalName.size())
 		wsOriginalName = pPlayerState->GetPlayerName().ToStringW();
-
-	if (!strlen(szNameBuffer)) {
-		pPlayerController->SetName(CG::FString(wsOriginalName.c_str()));
-	}
-	else {
-		std::wstring wszName(szNameBuffer, szNameBuffer + sizeNameBuffer);
-		pPlayerController->SetName(CG::FString(wszName.c_str()));
-	}
 
 	if (pDRGPlayer->RunningSpeed != flLastRunningSpeed)
 		flDefaultRunningSpeed = pDRGPlayer->RunningSpeed;
