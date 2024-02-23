@@ -217,7 +217,11 @@ namespace DRG
 		TentacleSpawn1_GEN_VARIABLE_BP_FacilityTentacleManager_C_CAT,
 		BP_Bosco_Character_C,
 		BP_DrillerCharacter_C,
-		BP_NavigatorCharacter_C
+		BP_NavigatorCharacter_C,
+
+
+		ENE_Spider_Swarmer_C,
+		AIC_Spider_Swarmer_C,
 	};
 
 	typedef struct ActorInfo_t {
@@ -943,7 +947,7 @@ public:
 		typedef struct SortHack_t {
 			T pActor;
 			float flDistance;
-		};
+		} SortHack_t;
 
 		std::vector<SortHack_t> ActorAndDistances{};
 		std::vector<float> AllDistances{};
