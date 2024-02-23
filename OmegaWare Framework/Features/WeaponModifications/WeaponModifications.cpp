@@ -14,7 +14,8 @@ bool WeaponModifications::Setup()
 		{ HASH("GRAPPLE_RESTRICTIONS"), "No Grapple Restrictions" },
 		{ HASH("GRAPPLE_MAX_SPEED"), "Speed" }
 	};
-	Cheat::localization->AddToLocale("ENG", EnglishData);
+	if (!Cheat::localization->AddToLocale("ENG", EnglishData))
+		return false;
 
 	std::vector<LocaleData> GermanData = {
 		{ HASH("INFINITE_AMMO"), "Unbegrenzte Munition" },
@@ -24,7 +25,8 @@ bool WeaponModifications::Setup()
 		{ HASH("GRAPPLE_RESTRICTIONS"), u8"Keine Grappling-Einschränkungen" },
 		{ HASH("GRAPPLE_MAX_SPEED"), "Geschwindigkeit" }
 	};
-	Cheat::localization->AddToLocale("GER", GermanData);
+	if (!Cheat::localization->AddToLocale("GER", GermanData))
+		return false;
 
 	std::vector<LocaleData> PolishData = {
 		{ HASH("INFINITE_AMMO"), "Nieskończona Amunicja" },
@@ -34,9 +36,12 @@ bool WeaponModifications::Setup()
 		{ HASH("GRAPPLE_RESTRICTIONS"), u8"Brak Restrykcji Przyciagania" },
 		{ HASH("GRAPPLE_MAX_SPEED"), "Maksymalna Predkość Przyciagania" }
 	};
-	Cheat::localization->AddToLocale("POL", PolishData);
+	if (!Cheat::localization->AddToLocale("POL", PolishData))
+		return false;
 
 	Cheat::localization->UpdateLocale();
+
+	Utils::LogDebug(Utils::GetLocation(CurrentLoc), "Feature: PlayerModifications Initialized");
 
 	Initialized = true;
 	return Initialized;

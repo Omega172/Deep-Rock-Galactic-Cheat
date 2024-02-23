@@ -11,7 +11,8 @@ bool PlayerModifications::Setup()
 		{ HASH("FLY_FORCE"), "Force" },
 		{ HASH("NAME_CHANGER"), "Name Changer" }
 	};
-	Cheat::localization->AddToLocale("ENG", EnglishData);
+	if (!Cheat::localization->AddToLocale("ENG", EnglishData))
+		return false;
 
 	std::vector<LocaleData> GermanData = {
 		{ HASH("GODMODE"), "Gottmodus" },
@@ -19,7 +20,8 @@ bool PlayerModifications::Setup()
 		{ HASH("FLY_HACK"), "Raketenrucksack" },
 		{ HASH("FLY_FORCE"), "Gewalt" }
 	};
-	Cheat::localization->AddToLocale("GER", GermanData);
+	if (!Cheat::localization->AddToLocale("GER", GermanData))
+		return false;
 
 	std::vector<LocaleData> PolishData = {
 		{ HASH("GODMODE"), "Tryb Boga" },
@@ -28,9 +30,12 @@ bool PlayerModifications::Setup()
 		{ HASH("FLY_FORCE"), "Siła Latania" },
 		{ HASH("NAME_CHANGER"), "Zmieniacz Nicku" }
 	};
-	Cheat::localization->AddToLocale("POL", PolishData);
+	if (!Cheat::localization->AddToLocale("POL", PolishData))
+		return false;
 
 	Cheat::localization->UpdateLocale();
+
+	Utils::LogDebug(Utils::GetLocation(CurrentLoc), "Feature: PlayerModifications Initialized");
 
 	Initialized = true;
 	return Initialized;

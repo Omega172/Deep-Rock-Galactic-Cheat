@@ -12,7 +12,8 @@ bool Aimbot::Setup()
 		{ HASH("MULTI_TARGET"), "Multi-Target" },
 		{ HASH("AIMBOT_FOV"), "FOV" }
 	};
-	Cheat::localization->AddToLocale("ENG", EnglishData);
+	if (!Cheat::localization->AddToLocale("ENG", EnglishData))
+		return false;
 
 	std::vector<LocaleData> GermanData = {
 		{ HASH("AIMBOT"), "Zielbot" },
@@ -20,7 +21,8 @@ bool Aimbot::Setup()
 		{ HASH("AIMBOT_KEY"), u8"Zielbot-Schlüssel" },
 		{ HASH("AIMBOT_FOV"), "Sichtfeld" }
 	};
-	Cheat::localization->AddToLocale("GER", GermanData);
+	if (!Cheat::localization->AddToLocale("GER", GermanData))
+		return false;
 
 	std::vector<LocaleData> PolishData = {
 		{ HASH("AIMBOT"), "Aimbot" },
@@ -30,9 +32,12 @@ bool Aimbot::Setup()
 		{ HASH("MULTI_TARGET"), "Wiele Celi" },
 		{ HASH("AIMBOT_FOV"), "Pole Zasięgu" }
 	};
-	Cheat::localization->AddToLocale("POL", PolishData);
+	if (!Cheat::localization->AddToLocale("POL", PolishData))
+		return false;
 
 	Cheat::localization->UpdateLocale();
+
+	Utils::LogDebug(Utils::GetLocation(CurrentLoc), "Feature: Aimbot Initialized");
 
 	Initialized = true;
 	return Initialized;

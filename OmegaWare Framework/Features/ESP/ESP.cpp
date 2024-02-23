@@ -17,11 +17,16 @@ bool ESP::Setup()
 		{ HASH("ESP_INVINCIBLE_FLAG"), "Invincible Flag" },
 		{ HASH("ESP_INVINCIBLE_FLAG_TEXT"), "lnvuln" }
 	};
-	Cheat::localization->AddToLocale("ENG", EnglishLocale);
+	if (!Cheat::localization->AddToLocale("ENG", EnglishLocale))
+		return false;
 
 	std::vector<LocaleData> GermanLocale = {
+		{ HASH("ESP"), "ESP" },
+		{ HASH("ESP_ENABLE"), "ESP Aktivieren" },
+		{ HASH("ESP_MAX_DISTANCE"), "Maximale Entfernung"}
 	};
-	Cheat::localization->AddToLocale("GER", GermanLocale);
+	if (!Cheat::localization->AddToLocale("GER", GermanLocale))
+		return false;
 
 	std::vector<LocaleData> PolishLocale = {
 		{ HASH("ESP"), "ESP" },
@@ -31,11 +36,14 @@ bool ESP::Setup()
 		{ HASH("ESP_BOX_SHOW_NAME"), "Nazwa" },
 		{ HASH("ESP_BOX_SHOW_DISTANCE"), "Dystans" },
 	};
-	Cheat::localization->AddToLocale("POL", PolishLocale);
+	if (!Cheat::localization->AddToLocale("POL", PolishLocale))
+		return false;
 
 	Cheat::localization->UpdateLocale();
 
 	Root = CG::FName("Root");
+
+	Utils::LogDebug(Utils::GetLocation(CurrentLoc), "Feature: ESP Initialized");
 
 	Initialized = true;
 	return Initialized;

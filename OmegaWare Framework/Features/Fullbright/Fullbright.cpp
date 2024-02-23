@@ -15,6 +15,8 @@ bool Fullbright::Setup()
 
 	Cheat::localization->UpdateLocale();
 
+	Utils::LogDebug(Utils::GetLocation(CurrentLoc), "Feature: Fullbright Initialized");
+
 	Initialized = true;
 	return Initialized;
 }
