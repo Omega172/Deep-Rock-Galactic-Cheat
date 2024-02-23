@@ -64,6 +64,16 @@ bool WeaponModifications::Setup()
 	};
 	Cheat::localization->AddToLocale("GER", GermanData);
 
+	std::vector<LocaleData> PolishData = {
+		{ HASH("INFINITE_AMMO"), "Nieskończona Amunicja" },
+		{ HASH("NO_OVERHEATING"), "Brak Przegrzania" },
+		{ HASH("NO_RELOAD"), "Brak Przeładowania" },
+		{ HASH("NO_RECOIL"), "Brak Odrzutu" },
+		{ HASH("GRAPPLE_RESTRICTIONS"), u8"Brak Restrykcji Przyciagania" },
+		{ HASH("GRAPPLE_MAX_SPEED"), "Maksymalna Predkość Przyciagania" }
+	};
+	Cheat::localization->AddToLocale("PL", PolishData);
+
 	Cheat::localization->UpdateLocale();
 
 	Initialized = true;

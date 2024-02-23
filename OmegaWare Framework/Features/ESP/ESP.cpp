@@ -1,4 +1,4 @@
-#include "pch.h"
+﻿#include "pch.h"
 
 ESP::ESP() {};
 
@@ -20,14 +20,18 @@ bool ESP::Setup()
 	Cheat::localization->AddToLocale("ENG", EnglishLocale);
 
 	std::vector<LocaleData> GermanLocale = {
-		{ HASH("ESP"), "ESP" },
-		{ HASH("ESP_ENABLE"), "Enable ESP" },
-		{ HASH("ESP_MAX_DISTANCE"), "Max Distance" },
-		{ HASH("ESP_FLAGS"), "Flags" },
-		{ HASH("ESP_BOX_SHOW_NAME"), "Name" },
-		{ HASH("ESP_BOX_SHOW_DISTANCE"), "Distance" },
 	};
 	Cheat::localization->AddToLocale("GER", GermanLocale);
+
+	std::vector<LocaleData> PolishLocale = {
+		{ HASH("ESP"), "ESP" },
+		{ HASH("ESP_ENABLE"), "Włacz ESP" },
+		{ HASH("ESP_MAX_DISTANCE"), "Maksymalny Dystans" },
+		{ HASH("ESP_FLAGS"), "Flagi" },
+		{ HASH("ESP_BOX_SHOW_NAME"), "Nazwa" },
+		{ HASH("ESP_BOX_SHOW_DISTANCE"), "Dystans" },
+	};
+	Cheat::localization->AddToLocale("PL", PolishLocale);
 
 	Cheat::localization->UpdateLocale();
 

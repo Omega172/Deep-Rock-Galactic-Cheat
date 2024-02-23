@@ -22,6 +22,16 @@ bool Aimbot::Setup()
 	};
 	Cheat::localization->AddToLocale("GER", GermanData);
 
+	std::vector<LocaleData> PolishData = {
+		{ HASH("AIMBOT"), "Aimbot" },
+		{ HASH("AIMBOT_AUTO_FIRE"), "Automatyczny Strzał" },
+		{ HASH("AIMBOT_KEY"), "Przycisk Strzelania" },
+		{ HASH("MAGIC_BULLET"), "Magiczny Pocisk" },
+		{ HASH("MULTI_TARGET"), "Wiele Celi" },
+		{ HASH("AIMBOT_FOV"), "Pole Zasięgu" }
+	};
+	Cheat::localization->AddToLocale("PL", PolishData);
+
 	Cheat::localization->UpdateLocale();
 
 	Initialized = true;

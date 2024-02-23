@@ -1,4 +1,4 @@
-#include "pch.h"
+﻿#include "pch.h"
 
 PlayerModifications::PlayerModifications() {};
 
@@ -20,6 +20,15 @@ bool PlayerModifications::Setup()
 		{ HASH("FLY_FORCE"), "Gewalt" }
 	};
 	Cheat::localization->AddToLocale("GER", GermanData);
+
+	std::vector<LocaleData> PolishData = {
+		{ HASH("GODMODE"), "Tryb Boga" },
+		{ HASH("RUNNING_SPEED"), "Predkość Biegania" },
+		{ HASH("FLY_HACK"), "Latanie" },
+		{ HASH("FLY_FORCE"), "Siła Latania" },
+		{ HASH("NAME_CHANGER"), "Zmieniacz Nicku" }
+	};
+	Cheat::localization->AddToLocale("PL", PolishData);
 
 	Cheat::localization->UpdateLocale();
 

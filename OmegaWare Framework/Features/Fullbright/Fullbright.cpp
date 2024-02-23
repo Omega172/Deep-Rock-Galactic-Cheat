@@ -1,4 +1,4 @@
-#include "pch.h"
+﻿#include "pch.h"
 
 Fullbright::Fullbright() {};
 
@@ -8,6 +8,9 @@ bool Fullbright::Setup()
 		return false;
 
 	if (!Cheat::localization->AddToLocale("GER", "FULLBRIGHT", "Vollhelligkeit"))
+		return false;
+
+	if (!Cheat::localization->AddToLocale("PL", "FULLBRIGHT", "Pełna Jasność"))
 		return false;
 
 	Cheat::localization->UpdateLocale();
