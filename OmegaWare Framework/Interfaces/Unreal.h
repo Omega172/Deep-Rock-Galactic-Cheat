@@ -3,7 +3,7 @@
 #if FRAMEWORK_UNREAL // Not sure if this is needed but it's here anyway
 
 
-#define FNAME_INITIALIZATION_MACRO(n) DRG::n = CG::FName(#n); vecClassLookups.push_back(ClassLookupEntry_t{n, EFNames::n})
+#define FNAME_INITIALIZATION_MACRO(n) DRG::n = CG::FName(#n); vecClassLookups.push_back(ClassLookupEntry_t{n, EFNames::n}); Utils::LogDebug(Utils::GetLocation(CurrentLoc), "Initalized " + std::string(#n))
 namespace DRG
 {
 	enum class EFNames {
@@ -589,7 +589,6 @@ namespace DRG
 		FNAME_INITIALIZATION_MACRO(BP_LostPackStart_C);
 		FNAME_INITIALIZATION_MACRO(FadeUpFromBlack_LevelSequence);
 		FNAME_INITIALIZATION_MACRO(BP_Gem_Jadiz_C);
-		FNAME_INITIALIZATION_MACRO(TentacleSpawn2_GEN_VARIABLE_BP_FacilityTentacleManager_C_CAT);
 		FNAME_INITIALIZATION_MACRO(BP_FSDCameraManager_C);
 		FNAME_INITIALIZATION_MACRO(Widget_RandomCode06_GEN_VARIABLE_BP_Widget_DropPod_GarbageGen_C_CAT);
 		FNAME_INITIALIZATION_MACRO(Widget_RandomCode05_GEN_VARIABLE_BP_Widget_DropPod_GarbageGen_C_CAT);
@@ -653,12 +652,6 @@ namespace DRG
 		FNAME_INITIALIZATION_MACRO(AIController);
 		FNAME_INITIALIZATION_MACRO(BP_MainFacility_PowerCable_C);
 		FNAME_INITIALIZATION_MACRO(BP_Barley4_1_C);
-		FNAME_INITIALIZATION_MACRO(LHologram_GEN_VARIABLE_BP_MainFacility_ShieldEmitter_Hologram_C_CAT);
-		FNAME_INITIALIZATION_MACRO(RHologram_GEN_VARIABLE_BP_MainFacility_ShieldEmitter_Hologram_C_CAT);
-		FNAME_INITIALIZATION_MACRO(ChildActor_GEN_VARIABLE_BP_MainFacility_Batteryholder_C_CAT);
-		FNAME_INITIALIZATION_MACRO(TentacleSpawn_GEN_VARIABLE_BP_FacilityTentacleManager_C_CAT);
-		FNAME_INITIALIZATION_MACRO(TentacleSpawn3_GEN_VARIABLE_BP_FacilityTentacleManager_C_CAT);
-		FNAME_INITIALIZATION_MACRO(TentacleSpawn1_GEN_VARIABLE_BP_FacilityTentacleManager_C_CAT);
 		FNAME_INITIALIZATION_MACRO(BP_Bosco_Character_C);
 		FNAME_INITIALIZATION_MACRO(BP_DrillerCharacter_C);
 		FNAME_INITIALIZATION_MACRO(BP_NavigatorCharacter_C);
