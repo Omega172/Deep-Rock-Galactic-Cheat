@@ -99,6 +99,11 @@ void Aimbot::Render()
 	if (!bAutoFire && !keyAimbot.IsDown())
 		return;
 
+	for (DRG::ActorInfo_t stActorInfo : pUnreal->ActorList) {
+		if (stActorInfo.iLookupIndex == DRG::EFNames::Invalid)
+			std::cout << stActorInfo.pActor->Name.GetName() << '\n';
+	}
+
 	Mutex.lock();
 	for (CG::AEnemyPawn* pActor : apEnemyPawns) {
 		if (!IsValidObjectPtr(pActor) || pActor->InternalIndex <= 0 || pActor->Name.ComparisonIndex <= 0)
@@ -116,8 +121,10 @@ void Aimbot::Render()
 			CG::FVector_NetQuantizeNormal((vecAimLocation - vecCameraLocation).Unit()),
 			true);
 
-		if (!bMultiTarget)
+		if (!bMultiTarget) {
+			Mutex.unlock();
 			return;
+		}
 	}
 
 	for (CG::AEnemyDeepPathfinderCharacter* pActor : apEnemyPathFinders) {
@@ -138,8 +145,10 @@ void Aimbot::Render()
 			CG::FVector_NetQuantizeNormal((vecHeadLocation - vecCameraLocation).Unit()),
 			true);
 
-		if (!bMultiTarget)
+		if (!bMultiTarget) {
+			Mutex.unlock();
 			return;
+		}
 	}
 	Mutex.unlock();
 }
