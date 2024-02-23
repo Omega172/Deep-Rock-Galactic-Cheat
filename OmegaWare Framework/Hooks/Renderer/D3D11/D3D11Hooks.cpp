@@ -130,7 +130,7 @@ static void RenderImGui(IDXGISwapChain* pSwapChain) {
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
 
-	ImGui::PushFont(tahomaFont);
+	ImGui::PushFont(CurrentFont);
 	GUI::Render();
 	ImGui::PopFont();
 
