@@ -31,7 +31,7 @@ bool ESP::Setup()
 		{ HASH("ESP_BOX_SHOW_NAME"), "Nazwa" },
 		{ HASH("ESP_BOX_SHOW_DISTANCE"), "Dystans" },
 	};
-	Cheat::localization->AddToLocale("PL", PolishLocale);
+	Cheat::localization->AddToLocale("POL", PolishLocale);
 
 	Cheat::localization->UpdateLocale();
 

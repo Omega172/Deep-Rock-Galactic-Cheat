@@ -30,7 +30,7 @@ bool Aimbot::Setup()
 		{ HASH("MULTI_TARGET"), "Wiele Celi" },
 		{ HASH("AIMBOT_FOV"), "Pole Zasięgu" }
 	};
-	Cheat::localization->AddToLocale("PL", PolishData);
+	Cheat::localization->AddToLocale("POL", PolishData);
 
 	Cheat::localization->UpdateLocale();
 

@@ -28,7 +28,7 @@ bool PlayerModifications::Setup()
 		{ HASH("FLY_FORCE"), "Siła Latania" },
 		{ HASH("NAME_CHANGER"), "Zmieniacz Nicku" }
 	};
-	Cheat::localization->AddToLocale("PL", PolishData);
+	Cheat::localization->AddToLocale("POL", PolishData);
 
 	Cheat::localization->UpdateLocale();
 

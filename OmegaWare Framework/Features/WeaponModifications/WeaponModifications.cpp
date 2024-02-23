@@ -34,7 +34,7 @@ bool WeaponModifications::Setup()
 		{ HASH("GRAPPLE_RESTRICTIONS"), u8"Brak Restrykcji Przyciagania" },
 		{ HASH("GRAPPLE_MAX_SPEED"), "Maksymalna Predkość Przyciagania" }
 	};
-	Cheat::localization->AddToLocale("PL", PolishData);
+	Cheat::localization->AddToLocale("POL", PolishData);
 
 	Cheat::localization->UpdateLocale();
 

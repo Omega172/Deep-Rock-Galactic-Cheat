@@ -10,7 +10,7 @@ bool Fullbright::Setup()
 	if (!Cheat::localization->AddToLocale("GER", "FULLBRIGHT", "Vollhelligkeit"))
 		return false;
 
-	if (!Cheat::localization->AddToLocale("PL", "FULLBRIGHT", "Pełna Jasność"))
+	if (!Cheat::localization->AddToLocale("P0L", "FULLBRIGHT", "Pełna Jasność"))
 		return false;
 
 	Cheat::localization->UpdateLocale();
