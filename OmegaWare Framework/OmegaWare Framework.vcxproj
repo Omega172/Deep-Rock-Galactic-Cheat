@@ -124,7 +124,7 @@
     <ClCompile Include="ImGUI\imgui_impl_win32.cpp" />
     <ClCompile Include="ImGUI\imgui_tables.cpp" />
     <ClCompile Include="ImGUI\imgui_widgets.cpp" />
-    <ClInclude Include="FNames.h" />
+    <ClInclude Include="Interfaces\FNames.h" />
     <ClInclude Include="Localization\Locales\Polish.h">
       <FileType>CppCode</FileType>
     </ClInclude>

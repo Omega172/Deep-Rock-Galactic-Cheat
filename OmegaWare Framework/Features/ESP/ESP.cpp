@@ -406,10 +406,6 @@ void ESP::Render()
 			if (!stObjectives.bEnabled || (iESPMaxDistance && stInfo.flDistance > iESPMaxDistance) || !IsValidObjectPtr(stInfo.pActor))
 				break;
 
-			CG::ACarriableItem* pPawn = reinterpret_cast<CG::ACarriableItem*>(stInfo.pActor);
-			if (!IsValidObjectPtr(pPawn) || !stInfo.pActor->IsA(CG::ACarriableItem::StaticClass()))
-				break;
-
 			CG::FVector vecLocation, vecExtent;
 			stInfo.pActor->GetActorBounds(true, &vecLocation, &vecExtent, false);
 
