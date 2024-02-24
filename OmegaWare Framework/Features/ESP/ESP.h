@@ -21,6 +21,8 @@ private:
 	bool bEnemies = true;
 	float clrFriendlies[4] = {0.f, 1.f, 0.f, 1.f};
 	bool bFriendlies = false;
+	float clrObjectiveItems[4] = {0.f, 1.f, 1.f, 1.f};
+	bool bObjectiveItems = true;
 
 	int iDebug = 0;
 	float clrDebug[4] = { 1.f, 1.f, 0.4f, 1.f };

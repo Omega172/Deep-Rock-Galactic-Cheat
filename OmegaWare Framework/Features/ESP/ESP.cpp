@@ -11,6 +11,8 @@ bool ESP::Setup()
 		{ HASH("ESP_ENEMY_ENABLE"), "Enemies" },
 		{ HASH("ESP_FRIENDLY_COLOR"), "Friendlies Color" },
 		{ HASH("ESP_FRIENDLY_ENABLE"), "Friendlies" },
+		{ HASH("ESP_OBJECTIVE_ITEMS_COLOR"), "Objective Items Color" },
+		{ HASH("ESP_OBJECTIVE_ITEMS_ENABLE"), "Objective Items"},
 		{ HASH("ESP_ACCURATE_BOX"), "Accurate Box" },
 		{ HASH("ESP_MAX_DISTANCE"), "Max Distance" },
 		{ HASH("ESP_DEBUG"), "Debug ESP" },
@@ -87,6 +89,8 @@ void ESP::PopulateMenu()
 		ESP->AddElement(new Checkbox(Cheat::localization->Get("ESP_ENEMY_ENABLE"), &bEnemies), true, 2.f);
 		ESP->AddElement(new ColorPicker(Cheat::localization->Get("ESP_FRIENDLY_COLOR").c_str(), clrFriendlies, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoSidePreview | ImGuiColorEditFlags_AlphaBar | ImGuiColorEditFlags_NoLabel));
 		ESP->AddElement(new Checkbox(Cheat::localization->Get("ESP_FRIENDLY_ENABLE"), &bFriendlies), true, 2.f);
+		ESP->AddElement(new ColorPicker(Cheat::localization->Get("ESP_OBJECTIVE_ITEMS_COLOR").c_str(), clrObjectiveItems, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoSidePreview | ImGuiColorEditFlags_AlphaBar | ImGuiColorEditFlags_NoLabel));
+		ESP->AddElement(new Checkbox(Cheat::localization->Get("ESP_OBJECTIVE_ITEMS_ENABLE"), &bObjectiveItems), true, 2.f);
 
 		ESP->AddElement(new Checkbox(Cheat::localization->Get("ESP_ACCURATE_BOX"), &bAccurateBox));
 		ESP->AddElement(new SliderInt(Cheat::localization->Get("ESP_MAX_DISTANCE"), &iESPMaxDistance, 0, 5000));
@@ -112,9 +116,8 @@ void ESP::Render()
 
 	ImU32 uiEnemiesColor = ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(clrEnemies));
 	ImU32 uiFriendliesColor = ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(clrFriendlies));
+	ImU32 uiObjectiveItems = ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(clrObjectiveItems));
 	ImU32 uiDebugColor = ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(clrDebug));
-
-	std::cout << uiFriendliesColor << ' ' << uiDebugColor << '\n';
 
 	for (FNames::ActorInfo_t stInfo : pUnreal->ActorList) {
 		switch (stInfo.iLookupIndex) {
@@ -344,7 +347,19 @@ void ESP::Render()
 			break;
 		}
 		case FNames::BP_Gem_Aquarq_C:
+		case FNames::BP_GunkSeed_Hanger_C:
+		case FNames::BP_GunkSeed_C:
+		case FNames::BP_Ebonut_C:
+		case FNames::BP_Apoca_Bloom_C:
+		case FNames::BP_AlienEgg_C:
+		case FNames::BP_MiniMule_Salvage_C:
+		case FNames::BP_MuleLeg_C:
+		case FNames::BP_Boolo_Cap_C:
+		case FNames::BP_Fossil_C:
 		{
+			if (!bObjectiveItems)
+				break;
+
 			if (!IsValidObjectPtr(stInfo.pActor))
 				break;
 
@@ -363,7 +378,7 @@ void ESP::Render()
 				break;
 
 			ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, Black, 0.f, ImDrawFlags_None, 3.f);
-			ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, Cyan);
+			ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, uiObjectiveItems);
 
 			if (bBoxName) {
 
@@ -406,8 +421,6 @@ void ESP::Render()
 			CG::FVector2D vecCenter;
 			if (!pUnreal->WorldToScreen(vecLocation, vecCenter))
 				break;
-
-			ImVec2 vecCenter = rectBox.GetCenter();
 
 			char szName[64];
 			szName[stInfo.pActor->Name.GetName().copy(szName, 63, 0)] = 0;
@@ -477,6 +490,8 @@ void ESP::SaveConfig()
 	Cheat::config->PushEntry("ESP_ENEMY_ENABLE", "bool", std::to_string(bEnemies));
 	Cheat::config->PushEntry("ESP_FRIENDLY_COLOR", "int", std::to_string(ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(clrFriendlies))));
 	Cheat::config->PushEntry("ESP_FRIENDLY_ENABLE", "bool", std::to_string(bFriendlies));
+	Cheat::config->PushEntry("ESP_OBJECTIVE_ITEMS_COLOR", "int", std::to_string(ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(clrObjectiveItems))));
+	Cheat::config->PushEntry("ESP_OBJECTIVE_ITEMS_ENABLE", "bool", std::to_string(bObjectiveItems));
 	Cheat::config->PushEntry("ESP_ACCURATE_BOX", "bool", std::to_string(bAccurateBox));
 	Cheat::config->PushEntry("ESP_MAX_DISTANCE", "int", std::to_string(iESPMaxDistance));
 	Cheat::config->PushEntry("ESP_DEBUG_COLOR", "int", std::to_string(ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(clrDebug))));
@@ -514,6 +529,17 @@ void ESP::LoadConfig()
 	entry = Cheat::config->GetEntryByName("ESP_FRIENDLY_ENABLE");
 	if (entry.Name == "ESP_FRIENDLY_ENABLE")
 		bFriendlies = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_OBJECTIVE_ITEMS_COLOR");
+	if (entry.Name == "ESP_OBJECTIVE_ITEMS_COLOR") {
+		ImVec4 clrTmp = ImGui::ColorConvertU32ToFloat4(std::stoul(entry.Value));
+		*reinterpret_cast<uint64_t*>(&clrObjectiveItems[0]) = *reinterpret_cast<uint64_t*>(&clrTmp.x);
+		*reinterpret_cast<uint64_t*>(&clrObjectiveItems[2]) = *reinterpret_cast<uint64_t*>(&clrTmp.z);
+	}
+
+	entry = Cheat::config->GetEntryByName("ESP_OBJECTIVE_ITEMS_ENABLE");
+	if (entry.Name == "ESP_OBJECTIVE_ITEMS_ENABLE")
+		bObjectiveItems = std::stoi(entry.Value);
 
 	entry = Cheat::config->GetEntryByName("ESP_ACCURATE_BOX");
 	if (entry.Name == "ESP_ACCURATE_BOX")
