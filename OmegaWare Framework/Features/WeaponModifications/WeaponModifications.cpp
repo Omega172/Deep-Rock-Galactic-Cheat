@@ -4,8 +4,6 @@ WeaponModifications::WeaponModifications() {};
 
 bool WeaponModifications::Setup()
 {
-	DRG::InitializeFNames();
-
 	std::vector<LocaleData> EnglishData = {
 		{ HASH("INFINITE_AMMO"), "Infinite Ammo" },
 		{ HASH("NO_OVERHEATING"), "No Overheating" },

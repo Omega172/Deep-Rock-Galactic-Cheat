@@ -31,6 +31,7 @@ namespace Cheat
 
 	#if FRAMEWORK_UNREAL // If using the Unreal framework print the pointer to the Unreal class to make sure it was initalized
 		Utils::LogDebug(Utils::GetLocation(CurrentLoc), (std::stringstream() << "Unreal: 0x" << unreal.get()).str());
+		FNames::Initialize();
 	#endif
 
 		// Add other globals that need to be initalized here

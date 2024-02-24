@@ -88,6 +88,7 @@ static_assert((FRAMEWORK_RENDER_D3D11 + FRAMEWORK_RENDER_D3D12) == 1, "Must use 
 #include "Interfaces/EasyHook.h"
 
 #if FRAMEWORK_UNREAL // If the framework set is Unreal include the Unreal.h file that contains the Unreal interface class that is used to interact with the Unreal Engine
+#include "FNames.h"
 #include "Interfaces/Unreal.h"
 #endif
 

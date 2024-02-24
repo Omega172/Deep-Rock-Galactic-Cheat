@@ -2,260 +2,16 @@
 #include "pch.h"
 #if FRAMEWORK_UNREAL // Not sure if this is needed but it's here anyway
 
-
-#define DO_X_WITH_DRG_FNAMES(x) \
-	x(Invalid) \
-	x(Actor) \
-	x(APawn) \
-	x(ACharacter) \
-	x(AEQSTestingPawn) \
-	x(APlayerCharacter) \
-	x(ADefaultPawn) \
-	x(ASpectatorPawn) \
-	x(APathfinderVehicle) \
-	x(APlayerCameraDrone) \
-	x(AFSDPawn) \
-	x(ACaretaker) \
-	x(AEscortMule) \
-	x(ATowerModuleBase) \
-	x(AAimingTowerModule) \
-	x(AGuntowerModule) \
-	x(AHostileGuntowerModule) \
-	x(AHostileTargetingGuntowerModule) \
-	x(ALMGGuntoweModule) \
-	x(AHomingFireModule) \
-	x(ARandomFiringGuntowerModule) \
-	x(ARadialFireModule) \
-	x(AGuntowerWeakPoint) \
-	x(ATowerEventModule) \
-	x(AAimingTowerEventModule) \
-	x(AEnemyPawn) \
-	x(AStabberVineRoot) \
-	x(AParasiteEnemy) \
-	x(AInsectSwarmSpawner) \
-	x(AHydraWeedHealer) \
-	x(AShootingPlant) \
-	x(AHydraWeedShooter) \
-	x(AHydraWeedCore) \
-	x(AFacilityTurret) \
-	x(ASpinningFacilityturret) \
-	x(AAimingFacilityTurret) \
-	x(ATentacleBase) \
-	x(AFacilityTentacle) \
-	x(AStabberVine) \
-	x(ATerminatorTentacle) \
-	x(ACaveLeech) \
-	x(AEnemyDeepPathfinderCharacter) \
-	x(AAFlyingBug) \
-	x(ABomber) \
-	x(AFlyingLifter) \
-	x(AJellyBreeder) \
-	x(AConvertedRobot) \
-	x(AFlyingEnemyDeepPathfinderCharacter) \
-	x(AFriendlyParasite) \
-	x(AHalloweenSkull) \
-	x(AInsectSwarmEnemy) \
-	x(APatrolBot) \
-	x(APlagueWorm) \
-	x(AProspectorRobot) \
-	x(ASharkEnemy) \
-	x(AShredder) \
-	x(ASpiderEnemy) \
-	x(ATerminatorEnemy) \
-	x(AWoodLouse) \
-	x(ABosco) \
-	x(ABP_Bosco_C) \
-	x(ACaveWorm) \
-	x(AMaggot) \
-	x(ADroneBase) \
-	x(ADroneCharacter) \
-	x(AMULE) \
-	x(AMolly) \
-	x(ABP_Donkey_C) \
-	x(AMiniMule) \
-	x(ARecallableActor) \
-	x(ARecallableSentryGun) \
-	x(WPN_AssaultRifle_C) \
-	x(WPN_Autocannon_C) \
-	x(WPN_BurstPistol_C) \
-	x(WPN_ChargeBlaster_C) \
-	x(WPN_CoilGun_C) \
-	x(WPN_CombatShotgun_C) \
-	x(WPN_Crossbow_C) \
-	x(WPN_Cryospray_C) \
-	x(WPN_DetPack_Detonator_C) \
-	x(WPN_DetPack_Detonator_Driller_C) \
-	x(WPN_DoubleDrills_C) \
-	x(WPN_DualMPs_C) \
-	x(WPN_FlameThrower_C) \
-	x(WPN_FlareGun_C) \
-	x(WPN_FuelLine_Builder_C) \
-	x(WPN_Gatling_C) \
-	x(WPN_GrapplingGun_C) \
-	x(WPN_GrenadeLauncher_C) \
-	x(WPN_HeavyParticleCannon_C) \
-	x(WPN_LineCutter_C) \
-	x(WPN_LockOnRifle_C) \
-	x(WPN_M1000_C) \
-	x(WPN_MicroMissileLauncher_C) \
-	x(WPN_MicrowaveGun_C) \
-	x(WPN_Pickaxe_Driller_C) \
-	x(WPN_Pickaxe_Engineer_C) \
-	x(WPN_Pickaxe_Gunner_C) \
-	x(WPN_Pickaxe_Scout_C) \
-	x(WPN_Pistol_A_C) \
-	x(WPN_PlasmaCarbine_C) \
-	x(WPN_PlatformGun_C) \
-	x(WPN_RecallableSentryGun_C) \
-	x(WPN_Revolver_C) \
-	x(WPN_SawedOffShotgun_C) \
-	x(WPN_ShieldRegeneratorItem_C) \
-	x(WPN_SMG_OneHand_C) \
-	x(WPN_ZipLineGun_C) \
-	x(ENE_JellyBreeder_Normal_C) \
-	x(ENE_Butterfly_C) \
-	x(ENE_Spider_Grunt_Guard_C) \
-	x(ENE_Bomber_Fire_C) \
-	x(ENE_FlyingCritterBase_C) \
-	x(ENE_Spider_Grunt_Guard_Radioactive_C) \
-	x(ENE_Spider_Spitter_C) \
-	x(ENE_FacilityTurret_Spinning_C) \
-	x(ENE_Spider_ExploderTank_Ghost_C) \
-	x(ENE_Spider_Grunt_Guard_Ice_C) \
-	x(ENE_FacilityTurret_Burst_C) \
-	x(ENE_Spider_Drone_C) \
-	x(ENE_Spider_Shooter_Ground_C) \
-	x(ENE_Spider_Grunt_Normal_C) \
-	x(ENE_Spider_Exploding_C) \
-	x(ENE_Spider_Tank_Amber_C) \
-	x(ENE_HydraWeed_Core_C) \
-	x(ENE_JellyBreeder_Base_C) \
-	x(ENE_Spider_Amber_Shooter_C) \
-	x(ENE_Spider_Tank_Ice_C) \
-	x(ENE_Jelly_Passive_C) \
-	x(ENE_Spider_Boss_TwinA_C) \
-	x(ENE_ShootingPlant_Small_C) \
-	x(ENE_Jelly_Swarmer_C) \
-	x(ENE_Prospector_C) \
-	x(ENE_FacilityTentacle_End_C) \
-	x(ENE_Spider_Tank_Rock_C) \
-	x(ENE_Spider_ExploderTank_King_C) \
-	x(ENE_Harvester_C) \
-	x(ENE_Spider_Exploding_Rockpox_Plague_C) \
-	x(ENE_Bomber_Rockpox_Plague_C) \
-	x(ENE_Spider_ShieldTank_C) \
-	x(ENE_FacilityTurret_Sniper_C) \
-	x(ENE_Spider_Shooter_C) \
-	x(ENE_Spider_Swarmer_Radioactive_C) \
-	x(ENE_Spider_RapidShooter_Elite_C) \
-	x(ENE_Bomber_Child_C) \
-	x(ENE_Spider_Charger_C) \
-	x(ENE_Spider_Swarmer_Pheromoned_C) \
-	x(ENE_PlagueLarva_C) \
-	x(ENE_Jelly_Swarmer_Child_C) \
-	x(ENE_Jelly_Spawn_Child_C) \
-	x(ENE_FacilityTentacle_Burrowing_C) \
-	x(ENE_SpiderSpawner_C) \
-	x(ENE_Spider_Shooter_Normal_Elite_C) \
-	x(ENE_Spider_Exploding_Warning_Radioactive_C) \
-	x(ENE_Spider_Tank_Radioactive_C) \
-	x(ENE_Grabber_C) \
-	x(ENE_Spider_Boss_HeavySpawn_C) \
-	x(ENE_BoughWasp_Nest_Medium2_C) \
-	x(ENE_Spider_Grunt_Attacker_Ice_C) \
-	x(ENE_Shredder_C) \
-	x(ENE_Spider_RapidShooter_C) \
-	x(ENE_Spider_Tank_Generic_C) \
-	x(ENE_Spider_Tank_Normal_C) \
-	x(ENE_BoughWasp_Nest_Medium_C) \
-	x(ENE_Spider_Boss_Base_C) \
-	x(ENE_Spider_Boss_TwinBase_C) \
-	x(ENE_BoughWasp_Swarm_C) \
-	x(ENE_Spider_Exploding_Radioactive_C) \
-	x(ENE_LootBug_C) \
-	x(ENE_Spider_Tank_Base_C) \
-	x(ENE_Mactera_TripleShooter_C) \
-	x(ENE_TerminatorTentacle_C) \
-	x(ENE_LootBug_Gold_C) \
-	x(ENE_Spider_Grunt_Rock_C) \
-	x(ENE_Terminator_C) \
-	x(ENE_Spider_Grunt_Attacker_Radioactive_C) \
-	x(ENE_Spider_Shooter_Rockpox_Plague_C) \
-	x(ENE_Spider_Boss_TwinB_C) \
-	x(ENE_Spider_ExploderTank_C) \
-	x(ENE_Spider_Boss_Heavy_C) \
-	x(ENE_GliderBeast_C) \
-	x(ENE_Flea_C) \
-	x(ENE_Spider_Grunt_Attacker_C) \
-	x(ENE_ElectricPlantVThree_C) \
-	x(ENE_Spider_Tank_Boss_C) \
-	x(ENE_Spider_Grunt_Radioactive_C) \
-	x(ENE_Spider_Stinger_C) \
-	x(ENE_PF_SpiderBase_C) \
-	x(ENE_Spider_Spawn_C) \
-	x(ENE_Maggot_Red1_C) \
-	x(ENE_StabberVines2_C) \
-	x(ENE_Spider_Swarmer_C) \
-	x(ENE_Spider_Buffer_C) \
-	x(ENE_Mactera_Shooter_Normal_C) \
-	x(ENE_Spider_Swarmer_Ice_C) \
-	x(ENE_ShootingPlant_C) \
-	x(ENE_Parasite_C) \
-	x(ENE_Mactera_Amber_C) \
-	x(ENE_InsectSwarm_Spawner_C) \
-	x(ENE_Woodlouse_Youngling_C) \
-	x(ENE_Bomber_Ice_C) \
-	x(ENE_Spider_Grunt_Base_C) \
-	x(ENE_BoughWasp_Nest_Medium3_C) \
-	x(ENE_Bomber_C) \
-	x(ENE_Maggot_C) \
-	x(ENE_SmallShootingPlant_RegenPod_C) \
-	x(ENE_Shredder_Base_C) \
-	x(ENE_StabberVine_Tentacle_C) \
-	x(ENE_InfestationLarva_C) \
-	x(ENE_Woodlouse_C) \
-	x(ENE_Shark_C) \
-	x(ENE_Maggot_Normal_C) \
-	x(ENE_FlyingSmartRock_C) \
-	x(ENE_EnemySpawner_C) \
-	x(ENE_Spider_Exploding_Warning_C) \
-	x(ENE_Spider_Grunt_Ice_C) \
-	x(ENE_FacilityTurret_Barrier_C) \
-	x(ENE_FacilityTentacle_C) \
-	x(ENE_Jelly_Passive_Mother_C) \
-	x(ENE_InsectSwarm_C) \
-	x(ENE_Maggot_Azure_C) \
-	x(ENE_Spider_Shooter_Queen_C) \
-	x(ENE_JellyBreeder_RockpoxPlague_C) \
-	x(ENE_WalkingPlagueheart_C) \
-	x(ENE_Spider_Hoarder_C) \
-	x(ENE_StabberVines_C) \
-	x(ENE_Spider_Tank_RockpoxPlague_C) \
-	x(ENE_FacilityCaretaker_C) \
-	x(ENE_InfectedMule_C) \
-	x(ENE_Mactera_Shooter_Base_C) \
-	x(ENE_Maggot_HollowBough_Grub_C) \
-	x(ENE_Spider_Shooter_Normal_C) \
-	x(ENE_Spider_Grunt_RockpoxPlague_C) \
-	x(ENE_CaveLeech_C) \
-	x(ENE_FacilityTurret_Base_C) \
-	x(ENE_Maggot_Green1_C) \
-	x(ENE_Maggot_SplineTrail_C) \
-	x(ENE_Mactera_Shooter_HeavyVeteran_C) \
-	x(ENE_PlagueShark_C) \
-	x(ENE_Spider_Lobber_C) \
-	x(ENE_PatrolBot_C) \
-	x(ENE_PatrolBot_Caretaker_C) \
-	x(ENE_SpiderBase_Large_C) \
-	x(ENE_BoughWasp_Nest_Small_C) \
-	x(ENE_Spider_Lobber_Base_C)
+#ifndef GAME_FNAMES
+#define GAME_FNAMES(x)
+#endif
 
 #define CREATE_ENUM(n) n,
-#define CREATE_CLASS_LOOKUP(n) DRG::ClassLookupEntry_t{std::string_view(#n), 0, DRG::EFNames::n},
-namespace DRG
+#define CREATE_CLASS_LOOKUP(n) FNames::ClassLookupEntry_t{std::string_view(#n), 0, FNames::EFNames::n},
+namespace FNames
 {
-	enum class EFNames {
-		DO_X_WITH_DRG_FNAMES(CREATE_ENUM)
+	enum EFNames {
+		GAME_FNAMES(CREATE_ENUM)
 	};
 
 	typedef struct ActorInfo_t {
@@ -270,17 +26,15 @@ namespace DRG
 	} ClassLookupEntry_t;
 
 	inline std::vector<ClassLookupEntry_t> vecClassLookups{
-		DO_X_WITH_DRG_FNAMES(CREATE_CLASS_LOOKUP)
+		GAME_FNAMES(CREATE_CLASS_LOOKUP)
 	};
 	
-	inline void InitializeFNames()
+	inline void Initialize()
 	{
 		Utils::LogDebug(Utils::GetLocation(CurrentLoc), (std::stringstream() << "GNames: 0x" << CG::FName::GNames).str());
 		Utils::LogDebug(Utils::GetLocation(CurrentLoc), (std::stringstream() << "GNames Count: " << CG::FName::GNames->Count()).str());
 		
-
 		size_t iGNameSize = 0;
-
 		int lastBlock = 0;
 		uintptr_t nextFNameAddress = reinterpret_cast<uintptr_t>(CG::FName::GNames->Allocator.Blocks[0]);
 
@@ -320,7 +74,6 @@ namespace DRG
 
 			std::string sName = std::string(reinterpret_cast<CG::FNameEntry*>(entryOffset)->AnsiName, nameHeader >> 6);
 
-			bool bDidFind = false;
 			for (int i = 0; i < vecClassLookups.size(); i++) {
 				if (vecClassLookups[i].ComparisonIndex)
 					continue;
@@ -330,7 +83,6 @@ namespace DRG
 
 				vecClassLookups[i].ComparisonIndex = nextFNameComparisonId;
 				Utils::LogDebug(Utils::GetLocation(CurrentLoc), "Initalized " + sName);
-				bDidFind = true;
 				break;
 			}
 
@@ -351,7 +103,6 @@ namespace DRG
 		Utils::LogDebug(Utils::GetLocation(CurrentLoc), (std::stringstream() << "Resolved GNames Count: " << iGNameSize).str());
 	};
 }
-#undef DO_X_WITH_DRG_FNAMES
 #undef CREATE_ENUM
 #undef CREATE_CLASS_LOOKUP
 
@@ -394,7 +145,7 @@ public:
 	}
 
 	std::vector<CG::AActor*> Actors;
-	std::vector<DRG::ActorInfo_t> ActorList;
+	std::vector<FNames::ActorInfo_t> ActorList;
 	std::mutex ActorLock;
 
 	// Shortcut functions to get pointers to important classes used for many things
@@ -408,7 +159,7 @@ public:
 		std::vector<CG::AActor*> lActors{};
 
 		std::vector<CG::AActor*> lSortedActors{};
-		std::vector<DRG::ActorInfo_t> lActorList{};
+		std::vector<FNames::ActorInfo_t> lActorList{};
 
 		CG::AGameStateBase* pGameState;
 		if (CG::UWorld::GWorld == nullptr) {
@@ -467,10 +218,10 @@ public:
 			bool bFound = false;
 			auto comp_index = pActor->Name.ComparisonIndex;
 
-			for (auto entry : DRG::vecClassLookups) {
+			for (auto entry : FNames::vecClassLookups) {
 				if (comp_index == entry.ComparisonIndex) {
 					bFound = true;
-					lActorList.push_back(DRG::ActorInfo_t(pActor, entry.iLookupIndex));
+					lActorList.push_back(FNames::ActorInfo_t(pActor, entry.iLookupIndex));
 					break;
 				}
 			}
@@ -478,7 +229,7 @@ public:
 			if (bFound)
 				continue;
 
-			lActorList.push_back(DRG::ActorInfo_t(pActor, DRG::EFNames::Invalid));
+			lActorList.push_back(FNames::ActorInfo_t(pActor, FNames::EFNames::Invalid));
 		}
 
 		ActorLock.lock();
