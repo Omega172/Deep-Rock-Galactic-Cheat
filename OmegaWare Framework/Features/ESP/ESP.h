@@ -8,8 +8,10 @@ private:
 	std::mutex Mutex;
 
 	bool bEnabled = false;
+	bool bDebugESP = false;
 	bool bAccurateBox = true;
 	int iESPMaxDistance = 0;
+	int iDebugESPMaxDistance = 0;
 	bool bBoxName = true;
 	bool bBoxDistance = true;
 	bool bBoxHealthBar = true;

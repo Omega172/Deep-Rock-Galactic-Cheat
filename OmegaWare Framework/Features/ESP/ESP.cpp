@@ -7,12 +7,14 @@ bool ESP::Setup()
 	std::vector<LocaleData> EnglishLocale = {
 		{ HASH("ESP"), "ESP" },
 		{ HASH("ESP_ENABLE"), "Enable ESP" },
+		{ HASH("ESP_DEBUG"), "Debug ESP" },
 		{ HASH("ESP_ENEMY_COLOR"), "Enemies Color" },
 		{ HASH("ESP_ENEMY_ENABLE"), "Enemies" },
 		{ HASH("ESP_FRIENDLY_COLOR"), "Friendlies Color" },
 		{ HASH("ESP_FRIENDLY_ENABLE"), "Friendlies" },
 		{ HASH("ESP_ACCURATE_BOX"), "Accurate Box" },
 		{ HASH("ESP_MAX_DISTANCE"), "Max Distance" },
+		{ HASH("ESP_DEBUG_MAX_DISTANCE"), "DEBUG Max Distance" },
 		{ HASH("ESP_FLAGS"), "Flags" },
 		{ HASH("ESP_BOX_SHOW_NAME"), "Show Name" },
 		{ HASH("ESP_BOX_SHOW_DISTANCE"), "Show Distance" },
@@ -73,6 +75,7 @@ void ESP::PopulateMenu()
 	ESP->AddElement(new Checkbox(Cheat::localization->Get("ESP_ENABLE"), &bEnabled));
 	if (bEnabled)
 	{
+		ESP->AddElement(new Checkbox(Cheat::localization->Get("ESP_DEBUG"), &bDebugESP), true);
 		ESP->AddElement(new Combo(Cheat::localization->Get("ESP_FLAGS"), "", ImGuiComboFlags_NoPreview, [this]() {
 			ImGui::Selectable(Cheat::localization->Get("ESP_BOX_SHOW_NAME").c_str(), &bBoxName);
 			ImGui::Selectable(Cheat::localization->Get("ESP_BOX_SHOW_DISTANCE").c_str(), &bBoxDistance);
@@ -87,7 +90,10 @@ void ESP::PopulateMenu()
 		ESP->AddElement(new Checkbox(Cheat::localization->Get("ESP_FRIENDLY_ENABLE"), &bFriendlies), true, 2.f);
 
 		ESP->AddElement(new Checkbox(Cheat::localization->Get("ESP_ACCURATE_BOX"), &bAccurateBox));
-		ESP->AddElement(new SliderInt(Cheat::localization->Get("ESP_MAX_DISTANCE"), &iESPMaxDistance, 0, 1000));
+		ESP->AddElement(new SliderInt(Cheat::localization->Get("ESP_MAX_DISTANCE"), &iESPMaxDistance, 0, 5000));
+		if (bDebugESP)
+			ESP->AddElement(new SliderInt(Cheat::localization->Get("ESP_DEBUG_MAX_DISTANCE"), &iDebugESPMaxDistance, 0, 5000));
+
 	}
 
 	Cheat::menu->AddElement(ESP, true);
@@ -253,7 +259,7 @@ void ESP::Render()
 			CG::AFSDPawn* pPawn = reinterpret_cast<CG::AFSDPawn*>(stInfo.pActor);
 
 			if (!IsValidObjectPtr(pPawn) || !stInfo.pActor->IsA(CG::AFSDPawn::StaticClass()))
-				break;	
+				break;
 
 			CG::UHealthComponent* pHealthComponent = reinterpret_cast<CG::UHealthComponent*>(pPawn->GetHealthComponent());
 			if (!IsValidObjectPtr(pHealthComponent) || pHealthComponent->InternalIndex <= 0 || pHealthComponent->Name.ComparisonIndex == 0 || pHealthComponent->IsDead())
@@ -281,7 +287,7 @@ void ESP::Render()
 
 				// EVIL TERRIBLE HORRIBLE HACK
 				char szName[64];
-				szName[stInfo.pActor->Name.GetName().copy(szName, 64, 0)] = 0;
+				szName[stInfo.pActor->Name.GetName().copy(szName, 63, 0)] = 0;
 
 				size_t iLength = Utils::Strlen(szName);
 				if (iLength > 3) {
@@ -334,10 +340,81 @@ void ESP::Render()
 
 			break;
 		}
+		case FNames::BP_Gem_C:
+		{
+			if (!IsValidObjectPtr(stInfo.pActor))
+				break;
 
-		default:
+			CG::ACarriableItem* pPawn = reinterpret_cast<CG::ACarriableItem*>(stInfo.pActor);
+			if (!IsValidObjectPtr(pPawn) || !stInfo.pActor->IsA(CG::ACarriableItem::StaticClass()))
+				break;
+
+			if (iESPMaxDistance && stInfo.flDistance > iESPMaxDistance)
+				break;
+
+			CG::FVector vecLocation, vecExtent;
+			stInfo.pActor->GetActorBounds(true, &vecLocation, &vecExtent, false);
+
+			ImRect rectBox{};
+			if (!GetBoxFromBBox(vecLocation, vecExtent, rectBox))
+				break;
+
+			ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, Black, 0.f, ImDrawFlags_None, 3.f);
+			ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, Cyan);
+
+			if (bBoxName) {
+
+				// EVIL TERRIBLE HORRIBLE HACK
+				char szName[64];
+				szName[stInfo.pActor->Name.GetName().copy(szName, 63, 0)] = 0;
+
+				size_t iLength = Utils::Strlen(szName);
+				if (iLength > 3) {
+					ImVec2 vecTextSize = ImGui::CalcTextSize(szName);
+					ImGui::OutlinedText({ rectBox.Min.x + (rectBox.GetWidth() - vecTextSize.x) / 2, rectBox.Min.y - 17.f }, White, szName);
+				}
+			}
+
+			if (bBoxDistance)
+			{
+				std::stringstream ssDistance;
+				ssDistance << "[ " << std::to_string(static_cast<int>(stInfo.flDistance)) << "m ]";
+
+				std::string sDistance = ssDistance.str();
+				ImVec2 vecTextSize = ImGui::CalcTextSize(sDistance.c_str());
+
+				ImGui::OutlinedText({ rectBox.Min.x + (rectBox.GetWidth() - vecTextSize.x) / 2, rectBox.Max.y + 2.f }, White, sDistance.c_str());
+			}
+
 			break;
 		}
+
+		default:
+		{
+			if (!bDebugESP)
+				break;
+
+			if (!IsValidObjectPtr(stInfo.pActor) || (iDebugESPMaxDistance && stInfo.flDistance > iDebugESPMaxDistance))
+				break;
+
+			CG::FVector vecLocation, vecExtent;
+			stInfo.pActor->GetActorBounds(true, &vecLocation, &vecExtent, false);
+
+			ImRect rectBox{};
+			if (!GetBoxFromBBox(vecLocation, vecExtent, rectBox))
+				break;
+
+			char szName[64];
+			szName[stInfo.pActor->Name.GetName().copy(szName, 63, 0)] = 0;
+
+			size_t iLength = Utils::Strlen(szName);
+			if (iLength > 3) {
+				ImVec2 vecTextSize = ImGui::CalcTextSize(szName);
+				ImGui::OutlinedText({ rectBox.Min.x + (rectBox.GetWidth() - vecTextSize.x) / 2, rectBox.Min.y - 17.f }, White, szName);
+			}
+
+			break;
+		}}
 	}
 }
 
@@ -400,6 +477,7 @@ void ESP::SaveConfig()
 	Cheat::config->PushEntry("ESP_FRIENDLY_ENABLE", "bool", std::to_string(bFriendlies));
 	Cheat::config->PushEntry("ESP_ACCURATE_BOX", "bool", std::to_string(bAccurateBox));
 	Cheat::config->PushEntry("ESP_MAX_DISTANCE", "int", std::to_string(iESPMaxDistance));
+	Cheat::config->PushEntry("ESP_DEBUG_MAX_DISTANCE", "int", std::to_string(iDebugESPMaxDistance));
 	Cheat::config->PushEntry("ESP_BOX_SHOW_NAME", "bool", std::to_string(bBoxName));
 	Cheat::config->PushEntry("ESP_BOX_SHOW_DISTANCE", "bool", std::to_string(bBoxDistance));
 	Cheat::config->PushEntry("ESP_HEALTH_BAR", "bool", std::to_string(bBoxHealthBar));
@@ -448,6 +526,10 @@ void ESP::LoadConfig()
 	entry = Cheat::config->GetEntryByName("ESP_MAX_DISTANCE");
 	if (entry.Name == "ESP_MAX_DISTANCE")
 		iESPMaxDistance = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_DEBUG_MAX_DISTANCE");
+	if (entry.Name == "ESP_DEBUG_MAX_DISTANCE")
+		iDebugESPMaxDistance = std::stoi(entry.Value);
 
 	entry = Cheat::config->GetEntryByName("ESP_BOX_SHOW_NAME");
 	if (entry.Name == "ESP_BOX_SHOW_NAME")
