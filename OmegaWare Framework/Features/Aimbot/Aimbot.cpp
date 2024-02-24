@@ -66,7 +66,7 @@ void Aimbot::PopulateMenu()
 		if (!bAutoFire)
 		{
 			Aimbot->AddElement(new Text(Cheat::localization->Get("AIMBOT_KEY")));
-			Aimbot->AddElement(new Hotkey("#AimbotKey", keyAimbot, &bSetKeyAimbot));
+			Aimbot->AddElement(new Hotkey("#AimbotKey", &keyAimbot));
 			Aimbot->AddElement(new Checkbox(Cheat::localization->Get("AIMBOT_KEY_MODE"), &bUseAsToggle), true);
 			if (bUseAsToggle)
 				Aimbot->AddElement(new Text(std::to_string(keyAimbot.IsToggled())), true);

@@ -3,6 +3,26 @@
 
 void GUI::Render()
 {
+	if (ImGui::IsKeyPressed(Cheat::keyMenuKey) || ImGui::IsKeyPressed(ImGuiKey_GamepadStart))
+	{
+		bMenuOpen = !bMenuOpen;
+		ImGui::GetIO().MouseDrawCursor = GUI::bMenuOpen;
+
+		if (ImGui::GetIO().MouseDrawCursor)
+			SetCursor(NULL);
+	}
+
+	if (ImGui::IsKeyPressed(Cheat::keyConsoleKey))
+		Cheat::console->ToggleVisibility();
+
+	if (ImGui::IsKeyPressed(Cheat::keyUnloadKey1) || ImGui::IsKeyPressed(Cheat::keyUnloadKey2))
+		Cheat::bShouldRun = false;
+
+	for (size_t i = 0; i < Features.size(); i++)
+	{
+		Features[i]->HandleKeys();
+	}
+
 	if (Cheat::bWatermark)
 		showWatermark(Cheat::bWatermarkFPS, Cheat::Title.c_str(), ImVec4(255, 255, 255, 255), ImVec4(255, 255, 255, 0));
 
