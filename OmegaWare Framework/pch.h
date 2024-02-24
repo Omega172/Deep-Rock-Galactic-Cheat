@@ -34,8 +34,8 @@ static_assert(FRAMEWORK_TARGET_PROCESS != "", "Target process name not set."); /
 static_assert((FRAMEWORK_OTHER + FRAMEWORK_UNREAL + FRAMEWORK_UNITY) == 1, "Must use exactly one framework type"); // Don't allow both frameworks to be used)
 
 // Make sure a rendering API is selected and only one rendering API is selected
-#define FRAMEWORK_RENDER_D3D11 1
-#define FRAMEWORK_RENDER_D3D12 0
+#define FRAMEWORK_RENDER_D3D11 0
+#define FRAMEWORK_RENDER_D3D12 1
 static_assert((FRAMEWORK_RENDER_D3D11 + FRAMEWORK_RENDER_D3D12) == 1, "Must use exactly one rendering API"); // Don't allow both rendering API's to be used
 
 #include "MinHook/include/MinHook.h"
@@ -106,6 +106,7 @@ static_assert((FRAMEWORK_RENDER_D3D11 + FRAMEWORK_RENDER_D3D12) == 1, "Must use 
 #if FRAMEWORK_RENDER_D3D11
 #pragma comment(lib, "d3d11.lib") // WHY DO I NEED THIS WTF
 #include <d3d11.h>
+#include <dxgi.h>
 #include <dxgi1_2.h>
 #include "ImGUI/imgui_impl_dx11.h"
 #endif
@@ -113,6 +114,7 @@ static_assert((FRAMEWORK_RENDER_D3D11 + FRAMEWORK_RENDER_D3D12) == 1, "Must use 
 #if FRAMEWORK_RENDER_D3D12
 #pragma comment(lib, "d3d12.lib") // WHY DO I NEED THIS WTF
 #include <D3D12.h>
+#include <dxgi.h>
 #include <dxgi1_4.h>
 #include "ImGUI/imgui_impl_dx12.h"
 #endif
