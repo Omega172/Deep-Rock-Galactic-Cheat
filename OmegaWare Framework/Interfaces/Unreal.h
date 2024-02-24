@@ -176,17 +176,15 @@ public:
 			Actors.clear();
 			ActorList.clear();
 			ActorLock.unlock();
-
 			return;
 		}
 
-		CG::AGameState* pGameState = reinterpret_cast<CG::AGameState*>(GetGameStateBase());
-		if (!pGameState) {
+		CG::AFSDGameState* pGameState = reinterpret_cast<CG::AFSDGameState*>(GetGameStateBase());
+		if (!IsValidObjectPtr(pGameState) || pGameState->IsOnSpaceRig) {
 			ActorLock.lock();
 			Actors.clear();
 			ActorList.clear();
 			ActorLock.unlock();
-
 			return;
 		}
 
@@ -196,7 +194,6 @@ public:
 			Actors.clear();
 			ActorList.clear();
 			ActorLock.unlock();
-
 			return;
 		}
 		
@@ -206,9 +203,9 @@ public:
 			Actors.clear();
 			ActorList.clear();
 			ActorLock.unlock();
-
 			return;
 		}
+
 
 		CG::FVector vecLocation = pAcknowledgedPawn->K2_GetActorLocation();
 
