@@ -180,8 +180,18 @@ public:
 			return;
 		}
 
-		CG::AGameStateBase* pGameState = GetGameStateBase();
+		CG::AGameState* pGameState = reinterpret_cast<CG::AGameState*>(GetGameStateBase());
 		if (!pGameState) {
+			ActorLock.lock();
+			Actors.clear();
+			ActorList.clear();
+			ActorLock.unlock();
+
+			return;
+		}
+
+		FNames::EFNames iMatchState = FNames::GetLookupIndex(pGameState->MatchState.ComparisonIndex);
+		if (iMatchState != FNames::InProgress) {
 			ActorLock.lock();
 			Actors.clear();
 			ActorList.clear();

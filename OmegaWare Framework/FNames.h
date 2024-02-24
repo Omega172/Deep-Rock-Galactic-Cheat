@@ -555,3 +555,4 @@
 	x(ENE_SpiderBase_Large_C) \
 	x(ENE_BoughWasp_Nest_Small_C) \
 	x(ENE_Spider_Lobber_Base_C) \
+    x(InProgress) \
