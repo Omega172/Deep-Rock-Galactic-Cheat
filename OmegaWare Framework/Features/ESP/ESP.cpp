@@ -343,7 +343,7 @@ void ESP::Render()
 
 			break;
 		}
-		case FNames::Actor:
+		case FNames::BP_Gem_Aquarq_C:
 		{
 			if (!IsValidObjectPtr(stInfo.pActor))
 				break;
@@ -406,6 +406,8 @@ void ESP::Render()
 			CG::FVector2D vecCenter;
 			if (!pUnreal->WorldToScreen(vecLocation, vecCenter))
 				break;
+
+			ImVec2 vecCenter = rectBox.GetCenter();
 
 			char szName[64];
 			szName[stInfo.pActor->Name.GetName().copy(szName, 63, 0)] = 0;
