@@ -340,7 +340,7 @@ void ESP::Render()
 
 			break;
 		}
-		case FNames::BP_Gem_C:
+		case FNames::BP_Gem_Aquarq_C:
 		{
 			if (!IsValidObjectPtr(stInfo.pActor))
 				break;
@@ -388,7 +388,6 @@ void ESP::Render()
 
 			break;
 		}
-
 		default:
 		{
 			if (!bDebugESP)
@@ -404,17 +403,21 @@ void ESP::Render()
 			if (!GetBoxFromBBox(vecLocation, vecExtent, rectBox))
 				break;
 
+			ImVec2 vecCenter = rectBox.GetCenter();
+
 			char szName[64];
 			szName[stInfo.pActor->Name.GetName().copy(szName, 63, 0)] = 0;
 
 			size_t iLength = Utils::Strlen(szName);
 			if (iLength > 3) {
 				ImVec2 vecTextSize = ImGui::CalcTextSize(szName);
-				ImGui::OutlinedText({ rectBox.Min.x + (rectBox.GetWidth() - vecTextSize.x) / 2, rectBox.Min.y - 17.f }, White, szName);
+				ImGui::OutlinedText({ vecCenter.x - vecTextSize.x / 2, vecCenter.y - 8.f }, White, szName);
 			}
 
 			break;
 		}}
+
+
 	}
 }
 
