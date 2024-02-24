@@ -6,25 +6,26 @@ bool ESP::Setup()
 {
 	std::vector<LocaleData> EnglishLocale = {
 		{ HASH("ESP"), "ESP" },
+
 		{ HASH("ESP_ENABLE"), "Enable ESP" },
-		{ HASH("ESP_ENEMY_COLOR"), "Enemies Color" },
-		{ HASH("ESP_ENEMY_ENABLE"), "Enemies" },
-		{ HASH("ESP_FRIENDLY_COLOR"), "Friendlies Color" },
-		{ HASH("ESP_FRIENDLY_ENABLE"), "Friendlies" },
-		{ HASH("ESP_OBJECTIVE_ITEMS_COLOR"), "Objective Items Color" },
-		{ HASH("ESP_OBJECTIVE_ITEMS_ENABLE"), "Objective Items"},
-		{ HASH("ESP_SPECIAL_STRUCTURES_COLOR"), "Special Structures Color" },
-		{ HASH("ESP_SPECIAL_STRUCTURES_ENABLE"), "Special Structures" },
+
+		{ HASH("ESP_ENEMIES"), "Enemies" },
+		{ HASH("ESP_FRIENDLIES"), "Friendlies" },
+		{ HASH("ESP_OBJECTIVES"), "Objectives" },
+		{ HASH("ESP_SPECIAL_STRUCTURES"), "Special Structures" },
+
 		{ HASH("ESP_ACCURATE_BOX"), "Accurate Box" },
-		{ HASH("ESP_MAX_DISTANCE"), "Max Distance" },
-		{ HASH("ESP_DEBUG"), "Debug ESP" },
-		{ HASH("ESP_DEBUG_COLOR"), "Debug Color" },
-		{ HASH("ESP_FLAGS"), "Flags" },
-		{ HASH("ESP_BOX_SHOW_NAME"), "Show Name" },
-		{ HASH("ESP_BOX_SHOW_DISTANCE"), "Show Distance" },
+		{ HASH("ESP_BOX"), "Box" },
+		{ HASH("ESP_NAME"), "Name" },
+		{ HASH("ESP_DISTANCE"), "Distance" },
 		{ HASH("ESP_HEALTH_BAR"), "Health Bar" },
 		{ HASH("ESP_ARMOR_BAR"), "Armor Bar" },
-		{ HASH("ESP_INVINCIBLE_FLAG"), "Invincible Flag" },
+		{ HASH("ESP_FLAG_INVINCIBLE"), "Invincible Flag" },
+
+		{ HASH("ESP_DEBUG"), "Debug ESP" },
+		{ HASH("ESP_DEBUG_COLOR"), "Debug Color" },
+		{ HASH("ESP_MAX_DISTANCE"), "Max Distance" },
+
 		{ HASH("ESP_INVINCIBLE_FLAG_TEXT"), "lnvuln" }
 	};
 	if (!Cheat::localization->AddToLocale("ENG", EnglishLocale))
@@ -79,29 +80,52 @@ void ESP::PopulateMenu()
 	ESP->AddElement(new Checkbox(Cheat::localization->Get("ESP_ENABLE"), &bEnabled));
 	if (bEnabled)
 	{
-		ESP->AddElement(new Combo(Cheat::localization->Get("ESP_FLAGS"), "", ImGuiComboFlags_NoPreview, [this]() {
-			ImGui::Selectable(Cheat::localization->Get("ESP_BOX_SHOW_NAME").c_str(), &bBoxName);
-			ImGui::Selectable(Cheat::localization->Get("ESP_BOX_SHOW_DISTANCE").c_str(), &bBoxDistance);
-			ImGui::Selectable(Cheat::localization->Get("ESP_HEALTH_BAR").c_str(), &bBoxHealthBar);
-			ImGui::Selectable(Cheat::localization->Get("ESP_ARMOR_BAR").c_str(), &bBoxArmorBar);
-			ImGui::Selectable(Cheat::localization->Get("ESP_INVINCIBLE_FLAG").c_str(), &bInvincibleFlag);
-		}), true);
+		ESP->AddElement(new Checkbox("##EnemiesCheckbox", &stEnemies.bEnabled));
+		ESP->AddElement(new Combo("##EnemiesFlags", "", ImGuiComboFlags_NoPreview, [this]() {
+			ImGui::Selectable(Cheat::localization->Get("ESP_ACCURATE_BOX").c_str(), &stEnemies.bAccurateBox);
+			ImGui::Selectable(Cheat::localization->Get("ESP_BOX").c_str(), &stEnemies.bBox);
+			ImGui::Selectable(Cheat::localization->Get("ESP_NAME").c_str(), &stEnemies.bName);
+			ImGui::Selectable(Cheat::localization->Get("ESP_DISTANCE").c_str(), &stEnemies.bDistance);
+			ImGui::Selectable(Cheat::localization->Get("ESP_HEALTH_BAR").c_str(), &stEnemies.bHealthBar);
+			ImGui::Selectable(Cheat::localization->Get("ESP_ARMOR_BAR").c_str(), &stEnemies.bArmorBar);
+			ImGui::Selectable(Cheat::localization->Get("ESP_FLAG_INVINCIBLE").c_str(), &stEnemies.bFlagInvincible);
+			}), true, 2.f);
+		ESP->AddElement(new ColorPicker(Cheat::localization->Get("ESP_ENEMIES").c_str(), stEnemies.clrBox, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoSidePreview | ImGuiColorEditFlags_AlphaBar), true, 2.f);
 
-		ESP->AddElement(new ColorPicker(Cheat::localization->Get("ESP_ENEMY_COLOR").c_str(), clrEnemies, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoSidePreview | ImGuiColorEditFlags_AlphaBar | ImGuiColorEditFlags_NoLabel));
-		ESP->AddElement(new Checkbox(Cheat::localization->Get("ESP_ENEMY_ENABLE"), &bEnemies), true, 2.f);
-		ESP->AddElement(new ColorPicker(Cheat::localization->Get("ESP_FRIENDLY_COLOR").c_str(), clrFriendlies, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoSidePreview | ImGuiColorEditFlags_AlphaBar | ImGuiColorEditFlags_NoLabel));
-		ESP->AddElement(new Checkbox(Cheat::localization->Get("ESP_FRIENDLY_ENABLE"), &bFriendlies), true, 2.f);
-		ESP->AddElement(new ColorPicker(Cheat::localization->Get("ESP_OBJECTIVE_ITEMS_COLOR").c_str(), clrObjectiveItems, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoSidePreview | ImGuiColorEditFlags_AlphaBar | ImGuiColorEditFlags_NoLabel));
-		ESP->AddElement(new Checkbox(Cheat::localization->Get("ESP_OBJECTIVE_ITEMS_ENABLE"), &bObjectiveItems), true, 2.f);
-		ESP->AddElement(new ColorPicker(Cheat::localization->Get("ESP_SPECIAL_STRUCTURES_COLOR").c_str(), clrSpecialStructures, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoSidePreview | ImGuiColorEditFlags_AlphaBar | ImGuiColorEditFlags_NoLabel));
-		ESP->AddElement(new Checkbox(Cheat::localization->Get("ESP_SPECIAL_STRUCTURES_ENABLE"), &bSpecialStructures), true, 2.f);
+		ESP->AddElement(new Checkbox("##FriendliesCheckbox", &stFriendlies.bEnabled));
+		ESP->AddElement(new Combo("##FriendliesFlags", "", ImGuiComboFlags_NoPreview, [this]() {
+			ImGui::Selectable(Cheat::localization->Get("ESP_ACCURATE_BOX").c_str(), &stFriendlies.bAccurateBox);
+			ImGui::Selectable(Cheat::localization->Get("ESP_BOX").c_str(), &stFriendlies.bBox);
+			ImGui::Selectable(Cheat::localization->Get("ESP_NAME").c_str(), &stFriendlies.bName);
+			ImGui::Selectable(Cheat::localization->Get("ESP_DISTANCE").c_str(), &stFriendlies.bDistance);
+			ImGui::Selectable(Cheat::localization->Get("ESP_HEALTH_BAR").c_str(), &stFriendlies.bHealthBar);
+			ImGui::Selectable(Cheat::localization->Get("ESP_ARMOR_BAR").c_str(), &stFriendlies.bArmorBar);
+			ImGui::Selectable(Cheat::localization->Get("ESP_FLAG_INVINCIBLE").c_str(), &stFriendlies.bFlagInvincible);
+			}), true, 2.f);
+		ESP->AddElement(new ColorPicker(Cheat::localization->Get("ESP_FRIENDLIES").c_str(), stFriendlies.clrBox, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoSidePreview | ImGuiColorEditFlags_AlphaBar), true, 2.f);
 
-		ESP->AddElement(new Checkbox(Cheat::localization->Get("ESP_ACCURATE_BOX"), &bAccurateBox));
+		ESP->AddElement(new Checkbox("##ObjectivesCheckbox", &stObjectives.bEnabled));
+		ESP->AddElement(new Combo("##ObjectivesFlags", "", ImGuiComboFlags_NoPreview, [this]() {
+			ImGui::Selectable(Cheat::localization->Get("ESP_ACCURATE_BOX").c_str(), &stObjectives.bAccurateBox);
+			ImGui::Selectable(Cheat::localization->Get("ESP_BOX").c_str(), &stObjectives.bBox);
+			ImGui::Selectable(Cheat::localization->Get("ESP_NAME").c_str(), &stObjectives.bName);
+			ImGui::Selectable(Cheat::localization->Get("ESP_DISTANCE").c_str(), &stObjectives.bDistance);
+			}), true, 2.f);
+		ESP->AddElement(new ColorPicker(Cheat::localization->Get("ESP_OBJECTIVES").c_str(), stObjectives.clrBox, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoSidePreview | ImGuiColorEditFlags_AlphaBar), true, 2.f);
+
+		ESP->AddElement(new Checkbox("##SpecialStructuresCheckbox", &stSpecialStructures.bEnabled));
+		ESP->AddElement(new Combo("##SpecialStructuresFlags", "", ImGuiComboFlags_NoPreview, [this]() {
+			ImGui::Selectable(Cheat::localization->Get("ESP_ACCURATE_BOX").c_str(), &stSpecialStructures.bAccurateBox);
+			ImGui::Selectable(Cheat::localization->Get("ESP_BOX").c_str(), &stSpecialStructures.bBox);
+			ImGui::Selectable(Cheat::localization->Get("ESP_NAME").c_str(), &stSpecialStructures.bName);
+			ImGui::Selectable(Cheat::localization->Get("ESP_DISTANCE").c_str(), &stSpecialStructures.bDistance);
+			}), true, 2.f);
+		ESP->AddElement(new ColorPicker(Cheat::localization->Get("ESP_SPECIAL_STRUCTURES").c_str(), stSpecialStructures.clrBox, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoSidePreview | ImGuiColorEditFlags_AlphaBar), true, 2.f);
+
 		ESP->AddElement(new SliderInt(Cheat::localization->Get("ESP_MAX_DISTANCE"), &iESPMaxDistance, 0, 5000));
 
-
 		ESP->AddElement(new SliderInt(Cheat::localization->Get("ESP_DEBUG"), &iDebug, 0, 2000));
-		ESP->AddElement(new ColorPicker(Cheat::localization->Get("ESP_DEBUG_COLOR").c_str(), clrDebug, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoSidePreview | ImGuiColorEditFlags_AlphaBar));
+		ESP->AddElement(new ColorPicker(Cheat::localization->Get("ESP_DEBUG_COLOR").c_str(), clrDebug, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoSidePreview | ImGuiColorEditFlags_AlphaBar | ImGuiColorEditFlags_NoLabel));
 	}
 
 	Cheat::menu->AddElement(ESP, true);
@@ -118,15 +142,16 @@ void ESP::Render()
 	if (!pDRGPlayer)
 		return;
 
-	ImU32 uiEnemiesColor = ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(clrEnemies));
-	ImU32 uiFriendliesColor = ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(clrFriendlies));
-	ImU32 uiObjectiveItems = ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(clrObjectiveItems));
+	ImU32 uiEnemiesBox = ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(stEnemies.clrBox));
+	ImU32 uiFriendliesBox = ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(stFriendlies.clrBox));
+	ImU32 uiObjectivesBox = ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(stObjectives.clrBox));
+	ImU32 uiSpecialStructuresBox = ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(stSpecialStructures.clrBox));
+
 	ImU32 uiDebugColor = ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(clrDebug));
-	ImU32 uiSpecialStructures = ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(clrSpecialStructures));
 
 	for (FNames::ActorInfo_t stInfo : pUnreal->ActorList) {
 		switch (stInfo.iLookupIndex) {
-		case FNames::ENE_JellyBreeder_Normal_C: // Creatures
+		case FNames::ENE_JellyBreeder_Normal_C:
 		case FNames::ENE_Butterfly_C:
 		case FNames::ENE_Spider_Grunt_Guard_C:
 		case FNames::ENE_Bomber_Fire_C:
@@ -268,7 +293,6 @@ void ESP::Render()
 				break;
 
 			CG::AFSDPawn* pPawn = reinterpret_cast<CG::AFSDPawn*>(stInfo.pActor);
-
 			if (!IsValidObjectPtr(pPawn) || !stInfo.pActor->IsA(CG::AFSDPawn::StaticClass()))
 				break;
 
@@ -280,34 +304,32 @@ void ESP::Render()
 				break;
 
 			bool bIsEnemy = pPawn->GetAttitude() >= CG::EPawnAttitude::Hostile;
-			if ((bIsEnemy && !bEnemies) || (!bIsEnemy && !bFriendlies))
+			if ((bIsEnemy && !stEnemies.bEnabled) || (!bIsEnemy && !stFriendlies.bEnabled))
 				break;
-
 
 			CG::FVector vecLocation, vecExtent;
 			stInfo.pActor->GetActorBounds(true, &vecLocation, &vecExtent, false);
 
 			ImRect rectBox{};
-			if (!GetBoxFromBBox(vecLocation, vecExtent, rectBox))
+			if (!GetBoxFromBBox(vecLocation, vecExtent, rectBox, bIsEnemy ? stEnemies.bAccurateBox : stFriendlies.bAccurateBox))
 				break;
 
-			ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, Black, 0.f, ImDrawFlags_None, 3.f);
-			ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, bIsEnemy ? uiEnemiesColor : uiFriendliesColor);
+			if (bIsEnemy ? stEnemies.bBox : stFriendlies.bBox) {
+				ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, Black, 0.f, ImDrawFlags_None, 3.f);
+				ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, bIsEnemy ? uiEnemiesBox : uiFriendliesBox);
+			}
 
-			if (bBoxName) {
+			if (bIsEnemy ? stEnemies.bName : stFriendlies.bName) {
 
 				// EVIL TERRIBLE HORRIBLE HACK
 				char szName[64];
 				szName[stInfo.pActor->Name.GetName().copy(szName, 63, 0)] = 0;
 
-				size_t iLength = Utils::Strlen(szName);
-				if (iLength > 3) {
-					ImVec2 vecTextSize = ImGui::CalcTextSize(szName);
-					ImGui::OutlinedText({ rectBox.Min.x + (rectBox.GetWidth() - vecTextSize.x) / 2, rectBox.Min.y - 17.f }, White, szName);
-				}
+				ImVec2 vecTextSize = ImGui::CalcTextSize(szName);
+				ImGui::OutlinedText({ rectBox.Min.x + (rectBox.GetWidth() - vecTextSize.x) / 2, rectBox.Min.y - 17.f }, White, szName);
 			}
 
-			if (bBoxDistance)
+			if (bIsEnemy ? stEnemies.bDistance : stFriendlies.bDistance)
 			{
 				std::stringstream ssDistance;
 				ssDistance << "[ " << std::to_string(static_cast<int>(stInfo.flDistance)) << "m ]";
@@ -320,7 +342,7 @@ void ESP::Render()
 
 			ImVec2 vecFlags(rectBox.Max.x + 4.f, rectBox.Min.y);
 
-			if (bBoxHealthBar)
+			if (bIsEnemy ? stEnemies.bHealthBar : stFriendlies.bHealthBar)
 			{
 				float g = pHealthComponent->GetHealthPct();
 
@@ -331,7 +353,7 @@ void ESP::Render()
 				vecFlags.x += 7.f;
 			}
 
-			if (bBoxArmorBar && pHealthComponent->GetMaxArmor() > 0.f)
+			if ((bIsEnemy ? stEnemies.bArmorBar : stFriendlies.bArmorBar) && pHealthComponent->GetMaxArmor() > 0.f)
 			{
 				float g = pHealthComponent->GetArmorPct();
 
@@ -342,16 +364,16 @@ void ESP::Render()
 				vecFlags.x += 7.f;
 			}
 
-			if (bInvincibleFlag && !pHealthComponent->canTakeDamage)
+			if ((bIsEnemy ? stEnemies.bFlagInvincible : stFriendlies.bFlagInvincible) && !pHealthComponent->canTakeDamage)
 			{
-				ImGui::OutlinedText(vecFlags, Gray, "Invuln");
+				ImGui::OutlinedText(vecFlags, Red, "Invuln");
 				vecFlags.y += 16.f;
 			}
 
 
 			break;
 		}
-		case FNames::BP_Gem_Aquarq_C: // Objective Items
+		case FNames::BP_Gem_Aquarq_C:
 		case FNames::BP_GunkSeed_Hanger_C:
 		case FNames::BP_GunkSeed_C:
 		case FNames::BP_Ebonut_C:
@@ -361,12 +383,15 @@ void ESP::Render()
 		case FNames::BP_MuleLeg_C:
 		case FNames::BP_Boolo_Cap_C:
 		case FNames::BP_Fossil_C:
-		case FNames::BP_AmberChunk_C:
 		{
-			if (!bObjectiveItems)
+			if (!stObjectives.bEnabled)
 				break;
 
 			if (!IsValidObjectPtr(stInfo.pActor))
+				break;
+
+			CG::ACarriableItem* pPawn = reinterpret_cast<CG::ACarriableItem*>(stInfo.pActor);
+			if (!IsValidObjectPtr(pPawn) || !stInfo.pActor->IsA(CG::ACarriableItem::StaticClass()))
 				break;
 
 			if (iESPMaxDistance && stInfo.flDistance > iESPMaxDistance)
@@ -376,26 +401,25 @@ void ESP::Render()
 			stInfo.pActor->GetActorBounds(true, &vecLocation, &vecExtent, false);
 
 			ImRect rectBox{};
-			if (!GetBoxFromBBox(vecLocation, vecExtent, rectBox))
+			if (!GetBoxFromBBox(vecLocation, vecExtent, rectBox, stObjectives.bAccurateBox))
 				break;
 
-			ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, Black, 0.f, ImDrawFlags_None, 3.f);
-			ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, uiObjectiveItems);
+			if (stObjectives.bBox) {
+				ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, Black, 0.f, ImDrawFlags_None, 3.f);
+				ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, uiObjectivesBox);
+			}
 
-			if (bBoxName) {
+			if (stObjectives.bName) {
 
 				// EVIL TERRIBLE HORRIBLE HACK
 				char szName[64];
 				szName[stInfo.pActor->Name.GetName().copy(szName, 63, 0)] = 0;
 
-				size_t iLength = Utils::Strlen(szName);
-				if (iLength > 3) {
-					ImVec2 vecTextSize = ImGui::CalcTextSize(szName);
-					ImGui::OutlinedText({ rectBox.Min.x + (rectBox.GetWidth() - vecTextSize.x) / 2, rectBox.Min.y - 17.f }, White, szName);
-				}
+				ImVec2 vecTextSize = ImGui::CalcTextSize(szName);
+				ImGui::OutlinedText({ rectBox.Min.x + (rectBox.GetWidth() - vecTextSize.x) / 2, rectBox.Min.y - 17.f }, White, szName);
 			}
 
-			if (bBoxDistance)
+			if (stObjectives.bDistance)
 			{
 				std::stringstream ssDistance;
 				ssDistance << "[ " << std::to_string(static_cast<int>(stInfo.flDistance)) << "m ]";
@@ -408,11 +432,11 @@ void ESP::Render()
 
 			break;
 		}
-		case FNames::BP_AmberEvent_C: // Special structures
+		case FNames::BP_AmberEvent_C:
 		case FNames::BP_ProspectorDataDeposit_C:
 		case FNames::BP_JetBootsBox_C:
 		{
-			if (!bSpecialStructures)
+			if (!stSpecialStructures.bEnabled)
 				break;
 
 			if (!IsValidObjectPtr(stInfo.pActor))
@@ -425,26 +449,25 @@ void ESP::Render()
 			stInfo.pActor->GetActorBounds(true, &vecLocation, &vecExtent, false);
 
 			ImRect rectBox{};
-			if (!GetBoxFromBBox(vecLocation, vecExtent, rectBox))
+			if (!GetBoxFromBBox(vecLocation, vecExtent, rectBox, stSpecialStructures.bAccurateBox))
 				break;
 
-			ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, Black, 0.f, ImDrawFlags_None, 3.f);
-			ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, uiSpecialStructures);
+			if (stSpecialStructures.bBox) {
+				ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, Black, 0.f, ImDrawFlags_None, 3.f);
+				ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, uiSpecialStructuresBox);
+			}
 
-			if (bBoxName) {
+			if (stSpecialStructures.bName) {
 
 				// EVIL TERRIBLE HORRIBLE HACK
 				char szName[64];
 				szName[stInfo.pActor->Name.GetName().copy(szName, 63, 0)] = 0;
 
-				size_t iLength = Utils::Strlen(szName);
-				if (iLength > 3) {
-					ImVec2 vecTextSize = ImGui::CalcTextSize(szName);
-					ImGui::OutlinedText({ rectBox.Min.x + (rectBox.GetWidth() - vecTextSize.x) / 2, rectBox.Min.y - 17.f }, White, szName);
-				}
+				ImVec2 vecTextSize = ImGui::CalcTextSize(szName);
+				ImGui::OutlinedText({ rectBox.Min.x + (rectBox.GetWidth() - vecTextSize.x) / 2, rectBox.Min.y - 17.f }, White, szName);
 			}
 
-			if (bBoxDistance)
+			if (stSpecialStructures.bDistance)
 			{
 				std::stringstream ssDistance;
 				ssDistance << "[ " << std::to_string(static_cast<int>(stInfo.flDistance)) << "m ]";
@@ -484,11 +507,11 @@ void ESP::Render()
 	}
 }
 
-bool ESP::GetBoxFromBBox(CG::FVector & vecLocation, CG::FVector & vecExtent, ImRect & rectOut) {
+bool ESP::GetBoxFromBBox(CG::FVector& vecLocation, CG::FVector& vecExtent, ImRect& rectOut, bool bAccurate = true) {
 
 	Unreal* pUnreal = Cheat::unreal.get();
 
-	if (bAccurateBox) {
+	if (bAccurate) {
 		CG::FVector2D v1, v2, v3, v4, v5, v6, v7, v8;
 		if (!(
 			pUnreal->WorldToScreen({ vecLocation.X + vecExtent.X, vecLocation.Y + vecExtent.Y, vecLocation.Z + vecExtent.Z }, v1) &&
@@ -521,7 +544,7 @@ bool ESP::GetBoxFromBBox(CG::FVector & vecLocation, CG::FVector & vecExtent, ImR
 	}
 
 	rectOut.Min.x = rectOut.Max.x = 0.f;
-	
+
 	rectOut.Min.y = std::min(v1.Y, v2.Y);
 	rectOut.Max.y = std::max(v1.Y, v2.Y);
 
@@ -536,23 +559,45 @@ void ESP::Run() {}
 
 void ESP::SaveConfig()
 {
+
 	Cheat::config->PushEntry("ESP_ENABLED", "bool", std::to_string(bEnabled));
-	Cheat::config->PushEntry("ESP_ENEMY_COLOR", "int", std::to_string(ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(clrEnemies))));
-	Cheat::config->PushEntry("ESP_ENEMY_ENABLE", "bool", std::to_string(bEnemies));
-	Cheat::config->PushEntry("ESP_FRIENDLY_COLOR", "int", std::to_string(ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(clrFriendlies))));
-	Cheat::config->PushEntry("ESP_FRIENDLY_ENABLE", "bool", std::to_string(bFriendlies));
-	Cheat::config->PushEntry("ESP_OBJECTIVE_ITEMS_COLOR", "int", std::to_string(ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(clrObjectiveItems))));
-	Cheat::config->PushEntry("ESP_OBJECTIVE_ITEMS_ENABLE", "bool", std::to_string(bObjectiveItems));
-	Cheat::config->PushEntry("ESP_SPECIAL_STRUCTURES_COLOR", "int", std::to_string(ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(clrSpecialStructures))));
-	Cheat::config->PushEntry("ESP_SPECIAL_STRUCTURES_ENABLE", "bool", std::to_string(bSpecialStructures));
-	Cheat::config->PushEntry("ESP_ACCURATE_BOX", "bool", std::to_string(bAccurateBox));
+
+	Cheat::config->PushEntry("ESP_ENEMIES_ENABLE", "bool", std::to_string(stEnemies.bEnabled));
+	Cheat::config->PushEntry("ESP_ENEMIES_ACCURATE_BOX", "bool", std::to_string(stEnemies.bAccurateBox));
+	Cheat::config->PushEntry("ESP_ENEMIES_BOX", "bool", std::to_string(stEnemies.bBox));
+	Cheat::config->PushEntry("ESP_ENEMIES_NAME", "bool", std::to_string(stEnemies.bName));
+	Cheat::config->PushEntry("ESP_ENEMIES_DISTANCE", "bool", std::to_string(stEnemies.bDistance));
+	Cheat::config->PushEntry("ESP_ENEMIES_HEALTH_BAR", "bool", std::to_string(stEnemies.bHealthBar));
+	Cheat::config->PushEntry("ESP_ENEMIES_ARMOR_BAR", "bool", std::to_string(stEnemies.bArmorBar));
+	Cheat::config->PushEntry("ESP_ENEMIES_FLAG_INVINCIBLE", "bool", std::to_string(stEnemies.bFlagInvincible));
+	Cheat::config->PushEntry("ESP_ENEMIES_BOX_COLOR", "int", std::to_string(ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(stEnemies.clrBox))));
+
+	Cheat::config->PushEntry("ESP_FRIENDLIES_ENABLE", "bool", std::to_string(stFriendlies.bEnabled));
+	Cheat::config->PushEntry("ESP_FRIENDLIES_ACCURATE_BOX", "bool", std::to_string(stFriendlies.bAccurateBox));
+	Cheat::config->PushEntry("ESP_FRIENDLIES_BOX", "bool", std::to_string(stFriendlies.bBox));
+	Cheat::config->PushEntry("ESP_FRIENDLIES_NAME", "bool", std::to_string(stFriendlies.bName));
+	Cheat::config->PushEntry("ESP_FRIENDLIES_DISTANCE", "bool", std::to_string(stFriendlies.bDistance));
+	Cheat::config->PushEntry("ESP_FRIENDLIES_HEALTH_BAR", "bool", std::to_string(stFriendlies.bHealthBar));
+	Cheat::config->PushEntry("ESP_FRIENDLIES_ARMOR_BAR", "bool", std::to_string(stFriendlies.bArmorBar));
+	Cheat::config->PushEntry("ESP_FRIENDLIES_FLAG_INVINCIBLE", "bool", std::to_string(stFriendlies.bFlagInvincible));
+	Cheat::config->PushEntry("ESP_FRIENDLIES_BOX_COLOR", "int", std::to_string(ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(stFriendlies.clrBox))));
+
+	Cheat::config->PushEntry("ESP_OBJECTIVES_ENABLE", "bool", std::to_string(stObjectives.bEnabled));
+	Cheat::config->PushEntry("ESP_OBJECTIVES_ACCURATE_BOX", "bool", std::to_string(stObjectives.bAccurateBox));
+	Cheat::config->PushEntry("ESP_OBJECTIVES_BOX", "bool", std::to_string(stObjectives.bBox));
+	Cheat::config->PushEntry("ESP_OBJECTIVES_NAME", "bool", std::to_string(stObjectives.bName));
+	Cheat::config->PushEntry("ESP_OBJECTIVES_DISTANCE", "bool", std::to_string(stObjectives.bDistance));
+	Cheat::config->PushEntry("ESP_OBJECTIVES_BOX_COLOR", "int", std::to_string(ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(stObjectives.clrBox))));
+
+	Cheat::config->PushEntry("ESP_SPECIAL_STRUCTURES_ENABLE", "bool", std::to_string(stSpecialStructures.bEnabled));
+	Cheat::config->PushEntry("ESP_SPECIAL_STRUCTURES_ACCURATE_BOX", "bool", std::to_string(stSpecialStructures.bAccurateBox));
+	Cheat::config->PushEntry("ESP_SPECIAL_STRUCTURES_BOX", "bool", std::to_string(stSpecialStructures.bBox));
+	Cheat::config->PushEntry("ESP_SPECIAL_STRUCTURES_NAME", "bool", std::to_string(stSpecialStructures.bName));
+	Cheat::config->PushEntry("ESP_SPECIAL_STRUCTURES_DISTANCE", "bool", std::to_string(stSpecialStructures.bDistance));
+	Cheat::config->PushEntry("ESP_SPECIAL_STRUCTURES_BOX_COLOR", "int", std::to_string(ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(stSpecialStructures.clrBox))));
+
 	Cheat::config->PushEntry("ESP_MAX_DISTANCE", "int", std::to_string(iESPMaxDistance));
 	Cheat::config->PushEntry("ESP_DEBUG_COLOR", "int", std::to_string(ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(clrDebug))));
-	Cheat::config->PushEntry("ESP_BOX_SHOW_NAME", "bool", std::to_string(bBoxName));
-	Cheat::config->PushEntry("ESP_BOX_SHOW_DISTANCE", "bool", std::to_string(bBoxDistance));
-	Cheat::config->PushEntry("ESP_HEALTH_BAR", "bool", std::to_string(bBoxHealthBar));
-	Cheat::config->PushEntry("ESP_ARMOR_BAR", "bool", std::to_string(bBoxArmorBar));
-	Cheat::config->PushEntry("ESP_INVINCIBLE_FLAG", "bool", std::to_string(bInvincibleFlag));
 }
 
 void ESP::LoadConfig()
@@ -561,53 +606,147 @@ void ESP::LoadConfig()
 	if (entry.Name == "ESP_ENABLED")
 		bEnabled = std::stoi(entry.Value);
 
-	entry = Cheat::config->GetEntryByName("ESP_ENEMY_COLOR");
-	if (entry.Name == "ESP_ENEMY_COLOR") {
+
+
+	entry = Cheat::config->GetEntryByName("ESP_ENEMIES_ENABLE");
+	if (entry.Name == "ESP_ENEMIES_ENABLE")
+		stEnemies.bEnabled = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_ENEMIES_ACCURATE_BOX");
+	if (entry.Name == "ESP_ENEMIES_ACCURATE_BOX")
+		stEnemies.bAccurateBox = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_ENEMIES_BOX");
+	if (entry.Name == "ESP_ENEMIES_BOX")
+		stEnemies.bBox = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_ENEMIES_NAME");
+	if (entry.Name == "ESP_ENEMIES_NAME")
+		stEnemies.bName = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_ENEMIES_DISTANCE");
+	if (entry.Name == "ESP_ENEMIES_DISTANCE")
+		stEnemies.bDistance = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_ENEMIES_HEALTH_BAR");
+	if (entry.Name == "ESP_ENEMIES_HEALTH_BAR")
+		stEnemies.bHealthBar = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_ENEMIES_ARMOR_BAR");
+	if (entry.Name == "ESP_ENEMIES_ARMOR_BAR")
+		stEnemies.bArmorBar = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_ENEMIES_FLAG_INVINCIBLE");
+	if (entry.Name == "ESP_ENEMIES_FLAG_INVINCIBLE")
+		stEnemies.bFlagInvincible = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_ENEMIES_BOX_COLOR");
+	if (entry.Name == "ESP_ENEMIES_BOX_COLOR") {
 		ImVec4 clrTmp = ImGui::ColorConvertU32ToFloat4(std::stoul(entry.Value));
-		*reinterpret_cast<uint64_t*>(&clrEnemies[0]) = *reinterpret_cast<uint64_t*>(&clrTmp.x);
-		*reinterpret_cast<uint64_t*>(&clrEnemies[2]) = *reinterpret_cast<uint64_t*>(&clrTmp.z);
+		*reinterpret_cast<uint64_t*>(&stEnemies.clrBox[0]) = *reinterpret_cast<uint64_t*>(&clrTmp.x);
+		*reinterpret_cast<uint64_t*>(&stEnemies.clrBox[2]) = *reinterpret_cast<uint64_t*>(&clrTmp.z);
 	}
 
-	entry = Cheat::config->GetEntryByName("ESP_ENEMY_ENABLE");
-	if (entry.Name == "ESP_ENEMY_ENABLE")
-		bEnemies = std::stoi(entry.Value);
 
-	entry = Cheat::config->GetEntryByName("ESP_FRIENDLY_COLOR");
-	if (entry.Name == "ESP_FRIENDLY_COLOR") {
+
+	entry = Cheat::config->GetEntryByName("ESP_FRIENDLIES_ENABLE");
+	if (entry.Name == "ESP_FRIENDLIES_ENABLE")
+		stFriendlies.bEnabled = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_FRIENDLIES_ACCURATE_BOX");
+	if (entry.Name == "ESP_FRIENDLIES_ACCURATE_BOX")
+		stFriendlies.bAccurateBox = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_FRIENDLIES_BOX");
+	if (entry.Name == "ESP_FRIENDLIES_BOX")
+		stFriendlies.bBox = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_FRIENDLIES_NAME");
+	if (entry.Name == "ESP_FRIENDLIES_NAME")
+		stFriendlies.bName = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_FRIENDLIES_DISTANCE");
+	if (entry.Name == "ESP_FRIENDLIES_DISTANCE")
+		stFriendlies.bDistance = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_FRIENDLIES_HEALTH_BAR");
+	if (entry.Name == "ESP_FRIENDLIES_HEALTH_BAR")
+		stFriendlies.bHealthBar = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_FRIENDLIES_ARMOR_BAR");
+	if (entry.Name == "ESP_FRIENDLIES_ARMOR_BAR")
+		stFriendlies.bArmorBar = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_FRIENDLIES_FLAG_INVINCIBLE");
+	if (entry.Name == "ESP_FRIENDLIES_FLAG_INVINCIBLE")
+		stFriendlies.bFlagInvincible = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_FRIENDLIES_BOX_COLOR");
+	if (entry.Name == "ESP_FRIENDLIES_BOX_COLOR") {
 		ImVec4 clrTmp = ImGui::ColorConvertU32ToFloat4(std::stoul(entry.Value));
-		*reinterpret_cast<uint64_t*>(&clrFriendlies[0]) = *reinterpret_cast<uint64_t*>(&clrTmp.x);
-		*reinterpret_cast<uint64_t*>(&clrFriendlies[2]) = *reinterpret_cast<uint64_t*>(&clrTmp.z);
+		*reinterpret_cast<uint64_t*>(&stFriendlies.clrBox[0]) = *reinterpret_cast<uint64_t*>(&clrTmp.x);
+		*reinterpret_cast<uint64_t*>(&stFriendlies.clrBox[2]) = *reinterpret_cast<uint64_t*>(&clrTmp.z);
 	}
 
-	entry = Cheat::config->GetEntryByName("ESP_FRIENDLY_ENABLE");
-	if (entry.Name == "ESP_FRIENDLY_ENABLE")
-		bFriendlies = std::stoi(entry.Value);
 
-	entry = Cheat::config->GetEntryByName("ESP_OBJECTIVE_ITEMS_COLOR");
-	if (entry.Name == "ESP_OBJECTIVE_ITEMS_COLOR") {
+
+	entry = Cheat::config->GetEntryByName("ESP_OBJECTIVES_ENABLE");
+	if (entry.Name == "ESP_OBJECTIVES_ENABLE")
+		stObjectives.bEnabled = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_OBJECTIVES_ACCURATE_BOX");
+	if (entry.Name == "ESP_OBJECTIVES_ACCURATE_BOX")
+		stObjectives.bAccurateBox = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_OBJECTIVES_BOX");
+	if (entry.Name == "ESP_OBJECTIVES_BOX")
+		stObjectives.bBox = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_OBJECTIVES_NAME");
+	if (entry.Name == "ESP_OBJECTIVES_NAME")
+		stObjectives.bName = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_OBJECTIVES_DISTANCE");
+	if (entry.Name == "ESP_OBJECTIVES_DISTANCE")
+		stObjectives.bDistance = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_OBJECTIVES_BOX_COLOR");
+	if (entry.Name == "ESP_OBJECTIVES_BOX_COLOR") {
 		ImVec4 clrTmp = ImGui::ColorConvertU32ToFloat4(std::stoul(entry.Value));
-		*reinterpret_cast<uint64_t*>(&clrObjectiveItems[0]) = *reinterpret_cast<uint64_t*>(&clrTmp.x);
-		*reinterpret_cast<uint64_t*>(&clrObjectiveItems[2]) = *reinterpret_cast<uint64_t*>(&clrTmp.z);
+		*reinterpret_cast<uint64_t*>(&stObjectives.clrBox[0]) = *reinterpret_cast<uint64_t*>(&clrTmp.x);
+		*reinterpret_cast<uint64_t*>(&stObjectives.clrBox[2]) = *reinterpret_cast<uint64_t*>(&clrTmp.z);
 	}
 
-	entry = Cheat::config->GetEntryByName("ESP_OBJECTIVE_ITEMS_ENABLE");
-	if (entry.Name == "ESP_OBJECTIVE_ITEMS_ENABLE")
-		bObjectiveItems = std::stoi(entry.Value);
 
-	entry = Cheat::config->GetEntryByName("ESP_SPECIAL_STRUCTURES_COLOR");
-	if (entry.Name == "ESP_SPECIAL_STRUCTURES_COLOR") {
-		ImVec4 clrTmp = ImGui::ColorConvertU32ToFloat4(std::stoul(entry.Value));
-		*reinterpret_cast<uint64_t*>(&clrSpecialStructures[0]) = *reinterpret_cast<uint64_t*>(&clrTmp.x);
-		*reinterpret_cast<uint64_t*>(&clrSpecialStructures[2]) = *reinterpret_cast<uint64_t*>(&clrTmp.z);
-	}
 
 	entry = Cheat::config->GetEntryByName("ESP_SPECIAL_STRUCTURES_ENABLE");
 	if (entry.Name == "ESP_SPECIAL_STRUCTURES_ENABLE")
-		bSpecialStructures = std::stoi(entry.Value);
+		stSpecialStructures.bEnabled = std::stoi(entry.Value);
 
-	entry = Cheat::config->GetEntryByName("ESP_ACCURATE_BOX");
-	if (entry.Name == "ESP_ACCURATE_BOX")
-		bAccurateBox = std::stoi(entry.Value);
+	entry = Cheat::config->GetEntryByName("ESP_SPECIAL_STRUCTURES_ACCURATE_BOX");
+	if (entry.Name == "ESP_SPECIAL_STRUCTURES_ACCURATE_BOX")
+		stSpecialStructures.bAccurateBox = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_SPECIAL_STRUCTURES_BOX");
+	if (entry.Name == "ESP_SPECIAL_STRUCTURES_BOX")
+		stSpecialStructures.bBox = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_SPECIAL_STRUCTURES_NAME");
+	if (entry.Name == "ESP_SPECIAL_STRUCTURES_NAME")
+		stSpecialStructures.bName = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_SPECIAL_STRUCTURES_DISTANCE");
+	if (entry.Name == "ESP_SPECIAL_STRUCTURES_DISTANCE")
+		stSpecialStructures.bDistance = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_SPECIAL_STRUCTURES_BOX_COLOR");
+	if (entry.Name == "ESP_SPECIAL_STRUCTURES_BOX_COLOR") {
+		ImVec4 clrTmp = ImGui::ColorConvertU32ToFloat4(std::stoul(entry.Value));
+		*reinterpret_cast<uint64_t*>(&stSpecialStructures.clrBox[0]) = *reinterpret_cast<uint64_t*>(&clrTmp.x);
+		*reinterpret_cast<uint64_t*>(&stSpecialStructures.clrBox[2]) = *reinterpret_cast<uint64_t*>(&clrTmp.z);
+	}
+
+
 
 	entry = Cheat::config->GetEntryByName("ESP_MAX_DISTANCE");
 	if (entry.Name == "ESP_MAX_DISTANCE")
@@ -620,23 +759,4 @@ void ESP::LoadConfig()
 		*reinterpret_cast<uint64_t*>(&clrDebug[2]) = *reinterpret_cast<uint64_t*>(&clrTmp.z);
 	}
 
-	entry = Cheat::config->GetEntryByName("ESP_BOX_SHOW_NAME");
-	if (entry.Name == "ESP_BOX_SHOW_NAME")
-		bBoxName = std::stoi(entry.Value);
-
-	entry = Cheat::config->GetEntryByName("ESP_BOX_SHOW_DISTANCE");
-	if (entry.Name == "ESP_BOX_SHOW_DISTANCE")
-		bBoxDistance = std::stoi(entry.Value);
-
-	entry = Cheat::config->GetEntryByName("ESP_HEALTH_BAR");
-	if (entry.Name == "ESP_HEALTH_BAR")
-		bBoxHealthBar = std::stoi(entry.Value);
-
-	entry = Cheat::config->GetEntryByName("ESP_ARMOR_BAR");
-	if (entry.Name == "ESP_ARMOR_BAR")
-		bBoxArmorBar = std::stoi(entry.Value);
-
-	entry = Cheat::config->GetEntryByName("ESP_INVINCIBLE_FLAG");
-	if (entry.Name == "ESP_INVINCIBLE_FLAG")
-		bInvincibleFlag = std::stoi(entry.Value);
 }
