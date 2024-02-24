@@ -15,6 +15,11 @@ private:
 	bool bBoxHealthBar = true;
 	bool bBoxArmorBar = true;
 
+	float clrEnemies[4] = {1.f, 0.f, 0.f, 1.f};
+	bool bEnemies = true;
+	float clrFriendlies[4] = {0.f, 1.f, 0.f, 1.f};
+	bool bFriendlies = false;
+
 	bool bInvincibleFlag = true;
 
 	CG::FName Root;

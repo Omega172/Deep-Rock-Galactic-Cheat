@@ -3,7 +3,8 @@
 #if FRAMEWORK_UNREAL // Not sure if this is needed but it's here anyway
 
 #ifndef GAME_FNAMES
-#define GAME_FNAMES(x)
+#define GAME_FNAMES(x) \
+	x(Invalid)
 #endif
 
 #define CREATE_ENUM(n) n,
@@ -17,6 +18,7 @@ namespace FNames
 	typedef struct ActorInfo_t {
 		CG::AActor* pActor;
 		EFNames iLookupIndex;
+		float flDistance;
 	} PawnInfo_t;
 
 	typedef struct ClassLookupEntry_t {
@@ -29,6 +31,15 @@ namespace FNames
 		GAME_FNAMES(CREATE_CLASS_LOOKUP)
 	};
 	
+	inline EFNames GetLookupIndex(int32_t ComparisonIndex) {
+		for (const auto entry : vecClassLookups) {
+			if (ComparisonIndex == entry.ComparisonIndex)
+				return entry.iLookupIndex;
+		}
+
+		return EFNames::Invalid;
+	}
+
 	inline void Initialize()
 	{
 		Utils::LogDebug(Utils::GetLocation(CurrentLoc), (std::stringstream() << "GNames: 0x" << CG::FName::GNames).str());
@@ -157,11 +168,9 @@ public:
 	inline void RefreshActorList() // A function to refresh the actor list
 	{
 		std::vector<CG::AActor*> lActors{};
-
-		std::vector<CG::AActor*> lSortedActors{};
 		std::vector<FNames::ActorInfo_t> lActorList{};
+		std::vector<float> AllDistances{};
 
-		CG::AGameStateBase* pGameState;
 		if (CG::UWorld::GWorld == nullptr) {
 			ActorLock.lock();
 			Actors.clear();
@@ -171,8 +180,18 @@ public:
 			return;
 		}
 
-		pGameState = GetGameStateBase();
+		CG::AGameStateBase* pGameState = GetGameStateBase();
 		if (!pGameState) {
+			ActorLock.lock();
+			Actors.clear();
+			ActorList.clear();
+			ActorLock.unlock();
+
+			return;
+		}
+		
+		CG::APawn* pAcknowledgedPawn = GetAcknowledgedPawn();
+		if (!pAcknowledgedPawn) {
 			ActorLock.lock();
 			Actors.clear();
 			ActorList.clear();
@@ -211,26 +230,48 @@ public:
 			}
 		}
 
-		lSortedActors = SortActorsByDistance<CG::AActor*>(lActors);
-
-		for (CG::AActor* pActor : lSortedActors)
+		for (CG::AActor* pActor : lActors)
 		{
-			bool bFound = false;
-			auto comp_index = pActor->Name.ComparisonIndex;
+			if (!IsValidObjectPtr(pActor))
+				continue;
 
-			for (auto entry : FNames::vecClassLookups) {
-				if (comp_index == entry.ComparisonIndex) {
-					bFound = true;
-					lActorList.push_back(FNames::ActorInfo_t(pActor, entry.iLookupIndex));
+			int32_t iComparisonIndex = pActor->Name.ComparisonIndex;
+			FNames::ActorInfo_t stActorInfo{
+				pActor,
+				FNames::Invalid,
+				pActor->GetDistanceTo(pAcknowledgedPawn)
+			};
+
+			for (FNames::ClassLookupEntry_t stEntry : FNames::vecClassLookups) {
+				if (iComparisonIndex == stEntry.ComparisonIndex) {
+					stActorInfo.iLookupIndex = stEntry.iLookupIndex;
 					break;
 				}
 			}
 
-			if (bFound)
-				continue;
+			while (1) {
+				bool bFixed = true;
+				for (float flOtherDistance : AllDistances)
+				{
+					if (flOtherDistance == stActorInfo.flDistance) {
+						stActorInfo.flDistance = nextafterf(stActorInfo.flDistance, INFINITY);
+						bFixed = false;
+						break;
+					}
+				}
 
-			lActorList.push_back(FNames::ActorInfo_t(pActor, FNames::EFNames::Invalid));
+				if (bFixed)
+					break;
+			}
+
+			lActorList.push_back(stActorInfo);
+			AllDistances.push_back(stActorInfo.flDistance);
 		}
+
+		std::stable_sort(lActorList.begin(), lActorList.end(), [](FNames::ActorInfo_t A, FNames::ActorInfo_t B) {
+			return A.flDistance > B.flDistance;
+		});
+
 
 		ActorLock.lock();
 
@@ -407,7 +448,7 @@ public:
 				for (float flOtherDistance : AllDistances)
 				{
 					if (flOtherDistance == stActorHack.flDistance) {
-						++stActorHack.flDistance;
+						stActorHack.flDistance = nextafterf(stActorHack.flDistance, INFINITY);
 						bFixed = false;
 						break;
 					}
@@ -422,7 +463,7 @@ public:
 		}
 
 		std::stable_sort(ActorAndDistances.begin(), ActorAndDistances.end(), [](SortHack_t A, SortHack_t B) {
-			return A.flDistance < B.flDistance;
+			return A.flDistance > B.flDistance;
 		});
 
 		for (SortHack_t stHack : ActorAndDistances)
