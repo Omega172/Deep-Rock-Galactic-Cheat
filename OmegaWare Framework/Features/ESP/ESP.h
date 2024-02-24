@@ -11,7 +11,7 @@ private:
 
 	struct {
 		bool bEnabled = false;
-		float clrBox[4] = { 1.f, 0.471f, 0.f, 1.f };
+		float clrBox[4] = { 1.f, 0.5f, 0.f, 1.f };
 		bool bAccurateBox = true;
 		bool bBox = false;
 		bool bName = false;
@@ -23,7 +23,7 @@ private:
 
 	struct {
 		bool bEnabled = false;
-		float clrBox[4] = { 0.f, 0.965f, 1.f, 1.f };
+		float clrBox[4] = { 0.f, 1.f, 1.f, 1.f };
 		bool bAccurateBox = true;
 		bool bBox = false;
 		bool bName = false;
@@ -32,6 +32,18 @@ private:
 		bool bArmorBar = false;
 		bool bFlagInvincible = false;
 	} stFriendlies;
+
+	struct {
+		bool bEnabled = false;
+		float clrBox[4] = { 0.f, 1.f, 1.f, 1.f };
+		bool bAccurateBox = true;
+		bool bBox = false;
+		bool bName = false;
+		bool bDistance = false;
+		bool bHealthBar = false;
+		bool bArmorBar = false;
+		bool bFlagInvincible = false;
+	} stPlayers;
 
 	struct {
 		bool bEnabled = false;

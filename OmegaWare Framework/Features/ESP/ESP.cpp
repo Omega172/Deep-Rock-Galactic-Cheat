@@ -11,6 +11,7 @@ bool ESP::Setup()
 
 		{ HASH("ESP_ENEMIES"), "Enemies" },
 		{ HASH("ESP_FRIENDLIES"), "Friendlies" },
+		{ HASH("ESP_PLAYERS"), "Players" },
 		{ HASH("ESP_OBJECTIVES"), "Objectives" },
 		{ HASH("ESP_SPECIAL_STRUCTURES"), "Special Structures" },
 
@@ -104,6 +105,18 @@ void ESP::PopulateMenu()
 			}), true, 2.f);
 		ESP->AddElement(new ColorPicker(Cheat::localization->Get("ESP_FRIENDLIES").c_str(), stFriendlies.clrBox, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoSidePreview | ImGuiColorEditFlags_AlphaBar), true, 2.f);
 
+		ESP->AddElement(new Checkbox("##PlayersCheckbox", &stPlayers.bEnabled));
+		ESP->AddElement(new Combo("##PlayersFlags", "", ImGuiComboFlags_NoPreview, [this]() {
+			ImGui::Selectable(Cheat::localization->Get("ESP_ACCURATE_BOX").c_str(), &stPlayers.bAccurateBox);
+			ImGui::Selectable(Cheat::localization->Get("ESP_BOX").c_str(), &stPlayers.bBox);
+			ImGui::Selectable(Cheat::localization->Get("ESP_NAME").c_str(), &stPlayers.bName);
+			ImGui::Selectable(Cheat::localization->Get("ESP_DISTANCE").c_str(), &stPlayers.bDistance);
+			ImGui::Selectable(Cheat::localization->Get("ESP_HEALTH_BAR").c_str(), &stPlayers.bHealthBar);
+			ImGui::Selectable(Cheat::localization->Get("ESP_ARMOR_BAR").c_str(), &stPlayers.bArmorBar);
+			ImGui::Selectable(Cheat::localization->Get("ESP_FLAG_INVINCIBLE").c_str(), &stPlayers.bFlagInvincible);
+			}), true, 2.f);
+		ESP->AddElement(new ColorPicker(Cheat::localization->Get("ESP_PLAYERS").c_str(), stPlayers.clrBox, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoSidePreview | ImGuiColorEditFlags_AlphaBar), true, 2.f);
+
 		ESP->AddElement(new Checkbox("##ObjectivesCheckbox", &stObjectives.bEnabled));
 		ESP->AddElement(new Combo("##ObjectivesFlags", "", ImGuiComboFlags_NoPreview, [this]() {
 			ImGui::Selectable(Cheat::localization->Get("ESP_ACCURATE_BOX").c_str(), &stObjectives.bAccurateBox);
@@ -125,7 +138,7 @@ void ESP::PopulateMenu()
 		ESP->AddElement(new SliderInt(Cheat::localization->Get("ESP_MAX_DISTANCE"), &iESPMaxDistance, 0, 5000));
 
 		ESP->AddElement(new SliderInt(Cheat::localization->Get("ESP_DEBUG"), &iDebug, 0, 2000));
-		ESP->AddElement(new ColorPicker(Cheat::localization->Get("ESP_DEBUG_COLOR").c_str(), clrDebug, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoSidePreview | ImGuiColorEditFlags_AlphaBar | ImGuiColorEditFlags_NoLabel));
+		ESP->AddElement(new ColorPicker(Cheat::localization->Get("ESP_DEBUG_COLOR").c_str(), clrDebug, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoSidePreview | ImGuiColorEditFlags_AlphaBar));
 	}
 
 	Cheat::menu->AddElement(ESP, true);
@@ -147,6 +160,9 @@ void ESP::Render()
 
 	ImU32 uiFriendliesBox = ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(stFriendlies.clrBox));
 	ImU32 uiFriendliesBoxOutline = ImGui::ColorConvertFloat4ToU32({ 0.f, 0.f, 0.f, stFriendlies.clrBox[3] });
+
+	ImU32 uiPlayersBox = ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(stPlayers.clrBox));
+	ImU32 uiPlayersBoxOutline = ImGui::ColorConvertFloat4ToU32({ 0.f, 0.f, 0.f, stPlayers.clrBox[3] });
 
 	ImU32 uiObjectivesBox = ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(stObjectives.clrBox));
 	ImU32 uiObjectivesBoxOutline = ImGui::ColorConvertFloat4ToU32({ 0.f, 0.f, 0.f, stObjectives.clrBox[3] });
@@ -373,7 +389,7 @@ void ESP::Render()
 
 			if ((bIsEnemy ? stEnemies.bFlagInvincible : stFriendlies.bFlagInvincible) && !pHealthComponent->canTakeDamage)
 			{
-				ImGui::OutlinedText(vecFlags, Red, "Invuln");
+				ImGui::OutlinedText(vecFlags, Gray, "Invuln");
 				vecFlags.y += 16.f;
 			}
 
@@ -491,11 +507,13 @@ void ESP::Render()
 		case FNames::BP_EngineerCharacter_C:
 		case FNames::BP_GunnerCharacter_C:
 		{
+			if (!stPlayers.bEnabled)
+				break;
+
 			if (!IsValidObjectPtr(stInfo.pActor))
 				break;
 
 			CG::ABP_PlayerCharacter_C* pPawn = reinterpret_cast<CG::ABP_PlayerCharacter_C*>(stInfo.pActor);
-
 			if (!IsValidObjectPtr(pPawn) || !stInfo.pActor->IsA(CG::ABP_PlayerCharacter_C::StaticClass()))
 				break;
 
@@ -509,20 +527,22 @@ void ESP::Render()
 			if (iESPMaxDistance && stInfo.flDistance > iESPMaxDistance)
 				break;
 
-			if (!stFriendlies.bEnabled)
+			if (!stPlayers.bEnabled)
 				break;
 
 			CG::FVector vecLocation, vecExtent;
 			stInfo.pActor->GetActorBounds(true, &vecLocation, &vecExtent, false);
 
 			ImRect rectBox{};
-			if (!GetBoxFromBBox(vecLocation, vecExtent, rectBox, stFriendlies.bAccurateBox))
+			if (!GetBoxFromBBox(vecLocation, vecExtent, rectBox, stPlayers.bAccurateBox))
 				break;
 
-			ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, Black, 0.f, ImDrawFlags_None, 3.f);
-			ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, uiFriendliesBox);
+			if (stPlayers.bBox) {
+				ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, uiPlayersBoxOutline, 0.f, ImDrawFlags_None, 3.f);
+				ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, uiPlayersBox);
+			}
 
-			if (stFriendlies.bName) {
+			if (stPlayers.bName) {
 
 				CG::AFSDPlayerState* pPlayerState = pPawn->GetPlayerState();
 				if (!IsValidObjectPtr(pPlayerState))
@@ -539,7 +559,7 @@ void ESP::Render()
 				}
 			}
 
-			if (stFriendlies.bDistance)
+			if (stPlayers.bDistance)
 			{
 				std::stringstream ssDistance;
 				ssDistance << "[ " << std::to_string(static_cast<int>(stInfo.flDistance)) << "m ]";
@@ -552,7 +572,7 @@ void ESP::Render()
 
 			ImVec2 vecFlags(rectBox.Max.x + 4.f, rectBox.Min.y);
 
-			if (stFriendlies.bHealthBar)
+			if (stPlayers.bHealthBar)
 			{
 				float g = pHealthComponent->GetHealthPct();
 
@@ -563,7 +583,7 @@ void ESP::Render()
 				vecFlags.x += 7.f;
 			}
 
-			if (stFriendlies.bArmorBar && pHealthComponent->GetMaxArmor() > 0.f)
+			if (stPlayers.bArmorBar && pHealthComponent->GetMaxArmor() > 0.f)
 			{
 				float g = pHealthComponent->GetArmorPct();
 
@@ -574,7 +594,7 @@ void ESP::Render()
 				vecFlags.x += 7.f;
 			}
 
-			if (stFriendlies.bFlagInvincible && !pHealthComponent->canTakeDamage)
+			if (stPlayers.bFlagInvincible && !pHealthComponent->canTakeDamage)
 			{
 				ImGui::OutlinedText(vecFlags, Gray, "Invuln");
 				vecFlags.y += 16.f;
@@ -684,6 +704,16 @@ void ESP::SaveConfig()
 	Cheat::config->PushEntry("ESP_FRIENDLIES_FLAG_INVINCIBLE", "bool", std::to_string(stFriendlies.bFlagInvincible));
 	Cheat::config->PushEntry("ESP_FRIENDLIES_BOX_COLOR", "int", std::to_string(ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(stFriendlies.clrBox))));
 
+	Cheat::config->PushEntry("ESP_PLAYERS_ENABLE", "bool", std::to_string(stPlayers.bEnabled));
+	Cheat::config->PushEntry("ESP_PLAYERS_ACCURATE_BOX", "bool", std::to_string(stPlayers.bAccurateBox));
+	Cheat::config->PushEntry("ESP_PLAYERS_BOX", "bool", std::to_string(stPlayers.bBox));
+	Cheat::config->PushEntry("ESP_PLAYERS_NAME", "bool", std::to_string(stPlayers.bName));
+	Cheat::config->PushEntry("ESP_PLAYERS_DISTANCE", "bool", std::to_string(stPlayers.bDistance));
+	Cheat::config->PushEntry("ESP_PLAYERS_HEALTH_BAR", "bool", std::to_string(stPlayers.bHealthBar));
+	Cheat::config->PushEntry("ESP_PLAYERS_ARMOR_BAR", "bool", std::to_string(stPlayers.bArmorBar));
+	Cheat::config->PushEntry("ESP_PLAYERS_FLAG_INVINCIBLE", "bool", std::to_string(stPlayers.bFlagInvincible));
+	Cheat::config->PushEntry("ESP_PLAYERS_BOX_COLOR", "int", std::to_string(ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(stPlayers.clrBox))));
+
 	Cheat::config->PushEntry("ESP_OBJECTIVES_ENABLE", "bool", std::to_string(stObjectives.bEnabled));
 	Cheat::config->PushEntry("ESP_OBJECTIVES_ACCURATE_BOX", "bool", std::to_string(stObjectives.bAccurateBox));
 	Cheat::config->PushEntry("ESP_OBJECTIVES_BOX", "bool", std::to_string(stObjectives.bBox));
@@ -788,6 +818,47 @@ void ESP::LoadConfig()
 		ImVec4 clrTmp = ImGui::ColorConvertU32ToFloat4(std::stoul(entry.Value));
 		*reinterpret_cast<uint64_t*>(&stFriendlies.clrBox[0]) = *reinterpret_cast<uint64_t*>(&clrTmp.x);
 		*reinterpret_cast<uint64_t*>(&stFriendlies.clrBox[2]) = *reinterpret_cast<uint64_t*>(&clrTmp.z);
+	}
+
+
+
+	entry = Cheat::config->GetEntryByName("ESP_PLAYERS_ENABLE");
+	if (entry.Name == "ESP_PLAYERS_ENABLE")
+		stPlayers.bEnabled = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_PLAYERS_ACCURATE_BOX");
+	if (entry.Name == "ESP_PLAYERS_ACCURATE_BOX")
+		stPlayers.bAccurateBox = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_PLAYERS_BOX");
+	if (entry.Name == "ESP_PLAYERS_BOX")
+		stPlayers.bBox = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_PLAYERS_NAME");
+	if (entry.Name == "ESP_PLAYERS_NAME")
+		stPlayers.bName = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_PLAYERS_DISTANCE");
+	if (entry.Name == "ESP_PLAYERS_DISTANCE")
+		stPlayers.bDistance = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_PLAYERS_HEALTH_BAR");
+	if (entry.Name == "ESP_PLAYERS_HEALTH_BAR")
+		stPlayers.bHealthBar = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_PLAYERS_ARMOR_BAR");
+	if (entry.Name == "ESP_PLAYERS_ARMOR_BAR")
+		stPlayers.bArmorBar = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_PLAYERS_FLAG_INVINCIBLE");
+	if (entry.Name == "ESP_PLAYERS_FLAG_INVINCIBLE")
+		stPlayers.bFlagInvincible = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_PLAYERS_BOX_COLOR");
+	if (entry.Name == "ESP_PLAYERS_BOX_COLOR") {
+		ImVec4 clrTmp = ImGui::ColorConvertU32ToFloat4(std::stoul(entry.Value));
+		*reinterpret_cast<uint64_t*>(&stPlayers.clrBox[0]) = *reinterpret_cast<uint64_t*>(&clrTmp.x);
+		*reinterpret_cast<uint64_t*>(&stPlayers.clrBox[2]) = *reinterpret_cast<uint64_t*>(&clrTmp.z);
 	}
 
 
