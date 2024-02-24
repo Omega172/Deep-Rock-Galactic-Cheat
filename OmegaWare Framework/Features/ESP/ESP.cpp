@@ -293,7 +293,7 @@ void ESP::Render()
 			if (bBoxDistance)
 			{
 				std::stringstream ssDistance;
-				ssDistance << "[ " << std::to_string(stInfo.flDistance) << "m ]";
+				ssDistance << "[ " << std::to_string(static_cast<int>(stInfo.flDistance)) << "m ]";
 
 				std::string sDistance = ssDistance.str();
 				ImVec2 vecTextSize = ImGui::CalcTextSize(sDistance.c_str());
@@ -394,6 +394,10 @@ void ESP::Run() {}
 void ESP::SaveConfig()
 {
 	Cheat::config->PushEntry("ESP_ENABLED", "bool", std::to_string(bEnabled));
+	Cheat::config->PushEntry("ESP_ENEMY_COLOR", "int", std::to_string(ImGui::ColorConvertFloat4ToU32({ clrEnemies[0], clrEnemies[1], clrEnemies[2], clrEnemies[3] })));
+	Cheat::config->PushEntry("ESP_ENEMY_ENABLE", "bool", std::to_string(bEnemies));
+	Cheat::config->PushEntry("ESP_FRIENDLY_COLOR", "int", std::to_string(ImGui::ColorConvertFloat4ToU32({ clrFriendlies[0], clrFriendlies[1], clrFriendlies[2], clrFriendlies[3] })));
+	Cheat::config->PushEntry("ESP_FRIENDLY_ENABLE", "bool", std::to_string(bFriendlies));
 	Cheat::config->PushEntry("ESP_ACCURATE_BOX", "bool", std::to_string(bAccurateBox));
 	Cheat::config->PushEntry("ESP_MAX_DISTANCE", "int", std::to_string(iESPMaxDistance));
 	Cheat::config->PushEntry("ESP_BOX_SHOW_NAME", "bool", std::to_string(bBoxName));
@@ -408,6 +412,34 @@ void ESP::LoadConfig()
 	ConfigEntry entry = Cheat::config->GetEntryByName("ESP_ENABLED");
 	if (entry.Name == "ESP_ENABLED")
 		bEnabled = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_ENEMY_COLOR");
+	if (entry.Name == "ESP_ENEMY_COLOR") {
+		ImVec4 clrTmp = ImGui::ColorConvertU32ToFloat4(std::stoul(entry.Value));
+
+		clrEnemies[0] = clrTmp.x;
+		clrEnemies[1] = clrTmp.y;
+		clrEnemies[2] = clrTmp.z;
+		clrEnemies[3] = clrTmp.w;
+	}
+
+	entry = Cheat::config->GetEntryByName("ESP_ENEMY_ENABLE");
+	if (entry.Name == "ESP_ENEMY_ENABLE")
+		bEnemies = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_FRIENDLY_COLOR");
+	if (entry.Name == "ESP_FRIENDLY_COLOR") {
+		ImVec4 clrTmp = ImGui::ColorConvertU32ToFloat4(std::stoul(entry.Value));
+
+		clrFriendlies[0] = clrTmp.x;
+		clrFriendlies[1] = clrTmp.y;
+		clrFriendlies[2] = clrTmp.z;
+		clrFriendlies[3] = clrTmp.w;
+	}
+
+	entry = Cheat::config->GetEntryByName("ESP_FRIENDLY_ENABLE");
+	if (entry.Name == "ESP_FRIENDLY_ENABLE")
+		bFriendlies = std::stoi(entry.Value);
 
 	entry = Cheat::config->GetEntryByName("ESP_ACCURATE_BOX");
 	if (entry.Name == "ESP_ACCURATE_BOX")
