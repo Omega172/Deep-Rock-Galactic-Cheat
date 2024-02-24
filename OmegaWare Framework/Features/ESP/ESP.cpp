@@ -143,9 +143,16 @@ void ESP::Render()
 		return;
 
 	ImU32 uiEnemiesBox = ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(stEnemies.clrBox));
+	ImU32 uiEnemiesBoxOutline = ImGui::ColorConvertFloat4ToU32({ 0.f, 0.f, 0.f, stEnemies.clrBox[3] });
+
 	ImU32 uiFriendliesBox = ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(stFriendlies.clrBox));
+	ImU32 uiFriendliesBoxOutline = ImGui::ColorConvertFloat4ToU32({ 0.f, 0.f, 0.f, stFriendlies.clrBox[3] });
+
 	ImU32 uiObjectivesBox = ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(stObjectives.clrBox));
+	ImU32 uiObjectivesBoxOutline = ImGui::ColorConvertFloat4ToU32({ 0.f, 0.f, 0.f, stObjectives.clrBox[3] });
+
 	ImU32 uiSpecialStructuresBox = ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(stSpecialStructures.clrBox));
+	ImU32 uiSpecialStructuresBoxOutline = ImGui::ColorConvertFloat4ToU32({ 0.f, 0.f, 0.f, stSpecialStructures.clrBox[3] });
 
 	ImU32 uiDebugColor = ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(clrDebug));
 
@@ -315,7 +322,7 @@ void ESP::Render()
 				break;
 
 			if (bIsEnemy ? stEnemies.bBox : stFriendlies.bBox) {
-				ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, Black, 0.f, ImDrawFlags_None, 3.f);
+				ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, bIsEnemy ? uiEnemiesBoxOutline : uiFriendliesBoxOutline, 0.f, ImDrawFlags_None, 3.f);
 				ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, bIsEnemy ? uiEnemiesBox : uiFriendliesBox);
 			}
 
@@ -405,7 +412,7 @@ void ESP::Render()
 				break;
 
 			if (stObjectives.bBox) {
-				ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, Black, 0.f, ImDrawFlags_None, 3.f);
+				ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, uiObjectivesBoxOutline, 0.f, ImDrawFlags_None, 3.f);
 				ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, uiObjectivesBox);
 			}
 
@@ -453,7 +460,7 @@ void ESP::Render()
 				break;
 
 			if (stSpecialStructures.bBox) {
-				ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, Black, 0.f, ImDrawFlags_None, 3.f);
+				ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, uiSpecialStructuresBoxOutline, 0.f, ImDrawFlags_None, 3.f);
 				ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, uiSpecialStructuresBox);
 			}
 
