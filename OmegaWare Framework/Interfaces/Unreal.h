@@ -200,17 +200,7 @@ public:
 			return;
 		}
 
-		CG::USceneComponent* pRootComponent = pAcknowledgedPawn->RootComponent;
-		if (!IsValidObjectPtr(pRootComponent)) {
-			ActorLock.lock();
-			Actors.clear();
-			ActorList.clear();
-			ActorLock.unlock();
-
-			return;
-		}
-
-		CG::FVector vecLocation = pRootComponent->RelativeLocation;
+		CG::FVector vecLocation = pAcknowledgedPawn->K2_GetActorLocation();
 
 		for (int i = 0; i < (**CG::UWorld::GWorld).Levels.Count(); i++)
 		{
@@ -247,15 +237,11 @@ public:
 			if (!IsValidObjectPtr(pActor))
 				continue;
 
-			CG::USceneComponent* pSceneComponent = pAcknowledgedPawn->RootComponent;
-			if (!IsValidObjectPtr(pSceneComponent))
-				continue;
-
 			int32_t iComparisonIndex = pActor->Name.ComparisonIndex;
 			FNames::ActorInfo_t stActorInfo{
 				pActor,
 				FNames::Invalid,
-				vecLocation.Distance(pSceneComponent->RelativeLocation)
+				vecLocation.Distance(pActor->K2_GetActorLocation())
 			};
 
 			for (FNames::ClassLookupEntry_t stEntry : FNames::vecClassLookups) {
