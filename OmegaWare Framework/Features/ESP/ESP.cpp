@@ -283,7 +283,7 @@ void ESP::Render()
 				char szName[64];
 				szName[stInfo.pActor->Name.GetName().copy(szName, 64, 0)] = 0;
 
-				int iLength = Utils::Strlen(szName);
+				size_t iLength = Utils::Strlen(szName);
 				if (iLength > 3) {
 					ImVec2 vecTextSize = ImGui::CalcTextSize(szName);
 					ImGui::OutlinedText({ rectBox.Min.x + (rectBox.GetWidth() - vecTextSize.x) / 2, rectBox.Min.y - 17.f }, White, szName);
@@ -393,7 +393,7 @@ void ESP::Run() {}
 
 void ESP::SaveConfig()
 {
-	Cheat::config->PushEntry("ESP_ENABLED", "bool", std::to_string(bEnabled));
+	Cheat::config->PushEntry("ESP_ENABLE", "bool", std::to_string(bEnabled));
 	Cheat::config->PushEntry("ESP_ACCURATE_BOX", "bool", std::to_string(bAccurateBox));
 	Cheat::config->PushEntry("ESP_MAX_DISTANCE", "int", std::to_string(iESPMaxDistance));
 	Cheat::config->PushEntry("ESP_BOX_SHOW_NAME", "bool", std::to_string(bBoxName));
@@ -406,7 +406,7 @@ void ESP::SaveConfig()
 void ESP::LoadConfig()
 {
 	ConfigEntry entry = Cheat::config->GetEntryByName("ESP_ENABLED");
-	if (entry.Name == "ESP_ENABLED")
+	if (entry.Name == "ESP_ENABLE")
 		bEnabled = std::stoi(entry.Value);
 
 	entry = Cheat::config->GetEntryByName("ESP_ACCURATE_BOX");
