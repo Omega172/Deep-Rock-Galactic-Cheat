@@ -13,6 +13,8 @@ bool ESP::Setup()
 		{ HASH("ESP_FRIENDLY_ENABLE"), "Friendlies" },
 		{ HASH("ESP_OBJECTIVE_ITEMS_COLOR"), "Objective Items Color" },
 		{ HASH("ESP_OBJECTIVE_ITEMS_ENABLE"), "Objective Items"},
+		{ HASH("ESP_SPECIAL_STRUCTURES_COLOR"), "Special Structures Color" },
+		{ HASH("ESP_SPECIAL_STRUCTURES_ENABLE"), "Special Structures" },
 		{ HASH("ESP_ACCURATE_BOX"), "Accurate Box" },
 		{ HASH("ESP_MAX_DISTANCE"), "Max Distance" },
 		{ HASH("ESP_DEBUG"), "Debug ESP" },
@@ -91,6 +93,8 @@ void ESP::PopulateMenu()
 		ESP->AddElement(new Checkbox(Cheat::localization->Get("ESP_FRIENDLY_ENABLE"), &bFriendlies), true, 2.f);
 		ESP->AddElement(new ColorPicker(Cheat::localization->Get("ESP_OBJECTIVE_ITEMS_COLOR").c_str(), clrObjectiveItems, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoSidePreview | ImGuiColorEditFlags_AlphaBar | ImGuiColorEditFlags_NoLabel));
 		ESP->AddElement(new Checkbox(Cheat::localization->Get("ESP_OBJECTIVE_ITEMS_ENABLE"), &bObjectiveItems), true, 2.f);
+		ESP->AddElement(new ColorPicker(Cheat::localization->Get("ESP_SPECIAL_STRUCTURES_COLOR").c_str(), clrSpecialStructures, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoSidePreview | ImGuiColorEditFlags_AlphaBar | ImGuiColorEditFlags_NoLabel));
+		ESP->AddElement(new Checkbox(Cheat::localization->Get("ESP_SPECIAL_STRUCTURES_ENABLE"), &bSpecialStructures), true, 2.f);
 
 		ESP->AddElement(new Checkbox(Cheat::localization->Get("ESP_ACCURATE_BOX"), &bAccurateBox));
 		ESP->AddElement(new SliderInt(Cheat::localization->Get("ESP_MAX_DISTANCE"), &iESPMaxDistance, 0, 5000));
@@ -118,10 +122,11 @@ void ESP::Render()
 	ImU32 uiFriendliesColor = ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(clrFriendlies));
 	ImU32 uiObjectiveItems = ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(clrObjectiveItems));
 	ImU32 uiDebugColor = ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(clrDebug));
+	ImU32 uiSpecialStructures = ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(clrSpecialStructures));
 
 	for (FNames::ActorInfo_t stInfo : pUnreal->ActorList) {
 		switch (stInfo.iLookupIndex) {
-		case FNames::ENE_JellyBreeder_Normal_C:
+		case FNames::ENE_JellyBreeder_Normal_C: // Creatures
 		case FNames::ENE_Butterfly_C:
 		case FNames::ENE_Spider_Grunt_Guard_C:
 		case FNames::ENE_Bomber_Fire_C:
@@ -339,14 +344,14 @@ void ESP::Render()
 
 			if (bInvincibleFlag && !pHealthComponent->canTakeDamage)
 			{
-				ImGui::OutlinedText(vecFlags, Red, "Invuln");
+				ImGui::OutlinedText(vecFlags, Gray, "Invuln");
 				vecFlags.y += 16.f;
 			}
 
 
 			break;
 		}
-		case FNames::BP_Gem_Aquarq_C:
+		case FNames::BP_Gem_Aquarq_C: // Objective Items
 		case FNames::BP_GunkSeed_Hanger_C:
 		case FNames::BP_GunkSeed_C:
 		case FNames::BP_Ebonut_C:
@@ -356,6 +361,7 @@ void ESP::Render()
 		case FNames::BP_MuleLeg_C:
 		case FNames::BP_Boolo_Cap_C:
 		case FNames::BP_Fossil_C:
+		case FNames::BP_AmberChunk_C:
 		{
 			if (!bObjectiveItems)
 				break;
@@ -375,6 +381,55 @@ void ESP::Render()
 
 			ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, Black, 0.f, ImDrawFlags_None, 3.f);
 			ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, uiObjectiveItems);
+
+			if (bBoxName) {
+
+				// EVIL TERRIBLE HORRIBLE HACK
+				char szName[64];
+				szName[stInfo.pActor->Name.GetName().copy(szName, 63, 0)] = 0;
+
+				size_t iLength = Utils::Strlen(szName);
+				if (iLength > 3) {
+					ImVec2 vecTextSize = ImGui::CalcTextSize(szName);
+					ImGui::OutlinedText({ rectBox.Min.x + (rectBox.GetWidth() - vecTextSize.x) / 2, rectBox.Min.y - 17.f }, White, szName);
+				}
+			}
+
+			if (bBoxDistance)
+			{
+				std::stringstream ssDistance;
+				ssDistance << "[ " << std::to_string(static_cast<int>(stInfo.flDistance)) << "m ]";
+
+				std::string sDistance = ssDistance.str();
+				ImVec2 vecTextSize = ImGui::CalcTextSize(sDistance.c_str());
+
+				ImGui::OutlinedText({ rectBox.Min.x + (rectBox.GetWidth() - vecTextSize.x) / 2, rectBox.Max.y + 2.f }, White, sDistance.c_str());
+			}
+
+			break;
+		}
+		case FNames::BP_AmberEvent_C: // Special structures
+		case FNames::BP_ProspectorDataDeposit_C:
+		case FNames::BP_JetBootsBox_C:
+		{
+			if (!bSpecialStructures)
+				break;
+
+			if (!IsValidObjectPtr(stInfo.pActor))
+				break;
+
+			if (iESPMaxDistance && stInfo.flDistance > iESPMaxDistance)
+				break;
+
+			CG::FVector vecLocation, vecExtent;
+			stInfo.pActor->GetActorBounds(true, &vecLocation, &vecExtent, false);
+
+			ImRect rectBox{};
+			if (!GetBoxFromBBox(vecLocation, vecExtent, rectBox))
+				break;
+
+			ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, Black, 0.f, ImDrawFlags_None, 3.f);
+			ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, uiSpecialStructures);
 
 			if (bBoxName) {
 
@@ -488,6 +543,8 @@ void ESP::SaveConfig()
 	Cheat::config->PushEntry("ESP_FRIENDLY_ENABLE", "bool", std::to_string(bFriendlies));
 	Cheat::config->PushEntry("ESP_OBJECTIVE_ITEMS_COLOR", "int", std::to_string(ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(clrObjectiveItems))));
 	Cheat::config->PushEntry("ESP_OBJECTIVE_ITEMS_ENABLE", "bool", std::to_string(bObjectiveItems));
+	Cheat::config->PushEntry("ESP_SPECIAL_STRUCTURES_COLOR", "int", std::to_string(ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(clrSpecialStructures))));
+	Cheat::config->PushEntry("ESP_SPECIAL_STRUCTURES_ENABLE", "bool", std::to_string(bSpecialStructures));
 	Cheat::config->PushEntry("ESP_ACCURATE_BOX", "bool", std::to_string(bAccurateBox));
 	Cheat::config->PushEntry("ESP_MAX_DISTANCE", "int", std::to_string(iESPMaxDistance));
 	Cheat::config->PushEntry("ESP_DEBUG_COLOR", "int", std::to_string(ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(clrDebug))));
@@ -536,6 +593,17 @@ void ESP::LoadConfig()
 	entry = Cheat::config->GetEntryByName("ESP_OBJECTIVE_ITEMS_ENABLE");
 	if (entry.Name == "ESP_OBJECTIVE_ITEMS_ENABLE")
 		bObjectiveItems = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_SPECIAL_STRUCTURES_COLOR");
+	if (entry.Name == "ESP_SPECIAL_STRUCTURES_COLOR") {
+		ImVec4 clrTmp = ImGui::ColorConvertU32ToFloat4(std::stoul(entry.Value));
+		*reinterpret_cast<uint64_t*>(&clrSpecialStructures[0]) = *reinterpret_cast<uint64_t*>(&clrTmp.x);
+		*reinterpret_cast<uint64_t*>(&clrSpecialStructures[2]) = *reinterpret_cast<uint64_t*>(&clrTmp.z);
+	}
+
+	entry = Cheat::config->GetEntryByName("ESP_SPECIAL_STRUCTURES_ENABLE");
+	if (entry.Name == "ESP_SPECIAL_STRUCTURES_ENABLE")
+		bSpecialStructures = std::stoi(entry.Value);
 
 	entry = Cheat::config->GetEntryByName("ESP_ACCURATE_BOX");
 	if (entry.Name == "ESP_ACCURATE_BOX")
