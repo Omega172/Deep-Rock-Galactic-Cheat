@@ -594,7 +594,7 @@ namespace DRG
 		Utils::LogDebug(Utils::GetLocation(CurrentLoc), (std::stringstream() << "Resolved GNames Count: " << iGNameSize).str());
 	};
 }
-#undef FNAME_INITIALIZATION_MACRO
+#undef PUTS_THE_FNAME_IN_THE_BAG
 
 static CG::UFont* pFont;
 static DWORD dwOldProtect;
