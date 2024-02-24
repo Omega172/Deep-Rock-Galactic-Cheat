@@ -377,7 +377,6 @@ void ESP::Render()
 				vecFlags.y += 16.f;
 			}
 
-
 			break;
 		}
 		case FNames::BP_Gem_Aquarq_C:
@@ -483,6 +482,102 @@ void ESP::Render()
 				ImVec2 vecTextSize = ImGui::CalcTextSize(sDistance.c_str());
 
 				ImGui::OutlinedText({ rectBox.Min.x + (rectBox.GetWidth() - vecTextSize.x) / 2, rectBox.Max.y + 2.f }, White, sDistance.c_str());
+			}
+
+			break;
+		}
+		case FNames::BP_NavigatorCharacter_C: // Player Characters
+		case FNames::BP_DrillerCharacter_C:
+		case FNames::BP_EngineerCharacter_C:
+		case FNames::BP_GunnerCharacter_C:
+		{
+			if (!IsValidObjectPtr(stInfo.pActor))
+				break;
+
+			CG::ABP_PlayerCharacter_C* pPawn = reinterpret_cast<CG::ABP_PlayerCharacter_C*>(stInfo.pActor);
+
+			if (!IsValidObjectPtr(pPawn) || !stInfo.pActor->IsA(CG::ABP_PlayerCharacter_C::StaticClass()))
+				break;
+
+			if (pPawn->IsLocallyControlled()) // Ignore LocalPlayer
+				break;
+
+			CG::UHealthComponent* pHealthComponent = reinterpret_cast<CG::UHealthComponent*>(pPawn->HealthComponent);
+			if (!IsValidObjectPtr(pHealthComponent) || pHealthComponent->InternalIndex <= 0 || pHealthComponent->Name.ComparisonIndex == 0 || pHealthComponent->IsDead())
+				break;
+
+			if (iESPMaxDistance && stInfo.flDistance > iESPMaxDistance)
+				break;
+
+			if (!stFriendlies.bEnabled)
+				break;
+
+			CG::FVector vecLocation, vecExtent;
+			stInfo.pActor->GetActorBounds(true, &vecLocation, &vecExtent, false);
+
+			ImRect rectBox{};
+			if (!GetBoxFromBBox(vecLocation, vecExtent, rectBox, stFriendlies.bAccurateBox))
+				break;
+
+			ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, Black, 0.f, ImDrawFlags_None, 3.f);
+			ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, uiFriendliesBox);
+
+			if (stFriendlies.bName) {
+
+				CG::AFSDPlayerState* pPlayerState = pPawn->GetPlayerState();
+				if (!IsValidObjectPtr(pPlayerState))
+					break;
+
+				// EVIL TERRIBLE HORRIBLE HACK
+				char szName[64];
+				szName[pPlayerState->GetPlayerName().ToString().copy(szName, 63, 0)] = 0;
+
+				size_t iLength = Utils::Strlen(szName);
+				if (iLength > 3) {
+					ImVec2 vecTextSize = ImGui::CalcTextSize(szName);
+					ImGui::OutlinedText({ rectBox.Min.x + (rectBox.GetWidth() - vecTextSize.x) / 2, rectBox.Min.y - 17.f }, White, szName);
+				}
+			}
+
+			if (stFriendlies.bDistance)
+			{
+				std::stringstream ssDistance;
+				ssDistance << "[ " << std::to_string(static_cast<int>(stInfo.flDistance)) << "m ]";
+
+				std::string sDistance = ssDistance.str();
+				ImVec2 vecTextSize = ImGui::CalcTextSize(sDistance.c_str());
+
+				ImGui::OutlinedText({ rectBox.Min.x + (rectBox.GetWidth() - vecTextSize.x) / 2, rectBox.Max.y + 2.f }, White, sDistance.c_str());
+			}
+
+			ImVec2 vecFlags(rectBox.Max.x + 4.f, rectBox.Min.y);
+
+			if (stFriendlies.bHealthBar)
+			{
+				float g = pHealthComponent->GetHealthPct();
+
+				ImGui::GetBackgroundDrawList()->AddRect({ vecFlags.x - 1.f, rectBox.Min.y - 1 }, { vecFlags.x + 4.f, rectBox.Max.y + 1.f }, Black);
+				ImGui::GetBackgroundDrawList()->AddRectFilled({ vecFlags.x, rectBox.Min.y }, { vecFlags.x + 3.f, rectBox.Max.y }, ImGui::ColorConvertFloat4ToU32({ 0.f, 0.f, 0.f, 0.2f }));
+				ImGui::GetBackgroundDrawList()->AddRectFilled({ vecFlags.x, rectBox.Max.y }, { vecFlags.x + 3.f, rectBox.Max.y - (rectBox.GetHeight() * g) }, ImGui::ColorConvertFloat4ToU32({ 1.f - g, g, 0.f, 1.f }));
+
+				vecFlags.x += 7.f;
+			}
+
+			if (stFriendlies.bArmorBar && pHealthComponent->GetMaxArmor() > 0.f)
+			{
+				float g = pHealthComponent->GetArmorPct();
+
+				ImGui::GetBackgroundDrawList()->AddRect({ vecFlags.x - 1.f, rectBox.Min.y - 1 }, { vecFlags.x + 4.f, rectBox.Max.y + 1.f }, Black);
+				ImGui::GetBackgroundDrawList()->AddRectFilled({ vecFlags.x, rectBox.Min.y }, { vecFlags.x + 3.f, rectBox.Max.y }, ImGui::ColorConvertFloat4ToU32({ 0.f, 0.f, 0.f, 0.2f }));
+				ImGui::GetBackgroundDrawList()->AddRectFilled({ vecFlags.x, rectBox.Max.y }, { vecFlags.x + 3.f, rectBox.Max.y - (rectBox.GetHeight() * g) }, Cyan);
+
+				vecFlags.x += 7.f;
+			}
+
+			if (stFriendlies.bFlagInvincible && !pHealthComponent->canTakeDamage)
+			{
+				ImGui::OutlinedText(vecFlags, Gray, "Invuln");
+				vecFlags.y += 16.f;
 			}
 
 			break;
