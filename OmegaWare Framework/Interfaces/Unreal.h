@@ -4,10 +4,13 @@
 
 
 #define FNAME_INITIALIZATION_MACRO(n) DRG::n = CG::FName(#n); vecClassLookups.push_back(ClassLookupEntry_t{n, EFNames::n}); Utils::LogDebug(Utils::GetLocation(CurrentLoc), "Initalized " + std::string(#n))
+
+#define PUTS_THE_FNAME_IN_THE_BAG(n) DRG::ClassLookupEntry_t{std::string_view(#n), 0, DRG::EFNames::n}
 namespace DRG
 {
 	enum class EFNames {
 		Invalid,
+		Actor,
 		APawn,
 		ACharacter,
 		AEQSTestingPawn,
@@ -114,114 +117,143 @@ namespace DRG
 		WPN_ShieldRegeneratorItem_C,
 		WPN_SMG_OneHand_C,
 		WPN_ZipLineGun_C,
-		DeepCSGSection,
-		MiningPodCalldownLocation,
-		ENE_FacilityTurret_Barrier_C,
-		AIC_FacilityTurret_Burst_C,
-		BP_ExplodingPlant_Small_C,
-		BP_SpiderEgg3_C,
-		BP_SpiderEgg2_C,
-		HealingCrystal_Light_C,
-		BP_ExplodingPlant_Medium_C,
-		BP_Apoca_Bloom_C,
-		BP_SpiderEgg_C,
-		BP_NetFungus_C,
+		ENE_JellyBreeder_Normal_C,
+		ENE_Butterfly_C,
+		ENE_Spider_Grunt_Guard_C,
+		ENE_Bomber_Fire_C,
+		ENE_FlyingCritterBase_C,
+		ENE_Spider_Grunt_Guard_Radioactive_C,
+		ENE_Spider_Spitter_C,
+		ENE_FacilityTurret_Spinning_C,
+		ENE_Spider_ExploderTank_Ghost_C,
+		ENE_Spider_Grunt_Guard_Ice_C,
 		ENE_FacilityTurret_Burst_C,
-		BP_ShortStemFungus_C,
-		BP_PhazyoniteChunk_C,
-		BP_CroppaChunk_C,
-		BP_NitraChunk_C,
-		BP_GoldChunk_C,
-		BP_RedSugarChunk_C,
-		NavMeshBoundsVolume,
-		BP_Character_ShowroomStage_C,
-		BP_GunnerCharacter_C,
-		BP_PoisonGasFungus_C,
-		BP_Barley3_1_C,
-		BP_Facility_PowerStation_ShieldGenerator_C,
-		BP_Barley4_4_C,
-		BP_PlayerStart_C,
-		BP_LostPackDebrisPart_C,
-		BP_LostPackStart_C,
-		FadeUpFromBlack_LevelSequence,
-		BP_Gem_Jadiz_C,
-		TentacleSpawn2_GEN_VARIABLE_BP_FacilityTentacleManager_C_CAT,
-		BP_FSDCameraManager_C,
-		Widget_RandomCode06_GEN_VARIABLE_BP_Widget_DropPod_GarbageGen_C_CAT,
-		Widget_RandomCode05_GEN_VARIABLE_BP_Widget_DropPod_GarbageGen_C_CAT,
-		Widget_RandomCode04_GEN_VARIABLE_BP_Widget_DropPod_GarbageGen_C_CAT,
-		Widget_RandomCode02_GEN_VARIABLE_BP_Widget_DropPod_GarbageGen_C_CAT,
-		ChildActor1_GEN_VARIABLE_BP_Widget_DropPod_DangerLevel_C_CAT,
-		Widget_ResourceScreen02_GEN_VARIABLE_BP_Widget_DropPod_BiomeRadar_C_CAT,
-		BP_DropPod_Landing_C,
-		Widget_Countdown2_GEN_VARIABLE_BP_Widget_DropPod_AltitudeMeter_C_CAT,
-		BP_Drop_CamShake_C,
-		Widget_RandomCode07_GEN_VARIABLE_BP_Widget_DropPod_GarbageGen_C_CAT,
-		FSDWorldSettings,
-		DefaultPhysicsVolume,
-		GM_Facility_C,
-		Widget_RandomCode03_GEN_VARIABLE_BP_Widget_DropPod_GarbageGen_C_CAT,
-		FSDGameSession,
-		ParticleEventManager,
-		GameNetworkManager,
-		Widget_CaveData1_GEN_VARIABLE_BP_Widget_DropPod_Complexity_C_CAT,
-		LVL_Procedural_C,
-		WorldSettings,
-		BP_GameState_C,
-		AIC_LootBug_C,
+		ENE_Spider_Drone_C,
+		ENE_Spider_Shooter_Ground_C,
+		ENE_Spider_Grunt_Normal_C,
+		ENE_Spider_Exploding_C,
+		ENE_Spider_Tank_Amber_C,
+		ENE_HydraWeed_Core_C,
+		ENE_JellyBreeder_Base_C,
+		ENE_Spider_Amber_Shooter_C,
+		ENE_Spider_Tank_Ice_C,
+		ENE_Jelly_Passive_C,
+		ENE_Spider_Boss_TwinA_C,
+		ENE_ShootingPlant_Small_C,
+		ENE_Jelly_Swarmer_C,
+		ENE_Prospector_C,
+		ENE_FacilityTentacle_End_C,
+		ENE_Spider_Tank_Rock_C,
+		ENE_Spider_ExploderTank_King_C,
+		ENE_Harvester_C,
+		ENE_Spider_Exploding_Rockpox_Plague_C,
+		ENE_Bomber_Rockpox_Plague_C,
+		ENE_Spider_ShieldTank_C,
+		ENE_FacilityTurret_Sniper_C,
+		ENE_Spider_Shooter_C,
+		ENE_Spider_Swarmer_Radioactive_C,
+		ENE_Spider_RapidShooter_Elite_C,
+		ENE_Bomber_Child_C,
+		ENE_Spider_Charger_C,
+		ENE_Spider_Swarmer_Pheromoned_C,
+		ENE_PlagueLarva_C,
+		ENE_Jelly_Swarmer_Child_C,
+		ENE_Jelly_Spawn_Child_C,
+		ENE_FacilityTentacle_Burrowing_C,
+		ENE_SpiderSpawner_C,
+		ENE_Spider_Shooter_Normal_Elite_C,
+		ENE_Spider_Exploding_Warning_Radioactive_C,
+		ENE_Spider_Tank_Radioactive_C,
+		ENE_Grabber_C,
+		ENE_Spider_Boss_HeavySpawn_C,
+		ENE_BoughWasp_Nest_Medium2_C,
+		ENE_Spider_Grunt_Attacker_Ice_C,
+		ENE_Shredder_C,
+		ENE_Spider_RapidShooter_C,
+		ENE_Spider_Tank_Generic_C,
+		ENE_Spider_Tank_Normal_C,
+		ENE_BoughWasp_Nest_Medium_C,
+		ENE_Spider_Boss_Base_C,
+		ENE_Spider_Boss_TwinBase_C,
+		ENE_BoughWasp_Swarm_C,
+		ENE_Spider_Exploding_Radioactive_C,
 		ENE_LootBug_C,
-		BP_NetworkPlayerController_C,
-		BP_PlayerState_C,
-		AsyncLevelPersistanceActor,
-		GameStats,
-		CameraActor,
-		PLS_Facility_C,
-		Actor,
-		BP_TruckerBalls_GEN_VARIABLE_BP_TruckerBalls_C_CAT,
-		BP_PostProcessing_FungusBogs_C,
-		PostProcessingManager,
-		DBA_FungusBogs_C,
-		BP_TutorialManager_Base_C,
-		ITM_GrenadeThrow_C,
-		WPN_LaserPointer_C,
-		ITM_TerrainScanner_C,
-		ChildActor_GEN_VARIABLE_BP_Widget_DropPod_DangerLevel_C_CAT,
-		ITM_SupplyDrop_C,
-		BP_HUD_C,
-		LevelSequenceActor,
-		MusicReplicator,
-		Widget_ResourceScreen01_GEN_VARIABLE_BP_Widget_DropPod_BiomeRadar_C_CAT,
-		Widget_Countdown1_GEN_VARIABLE_BP_Widget_DropPod_AltitudeMeter_C_CAT,
-		Widget_MissionData1_GEN_VARIABLE_BP_Widget_DropPod_MissionType_C_CAT,
-		Widget_RandomCode01_GEN_VARIABLE_BP_Widget_DropPod_GarbageGen_C_CAT,
-		BP_Bosco_C,
-		StateDisplay_GEN_VARIABLE_BP_BoscoStateDisplay_C_CAT,
-		AIC_Donkey_C,
-		BP_DonkeyDestinationMarker_C,
-		BP_Donkey_Facility_C,
-		AIC_BoscoController_C,
-		BP_MorchellaFungus_C,
-		BP_Mushroom_01_C,
-		DeepCSGWorld,
-		BP_MeteorShowerTimer_C,
-		BP_MainFacility_DataVault_C,
-		ENE_FacilityCaretaker_C,
-		AIController,
-		BP_MainFacility_PowerCable_C,
-		BP_Barley4_1_C,
-		LHologram_GEN_VARIABLE_BP_MainFacility_ShieldEmitter_Hologram_C_CAT,
-		RHologram_GEN_VARIABLE_BP_MainFacility_ShieldEmitter_Hologram_C_CAT,
-		ChildActor_GEN_VARIABLE_BP_MainFacility_Batteryholder_C_CAT,
-		TentacleSpawn_GEN_VARIABLE_BP_FacilityTentacleManager_C_CAT,
-		TentacleSpawn3_GEN_VARIABLE_BP_FacilityTentacleManager_C_CAT,
-		TentacleSpawn1_GEN_VARIABLE_BP_FacilityTentacleManager_C_CAT,
-		BP_Bosco_Character_C,
-		BP_DrillerCharacter_C,
-		BP_NavigatorCharacter_C,
-
-
+		ENE_Spider_Tank_Base_C,
+		ENE_Mactera_TripleShooter_C,
+		ENE_TerminatorTentacle_C,
+		ENE_LootBug_Gold_C,
+		ENE_Spider_Grunt_Rock_C,
+		ENE_Terminator_C,
+		ENE_Spider_Grunt_Attacker_Radioactive_C,
+		ENE_Spider_Shooter_Rockpox_Plague_C,
+		ENE_Spider_Boss_TwinB_C,
+		ENE_Spider_ExploderTank_C,
+		ENE_Spider_Boss_Heavy_C,
+		ENE_GliderBeast_C,
+		ENE_Flea_C,
+		ENE_Spider_Grunt_Attacker_C,
+		ENE_ElectricPlantVThree_C,
+		ENE_Spider_Tank_Boss_C,
+		ENE_Spider_Grunt_Radioactive_C,
+		ENE_Spider_Stinger_C,
+		ENE_PF_SpiderBase_C,
+		ENE_Spider_Spawn_C,
+		ENE_Maggot_Red1_C,
+		ENE_StabberVines2_C,
 		ENE_Spider_Swarmer_C,
-		AIC_Spider_Swarmer_C,
+		ENE_Spider_Buffer_C,
+		ENE_Mactera_Shooter_Normal_C,
+		ENE_Spider_Swarmer_Ice_C,
+		ENE_ShootingPlant_C,
+		ENE_Parasite_C,
+		ENE_Mactera_Amber_C,
+		ENE_InsectSwarm_Spawner_C,
+		ENE_Woodlouse_Youngling_C,
+		ENE_Bomber_Ice_C,
+		ENE_Spider_Grunt_Base_C,
+		ENE_BoughWasp_Nest_Medium3_C,
+		ENE_Bomber_C,
+		ENE_Maggot_C,
+		ENE_SmallShootingPlant_RegenPod_C,
+		ENE_Shredder_Base_C,
+		ENE_StabberVine_Tentacle_C,
+		ENE_InfestationLarva_C,
+		ENE_Woodlouse_C,
+		ENE_Shark_C,
+		ENE_Maggot_Normal_C,
+		ENE_FlyingSmartRock_C,
+		ENE_EnemySpawner_C,
+		ENE_Spider_Exploding_Warning_C,
+		ENE_Spider_Grunt_Ice_C,
+		ENE_FacilityTurret_Barrier_C,
+		ENE_FacilityTentacle_C,
+		ENE_Jelly_Passive_Mother_C,
+		ENE_InsectSwarm_C,
+		ENE_Maggot_Azure_C,
+		ENE_Spider_Shooter_Queen_C,
+		ENE_JellyBreeder_RockpoxPlague_C,
+		ENE_WalkingPlagueheart_C,
+		ENE_Spider_Hoarder_C,
+		ENE_StabberVines_C,
+		ENE_Spider_Tank_RockpoxPlague_C,
+		ENE_FacilityCaretaker_C,
+		ENE_InfectedMule_C,
+		ENE_Mactera_Shooter_Base_C,
+		ENE_Maggot_HollowBough_Grub_C,
+		ENE_Spider_Shooter_Normal_C,
+		ENE_Spider_Grunt_RockpoxPlague_C,
+		ENE_CaveLeech_C,
+		ENE_FacilityTurret_Base_C,
+		ENE_Maggot_Green1_C,
+		ENE_Maggot_SplineTrail_C,
+		ENE_Mactera_Shooter_HeavyVeteran_C,
+		ENE_PlagueShark_C,
+		ENE_Spider_Lobber_C,
+		ENE_PatrolBot_C,
+		ENE_PatrolBot_Caretaker_C,
+		ENE_SpiderBase_Large_C,
+		ENE_BoughWasp_Nest_Small_C,
+		ENE_Spider_Lobber_Base_C,
 	};
 
 	typedef struct ActorInfo_t {
@@ -230,430 +262,336 @@ namespace DRG
 	} PawnInfo_t;
 
 	typedef struct ClassLookupEntry_t {
-		CG::FName& refFName;
+		std::string_view sName;
+		int32_t ComparisonIndex;
 		EFNames iLookupIndex;
 	} ClassLookupEntry_t;
+
+	inline std::vector<ClassLookupEntry_t> vecClassLookups{
+		PUTS_THE_FNAME_IN_THE_BAG(Invalid),
+		PUTS_THE_FNAME_IN_THE_BAG(Actor),
+		PUTS_THE_FNAME_IN_THE_BAG(APawn),
+		PUTS_THE_FNAME_IN_THE_BAG(ACharacter),
+		PUTS_THE_FNAME_IN_THE_BAG(AEQSTestingPawn),
+		PUTS_THE_FNAME_IN_THE_BAG(APlayerCharacter),
+		PUTS_THE_FNAME_IN_THE_BAG(ADefaultPawn),
+		PUTS_THE_FNAME_IN_THE_BAG(ASpectatorPawn),
+		PUTS_THE_FNAME_IN_THE_BAG(APathfinderVehicle),
+		PUTS_THE_FNAME_IN_THE_BAG(APlayerCameraDrone),
+		PUTS_THE_FNAME_IN_THE_BAG(AFSDPawn),
+		PUTS_THE_FNAME_IN_THE_BAG(ACaretaker),
+		PUTS_THE_FNAME_IN_THE_BAG(AEscortMule),
+		PUTS_THE_FNAME_IN_THE_BAG(ATowerModuleBase),
+		PUTS_THE_FNAME_IN_THE_BAG(AAimingTowerModule),
+		PUTS_THE_FNAME_IN_THE_BAG(AGuntowerModule),
+		PUTS_THE_FNAME_IN_THE_BAG(AHostileGuntowerModule),
+		PUTS_THE_FNAME_IN_THE_BAG(AHostileTargetingGuntowerModule),
+		PUTS_THE_FNAME_IN_THE_BAG(ALMGGuntoweModule),
+		PUTS_THE_FNAME_IN_THE_BAG(AHomingFireModule),
+		PUTS_THE_FNAME_IN_THE_BAG(ARandomFiringGuntowerModule),
+		PUTS_THE_FNAME_IN_THE_BAG(ARadialFireModule),
+		PUTS_THE_FNAME_IN_THE_BAG(AGuntowerWeakPoint),
+		PUTS_THE_FNAME_IN_THE_BAG(ATowerEventModule),
+		PUTS_THE_FNAME_IN_THE_BAG(AAimingTowerEventModule),
+		PUTS_THE_FNAME_IN_THE_BAG(AEnemyPawn),
+		PUTS_THE_FNAME_IN_THE_BAG(AStabberVineRoot),
+		PUTS_THE_FNAME_IN_THE_BAG(AParasiteEnemy),
+		PUTS_THE_FNAME_IN_THE_BAG(AInsectSwarmSpawner),
+		PUTS_THE_FNAME_IN_THE_BAG(AHydraWeedHealer),
+		PUTS_THE_FNAME_IN_THE_BAG(AShootingPlant),
+		PUTS_THE_FNAME_IN_THE_BAG(AHydraWeedShooter),
+		PUTS_THE_FNAME_IN_THE_BAG(AHydraWeedCore),
+		PUTS_THE_FNAME_IN_THE_BAG(AFacilityTurret),
+		PUTS_THE_FNAME_IN_THE_BAG(ASpinningFacilityturret),
+		PUTS_THE_FNAME_IN_THE_BAG(AAimingFacilityTurret),
+		PUTS_THE_FNAME_IN_THE_BAG(ATentacleBase),
+		PUTS_THE_FNAME_IN_THE_BAG(AFacilityTentacle),
+		PUTS_THE_FNAME_IN_THE_BAG(AStabberVine),
+		PUTS_THE_FNAME_IN_THE_BAG(ATerminatorTentacle),
+		PUTS_THE_FNAME_IN_THE_BAG(ACaveLeech),
+		PUTS_THE_FNAME_IN_THE_BAG(AEnemyDeepPathfinderCharacter),
+		PUTS_THE_FNAME_IN_THE_BAG(AAFlyingBug),
+		PUTS_THE_FNAME_IN_THE_BAG(ABomber),
+		PUTS_THE_FNAME_IN_THE_BAG(AFlyingLifter),
+		PUTS_THE_FNAME_IN_THE_BAG(AJellyBreeder),
+		PUTS_THE_FNAME_IN_THE_BAG(AConvertedRobot),
+		PUTS_THE_FNAME_IN_THE_BAG(AFlyingEnemyDeepPathfinderCharacter),
+		PUTS_THE_FNAME_IN_THE_BAG(AFriendlyParasite),
+		PUTS_THE_FNAME_IN_THE_BAG(AHalloweenSkull),
+		PUTS_THE_FNAME_IN_THE_BAG(AInsectSwarmEnemy),
+		PUTS_THE_FNAME_IN_THE_BAG(APatrolBot),
+		PUTS_THE_FNAME_IN_THE_BAG(APlagueWorm),
+		PUTS_THE_FNAME_IN_THE_BAG(AProspectorRobot),
+		PUTS_THE_FNAME_IN_THE_BAG(ASharkEnemy),
+		PUTS_THE_FNAME_IN_THE_BAG(AShredder),
+		PUTS_THE_FNAME_IN_THE_BAG(ASpiderEnemy),
+		PUTS_THE_FNAME_IN_THE_BAG(ATerminatorEnemy),
+		PUTS_THE_FNAME_IN_THE_BAG(AWoodLouse),
+		PUTS_THE_FNAME_IN_THE_BAG(ABosco),
+		PUTS_THE_FNAME_IN_THE_BAG(ABP_Bosco_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ACaveWorm),
+		PUTS_THE_FNAME_IN_THE_BAG(AMaggot),
+		PUTS_THE_FNAME_IN_THE_BAG(ADroneBase),
+		PUTS_THE_FNAME_IN_THE_BAG(ADroneCharacter),
+		PUTS_THE_FNAME_IN_THE_BAG(AMULE),
+		PUTS_THE_FNAME_IN_THE_BAG(AMolly),
+		PUTS_THE_FNAME_IN_THE_BAG(ABP_Donkey_C),
+		PUTS_THE_FNAME_IN_THE_BAG(AMiniMule),
+		PUTS_THE_FNAME_IN_THE_BAG(ARecallableActor),
+		PUTS_THE_FNAME_IN_THE_BAG(ARecallableSentryGun),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_AssaultRifle_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_Autocannon_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_BurstPistol_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_ChargeBlaster_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_CoilGun_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_CombatShotgun_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_Crossbow_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_Cryospray_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_DetPack_Detonator_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_DetPack_Detonator_Driller_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_DoubleDrills_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_DualMPs_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_FlameThrower_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_FlareGun_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_FuelLine_Builder_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_Gatling_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_GrapplingGun_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_GrenadeLauncher_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_HeavyParticleCannon_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_LineCutter_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_LockOnRifle_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_M1000_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_MicroMissileLauncher_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_MicrowaveGun_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_Pickaxe_Driller_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_Pickaxe_Engineer_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_Pickaxe_Gunner_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_Pickaxe_Scout_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_Pistol_A_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_PlasmaCarbine_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_PlatformGun_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_RecallableSentryGun_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_Revolver_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_SawedOffShotgun_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_ShieldRegeneratorItem_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_SMG_OneHand_C),
+		PUTS_THE_FNAME_IN_THE_BAG(WPN_ZipLineGun_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_JellyBreeder_Normal_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Butterfly_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Grunt_Guard_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Bomber_Fire_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_FlyingCritterBase_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Grunt_Guard_Radioactive_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Spitter_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_FacilityTurret_Spinning_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_ExploderTank_Ghost_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Grunt_Guard_Ice_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_FacilityTurret_Burst_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Drone_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Shooter_Ground_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Grunt_Normal_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Exploding_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Tank_Amber_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_HydraWeed_Core_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_JellyBreeder_Base_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Amber_Shooter_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Tank_Ice_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Jelly_Passive_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Boss_TwinA_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_ShootingPlant_Small_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Jelly_Swarmer_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Prospector_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_FacilityTentacle_End_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Tank_Rock_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_ExploderTank_King_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Harvester_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Exploding_Rockpox_Plague_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Bomber_Rockpox_Plague_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_ShieldTank_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_FacilityTurret_Sniper_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Shooter_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Swarmer_Radioactive_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_RapidShooter_Elite_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Bomber_Child_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Charger_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Swarmer_Pheromoned_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_PlagueLarva_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Jelly_Swarmer_Child_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Jelly_Spawn_Child_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_FacilityTentacle_Burrowing_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_SpiderSpawner_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Shooter_Normal_Elite_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Exploding_Warning_Radioactive_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Tank_Radioactive_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Grabber_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Boss_HeavySpawn_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_BoughWasp_Nest_Medium2_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Grunt_Attacker_Ice_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Shredder_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_RapidShooter_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Tank_Generic_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Tank_Normal_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_BoughWasp_Nest_Medium_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Boss_Base_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Boss_TwinBase_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_BoughWasp_Swarm_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Exploding_Radioactive_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_LootBug_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Tank_Base_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Mactera_TripleShooter_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_TerminatorTentacle_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_LootBug_Gold_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Grunt_Rock_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Terminator_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Grunt_Attacker_Radioactive_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Shooter_Rockpox_Plague_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Boss_TwinB_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_ExploderTank_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Boss_Heavy_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_GliderBeast_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Flea_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Grunt_Attacker_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_ElectricPlantVThree_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Tank_Boss_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Grunt_Radioactive_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Stinger_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_PF_SpiderBase_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Spawn_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Maggot_Red1_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_StabberVines2_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Swarmer_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Buffer_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Mactera_Shooter_Normal_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Swarmer_Ice_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_ShootingPlant_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Parasite_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Mactera_Amber_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_InsectSwarm_Spawner_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Woodlouse_Youngling_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Bomber_Ice_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Grunt_Base_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_BoughWasp_Nest_Medium3_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Bomber_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Maggot_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_SmallShootingPlant_RegenPod_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Shredder_Base_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_StabberVine_Tentacle_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_InfestationLarva_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Woodlouse_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Shark_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Maggot_Normal_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_FlyingSmartRock_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_EnemySpawner_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Exploding_Warning_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Grunt_Ice_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_FacilityTurret_Barrier_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_FacilityTentacle_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Jelly_Passive_Mother_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_InsectSwarm_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Maggot_Azure_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Shooter_Queen_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_JellyBreeder_RockpoxPlague_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_WalkingPlagueheart_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Hoarder_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_StabberVines_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Tank_RockpoxPlague_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_FacilityCaretaker_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_InfectedMule_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Mactera_Shooter_Base_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Maggot_HollowBough_Grub_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Shooter_Normal_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Grunt_RockpoxPlague_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_CaveLeech_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_FacilityTurret_Base_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Maggot_Green1_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Maggot_SplineTrail_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Mactera_Shooter_HeavyVeteran_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_PlagueShark_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Lobber_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_PatrolBot_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_PatrolBot_Caretaker_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_SpiderBase_Large_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_BoughWasp_Nest_Small_C),
+		PUTS_THE_FNAME_IN_THE_BAG(ENE_Spider_Lobber_Base_C),
+	};
 	
-	inline std::vector<ClassLookupEntry_t> vecClassLookups{};
-
-	inline CG::FName Invalid;
-	inline CG::FName APawn;
-	inline CG::FName ACharacter;
-	inline CG::FName AEQSTestingPawn;
-	inline CG::FName APlayerCharacter;
-	inline CG::FName ADefaultPawn;
-	inline CG::FName ASpectatorPawn;
-	inline CG::FName APathfinderVehicle;
-	inline CG::FName APlayerCameraDrone;
-	inline CG::FName AFSDPawn;
-	inline CG::FName ACaretaker;
-	inline CG::FName AEscortMule;
-	inline CG::FName ATowerModuleBase;
-	inline CG::FName AAimingTowerModule;
-	inline CG::FName AGuntowerModule;
-	inline CG::FName AHostileGuntowerModule;
-	inline CG::FName AHostileTargetingGuntowerModule;
-	inline CG::FName ALMGGuntoweModule;
-	inline CG::FName AHomingFireModule;
-	inline CG::FName ARandomFiringGuntowerModule;
-	inline CG::FName ARadialFireModule;
-	inline CG::FName AGuntowerWeakPoint;
-	inline CG::FName ATowerEventModule;
-	inline CG::FName AAimingTowerEventModule;
-	inline CG::FName AEnemyPawn;
-	inline CG::FName AStabberVineRoot;
-	inline CG::FName AParasiteEnemy;
-	inline CG::FName AInsectSwarmSpawner;
-	inline CG::FName AHydraWeedHealer;
-	inline CG::FName AShootingPlant;
-	inline CG::FName AHydraWeedShooter;
-	inline CG::FName AHydraWeedCore;
-	inline CG::FName AFacilityTurret;
-	inline CG::FName ASpinningFacilityturret;
-	inline CG::FName AAimingFacilityTurret;
-	inline CG::FName ATentacleBase;
-	inline CG::FName AFacilityTentacle;
-	inline CG::FName AStabberVine;
-	inline CG::FName ATerminatorTentacle;
-	inline CG::FName ACaveLeech;
-	inline CG::FName AEnemyDeepPathfinderCharacter;
-	inline CG::FName AAFlyingBug;
-	inline CG::FName ABomber;
-	inline CG::FName AFlyingLifter;
-	inline CG::FName AJellyBreeder;
-	inline CG::FName AConvertedRobot;
-	inline CG::FName AFlyingEnemyDeepPathfinderCharacter;
-	inline CG::FName AFriendlyParasite;
-	inline CG::FName AHalloweenSkull;
-	inline CG::FName AInsectSwarmEnemy;
-	inline CG::FName APatrolBot;
-	inline CG::FName APlagueWorm;
-	inline CG::FName AProspectorRobot;
-	inline CG::FName ASharkEnemy;
-	inline CG::FName AShredder;
-	inline CG::FName ASpiderEnemy;
-	inline CG::FName ATerminatorEnemy;
-	inline CG::FName AWoodLouse;
-	inline CG::FName ABosco;
-	inline CG::FName ABP_Bosco_C;
-	inline CG::FName ACaveWorm;
-	inline CG::FName AMaggot;
-	inline CG::FName ADroneBase;
-	inline CG::FName ADroneCharacter;
-	inline CG::FName AMULE;
-	inline CG::FName AMolly;
-	inline CG::FName ABP_Donkey_C;
-	inline CG::FName AMiniMule;
-	inline CG::FName ARecallableActor;
-	inline CG::FName ARecallableSentryGun;
-	inline CG::FName WPN_AssaultRifle_C;
-	inline CG::FName WPN_Autocannon_C;
-	inline CG::FName WPN_BurstPistol_C;
-	inline CG::FName WPN_ChargeBlaster_C;
-	inline CG::FName WPN_CoilGun_C;
-	inline CG::FName WPN_CombatShotgun_C;
-	inline CG::FName WPN_Crossbow_C;
-	inline CG::FName WPN_Cryospray_C;
-	inline CG::FName WPN_DetPack_Detonator_C;
-	inline CG::FName WPN_DetPack_Detonator_Driller_C;
-	inline CG::FName WPN_DoubleDrills_C;
-	inline CG::FName WPN_DualMPs_C;
-	inline CG::FName WPN_FlameThrower_C;
-	inline CG::FName WPN_FlareGun_C;
-	inline CG::FName WPN_FuelLine_Builder_C;
-	inline CG::FName WPN_Gatling_C;
-	inline CG::FName WPN_GrapplingGun_C;
-	inline CG::FName WPN_GrenadeLauncher_C;
-	inline CG::FName WPN_HeavyParticleCannon_C;
-	inline CG::FName WPN_LineCutter_C;
-	inline CG::FName WPN_LockOnRifle_C;
-	inline CG::FName WPN_M1000_C;
-	inline CG::FName WPN_MicroMissileLauncher_C;
-	inline CG::FName WPN_MicrowaveGun_C;
-	inline CG::FName WPN_Pickaxe_Driller_C;
-	inline CG::FName WPN_Pickaxe_Engineer_C;
-	inline CG::FName WPN_Pickaxe_Gunner_C;
-	inline CG::FName WPN_Pickaxe_Scout_C;
-	inline CG::FName WPN_Pistol_A_C;
-	inline CG::FName WPN_PlasmaCarbine_C;
-	inline CG::FName WPN_PlatformGun_C;
-	inline CG::FName WPN_RecallableSentryGun_C;
-	inline CG::FName WPN_Revolver_C;
-	inline CG::FName WPN_SawedOffShotgun_C;
-	inline CG::FName WPN_ShieldRegeneratorItem_C;
-	inline CG::FName WPN_SMG_OneHand_C;
-	inline CG::FName WPN_ZipLineGun_C;
-	inline CG::FName DeepCSGSection;
-	inline CG::FName MiningPodCalldownLocation;
-	inline CG::FName ENE_FacilityTurret_Barrier_C;
-	inline CG::FName AIC_FacilityTurret_Burst_C;
-	inline CG::FName BP_ExplodingPlant_Small_C;
-	inline CG::FName BP_SpiderEgg3_C;
-	inline CG::FName BP_SpiderEgg2_C;
-	inline CG::FName HealingCrystal_Light_C;
-	inline CG::FName BP_ExplodingPlant_Medium_C;
-	inline CG::FName BP_Apoca_Bloom_C;
-	inline CG::FName BP_SpiderEgg_C;
-	inline CG::FName BP_NetFungus_C;
-	inline CG::FName ENE_FacilityTurret_Burst_C;
-	inline CG::FName BP_ShortStemFungus_C;
-	inline CG::FName BP_PhazyoniteChunk_C;
-	inline CG::FName BP_CroppaChunk_C;
-	inline CG::FName BP_NitraChunk_C;
-	inline CG::FName BP_GoldChunk_C;
-	inline CG::FName BP_RedSugarChunk_C;
-	inline CG::FName NavMeshBoundsVolume;
-	inline CG::FName BP_Character_ShowroomStage_C;
-	inline CG::FName BP_GunnerCharacter_C;
-	inline CG::FName BP_PoisonGasFungus_C;
-	inline CG::FName BP_Barley3_1_C;
-	inline CG::FName BP_Facility_PowerStation_ShieldGenerator_C;
-	inline CG::FName BP_Barley4_4_C;
-	inline CG::FName BP_PlayerStart_C;
-	inline CG::FName BP_LostPackDebrisPart_C;
-	inline CG::FName BP_LostPackStart_C;
-	inline CG::FName FadeUpFromBlack_LevelSequence;
-	inline CG::FName BP_Gem_Jadiz_C;
-	inline CG::FName TentacleSpawn2_GEN_VARIABLE_BP_FacilityTentacleManager_C_CAT;
-	inline CG::FName BP_FSDCameraManager_C;
-	inline CG::FName Widget_RandomCode06_GEN_VARIABLE_BP_Widget_DropPod_GarbageGen_C_CAT;
-	inline CG::FName Widget_RandomCode05_GEN_VARIABLE_BP_Widget_DropPod_GarbageGen_C_CAT;
-	inline CG::FName Widget_RandomCode04_GEN_VARIABLE_BP_Widget_DropPod_GarbageGen_C_CAT;
-	inline CG::FName Widget_RandomCode02_GEN_VARIABLE_BP_Widget_DropPod_GarbageGen_C_CAT;
-	inline CG::FName ChildActor1_GEN_VARIABLE_BP_Widget_DropPod_DangerLevel_C_CAT;
-	inline CG::FName Widget_ResourceScreen02_GEN_VARIABLE_BP_Widget_DropPod_BiomeRadar_C_CAT;
-	inline CG::FName BP_DropPod_Landing_C;
-	inline CG::FName Widget_Countdown2_GEN_VARIABLE_BP_Widget_DropPod_AltitudeMeter_C_CAT;
-	inline CG::FName BP_Drop_CamShake_C;
-	inline CG::FName Widget_RandomCode07_GEN_VARIABLE_BP_Widget_DropPod_GarbageGen_C_CAT;
-	inline CG::FName FSDWorldSettings;
-	inline CG::FName DefaultPhysicsVolume;
-	inline CG::FName GM_Facility_C;
-	inline CG::FName Widget_RandomCode03_GEN_VARIABLE_BP_Widget_DropPod_GarbageGen_C_CAT;
-	inline CG::FName FSDGameSession;
-	inline CG::FName ParticleEventManager;
-	inline CG::FName GameNetworkManager;
-	inline CG::FName Widget_CaveData1_GEN_VARIABLE_BP_Widget_DropPod_Complexity_C_CAT;
-	inline CG::FName LVL_Procedural_C;
-	inline CG::FName WorldSettings;
-	inline CG::FName BP_GameState_C;
-	inline CG::FName AIC_LootBug_C;
-	inline CG::FName ENE_LootBug_C;
-	inline CG::FName BP_NetworkPlayerController_C;
-	inline CG::FName BP_PlayerState_C;
-	inline CG::FName AsyncLevelPersistanceActor;
-	inline CG::FName GameStats;
-	inline CG::FName CameraActor;
-	inline CG::FName PLS_Facility_C;
-	inline CG::FName Actor;
-	inline CG::FName BP_TruckerBalls_GEN_VARIABLE_BP_TruckerBalls_C_CAT;
-	inline CG::FName BP_PostProcessing_FungusBogs_C;
-	inline CG::FName PostProcessingManager;
-	inline CG::FName DBA_FungusBogs_C;
-	inline CG::FName BP_TutorialManager_Base_C;
-	inline CG::FName ITM_GrenadeThrow_C;
-	inline CG::FName WPN_LaserPointer_C;
-	inline CG::FName ITM_TerrainScanner_C;
-	inline CG::FName ChildActor_GEN_VARIABLE_BP_Widget_DropPod_DangerLevel_C_CAT;
-	inline CG::FName ITM_SupplyDrop_C;
-	inline CG::FName BP_HUD_C;
-	inline CG::FName LevelSequenceActor;
-	inline CG::FName MusicReplicator;
-	inline CG::FName Widget_ResourceScreen01_GEN_VARIABLE_BP_Widget_DropPod_BiomeRadar_C_CAT;
-	inline CG::FName Widget_Countdown1_GEN_VARIABLE_BP_Widget_DropPod_AltitudeMeter_C_CAT;
-	inline CG::FName Widget_MissionData1_GEN_VARIABLE_BP_Widget_DropPod_MissionType_C_CAT;
-	inline CG::FName Widget_RandomCode01_GEN_VARIABLE_BP_Widget_DropPod_GarbageGen_C_CAT;
-	inline CG::FName BP_Bosco_C;
-	inline CG::FName StateDisplay_GEN_VARIABLE_BP_BoscoStateDisplay_C_CAT;
-	inline CG::FName AIC_Donkey_C;
-	inline CG::FName BP_DonkeyDestinationMarker_C;
-	inline CG::FName BP_Donkey_Facility_C;
-	inline CG::FName AIC_BoscoController_C;
-	inline CG::FName BP_MorchellaFungus_C;
-	inline CG::FName BP_Mushroom_01_C;
-	inline CG::FName DeepCSGWorld;
-	inline CG::FName BP_MeteorShowerTimer_C;
-	inline CG::FName BP_MainFacility_DataVault_C;
-	inline CG::FName ENE_FacilityCaretaker_C;
-	inline CG::FName AIController;
-	inline CG::FName BP_MainFacility_PowerCable_C;
-	inline CG::FName BP_Barley4_1_C;
-	inline CG::FName LHologram_GEN_VARIABLE_BP_MainFacility_ShieldEmitter_Hologram_C_CAT;
-	inline CG::FName RHologram_GEN_VARIABLE_BP_MainFacility_ShieldEmitter_Hologram_C_CAT;
-	inline CG::FName ChildActor_GEN_VARIABLE_BP_MainFacility_Batteryholder_C_CAT;
-	inline CG::FName TentacleSpawn_GEN_VARIABLE_BP_FacilityTentacleManager_C_CAT;
-	inline CG::FName TentacleSpawn3_GEN_VARIABLE_BP_FacilityTentacleManager_C_CAT;
-	inline CG::FName TentacleSpawn1_GEN_VARIABLE_BP_FacilityTentacleManager_C_CAT;
-	inline CG::FName BP_Bosco_Character_C;
-	inline CG::FName BP_DrillerCharacter_C;
-	inline CG::FName BP_NavigatorCharacter_C;
-
 	inline void InitializeFNames()
 	{
+		Utils::LogDebug(Utils::GetLocation(CurrentLoc), (std::stringstream() << "GNames: 0x" << CG::FName::GNames).str());
+		Utils::LogDebug(Utils::GetLocation(CurrentLoc), (std::stringstream() << "GNames Count: " << CG::FName::GNames->Count()).str());
+		
 
-		FNAME_INITIALIZATION_MACRO(Invalid);
-		FNAME_INITIALIZATION_MACRO(APawn);
-		FNAME_INITIALIZATION_MACRO(ACharacter);
-		FNAME_INITIALIZATION_MACRO(AEQSTestingPawn);
-		FNAME_INITIALIZATION_MACRO(APlayerCharacter);
-		FNAME_INITIALIZATION_MACRO(ADefaultPawn);
-		FNAME_INITIALIZATION_MACRO(ASpectatorPawn);
-		FNAME_INITIALIZATION_MACRO(APathfinderVehicle);
-		FNAME_INITIALIZATION_MACRO(APlayerCameraDrone);
-		FNAME_INITIALIZATION_MACRO(AFSDPawn);
-		FNAME_INITIALIZATION_MACRO(ACaretaker);
-		FNAME_INITIALIZATION_MACRO(AEscortMule);
-		FNAME_INITIALIZATION_MACRO(ATowerModuleBase);
-		FNAME_INITIALIZATION_MACRO(AAimingTowerModule);
-		FNAME_INITIALIZATION_MACRO(AGuntowerModule);
-		FNAME_INITIALIZATION_MACRO(AHostileGuntowerModule);
-		FNAME_INITIALIZATION_MACRO(AHostileTargetingGuntowerModule);
-		FNAME_INITIALIZATION_MACRO(ALMGGuntoweModule);
-		FNAME_INITIALIZATION_MACRO(AHomingFireModule);
-		FNAME_INITIALIZATION_MACRO(ARandomFiringGuntowerModule);
-		FNAME_INITIALIZATION_MACRO(ARadialFireModule);
-		FNAME_INITIALIZATION_MACRO(AGuntowerWeakPoint);
-		FNAME_INITIALIZATION_MACRO(ATowerEventModule);
-		FNAME_INITIALIZATION_MACRO(AAimingTowerEventModule);
-		FNAME_INITIALIZATION_MACRO(AEnemyPawn);
-		FNAME_INITIALIZATION_MACRO(AStabberVineRoot);
-		FNAME_INITIALIZATION_MACRO(AParasiteEnemy);
-		FNAME_INITIALIZATION_MACRO(AInsectSwarmSpawner);
-		FNAME_INITIALIZATION_MACRO(AHydraWeedHealer);
-		FNAME_INITIALIZATION_MACRO(AShootingPlant);
-		FNAME_INITIALIZATION_MACRO(AHydraWeedShooter);
-		FNAME_INITIALIZATION_MACRO(AHydraWeedCore);
-		FNAME_INITIALIZATION_MACRO(AFacilityTurret);
-		FNAME_INITIALIZATION_MACRO(ASpinningFacilityturret);
-		FNAME_INITIALIZATION_MACRO(AAimingFacilityTurret);
-		FNAME_INITIALIZATION_MACRO(ATentacleBase);
-		FNAME_INITIALIZATION_MACRO(AFacilityTentacle);
-		FNAME_INITIALIZATION_MACRO(AStabberVine);
-		FNAME_INITIALIZATION_MACRO(ATerminatorTentacle);
-		FNAME_INITIALIZATION_MACRO(ACaveLeech);
-		FNAME_INITIALIZATION_MACRO(AEnemyDeepPathfinderCharacter);
-		FNAME_INITIALIZATION_MACRO(AAFlyingBug);
-		FNAME_INITIALIZATION_MACRO(ABomber);
-		FNAME_INITIALIZATION_MACRO(AFlyingLifter);
-		FNAME_INITIALIZATION_MACRO(AJellyBreeder);
-		FNAME_INITIALIZATION_MACRO(AConvertedRobot);
-		FNAME_INITIALIZATION_MACRO(AFlyingEnemyDeepPathfinderCharacter);
-		FNAME_INITIALIZATION_MACRO(AFriendlyParasite);
-		FNAME_INITIALIZATION_MACRO(AHalloweenSkull);
-		FNAME_INITIALIZATION_MACRO(AInsectSwarmEnemy);
-		FNAME_INITIALIZATION_MACRO(APatrolBot);
-		FNAME_INITIALIZATION_MACRO(APlagueWorm);
-		FNAME_INITIALIZATION_MACRO(AProspectorRobot);
-		FNAME_INITIALIZATION_MACRO(ASharkEnemy);
-		FNAME_INITIALIZATION_MACRO(AShredder);
-		FNAME_INITIALIZATION_MACRO(ASpiderEnemy);
-		FNAME_INITIALIZATION_MACRO(ATerminatorEnemy);
-		FNAME_INITIALIZATION_MACRO(AWoodLouse);
-		FNAME_INITIALIZATION_MACRO(ABosco);
-		FNAME_INITIALIZATION_MACRO(ABP_Bosco_C);
-		FNAME_INITIALIZATION_MACRO(ACaveWorm);
-		FNAME_INITIALIZATION_MACRO(AMaggot);
-		FNAME_INITIALIZATION_MACRO(ADroneBase);
-		FNAME_INITIALIZATION_MACRO(ADroneCharacter);
-		FNAME_INITIALIZATION_MACRO(AMULE);
-		FNAME_INITIALIZATION_MACRO(AMolly);
-		FNAME_INITIALIZATION_MACRO(ABP_Donkey_C);
-		FNAME_INITIALIZATION_MACRO(AMiniMule);
-		FNAME_INITIALIZATION_MACRO(ARecallableActor);
-		FNAME_INITIALIZATION_MACRO(ARecallableSentryGun);
-		FNAME_INITIALIZATION_MACRO(WPN_AssaultRifle_C);
-		FNAME_INITIALIZATION_MACRO(WPN_Autocannon_C);
-		FNAME_INITIALIZATION_MACRO(WPN_BurstPistol_C);
-		FNAME_INITIALIZATION_MACRO(WPN_ChargeBlaster_C);
-		FNAME_INITIALIZATION_MACRO(WPN_CoilGun_C);
-		FNAME_INITIALIZATION_MACRO(WPN_CombatShotgun_C);
-		FNAME_INITIALIZATION_MACRO(WPN_Crossbow_C);
-		FNAME_INITIALIZATION_MACRO(WPN_Cryospray_C);
-		FNAME_INITIALIZATION_MACRO(WPN_DetPack_Detonator_C);
-		FNAME_INITIALIZATION_MACRO(WPN_DetPack_Detonator_Driller_C);
-		FNAME_INITIALIZATION_MACRO(WPN_DoubleDrills_C);
-		FNAME_INITIALIZATION_MACRO(WPN_DualMPs_C);
-		FNAME_INITIALIZATION_MACRO(WPN_FlameThrower_C);
-		FNAME_INITIALIZATION_MACRO(WPN_FlareGun_C);
-		FNAME_INITIALIZATION_MACRO(WPN_FuelLine_Builder_C);
-		FNAME_INITIALIZATION_MACRO(WPN_Gatling_C);
-		FNAME_INITIALIZATION_MACRO(WPN_GrapplingGun_C);
-		FNAME_INITIALIZATION_MACRO(WPN_GrenadeLauncher_C);
-		FNAME_INITIALIZATION_MACRO(WPN_HeavyParticleCannon_C);
-		FNAME_INITIALIZATION_MACRO(WPN_LineCutter_C);
-		FNAME_INITIALIZATION_MACRO(WPN_LockOnRifle_C);
-		FNAME_INITIALIZATION_MACRO(WPN_M1000_C);
-		FNAME_INITIALIZATION_MACRO(WPN_MicroMissileLauncher_C);
-		FNAME_INITIALIZATION_MACRO(WPN_MicrowaveGun_C);
-		FNAME_INITIALIZATION_MACRO(WPN_Pickaxe_Driller_C);
-		FNAME_INITIALIZATION_MACRO(WPN_Pickaxe_Engineer_C);
-		FNAME_INITIALIZATION_MACRO(WPN_Pickaxe_Gunner_C);
-		FNAME_INITIALIZATION_MACRO(WPN_Pickaxe_Scout_C);
-		FNAME_INITIALIZATION_MACRO(WPN_Pistol_A_C);
-		FNAME_INITIALIZATION_MACRO(WPN_PlasmaCarbine_C);
-		FNAME_INITIALIZATION_MACRO(WPN_PlatformGun_C);
-		FNAME_INITIALIZATION_MACRO(WPN_RecallableSentryGun_C);
-		FNAME_INITIALIZATION_MACRO(WPN_Revolver_C);
-		FNAME_INITIALIZATION_MACRO(WPN_SawedOffShotgun_C);
-		FNAME_INITIALIZATION_MACRO(WPN_ShieldRegeneratorItem_C);
-		FNAME_INITIALIZATION_MACRO(WPN_SMG_OneHand_C);
-		FNAME_INITIALIZATION_MACRO(WPN_ZipLineGun_C);
-		FNAME_INITIALIZATION_MACRO(DeepCSGSection);
-		FNAME_INITIALIZATION_MACRO(MiningPodCalldownLocation);
-		FNAME_INITIALIZATION_MACRO(ENE_FacilityTurret_Barrier_C);
-		FNAME_INITIALIZATION_MACRO(AIC_FacilityTurret_Burst_C);
-		FNAME_INITIALIZATION_MACRO(BP_ExplodingPlant_Small_C);
-		FNAME_INITIALIZATION_MACRO(BP_SpiderEgg3_C);
-		FNAME_INITIALIZATION_MACRO(BP_SpiderEgg2_C);
-		FNAME_INITIALIZATION_MACRO(HealingCrystal_Light_C);
-		FNAME_INITIALIZATION_MACRO(BP_ExplodingPlant_Medium_C);
-		FNAME_INITIALIZATION_MACRO(BP_Apoca_Bloom_C);
-		FNAME_INITIALIZATION_MACRO(BP_SpiderEgg_C);
-		FNAME_INITIALIZATION_MACRO(BP_NetFungus_C);
-		FNAME_INITIALIZATION_MACRO(ENE_FacilityTurret_Burst_C);
-		FNAME_INITIALIZATION_MACRO(BP_ShortStemFungus_C);
-		FNAME_INITIALIZATION_MACRO(BP_PhazyoniteChunk_C);
-		FNAME_INITIALIZATION_MACRO(BP_CroppaChunk_C);
-		FNAME_INITIALIZATION_MACRO(BP_NitraChunk_C);
-		FNAME_INITIALIZATION_MACRO(BP_GoldChunk_C);
-		FNAME_INITIALIZATION_MACRO(BP_RedSugarChunk_C);
-		FNAME_INITIALIZATION_MACRO(NavMeshBoundsVolume);
-		FNAME_INITIALIZATION_MACRO(BP_Character_ShowroomStage_C);
-		FNAME_INITIALIZATION_MACRO(BP_GunnerCharacter_C);
-		FNAME_INITIALIZATION_MACRO(BP_PoisonGasFungus_C);
-		FNAME_INITIALIZATION_MACRO(BP_Barley3_1_C);
-		FNAME_INITIALIZATION_MACRO(BP_Facility_PowerStation_ShieldGenerator_C);
-		FNAME_INITIALIZATION_MACRO(BP_Barley4_4_C);
-		FNAME_INITIALIZATION_MACRO(BP_PlayerStart_C);
-		FNAME_INITIALIZATION_MACRO(BP_LostPackDebrisPart_C);
-		FNAME_INITIALIZATION_MACRO(BP_LostPackStart_C);
-		FNAME_INITIALIZATION_MACRO(FadeUpFromBlack_LevelSequence);
-		FNAME_INITIALIZATION_MACRO(BP_Gem_Jadiz_C);
-		FNAME_INITIALIZATION_MACRO(BP_FSDCameraManager_C);
-		FNAME_INITIALIZATION_MACRO(Widget_RandomCode06_GEN_VARIABLE_BP_Widget_DropPod_GarbageGen_C_CAT);
-		FNAME_INITIALIZATION_MACRO(Widget_RandomCode05_GEN_VARIABLE_BP_Widget_DropPod_GarbageGen_C_CAT);
-		FNAME_INITIALIZATION_MACRO(Widget_RandomCode04_GEN_VARIABLE_BP_Widget_DropPod_GarbageGen_C_CAT);
-		FNAME_INITIALIZATION_MACRO(Widget_RandomCode02_GEN_VARIABLE_BP_Widget_DropPod_GarbageGen_C_CAT);
-		FNAME_INITIALIZATION_MACRO(ChildActor1_GEN_VARIABLE_BP_Widget_DropPod_DangerLevel_C_CAT);
-		FNAME_INITIALIZATION_MACRO(Widget_ResourceScreen02_GEN_VARIABLE_BP_Widget_DropPod_BiomeRadar_C_CAT);
-		FNAME_INITIALIZATION_MACRO(BP_DropPod_Landing_C);
-		FNAME_INITIALIZATION_MACRO(Widget_Countdown2_GEN_VARIABLE_BP_Widget_DropPod_AltitudeMeter_C_CAT);
-		FNAME_INITIALIZATION_MACRO(BP_Drop_CamShake_C);
-		FNAME_INITIALIZATION_MACRO(Widget_RandomCode07_GEN_VARIABLE_BP_Widget_DropPod_GarbageGen_C_CAT);
-		FNAME_INITIALIZATION_MACRO(FSDWorldSettings);
-		FNAME_INITIALIZATION_MACRO(DefaultPhysicsVolume);
-		FNAME_INITIALIZATION_MACRO(GM_Facility_C);
-		FNAME_INITIALIZATION_MACRO(Widget_RandomCode03_GEN_VARIABLE_BP_Widget_DropPod_GarbageGen_C_CAT);
-		FNAME_INITIALIZATION_MACRO(FSDGameSession);
-		FNAME_INITIALIZATION_MACRO(ParticleEventManager);
-		FNAME_INITIALIZATION_MACRO(GameNetworkManager);
-		FNAME_INITIALIZATION_MACRO(Widget_CaveData1_GEN_VARIABLE_BP_Widget_DropPod_Complexity_C_CAT);
-		FNAME_INITIALIZATION_MACRO(LVL_Procedural_C);
-		FNAME_INITIALIZATION_MACRO(WorldSettings);
-		FNAME_INITIALIZATION_MACRO(BP_GameState_C);
-		FNAME_INITIALIZATION_MACRO(AIC_LootBug_C);
-		FNAME_INITIALIZATION_MACRO(ENE_LootBug_C);
-		FNAME_INITIALIZATION_MACRO(BP_NetworkPlayerController_C);
-		FNAME_INITIALIZATION_MACRO(BP_PlayerState_C);
-		FNAME_INITIALIZATION_MACRO(AsyncLevelPersistanceActor);
-		FNAME_INITIALIZATION_MACRO(GameStats);
-		FNAME_INITIALIZATION_MACRO(CameraActor);
-		FNAME_INITIALIZATION_MACRO(PLS_Facility_C);
-		FNAME_INITIALIZATION_MACRO(Actor);
-		FNAME_INITIALIZATION_MACRO(BP_TruckerBalls_GEN_VARIABLE_BP_TruckerBalls_C_CAT);
-		FNAME_INITIALIZATION_MACRO(BP_PostProcessing_FungusBogs_C);
-		FNAME_INITIALIZATION_MACRO(PostProcessingManager);
-		FNAME_INITIALIZATION_MACRO(DBA_FungusBogs_C);
-		FNAME_INITIALIZATION_MACRO(BP_TutorialManager_Base_C);
-		FNAME_INITIALIZATION_MACRO(ITM_GrenadeThrow_C);
-		FNAME_INITIALIZATION_MACRO(WPN_LaserPointer_C);
-		FNAME_INITIALIZATION_MACRO(ITM_TerrainScanner_C);
-		FNAME_INITIALIZATION_MACRO(ChildActor_GEN_VARIABLE_BP_Widget_DropPod_DangerLevel_C_CAT);
-		FNAME_INITIALIZATION_MACRO(ITM_SupplyDrop_C);
-		FNAME_INITIALIZATION_MACRO(BP_HUD_C);
-		FNAME_INITIALIZATION_MACRO(LevelSequenceActor);
-		FNAME_INITIALIZATION_MACRO(MusicReplicator);
-		FNAME_INITIALIZATION_MACRO(Widget_ResourceScreen01_GEN_VARIABLE_BP_Widget_DropPod_BiomeRadar_C_CAT);
-		FNAME_INITIALIZATION_MACRO(Widget_Countdown1_GEN_VARIABLE_BP_Widget_DropPod_AltitudeMeter_C_CAT);
-		FNAME_INITIALIZATION_MACRO(Widget_MissionData1_GEN_VARIABLE_BP_Widget_DropPod_MissionType_C_CAT);
-		FNAME_INITIALIZATION_MACRO(Widget_RandomCode01_GEN_VARIABLE_BP_Widget_DropPod_GarbageGen_C_CAT);
-		FNAME_INITIALIZATION_MACRO(BP_Bosco_C);
-		FNAME_INITIALIZATION_MACRO(AIC_Donkey_C);
-		FNAME_INITIALIZATION_MACRO(BP_DonkeyDestinationMarker_C);
-		FNAME_INITIALIZATION_MACRO(BP_Donkey_Facility_C);
-		FNAME_INITIALIZATION_MACRO(AIC_BoscoController_C);
-		FNAME_INITIALIZATION_MACRO(BP_MorchellaFungus_C);
-		FNAME_INITIALIZATION_MACRO(BP_Mushroom_01_C);
-		FNAME_INITIALIZATION_MACRO(DeepCSGWorld);
-		FNAME_INITIALIZATION_MACRO(BP_MeteorShowerTimer_C);
-		FNAME_INITIALIZATION_MACRO(BP_MainFacility_DataVault_C);
-		FNAME_INITIALIZATION_MACRO(ENE_FacilityCaretaker_C);
-		FNAME_INITIALIZATION_MACRO(AIController);
-		FNAME_INITIALIZATION_MACRO(BP_MainFacility_PowerCable_C);
-		FNAME_INITIALIZATION_MACRO(BP_Barley4_1_C);
-		FNAME_INITIALIZATION_MACRO(BP_Bosco_Character_C);
-		FNAME_INITIALIZATION_MACRO(BP_DrillerCharacter_C);
-		FNAME_INITIALIZATION_MACRO(BP_NavigatorCharacter_C);
+		size_t iGNameSize = 0;
+
+		int lastBlock = 0;
+		uintptr_t nextFNameAddress = reinterpret_cast<uintptr_t>(CG::FName::GNames->Allocator.Blocks[0]);
+
+		while (1) {
+
+		RePlay:
+			int32_t nextFNameComparisonId = MAKELONG((uint16_t)((nextFNameAddress - reinterpret_cast<uintptr_t>(CG::FName::GNames->Allocator.Blocks[lastBlock])) / 2), (uint16_t)lastBlock);
+			int32_t block = nextFNameComparisonId >> 16;
+			int32_t offset = (uint16_t)nextFNameComparisonId;
+			int32_t offsetFromBlock = static_cast<int32_t>(nextFNameAddress - reinterpret_cast<uintptr_t>(CG::FName::GNames->Allocator.Blocks[lastBlock]));
+
+			// Get entry information
+			const uintptr_t entryOffset = nextFNameAddress;
+			const int toAdd = 0x00 + 0x02; // HeaderOffset + HeaderSize
+
+			const uint16_t* pNameHeader = reinterpret_cast<uint16_t*>(entryOffset);
+
+			if (!IsValidObjectPtr(pNameHeader))
+				break;
+
+			const uint16_t nameHeader = *pNameHeader;
+			int nameLength = nameHeader >> 6;
+			bool isWide = (nameHeader & 1) != 0;
+			if (isWide)
+				nameLength += nameLength;
+
+			// if odd number (odd numbers are aligned with 0x00)
+			if (!isWide && nameLength % 2 != 0)
+				nameLength += 1;
+
+			// Block end ?
+			if (offsetFromBlock + toAdd + (nameLength * 2) >= 0xFFFF * CG::FNameEntryAllocator::Stride || nameHeader == 0x00 || block == CG::FName::GNames->Allocator.CurrentBlock && offset >= CG::FName::GNames->Allocator.CurrentByteCursor)
+			{
+				nextFNameAddress = reinterpret_cast<uintptr_t>(CG::FName::GNames->Allocator.Blocks[++lastBlock]);
+				goto RePlay;
+			}
+
+			std::string sName = std::string(reinterpret_cast<CG::FNameEntry*>(entryOffset)->AnsiName, nameHeader >> 6);
+
+			bool bDidFind = false;
+			for (int i = 0; i < vecClassLookups.size(); i++) {
+				if (vecClassLookups[i].ComparisonIndex)
+					continue;
+
+				if (sName != vecClassLookups[i].sName)
+					continue;
+
+				vecClassLookups[i].ComparisonIndex = nextFNameComparisonId;
+				Utils::LogDebug(Utils::GetLocation(CurrentLoc), "Initalized " + sName);
+				bDidFind = true;
+				break;
+			}
+
+			// We hit last Name in last Block
+			if (lastBlock > CG::FName::GNames->Allocator.CurrentBlock)
+				break;
+
+			// Get next name address
+			nextFNameAddress = entryOffset + toAdd + nameLength;
+			++iGNameSize;
+		}
+
+		for (ClassLookupEntry_t stLookupEntry : vecClassLookups) {
+			if (!stLookupEntry.ComparisonIndex)
+				Utils::LogError(Utils::GetLocation(CurrentLoc), "Didnt Find " + std::string(stLookupEntry.sName));
+		}
+
+
+		Utils::LogDebug(Utils::GetLocation(CurrentLoc), (std::stringstream() << "Resolved GNames Count: " << iGNameSize).str());
 	};
 }
 #undef FNAME_INITIALIZATION_MACRO
@@ -771,7 +709,7 @@ public:
 			auto comp_index = pActor->Name.ComparisonIndex;
 
 			for (auto entry : DRG::vecClassLookups) {
-				if (comp_index == entry.refFName.ComparisonIndex) {
+				if (comp_index == entry.ComparisonIndex) {
 					bFound = true;
 					lActorList.push_back(DRG::ActorInfo_t(pActor, entry.iLookupIndex));
 					break;

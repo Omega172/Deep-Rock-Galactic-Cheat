@@ -12,8 +12,8 @@ namespace Utils
 	bool IsReadableMemory(void* ptr, size_t byteCount);
 	bool IsReadableMemory(const void* ptr, size_t byteCount); 
 
-	size_t Strlen(char*    lpAddress, size_t dwMaxSize = 1024);
-	size_t Wcslen(wchar_t* lpAddress, size_t dwMaxSize = 1024);
+	size_t Strlen(const char*    lpAddress, size_t dwMaxSize = 1024);
+	size_t Wcslen(const wchar_t* lpAddress, size_t dwMaxSize = 1024);
 
 	void* GetVirtualMethod(void* ptr, size_t index);
 

@@ -94,6 +94,184 @@ void ESP::Render()
 	if (!pDRGPlayer)
 		return;
 
+
+	for (DRG::ActorInfo_t stInfo : pUnreal->ActorList) {
+		switch (stInfo.iLookupIndex) {
+		default:
+			break;
+
+		case DRG::EFNames::ENE_JellyBreeder_Normal_C:
+		case DRG::EFNames::ENE_Butterfly_C:
+		case DRG::EFNames::ENE_Spider_Grunt_Guard_C:
+		case DRG::EFNames::ENE_Bomber_Fire_C:
+		case DRG::EFNames::ENE_FlyingCritterBase_C:
+		case DRG::EFNames::ENE_Spider_Grunt_Guard_Radioactive_C:
+		case DRG::EFNames::ENE_Spider_Spitter_C:
+		case DRG::EFNames::ENE_FacilityTurret_Spinning_C:
+		case DRG::EFNames::ENE_Spider_ExploderTank_Ghost_C:
+		case DRG::EFNames::ENE_Spider_Grunt_Guard_Ice_C:
+		case DRG::EFNames::ENE_FacilityTurret_Burst_C:
+		case DRG::EFNames::ENE_Spider_Drone_C:
+		case DRG::EFNames::ENE_Spider_Shooter_Ground_C:
+		case DRG::EFNames::ENE_Spider_Grunt_Normal_C:
+		case DRG::EFNames::ENE_Spider_Exploding_C:
+		case DRG::EFNames::ENE_Spider_Tank_Amber_C:
+		case DRG::EFNames::ENE_HydraWeed_Core_C:
+		case DRG::EFNames::ENE_JellyBreeder_Base_C:
+		case DRG::EFNames::ENE_Spider_Amber_Shooter_C:
+		case DRG::EFNames::ENE_Spider_Tank_Ice_C:
+		case DRG::EFNames::ENE_Jelly_Passive_C:
+		case DRG::EFNames::ENE_Spider_Boss_TwinA_C:
+		case DRG::EFNames::ENE_ShootingPlant_Small_C:
+		case DRG::EFNames::ENE_Jelly_Swarmer_C:
+		case DRG::EFNames::ENE_Prospector_C:
+		case DRG::EFNames::ENE_FacilityTentacle_End_C:
+		case DRG::EFNames::ENE_Spider_Tank_Rock_C:
+		case DRG::EFNames::ENE_Spider_ExploderTank_King_C:
+		case DRG::EFNames::ENE_Harvester_C:
+		case DRG::EFNames::ENE_Spider_Exploding_Rockpox_Plague_C:
+		case DRG::EFNames::ENE_Bomber_Rockpox_Plague_C:
+		case DRG::EFNames::ENE_Spider_ShieldTank_C:
+		case DRG::EFNames::ENE_FacilityTurret_Sniper_C:
+		case DRG::EFNames::ENE_Spider_Shooter_C:
+		case DRG::EFNames::ENE_Spider_Swarmer_Radioactive_C:
+		case DRG::EFNames::ENE_Spider_RapidShooter_Elite_C:
+		case DRG::EFNames::ENE_Bomber_Child_C:
+		case DRG::EFNames::ENE_Spider_Charger_C:
+		case DRG::EFNames::ENE_Spider_Swarmer_Pheromoned_C:
+		case DRG::EFNames::ENE_PlagueLarva_C:
+		case DRG::EFNames::ENE_Jelly_Swarmer_Child_C:
+		case DRG::EFNames::ENE_Jelly_Spawn_Child_C:
+		case DRG::EFNames::ENE_FacilityTentacle_Burrowing_C:
+		case DRG::EFNames::ENE_SpiderSpawner_C:
+		case DRG::EFNames::ENE_Spider_Shooter_Normal_Elite_C:
+		case DRG::EFNames::ENE_Spider_Exploding_Warning_Radioactive_C:
+		case DRG::EFNames::ENE_Spider_Tank_Radioactive_C:
+		case DRG::EFNames::ENE_Grabber_C:
+		case DRG::EFNames::ENE_Spider_Boss_HeavySpawn_C:
+		case DRG::EFNames::ENE_BoughWasp_Nest_Medium2_C:
+		case DRG::EFNames::ENE_Spider_Grunt_Attacker_Ice_C:
+		case DRG::EFNames::ENE_Shredder_C:
+		case DRG::EFNames::ENE_Spider_RapidShooter_C:
+		case DRG::EFNames::ENE_Spider_Tank_Generic_C:
+		case DRG::EFNames::ENE_Spider_Tank_Normal_C:
+		case DRG::EFNames::ENE_BoughWasp_Nest_Medium_C:
+		case DRG::EFNames::ENE_Spider_Boss_Base_C:
+		case DRG::EFNames::ENE_Spider_Boss_TwinBase_C:
+		case DRG::EFNames::ENE_BoughWasp_Swarm_C:
+		case DRG::EFNames::ENE_Spider_Exploding_Radioactive_C:
+		case DRG::EFNames::ENE_LootBug_C:
+		case DRG::EFNames::ENE_Spider_Tank_Base_C:
+		case DRG::EFNames::ENE_Mactera_TripleShooter_C:
+		case DRG::EFNames::ENE_TerminatorTentacle_C:
+		case DRG::EFNames::ENE_LootBug_Gold_C:
+		case DRG::EFNames::ENE_Spider_Grunt_Rock_C:
+		case DRG::EFNames::ENE_Terminator_C:
+		case DRG::EFNames::ENE_Spider_Grunt_Attacker_Radioactive_C:
+		case DRG::EFNames::ENE_Spider_Shooter_Rockpox_Plague_C:
+		case DRG::EFNames::ENE_Spider_Boss_TwinB_C:
+		case DRG::EFNames::ENE_Spider_ExploderTank_C:
+		case DRG::EFNames::ENE_Spider_Boss_Heavy_C:
+		case DRG::EFNames::ENE_GliderBeast_C:
+		case DRG::EFNames::ENE_Flea_C:
+		case DRG::EFNames::ENE_Spider_Grunt_Attacker_C:
+		case DRG::EFNames::ENE_ElectricPlantVThree_C:
+		case DRG::EFNames::ENE_Spider_Tank_Boss_C:
+		case DRG::EFNames::ENE_Spider_Grunt_Radioactive_C:
+		case DRG::EFNames::ENE_Spider_Stinger_C:
+		case DRG::EFNames::ENE_PF_SpiderBase_C:
+		case DRG::EFNames::ENE_Spider_Spawn_C:
+		case DRG::EFNames::ENE_Maggot_Red1_C:
+		case DRG::EFNames::ENE_StabberVines2_C:
+		case DRG::EFNames::ENE_Spider_Swarmer_C:
+		case DRG::EFNames::ENE_Spider_Buffer_C:
+		case DRG::EFNames::ENE_Mactera_Shooter_Normal_C:
+		case DRG::EFNames::ENE_Spider_Swarmer_Ice_C:
+		case DRG::EFNames::ENE_ShootingPlant_C:
+		case DRG::EFNames::ENE_Parasite_C:
+		case DRG::EFNames::ENE_Mactera_Amber_C:
+		case DRG::EFNames::ENE_InsectSwarm_Spawner_C:
+		case DRG::EFNames::ENE_Woodlouse_Youngling_C:
+		case DRG::EFNames::ENE_Bomber_Ice_C:
+		case DRG::EFNames::ENE_Spider_Grunt_Base_C:
+		case DRG::EFNames::ENE_BoughWasp_Nest_Medium3_C:
+		case DRG::EFNames::ENE_Bomber_C:
+		case DRG::EFNames::ENE_Maggot_C:
+		case DRG::EFNames::ENE_SmallShootingPlant_RegenPod_C:
+		case DRG::EFNames::ENE_Shredder_Base_C:
+		case DRG::EFNames::ENE_StabberVine_Tentacle_C:
+		case DRG::EFNames::ENE_InfestationLarva_C:
+		case DRG::EFNames::ENE_Woodlouse_C:
+		case DRG::EFNames::ENE_Shark_C:
+		case DRG::EFNames::ENE_Maggot_Normal_C:
+		case DRG::EFNames::ENE_FlyingSmartRock_C:
+		case DRG::EFNames::ENE_EnemySpawner_C:
+		case DRG::EFNames::ENE_Spider_Exploding_Warning_C:
+		case DRG::EFNames::ENE_Spider_Grunt_Ice_C:
+		case DRG::EFNames::ENE_FacilityTurret_Barrier_C:
+		case DRG::EFNames::ENE_FacilityTentacle_C:
+		case DRG::EFNames::ENE_Jelly_Passive_Mother_C:
+		case DRG::EFNames::ENE_InsectSwarm_C:
+		case DRG::EFNames::ENE_Maggot_Azure_C:
+		case DRG::EFNames::ENE_Spider_Shooter_Queen_C:
+		case DRG::EFNames::ENE_JellyBreeder_RockpoxPlague_C:
+		case DRG::EFNames::ENE_WalkingPlagueheart_C:
+		case DRG::EFNames::ENE_Spider_Hoarder_C:
+		case DRG::EFNames::ENE_StabberVines_C:
+		case DRG::EFNames::ENE_Spider_Tank_RockpoxPlague_C:
+		case DRG::EFNames::ENE_FacilityCaretaker_C:
+		case DRG::EFNames::ENE_InfectedMule_C:
+		case DRG::EFNames::ENE_Mactera_Shooter_Base_C:
+		case DRG::EFNames::ENE_Maggot_HollowBough_Grub_C:
+		case DRG::EFNames::ENE_Spider_Shooter_Normal_C:
+		case DRG::EFNames::ENE_Spider_Grunt_RockpoxPlague_C:
+		case DRG::EFNames::ENE_CaveLeech_C:
+		case DRG::EFNames::ENE_FacilityTurret_Base_C:
+		case DRG::EFNames::ENE_Maggot_Green1_C:
+		case DRG::EFNames::ENE_Maggot_SplineTrail_C:
+		case DRG::EFNames::ENE_Mactera_Shooter_HeavyVeteran_C:
+		case DRG::EFNames::ENE_PlagueShark_C:
+		case DRG::EFNames::ENE_Spider_Lobber_C:
+		case DRG::EFNames::ENE_PatrolBot_C:
+		case DRG::EFNames::ENE_PatrolBot_Caretaker_C:
+		case DRG::EFNames::ENE_SpiderBase_Large_C:
+		case DRG::EFNames::ENE_BoughWasp_Nest_Small_C:
+		case DRG::EFNames::ENE_Spider_Lobber_Base_C:
+			if (!IsValidObjectPtr(stInfo.pActor))
+				break;
+
+			if (!stInfo.pActor->IsA(CG::AFSDPawn::StaticClass())) {
+				//std::cout << "ESP: " << stInfo.pActor->Name.GetName() << " is not an AFSDPawn!\n";
+				break;
+			}
+				
+
+			CG::FVector vecLocation, vecExtent;
+			stInfo.pActor->GetActorBounds(true, &vecLocation, &vecExtent, false);
+
+			ImRect rectBox{};
+			if (!GetBoxFromBBox(vecLocation, vecExtent, rectBox))
+				break;
+
+			ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, Black, 0.f, ImDrawFlags_None, 3.f);
+			ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, Cyan);
+
+			if (bBoxName) {
+				const char* szName = stInfo.pActor->Name.GetName().c_str();
+				int iLength = Utils::Strlen(szName);
+				if (iLength > 3) {
+					ImVec2 vecTextSize = ImGui::CalcTextSize(szName);
+					//ImGui::OutlinedText({ rectBox.Min.x + (rectBox.GetWidth() - vecTextSize.x) / 2, rectBox.Min.y - 17.f }, White, szName);
+				}
+			}
+			
+			break;
+		}
+	}
+
+	if (1)
+		return;
+
 	std::vector<CG::AFSDPawn*> apUnsortedActors = pUnreal->GetActors<CG::AFSDPawn>();
 	std::vector<CG::AFSDPawn*> apActors = pUnreal->SortActorsByDistance<CG::AFSDPawn*>(apUnsortedActors);
 
@@ -128,7 +306,7 @@ void ESP::Render()
 			std::string sName = pActor->Name.GetName();
 			ImVec2 vecTextSize = ImGui::CalcTextSize(sName.c_str());
 
-			ImGui::OutlinedText({ rectBox.Min.x + (rectBox.GetWidth() - vecTextSize.x) / 2, rectBox.Min.y - 17.f }, White, sName);
+			ImGui::OutlinedText({ rectBox.Min.x + (rectBox.GetWidth() - vecTextSize.x) / 2, rectBox.Min.y - 17.f }, White, sName.c_str());
 		}
 			
 

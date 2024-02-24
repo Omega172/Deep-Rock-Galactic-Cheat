@@ -116,6 +116,7 @@ void WeaponModifications::Run() {
 			pPickaxe->SpecialCooldownRemaining = 0.f;
 	}
 
+	/*
 	if (pItem->Name.ComparisonIndex == DRG::WPN_GrapplingGun_C.ComparisonIndex) {
 		CG::AWPN_GrapplingGun_C* pGrapplingGun = static_cast<CG::AWPN_GrapplingGun_C*>(pItem);
 		if (!IsValidObjectPtr(pGrapplingGun))
@@ -175,6 +176,7 @@ void WeaponModifications::Run() {
 		pWeapon->RecoilSettings.SpringStiffness = 0.f;
 		pWeapon->RecoilSettings.CriticalDampening = 0.f;
 	}
+	*/
 }
 
 void WeaponModifications::SaveConfig() { 
