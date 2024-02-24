@@ -552,11 +552,8 @@ void ESP::Render()
 				char szName[64];
 				szName[pPlayerState->GetPlayerName().ToString().copy(szName, 63, 0)] = 0;
 
-				size_t iLength = Utils::Strlen(szName);
-				if (iLength > 3) {
-					ImVec2 vecTextSize = ImGui::CalcTextSize(szName);
-					ImGui::OutlinedText({ rectBox.Min.x + (rectBox.GetWidth() - vecTextSize.x) / 2, rectBox.Min.y - 17.f }, White, szName);
-				}
+				ImVec2 vecTextSize = ImGui::CalcTextSize(szName);
+				ImGui::OutlinedText({ rectBox.Min.x + (rectBox.GetWidth() - vecTextSize.x) / 2, rectBox.Min.y - 17.f }, White, szName);
 			}
 
 			if (stPlayers.bDistance)
