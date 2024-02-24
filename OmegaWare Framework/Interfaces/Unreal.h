@@ -261,6 +261,9 @@ public:
 				}
 			}
 
+			if (stActorInfo.iLookupIndex == FNames::Invalid)
+				continue;
+
 			while (1) {
 				bool bFixed = true;
 				for (float flOtherDistance : AllDistances)
