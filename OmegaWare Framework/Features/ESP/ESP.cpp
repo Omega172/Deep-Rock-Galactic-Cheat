@@ -97,7 +97,7 @@ void ESP::PopulateMenu()
 
 
 		ESP->AddElement(new SliderInt(Cheat::localization->Get("ESP_DEBUG"), &iDebug, 0, 2000));
-		ESP->AddElement(new ColorPicker(Cheat::localization->Get("ESP_DEBUG_COLOR").c_str(), clrDebug, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoSidePreview | ImGuiColorEditFlags_AlphaBar | ImGuiColorEditFlags_NoLabel));
+		ESP->AddElement(new ColorPicker(Cheat::localization->Get("ESP_DEBUG_COLOR").c_str(), clrDebug, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoSidePreview | ImGuiColorEditFlags_AlphaBar));
 	}
 
 	Cheat::menu->AddElement(ESP, true);
