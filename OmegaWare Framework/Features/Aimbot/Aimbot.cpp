@@ -222,7 +222,7 @@ void Aimbot::Run()
 			if (!IsValidObjectPtr(pHealthComponent) || pHealthComponent->InternalIndex <= 0 || pHealthComponent->Name.ComparisonIndex == 0 || pHealthComponent->IsDead() || !pHealthComponent->canTakeDamage)
 				return true;
 
-			if (pActor->GetAttitude() <= CG::EPawnAttitude::Neutral)
+			if (pActor->GetAttitude() != CG::EPawnAttitude::Hostile)
 				return true;
 
 			CG::FVector vecAimLocation, vecExtent;
@@ -267,8 +267,7 @@ void Aimbot::Run()
 			if (!IsValidObjectPtr(pHealthComponent) || pHealthComponent->InternalIndex <= 0 || pHealthComponent->Name.ComparisonIndex == 0 || pHealthComponent->IsDead() || !pHealthComponent->canTakeDamage)
 				return true;
 
-			static CG::FName Flea("ENE_Flea_C");
-			if (pActor->GetAttitude() <= CG::EPawnAttitude::Neutral && pActor->Class->Name.ComparisonIndex != Flea.ComparisonIndex)
+			if (pActor->GetAttitude() != CG::EPawnAttitude::Hostile && FNames::GetLookupIndex(pActor->Name.ComparisonIndex) != FNames::ENE_Flea_C)
 				return true;
 
 			CG::USkeletalMeshComponent* pMesh = pActor->Mesh;
