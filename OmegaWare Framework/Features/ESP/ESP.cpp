@@ -312,7 +312,7 @@ void ESP::Render()
 		case FNames::ENE_BoughWasp_Nest_Small_C:
 		case FNames::ENE_Spider_Lobber_Base_C:
 		{
-			if (!IsValidObjectPtr(stInfo.pActor))
+			if ((iESPMaxDistance && stInfo.flDistance > iESPMaxDistance) || !IsValidObjectPtr(stInfo.pActor))
 				break;
 
 			CG::AFSDPawn* pPawn = reinterpret_cast<CG::AFSDPawn*>(stInfo.pActor);
@@ -321,9 +321,6 @@ void ESP::Render()
 
 			CG::UHealthComponent* pHealthComponent = reinterpret_cast<CG::UHealthComponent*>(pPawn->GetHealthComponent());
 			if (!IsValidObjectPtr(pHealthComponent) || pHealthComponent->InternalIndex <= 0 || pHealthComponent->Name.ComparisonIndex == 0 || pHealthComponent->IsDead())
-				break;
-
-			if (iESPMaxDistance && stInfo.flDistance > iESPMaxDistance)
 				break;
 
 			bool bIsEnemy = pPawn->GetAttitude() >= CG::EPawnAttitude::Hostile;
@@ -406,17 +403,11 @@ void ESP::Render()
 		case FNames::BP_Boolo_Cap_C:
 		case FNames::BP_Fossil_C:
 		{
-			if (!stObjectives.bEnabled)
-				break;
-
-			if (!IsValidObjectPtr(stInfo.pActor))
+			if (!stObjectives.bEnabled || (iESPMaxDistance && stInfo.flDistance > iESPMaxDistance) || !IsValidObjectPtr(stInfo.pActor))
 				break;
 
 			CG::ACarriableItem* pPawn = reinterpret_cast<CG::ACarriableItem*>(stInfo.pActor);
 			if (!IsValidObjectPtr(pPawn) || !stInfo.pActor->IsA(CG::ACarriableItem::StaticClass()))
-				break;
-
-			if (iESPMaxDistance && stInfo.flDistance > iESPMaxDistance)
 				break;
 
 			CG::FVector vecLocation, vecExtent;
@@ -458,13 +449,7 @@ void ESP::Render()
 		case FNames::BP_ProspectorDataDeposit_C:
 		case FNames::BP_JetBootsBox_C:
 		{
-			if (!stSpecialStructures.bEnabled)
-				break;
-
-			if (!IsValidObjectPtr(stInfo.pActor))
-				break;
-
-			if (iESPMaxDistance && stInfo.flDistance > iESPMaxDistance)
+			if (!stSpecialStructures.bEnabled || (iESPMaxDistance && stInfo.flDistance > iESPMaxDistance) || !IsValidObjectPtr(stInfo.pActor))
 				break;
 
 			CG::FVector vecLocation, vecExtent;
@@ -507,28 +492,17 @@ void ESP::Render()
 		case FNames::BP_EngineerCharacter_C:
 		case FNames::BP_GunnerCharacter_C:
 		{
-			if (!stPlayers.bEnabled)
-				break;
-
-			if (!IsValidObjectPtr(stInfo.pActor))
+			if (!stPlayers.bEnabled || (iESPMaxDistance && stInfo.flDistance > iESPMaxDistance) || !IsValidObjectPtr(stInfo.pActor))
 				break;
 
 			CG::ABP_PlayerCharacter_C* pPawn = reinterpret_cast<CG::ABP_PlayerCharacter_C*>(stInfo.pActor);
 			if (!IsValidObjectPtr(pPawn) || !stInfo.pActor->IsA(CG::ABP_PlayerCharacter_C::StaticClass()))
 				break;
 
-			if (pPawn->IsLocallyControlled()) // Ignore LocalPlayer
-				break;
-
 			CG::UHealthComponent* pHealthComponent = reinterpret_cast<CG::UHealthComponent*>(pPawn->HealthComponent);
-			if (!IsValidObjectPtr(pHealthComponent) || pHealthComponent->InternalIndex <= 0 || pHealthComponent->Name.ComparisonIndex == 0 || pHealthComponent->IsDead())
+			if (pPawn->IsLocallyControlled() || !IsValidObjectPtr(pHealthComponent) || pHealthComponent->InternalIndex <= 0 || pHealthComponent->Name.ComparisonIndex == 0 || pHealthComponent->IsDead())
 				break;
 
-			if (iESPMaxDistance && stInfo.flDistance > iESPMaxDistance)
-				break;
-
-			if (!stPlayers.bEnabled)
-				break;
 
 			CG::FVector vecLocation, vecExtent;
 			stInfo.pActor->GetActorBounds(true, &vecLocation, &vecExtent, false);
