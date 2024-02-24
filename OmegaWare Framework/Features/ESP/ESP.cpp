@@ -363,10 +363,6 @@ void ESP::Render()
 			if (!IsValidObjectPtr(stInfo.pActor))
 				break;
 
-			CG::ACarriableItem* pPawn = reinterpret_cast<CG::ACarriableItem*>(stInfo.pActor);
-			if (!IsValidObjectPtr(pPawn) || !stInfo.pActor->IsA(CG::ACarriableItem::StaticClass()))
-				break;
-
 			if (iESPMaxDistance && stInfo.flDistance > iESPMaxDistance)
 				break;
 
