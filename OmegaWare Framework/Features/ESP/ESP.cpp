@@ -7,14 +7,14 @@ bool ESP::Setup()
 	std::vector<LocaleData> EnglishLocale = {
 		{ HASH("ESP"), "ESP" },
 		{ HASH("ESP_ENABLE"), "Enable ESP" },
-		{ HASH("ESP_DEBUG"), "Debug ESP" },
 		{ HASH("ESP_ENEMY_COLOR"), "Enemies Color" },
 		{ HASH("ESP_ENEMY_ENABLE"), "Enemies" },
 		{ HASH("ESP_FRIENDLY_COLOR"), "Friendlies Color" },
 		{ HASH("ESP_FRIENDLY_ENABLE"), "Friendlies" },
 		{ HASH("ESP_ACCURATE_BOX"), "Accurate Box" },
 		{ HASH("ESP_MAX_DISTANCE"), "Max Distance" },
-		{ HASH("ESP_DEBUG_MAX_DISTANCE"), "DEBUG Max Distance" },
+		{ HASH("ESP_DEBUG"), "Debug ESP" },
+		{ HASH("ESP_DEBUG_COLOR"), "Debug Color" },
 		{ HASH("ESP_FLAGS"), "Flags" },
 		{ HASH("ESP_BOX_SHOW_NAME"), "Show Name" },
 		{ HASH("ESP_BOX_SHOW_DISTANCE"), "Show Distance" },
@@ -75,7 +75,6 @@ void ESP::PopulateMenu()
 	ESP->AddElement(new Checkbox(Cheat::localization->Get("ESP_ENABLE"), &bEnabled));
 	if (bEnabled)
 	{
-		ESP->AddElement(new Checkbox(Cheat::localization->Get("ESP_DEBUG"), &bDebugESP), true);
 		ESP->AddElement(new Combo(Cheat::localization->Get("ESP_FLAGS"), "", ImGuiComboFlags_NoPreview, [this]() {
 			ImGui::Selectable(Cheat::localization->Get("ESP_BOX_SHOW_NAME").c_str(), &bBoxName);
 			ImGui::Selectable(Cheat::localization->Get("ESP_BOX_SHOW_DISTANCE").c_str(), &bBoxDistance);
@@ -91,9 +90,10 @@ void ESP::PopulateMenu()
 
 		ESP->AddElement(new Checkbox(Cheat::localization->Get("ESP_ACCURATE_BOX"), &bAccurateBox));
 		ESP->AddElement(new SliderInt(Cheat::localization->Get("ESP_MAX_DISTANCE"), &iESPMaxDistance, 0, 5000));
-		if (bDebugESP)
-			ESP->AddElement(new SliderInt(Cheat::localization->Get("ESP_DEBUG_MAX_DISTANCE"), &iDebugESPMaxDistance, 0, 5000));
 
+
+		ESP->AddElement(new SliderInt(Cheat::localization->Get("ESP_DEBUG"), &iDebug, 0, 2000));
+		ESP->AddElement(new ColorPicker(Cheat::localization->Get("ESP_DEBUG_COLOR").c_str(), clrDebug, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoSidePreview | ImGuiColorEditFlags_AlphaBar | ImGuiColorEditFlags_NoLabel));
 	}
 
 	Cheat::menu->AddElement(ESP, true);
@@ -110,8 +110,11 @@ void ESP::Render()
 	if (!pDRGPlayer)
 		return;
 
-	ImU32 uiEnemiesColor = ImGui::ColorConvertFloat4ToU32(ImVec4{ clrEnemies[0], clrEnemies[1], clrEnemies[2], clrEnemies[3] });
-	ImU32 uiFriendliesColor = ImGui::ColorConvertFloat4ToU32(ImVec4{ clrFriendlies[0], clrFriendlies[1], clrFriendlies[2], clrFriendlies[3] });
+	ImU32 uiEnemiesColor = ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(clrEnemies));
+	ImU32 uiFriendliesColor = ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(clrFriendlies));
+	ImU32 uiDebugColor = ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(clrDebug));
+
+	std::cout << uiFriendliesColor << ' ' << uiDebugColor << '\n';
 
 	for (FNames::ActorInfo_t stInfo : pUnreal->ActorList) {
 		switch (stInfo.iLookupIndex) {
@@ -340,7 +343,7 @@ void ESP::Render()
 
 			break;
 		}
-		case FNames::BP_Gem_C:
+		case FNames::Actor:
 		{
 			if (!IsValidObjectPtr(stInfo.pActor))
 				break;
@@ -391,27 +394,24 @@ void ESP::Render()
 
 		default:
 		{
-			if (!bDebugESP)
+			if (stInfo.flDistance > iDebug)
 				break;
 
-			if (!IsValidObjectPtr(stInfo.pActor) || (iDebugESPMaxDistance && stInfo.flDistance > iDebugESPMaxDistance))
+			if (!IsValidObjectPtr(stInfo.pActor))
 				break;
 
 			CG::FVector vecLocation, vecExtent;
 			stInfo.pActor->GetActorBounds(true, &vecLocation, &vecExtent, false);
 
-			ImRect rectBox{};
-			if (!GetBoxFromBBox(vecLocation, vecExtent, rectBox))
+			CG::FVector2D vecCenter;
+			if (!pUnreal->WorldToScreen(vecLocation, vecCenter))
 				break;
 
 			char szName[64];
 			szName[stInfo.pActor->Name.GetName().copy(szName, 63, 0)] = 0;
 
-			size_t iLength = Utils::Strlen(szName);
-			if (iLength > 3) {
-				ImVec2 vecTextSize = ImGui::CalcTextSize(szName);
-				ImGui::OutlinedText({ rectBox.Min.x + (rectBox.GetWidth() - vecTextSize.x) / 2, rectBox.Min.y - 17.f }, White, szName);
-			}
+			ImVec2 vecTextSize = ImGui::CalcTextSize(szName);
+			ImGui::OutlinedText({ vecCenter.X - vecTextSize.x / 2, vecCenter.Y - 8.f }, uiDebugColor, szName);
 
 			break;
 		}}
@@ -471,13 +471,13 @@ void ESP::Run() {}
 void ESP::SaveConfig()
 {
 	Cheat::config->PushEntry("ESP_ENABLED", "bool", std::to_string(bEnabled));
-	Cheat::config->PushEntry("ESP_ENEMY_COLOR", "int", std::to_string(ImGui::ColorConvertFloat4ToU32({ clrEnemies[0], clrEnemies[1], clrEnemies[2], clrEnemies[3] })));
+	Cheat::config->PushEntry("ESP_ENEMY_COLOR", "int", std::to_string(ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(clrEnemies))));
 	Cheat::config->PushEntry("ESP_ENEMY_ENABLE", "bool", std::to_string(bEnemies));
-	Cheat::config->PushEntry("ESP_FRIENDLY_COLOR", "int", std::to_string(ImGui::ColorConvertFloat4ToU32({ clrFriendlies[0], clrFriendlies[1], clrFriendlies[2], clrFriendlies[3] })));
+	Cheat::config->PushEntry("ESP_FRIENDLY_COLOR", "int", std::to_string(ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(clrFriendlies))));
 	Cheat::config->PushEntry("ESP_FRIENDLY_ENABLE", "bool", std::to_string(bFriendlies));
 	Cheat::config->PushEntry("ESP_ACCURATE_BOX", "bool", std::to_string(bAccurateBox));
 	Cheat::config->PushEntry("ESP_MAX_DISTANCE", "int", std::to_string(iESPMaxDistance));
-	Cheat::config->PushEntry("ESP_DEBUG_MAX_DISTANCE", "int", std::to_string(iDebugESPMaxDistance));
+	Cheat::config->PushEntry("ESP_DEBUG_COLOR", "int", std::to_string(ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(clrDebug))));
 	Cheat::config->PushEntry("ESP_BOX_SHOW_NAME", "bool", std::to_string(bBoxName));
 	Cheat::config->PushEntry("ESP_BOX_SHOW_DISTANCE", "bool", std::to_string(bBoxDistance));
 	Cheat::config->PushEntry("ESP_HEALTH_BAR", "bool", std::to_string(bBoxHealthBar));
@@ -494,11 +494,8 @@ void ESP::LoadConfig()
 	entry = Cheat::config->GetEntryByName("ESP_ENEMY_COLOR");
 	if (entry.Name == "ESP_ENEMY_COLOR") {
 		ImVec4 clrTmp = ImGui::ColorConvertU32ToFloat4(std::stoul(entry.Value));
-
-		clrEnemies[0] = clrTmp.x;
-		clrEnemies[1] = clrTmp.y;
-		clrEnemies[2] = clrTmp.z;
-		clrEnemies[3] = clrTmp.w;
+		*reinterpret_cast<uint64_t*>(&clrEnemies[0]) = *reinterpret_cast<uint64_t*>(&clrTmp.x);
+		*reinterpret_cast<uint64_t*>(&clrEnemies[2]) = *reinterpret_cast<uint64_t*>(&clrTmp.z);
 	}
 
 	entry = Cheat::config->GetEntryByName("ESP_ENEMY_ENABLE");
@@ -508,11 +505,8 @@ void ESP::LoadConfig()
 	entry = Cheat::config->GetEntryByName("ESP_FRIENDLY_COLOR");
 	if (entry.Name == "ESP_FRIENDLY_COLOR") {
 		ImVec4 clrTmp = ImGui::ColorConvertU32ToFloat4(std::stoul(entry.Value));
-
-		clrFriendlies[0] = clrTmp.x;
-		clrFriendlies[1] = clrTmp.y;
-		clrFriendlies[2] = clrTmp.z;
-		clrFriendlies[3] = clrTmp.w;
+		*reinterpret_cast<uint64_t*>(&clrFriendlies[0]) = *reinterpret_cast<uint64_t*>(&clrTmp.x);
+		*reinterpret_cast<uint64_t*>(&clrFriendlies[2]) = *reinterpret_cast<uint64_t*>(&clrTmp.z);
 	}
 
 	entry = Cheat::config->GetEntryByName("ESP_FRIENDLY_ENABLE");
@@ -527,9 +521,12 @@ void ESP::LoadConfig()
 	if (entry.Name == "ESP_MAX_DISTANCE")
 		iESPMaxDistance = std::stoi(entry.Value);
 
-	entry = Cheat::config->GetEntryByName("ESP_DEBUG_MAX_DISTANCE");
-	if (entry.Name == "ESP_DEBUG_MAX_DISTANCE")
-		iDebugESPMaxDistance = std::stoi(entry.Value);
+	entry = Cheat::config->GetEntryByName("ESP_DEBUG_COLOR");
+	if (entry.Name == "ESP_DEBUG_COLOR") {
+		ImVec4 clrTmp = ImGui::ColorConvertU32ToFloat4(std::stoul(entry.Value));
+		*reinterpret_cast<uint64_t*>(&clrDebug[0]) = *reinterpret_cast<uint64_t*>(&clrTmp.x);
+		*reinterpret_cast<uint64_t*>(&clrDebug[2]) = *reinterpret_cast<uint64_t*>(&clrTmp.z);
+	}
 
 	entry = Cheat::config->GetEntryByName("ESP_BOX_SHOW_NAME");
 	if (entry.Name == "ESP_BOX_SHOW_NAME")

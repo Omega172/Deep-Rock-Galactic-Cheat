@@ -667,7 +667,6 @@
     x(BP_BarGlass_Standard_C) \
     x(BP_Drop_CamShake_C) \
     x(BP_PushingState_C) \
-    x(BP_NausicaaTreeTrunk_5-small_C) \
     x(BP_IceFormation_Claw_A_C) \
     x(BP_Count_Randoms_Widget_C) \
     x(BP_SelectCharacterOnlyConsole_C) \
@@ -874,7 +873,6 @@
     x(BP_CharacterTeleportPlacement_C) \
     x(BP_CabinController_C) \
     x(BP_CrystalFormations_SlantedPillars_03Rot_C) \
-    x(BP_NausicaaTreeTrunk_6-Tall_C) \
     x(BP_PostProcessing_LushDownpour_C) \
     x(BP_CleanupPod_Marker_C) \
     x(BP_Plague_Rooms_Disinfection_C) \

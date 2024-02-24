@@ -11,7 +11,7 @@ private:
 	bool bDebugESP = false;
 	bool bAccurateBox = true;
 	int iESPMaxDistance = 0;
-	int iDebugESPMaxDistance = 0;
+	
 	bool bBoxName = true;
 	bool bBoxDistance = true;
 	bool bBoxHealthBar = true;
@@ -21,6 +21,9 @@ private:
 	bool bEnemies = true;
 	float clrFriendlies[4] = {0.f, 1.f, 0.f, 1.f};
 	bool bFriendlies = false;
+
+	int iDebug = 0;
+	float clrDebug[4] = { 1.f, 1.f, 0.4f, 1.f };
 
 	bool bInvincibleFlag = true;
 
