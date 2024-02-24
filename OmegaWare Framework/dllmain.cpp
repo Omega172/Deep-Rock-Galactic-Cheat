@@ -86,8 +86,12 @@ namespace Cheat
 			Utils::LogError(Utils::GetLocation(CurrentLoc), Cheat::Title + ": Failed to initalize");
 			bShouldRun = false;
 		}
-		else // If the initalization was successful log that the cheat was initalized
+		else
+		{
+			// If the initalization was successful log that the cheat was initalized
+			Cheat::bInitalized = true;
 			Utils::LogDebug(Utils::GetLocation(CurrentLoc), Cheat::Title + ": Initalized");
+		}
 
 		while (bShouldRun) // the main process loop used to asynchonously run the features and handle the keys independently from the game
 		{

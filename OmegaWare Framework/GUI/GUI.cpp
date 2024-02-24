@@ -3,6 +3,9 @@
 
 void GUI::Render()
 {
+	if (!Cheat::bInitalized)
+		return;
+
 	if (ImGui::IsKeyPressed(Cheat::keyMenuKey) || ImGui::IsKeyPressed(ImGuiKey_GamepadStart))
 	{
 		bMenuOpen = !bMenuOpen;
