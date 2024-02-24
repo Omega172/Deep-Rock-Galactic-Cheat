@@ -192,6 +192,11 @@ void Aimbot::Run()
 	CG::AItem* pItem = pInventoryComponenet->GetEquippedItem();
 	if (!IsValidObjectPtr(pItem))
 		return;
+	
+	CG::UItemID* pItemID = pItem->ItemID;
+	if (!IsValidObjectPtr(pItemID) || pItemID->ItemCategory > CG::EItemCategory::SecondaryWeapon)
+		return;
+
 
 	CG::AAmmoDrivenWeapon* pWeapon = static_cast<CG::AAmmoDrivenWeapon*>(pItem);
 	if (!IsValidObjectPtr(pWeapon) || !pItem->IsA(CG::AAmmoDrivenWeapon::StaticClass()))
