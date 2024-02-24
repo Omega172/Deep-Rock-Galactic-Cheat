@@ -283,7 +283,7 @@ void ESP::Render()
 				char szName[64];
 				szName[stInfo.pActor->Name.GetName().copy(szName, 64, 0)] = 0;
 
-				int iLength = Utils::Strlen(szName);
+				size_t iLength = Utils::Strlen(szName);
 				if (iLength > 3) {
 					ImVec2 vecTextSize = ImGui::CalcTextSize(szName);
 					ImGui::OutlinedText({ rectBox.Min.x + (rectBox.GetWidth() - vecTextSize.x) / 2, rectBox.Min.y - 17.f }, White, szName);
