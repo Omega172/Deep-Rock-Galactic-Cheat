@@ -114,8 +114,6 @@ void ESP::Render()
 	ImU32 uiFriendliesColor = ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(clrFriendlies));
 	ImU32 uiDebugColor = ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(clrDebug));
 
-	std::cout << uiFriendliesColor << ' ' << uiDebugColor << '\n';
-
 	for (FNames::ActorInfo_t stInfo : pUnreal->ActorList) {
 		switch (stInfo.iLookupIndex) {
 		case FNames::ENE_JellyBreeder_Normal_C:
@@ -406,8 +404,6 @@ void ESP::Render()
 			CG::FVector2D vecCenter;
 			if (!pUnreal->WorldToScreen(vecLocation, vecCenter))
 				break;
-
-			ImVec2 vecCenter = rectBox.GetCenter();
 
 			char szName[64];
 			szName[stInfo.pActor->Name.GetName().copy(szName, 63, 0)] = 0;
