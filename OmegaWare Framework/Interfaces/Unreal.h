@@ -502,4 +502,5 @@ public:
 		oPostRender(pViewportClient, pCanvas);
 	}
 };
+
 #endif

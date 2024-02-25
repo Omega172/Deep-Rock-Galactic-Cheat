@@ -39,7 +39,7 @@ private:
 	ImGuiWindowFlags m_Flags;
 
 public:
-	Menu(ImVec2 Size, std::string sName, bool* pOpen = (bool*)0, ImGuiWindowFlags Flags = 0) : 
+	Menu(ImVec2 Size, std::string sName, bool* pOpen = (bool*)0, ImGuiWindowFlags Flags = 0) :
 		m_Size(Size), m_sName(sName), m_pOpen(pOpen), m_Flags(Flags)
 	{};
 
@@ -81,15 +81,15 @@ private:
 	ImVec2 m_Size;
 	ImGuiChildFlags m_ChildFlags;
 	ImGuiWindowFlags m_WindowFlags;
-	std::function<ImVec2()> m_funcCallback = nullptr;
+	std::function<ImVec2()> m_FuncCallback = nullptr;
 
 public:
-	Child(std::string sID, ImVec2 Size = ImVec2(0, 0), ImGuiChildFlags ChildFlags = 0, ImGuiWindowFlags WindowFlags = 0) :
+	Child(std::string sID, ImVec2 Size, ImGuiChildFlags ChildFlags = 0, ImGuiWindowFlags WindowFlags = 0) :
 		m_sID(sID), m_Size(Size), m_ChildFlags(ChildFlags), m_WindowFlags(WindowFlags)
 	{};
 
-	Child(std::string sID, std::function<ImVec2()> funcCallback = nullptr, ImGuiChildFlags ChildFlags = 0, ImGuiWindowFlags WindowFlags = 0) :
-		m_sID(sID), m_funcCallback(funcCallback), m_ChildFlags(ChildFlags), m_WindowFlags(WindowFlags)
+	Child(std::string sID, std::function<ImVec2()> FuncCallback = nullptr, ImGuiChildFlags ChildFlags = 0, ImGuiWindowFlags WindowFlags = 0) :
+		m_sID(sID), m_FuncCallback(FuncCallback), m_ChildFlags(ChildFlags), m_WindowFlags(WindowFlags)
 	{};
 
 	void Render()
@@ -97,8 +97,8 @@ public:
 		if (m_bSameLine)
 			ImGui::SameLine(0.f, m_flSpacing);
 
-		if (m_funcCallback)
-			m_Size = m_funcCallback();
+		if (m_FuncCallback)
+			m_Size = m_FuncCallback();
 
 		ImGui::BeginChild(m_sID.c_str(), m_Size, m_ChildFlags, m_WindowFlags);
 		{
@@ -107,6 +107,36 @@ public:
 		}
 		ImGui::EndChild();
 	};
+};
+
+class Table : public Element
+{
+private:
+	std::string m_sID;
+	int m_iColumns;
+	std::function<void()> m_FuncCallback = nullptr;
+	ImGuiTableFlags m_TableFlags;
+	ImVec2 m_OuterSize;
+	float m_flInnerWidth;
+
+public:
+	Table(std::string sID, int iColumns, std::function<void()> FuncCallback, ImGuiTableFlags TableFlags = 0, ImVec2 OuterSize = { 0.f, 0.f }, float flInnerWidth = 0.f) :
+		m_sID(sID), m_iColumns(iColumns), m_FuncCallback(FuncCallback), m_TableFlags(TableFlags), m_OuterSize(OuterSize), m_flInnerWidth(flInnerWidth)
+	{};
+
+	void Render()
+	{
+		if (m_bSameLine)
+			ImGui::SameLine(0.f, m_flSpacing);
+
+		if (ImGui::BeginTable(m_sID.c_str(), m_iColumns, m_TableFlags, m_OuterSize, m_flInnerWidth))
+		{
+			if (m_FuncCallback)
+				m_FuncCallback();
+
+			ImGui::EndTable();
+		}
+	}
 };
 
 class Text : public Element
@@ -136,11 +166,11 @@ class Button : public Element
 {
 private:
 	std::string m_sLabel;
-	std::function<void()> m_funcCallback;
+	std::function<void()> m_FuncCallback;
 
 public:
-	Button(std::string sLabel, std::function<void()> funcCallback = nullptr) : 
-		m_sLabel(sLabel), m_funcCallback(funcCallback)
+	Button(std::string sLabel, std::function<void()> FuncCallback = nullptr) : 
+		m_sLabel(sLabel), m_FuncCallback(FuncCallback)
 	{};
 
 	void Render()
@@ -149,8 +179,8 @@ public:
 			ImGui::SameLine(0.f, m_flSpacing);
 
 		if (ImGui::Button(m_sLabel.c_str()))
-			if (m_funcCallback)
-				m_funcCallback();
+			if (m_FuncCallback)
+				m_FuncCallback();
 	}
 
 	constexpr std::string GetLabel() { return m_sLabel; }
@@ -163,11 +193,11 @@ private:
 	std::string m_sLabel;
 	std::string m_sPreviewlabel;
 	ImGuiComboFlags m_ComboFlags;
-	std::function<void()> m_funcCallback;
+	std::function<void()> m_FuncCallback;
 
 public:
-	Combo(std::string sLabel, std::string sPreviewlabel, ImGuiComboFlags ComboFlags = 0, std::function<void()> funcCallback = nullptr) : 
-		m_sLabel(sLabel), m_sPreviewlabel(sPreviewlabel), m_ComboFlags(ComboFlags), m_funcCallback(funcCallback)
+	Combo(std::string sLabel, std::string sPreviewlabel, ImGuiComboFlags ComboFlags = 0, std::function<void()> FuncCallback = nullptr) : 
+		m_sLabel(sLabel), m_sPreviewlabel(sPreviewlabel), m_ComboFlags(ComboFlags), m_FuncCallback(FuncCallback)
 	{};
 
 	void Render()
@@ -177,8 +207,8 @@ public:
 
 		if (ImGui::BeginCombo(m_sLabel.c_str(), m_sPreviewlabel.c_str(), m_ComboFlags))
 		{
-			if (m_funcCallback)
-				m_funcCallback();
+			if (m_FuncCallback)
+				m_FuncCallback();
 
 			ImGui::EndCombo();
 		}

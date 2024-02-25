@@ -34,8 +34,8 @@ static_assert(FRAMEWORK_TARGET_PROCESS != "", "Target process name not set."); /
 static_assert((FRAMEWORK_OTHER + FRAMEWORK_UNREAL + FRAMEWORK_UNITY) == 1, "Must use exactly one framework type"); // Don't allow both frameworks to be used)
 
 // Make sure a rendering API is selected and only one rendering API is selected
-#define FRAMEWORK_RENDER_D3D11 0
-#define FRAMEWORK_RENDER_D3D12 1
+#define FRAMEWORK_RENDER_D3D11 1
+#define FRAMEWORK_RENDER_D3D12 0
 static_assert((FRAMEWORK_RENDER_D3D11 + FRAMEWORK_RENDER_D3D12) == 1, "Must use exactly one rendering API"); // Don't allow both rendering API's to be used
 
 #include "MinHook/include/MinHook.h"
@@ -161,7 +161,7 @@ namespace Cheat
 
 	inline std::unique_ptr<Console> console = std::make_unique<Console>(false, Title);  // A unique pointer to the console class that is used to create the console for the framework
 
-	inline std::unique_ptr<Menu> menu = std::make_unique<Menu>(ImVec2(GUI::WIDTH, GUI::HEIGHT), Cheat::Title.c_str(), (bool*)NULL, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoCollapse);
+	inline std::unique_ptr<Menu> menu = std::make_unique<Menu>(ImVec2(GUI::WIDTH, GUI::HEIGHT), Cheat::Title.c_str(), (bool*)NULL, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
 	inline std::unique_ptr<WndProcHooks> wndproc = std::make_unique<WndProcHooks>();
 	inline std::unique_ptr<RendererHooks> renderer = std::make_unique<RendererHooks>();
 

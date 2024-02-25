@@ -27,7 +27,9 @@ bool ESP::Setup()
 		{ HASH("ESP_DEBUG_COLOR"), "Debug Color" },
 		{ HASH("ESP_MAX_DISTANCE"), "Max Distance" },
 
-		{ HASH("ESP_INVINCIBLE_FLAG_TEXT"), "lnvuln" }
+		{ HASH("ESP_INVINCIBLE_FLAG_TEXT"), "lnvuln" },
+
+		{ HASH("PLAYER_LIST"), "PlayerList" }
 	};
 	if (!Cheat::localization->AddToLocale("ENG", EnglishLocale))
 		return false;
@@ -78,6 +80,7 @@ void ESP::PopulateMenu()
 
 	Child* ESP = new Child("ESP", []() { return ImVec2(ImGui::GetContentRegionAvail().x, ImGui::GetContentRegionAvail().y); }, ImGuiChildFlags_Border);
 	ESP->AddElement(new Text(Cheat::localization->Get("ESP")));
+	ESP->AddElement(new Checkbox(Cheat::localization->Get("PLAYER_LIST"), &bShowPlayerList));
 	ESP->AddElement(new Checkbox(Cheat::localization->Get("ESP_ENABLE"), &bEnabled));
 	if (bEnabled)
 	{
@@ -142,6 +145,74 @@ void ESP::PopulateMenu()
 	}
 
 	Cheat::menu->AddElement(ESP, true);
+
+	if (!bShowPlayerList)
+		return;
+
+	Menu* PlayerList = new Menu(ImVec2(0, 0), "Player List", &bShowPlayerList, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
+	PlayerList->AddElement(new Table("##PlayerListTable", 2, [this]() {
+		ImGui::TableNextColumn();
+		if (vecPlayers.empty())
+			ImGui::Text("Not currently in a mission");
+
+		for (CG::AActor* pPlayer : vecPlayers)
+		{
+			if (!IsValidObjectPtr(pPlayer))
+				continue;
+
+			CG::ABP_PlayerCharacter_C* pPlayerCharacter = reinterpret_cast<CG::ABP_PlayerCharacter_C*>(pPlayer);
+			if (!IsValidObjectPtr(pPlayerCharacter))
+				break;
+
+			CG::AFSDPlayerState* pPlayerState = pPlayerCharacter->GetPlayerState();
+			if (!IsValidObjectPtr(pPlayerState))
+				break;
+
+			// EVIL TERRIBLE HORRIBLE HACK
+			char szName[64];
+			szName[pPlayerState->GetPlayerName().ToString().copy(szName, 63, 0)] = 0;
+
+			if (ImGui::Button(szName))
+				pSelectedPlayer = pPlayerCharacter;
+		}
+
+		ImGui::TableNextColumn();
+		if (pSelectedPlayer)
+		{
+			if (!IsValidObjectPtr(pSelectedPlayer))
+			{
+				pSelectedPlayer = nullptr;
+				return;
+			}
+
+			CG::AFSDPlayerState* pPlayerState = pSelectedPlayer->GetPlayerState();
+			if (!IsValidObjectPtr(pPlayerState))
+				return;
+
+			CG::UPlayerHealthComponent* pHealthComponent = pSelectedPlayer->HealthComponent;
+			if (!IsValidObjectPtr(pHealthComponent))
+				return;
+
+			char szName[64];
+			szName[pPlayerState->GetPlayerName().ToString().copy(szName, 63, 0)] = 0;
+
+			ImGui::Text("Selected Player: %s", szName);
+			ImGui::Text("Is Local: %s", pSelectedPlayer->IsLocallyControlled() ? "true" : "false");
+			ImGui::Text("Health: %f", pHealthComponent->GetHealth());
+			ImGui::Text("Armor: %f", pHealthComponent->GetArmor());
+			ImGui::Text("Max Health: %f", pHealthComponent->MaxHealth);
+			ImGui::Text("Max Armor: %f", pHealthComponent->GetMaxArmor());
+			ImGui::Text("Health Pct: %f", pHealthComponent->GetHealthPct());
+			ImGui::Text("Armor Pct: %f", pHealthComponent->GetArmorPct());
+			ImGui::Text("Is Dead: %s", pHealthComponent->IsDead() ? "true" : "false");
+		}
+		else {
+			ImGui::Text("No player selected");
+		}
+
+	}, ImGuiTableFlags_Borders));
+
+	PlayerList->Render();
 }
 
 void ESP::Render()
@@ -154,6 +225,8 @@ void ESP::Render()
 	CG::APawn* pDRGPlayer = pUnreal->GetAcknowledgedPawn();
 	if (!pDRGPlayer)
 		return;
+
+	vecPlayers.clear();
 
 	ImU32 uiEnemiesBox = ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(stEnemies.clrBox));
 	ImU32 uiEnemiesBoxOutline = ImGui::ColorConvertFloat4ToU32({ 0.f, 0.f, 0.f, stEnemies.clrBox[3] });
@@ -488,6 +561,8 @@ void ESP::Render()
 		case FNames::BP_EngineerCharacter_C:
 		case FNames::BP_GunnerCharacter_C:
 		{
+			vecPlayers.push_back(stInfo.pActor);
+
 			if (!stPlayers.bEnabled || (iESPMaxDistance && stInfo.flDistance > iESPMaxDistance) || !IsValidObjectPtr(stInfo.pActor))
 				break;
 

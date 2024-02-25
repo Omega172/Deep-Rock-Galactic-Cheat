@@ -69,6 +69,10 @@ private:
 	float clrDebug[4] = { 1.f, 1.f, 0.4f, 1.f };
 
 	CG::FName Root;
+
+	bool bShowPlayerList = false;
+	std::vector<CG::AActor*> vecPlayers;
+	CG::ABP_PlayerCharacter_C* pSelectedPlayer = nullptr;
 	
 	bool GetBoxFromBBox(CG::FVector& vecLocation, CG::FVector& vecExtent, ImRect& rectOut, bool bAccurate);
 
