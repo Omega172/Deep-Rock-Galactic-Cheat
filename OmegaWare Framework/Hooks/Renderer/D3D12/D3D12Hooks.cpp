@@ -267,7 +267,8 @@ static HRESULT __fastcall hkPresentD3D12(IDXGISwapChain3* pSwapChain, UINT SyncI
 			pD3D12DescriptorHeapImGuiRender->GetGPUDescriptorHandleForHeapStart());
 
 		ImGui_ImplDX12_CreateDeviceObjects();
-	});
+		return oPresentD3D12(pSwapChain, SyncInterval, Flags);
+		});
 
 	if (Cheat::bShouldRun)
 	{
@@ -404,7 +405,7 @@ void RendererHooks::Destroy()
 {
 	MH_DisableHook(MH_ALL_HOOKS);
 
-	std::this_thread::sleep_for(std::chrono::seconds(5)); // Disable hooks and wait a bit for all threads to finish so we dont crash
+	std::this_thread::sleep_for(std::chrono::seconds(3)); // Disable hooks and wait a bit for all threads to finish so we dont crash
 
 	if (ImGui::GetCurrentContext()) {
 		ImGuiIO& io = ImGui::GetIO();
