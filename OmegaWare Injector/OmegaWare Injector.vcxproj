@@ -16,6 +16,7 @@
     <ProjectGuid>{4b5af7a9-7b78-416a-95ce-ed7d3765eb32}</ProjectGuid>
     <RootNamespace>OmegaWareInjector</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>DRG_Injector</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
