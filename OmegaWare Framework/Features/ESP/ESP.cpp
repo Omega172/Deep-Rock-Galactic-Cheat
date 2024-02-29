@@ -524,6 +524,7 @@ void ESP::Render()
 		case FNames::BP_JetBootsBox_C:
 		case FNames::BP_LostPackStart_C:
 		case FNames::BP_LostPack_C:
+		case FNames::BP_GuntowerEvent_C:
 		{
 			if (!stSpecialStructures.bEnabled || (iESPMaxDistance && stInfo.flDistance > iESPMaxDistance) || !IsValidObjectPtr(stInfo.pActor))
 				break;
