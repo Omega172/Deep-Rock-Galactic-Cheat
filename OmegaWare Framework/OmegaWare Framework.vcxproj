@@ -110,7 +110,7 @@
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Features\Aimbot\Aimbot.cpp" />
     <ClCompile Include="Features\ESP\ESP.cpp" />
-    <ClCompile Include="Features\Fullbright\Fullbright.cpp" />
+    <ClCompile Include="Features\Misc\Misc.cpp" />
     <ClCompile Include="Features\PlayerModifications\PlayerModifications.cpp" />
     <ClCompile Include="Features\WeaponModifications\WeaponModifications.cpp" />
     <ClCompile Include="GUI\GUI.cpp" />
@@ -153,7 +153,7 @@
     <ClInclude Include="Features\Aimbot\Aimbot.h" />
     <ClInclude Include="Features\ESP\ESP.h" />
     <ClInclude Include="Features\Feature.h" />
-    <ClInclude Include="Features\Fullbright\Fullbright.h" />
+    <ClInclude Include="Features\Misc\Misc.h" />
     <ClInclude Include="Features\PlayerModifications\PlayerModifications.h" />
     <ClInclude Include="Features\WeaponModifications\WeaponModifications.h" />
     <ClInclude Include="GUI\Custom.h" />

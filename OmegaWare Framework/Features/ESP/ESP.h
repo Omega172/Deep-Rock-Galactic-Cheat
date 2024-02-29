@@ -68,8 +68,6 @@ private:
 	int iDebug = 0;
 	float clrDebug[4] = { 1.f, 1.f, 0.4f, 1.f };
 
-	CG::FName Root;
-
 	bool bShowPlayerList = false;
 	std::vector<CG::AActor*> vecPlayers;
 	CG::ABP_PlayerCharacter_C* pSelectedPlayer = nullptr;

@@ -23,7 +23,7 @@
     <ClCompile Include="SDK\FSD_Package.cpp" />
     <ClCompile Include="Features\WeaponModifications\WeaponModifications.cpp" />
     <ClCompile Include="Features\PlayerModifications\PlayerModifications.cpp" />
-    <ClCompile Include="Features\Fullbright\Fullbright.cpp" />
+    <ClCompile Include="Features\Misc\Misc.cpp" />
     <ClCompile Include="SDK\WPN_GrapplingGun_Package.cpp" />
     <ClCompile Include="SDK\BP_PlayerCharacter_Package.cpp" />
     <ClCompile Include="SDK\WPN_DoubleDrills_Package.cpp" />
@@ -67,7 +67,7 @@
     <ClInclude Include="SDK.h" />
     <ClInclude Include="Features\WeaponModifications\WeaponModifications.h" />
     <ClInclude Include="Features\PlayerModifications\PlayerModifications.h" />
-    <ClInclude Include="Features\Fullbright\Fullbright.h" />
+    <ClInclude Include="Features\Misc\Misc.h" />
     <ClInclude Include="Features\Aimbot\Aimbot.h" />
     <ClInclude Include="Localization\Locales\German.h" />
     <ClInclude Include="Features\ESP\ESP.h" />

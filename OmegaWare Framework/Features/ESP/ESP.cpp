@@ -55,8 +55,6 @@ bool ESP::Setup()
 
 	Cheat::localization->UpdateLocale();
 
-	Root = CG::FName("Root");
-
 	Utils::LogDebug(Utils::GetLocation(CurrentLoc), "Feature: ESP Initialized");
 
 	Initialized = true;
@@ -172,8 +170,14 @@ void ESP::PopulateMenu()
 			char szName[64];
 			szName[pPlayerState->GetPlayerName().ToString().copy(szName, 63, 0)] = 0;
 
-			if (ImGui::Button(szName))
+			if (ImGui::Button(szName)) {
 				pSelectedPlayer = pPlayerCharacter;
+
+				CG::AFSDPlayerController* pPlayerController = reinterpret_cast<CG::AFSDPlayerController*>(Cheat::unreal->GetPlayerController());
+				pPlayerController->SetViewTargetWithBlend(pPlayerCharacter, 0.5f, CG::EViewTargetBlendFunction::VTBlend_Linear, 0.f, false);
+				pPlayerController->PlayerCameraManager->ViewTargetOffset.X += 30.f;
+				pPlayerController->PlayerCameraManager->ViewTargetOffset.Y += 30.f;
+			}
 		}
 
 		ImGui::TableNextColumn();
@@ -475,6 +479,7 @@ void ESP::Render()
 		case FNames::BP_MuleLeg_C:
 		case FNames::BP_Boolo_Cap_C:
 		case FNames::BP_Fossil_C:
+		case FNames::BP_DorettaHead_C:
 		{
 			if (!stObjectives.bEnabled || (iESPMaxDistance && stInfo.flDistance > iESPMaxDistance) || !IsValidObjectPtr(stInfo.pActor))
 				break;
@@ -517,6 +522,8 @@ void ESP::Render()
 		case FNames::BP_AmberEvent_C:
 		case FNames::BP_ProspectorDataDeposit_C:
 		case FNames::BP_JetBootsBox_C:
+		case FNames::BP_LostPackStart_C:
+		case FNames::BP_LostPack_C:
 		{
 			if (!stSpecialStructures.bEnabled || (iESPMaxDistance && stInfo.flDistance > iESPMaxDistance) || !IsValidObjectPtr(stInfo.pActor))
 				break;
@@ -644,6 +651,10 @@ void ESP::Render()
 
 			break;
 		}
+		case FNames::BP_Compressed_Gold_C:
+		case FNames::BP_Gem_Jadiz_C:
+		case FNames::BP_Barley4_1_C:
+		case FNames::BP_Barley4_2_C:
 
 		default:
 		{

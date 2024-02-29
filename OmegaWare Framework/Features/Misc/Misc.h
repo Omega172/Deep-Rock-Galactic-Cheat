@@ -1,7 +1,7 @@
 #pragma once
 #include "pch.h"
 
-class Fullbright : public Feature
+class Misc : public Feature
 {
 private:
 	bool Initialized = false;
@@ -10,7 +10,7 @@ private:
 	bool bFullbright = false;
 
 public:
-	Fullbright();
+	Misc();
 
 	bool Setup();
 
