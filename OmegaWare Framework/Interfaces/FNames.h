@@ -519,7 +519,6 @@
     x(BP_NausicaaTreeTrunk_4_Fallen_C) \
     x(BP_BrokenDNA_1_C) \
     x(BP_CandleBlock_C) \
-    x(BP_Bosco_Character_C) \
     x(BP_SpaceRig_Gamemode_C) \
     x(BP_HeavyParticleCannon_StickyFlame_C) \
     x(BP_ReturningPromotionKey_C) \
@@ -594,7 +593,6 @@
     x(BP_PingPongPlant_A_C) \
     x(BP_NetFungus_C) \
     x(BP_QuantriteChunk_C) \
-    x(BP_EngineerCharacter_C) \
     x(BP_NetworkPlayGameMode_C) \
     x(BP_Salvage_FuelPoint_C) \
     x(BP_GoldChunk_C) \
@@ -841,7 +839,6 @@
     x(BP_SpiderEgg3_C) \
     x(BP_WalkingState_C) \
     x(BP_VampireComponent_C) \
-    x(BP_PlayerCharacter_C) \
     x(BP_Plague_Spore_Tower_Carver04_C) \
     x(BP_PlatformIcePlant_C) \
     x(BP_PostProcessing_RadioactiveZone_C) \
@@ -1068,7 +1065,6 @@
     x(BP_CrystalFormation_SpikyBunch_01_C) \
     x(BP_LureTarget_C) \
     x(BP_Phys_BeachBall_C) \
-    x(BP_DrillerCharacter_C) \
     x(BP_Donkey_Escort_C) \
     x(BP_SupplyDropToTerrainLogic_C) \
     x(BP_ThornVinesChokingWoodRoots_3_C) \
@@ -1366,7 +1362,6 @@
     x(BP_DownedBombDamage_C) \
     x(BP_BarGlass_SlayerStout_C) \
     x(BP_TextField_Screen_SeeThrough_C) \
-    x(BP_NavigatorCharacter_C) \
     x(BP_RewardDispenser_C) \
     x(BP_Electrical_Antenna_C) \
     x(BP_SpiderEgg_C) \
@@ -1449,7 +1444,6 @@
     x(BP_PetAttackerPositioning_C) \
     x(BP_SpaceSausage_C) \
     x(BP_Phys_Barrel_Cutie_C) \
-    x(BP_GunnerCharacter_C) \
     x(BP_MineHead_C) \
     x(BP_LargeRootKnob_1_C) \
     x(BP_GreatEggHunt_ThrowableBunny_C) \

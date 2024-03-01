@@ -428,9 +428,9 @@ void ESP::Render()
 		}
 		case FNames::BP_AmberEvent_C:
 		case FNames::BP_ProspectorDataDeposit_C:
-		case FNames::BP_JetBootsBox_C:
-		case FNames::BP_LostPackStart_C:
-		case FNames::BP_LostPack_C:
+		case FNames::BP_JetBootsBox_C: // JetBootsBox
+		case FNames::BP_LostPackStart_C: // TreasureBeacon
+		case FNames::BP_LostPack_C: //  TreasureContainer
 		case FNames::BP_GuntowerEvent_C:
 		{
 			if (!stSpecialStructures.bEnabled || (iESPMaxDistance && stInfo.flDistance > iESPMaxDistance) || !IsValidObjectPtr(stInfo.pActor))
@@ -449,7 +449,7 @@ void ESP::Render()
 			}
 
 			if (stSpecialStructures.bName) {
-
+				
 				// EVIL TERRIBLE HORRIBLE HACK
 				char szName[64];
 				szName[stInfo.pActor->Name.GetName().copy(szName, 63, 0)] = 0;
@@ -578,10 +578,14 @@ void ESP::Render()
 				break;
 
 			char szName[64];
-			szName[stInfo.pActor->Name.GetName().copy(szName, 63, 0)] = 0;
+			for (CG::UStruct* pStruct = static_cast<CG::UStruct*>(stInfo.pActor->Class); IsValidObjectPtr(pStruct); pStruct = pStruct->SuperField) {
 
-			ImVec2 vecTextSize = ImGui::CalcTextSize(szName);
-			ImGui::OutlinedText({ vecCenter.X - vecTextSize.x / 2, vecCenter.Y - 8.f }, uiDebugColor, szName);
+				szName[pStruct->Name.GetName().copy(szName, 63, 0)] = 0;
+
+				ImVec2 vecTextSize = ImGui::CalcTextSize(szName);
+				ImGui::OutlinedText({ vecCenter.X - vecTextSize.x / 2, vecCenter.Y - 8.f }, uiDebugColor, szName);
+				vecCenter.Y += vecTextSize.y + 2.f;
+			}
 
 			break;
 		}}
