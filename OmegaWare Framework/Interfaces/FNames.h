@@ -51,6 +51,7 @@
     x(MULE) \
     x(RecallableActor) \
     x(ResourceChunk) \
+    x(Gem) \
     x(ITM_DeepDiveStatus_Stage_C) \
     x(ITM_MisDesMutator_C) \
     x(ITM_SeasonMenu_BG_C) \
@@ -427,10 +428,8 @@
     x(BP_BarGlass_TunnelRat_C) \
     x(BP_WeaponIconGenerator_C) \
     x(BP_WalkingPlagueHeart_PlagueCloud_C) \
-    x(BP_GunkSeed_C) \
     x(BP_FracturedMissionDNA_C) \
     x(BP_ChimneyGeyser05_Carved_C) \
-    x(BP_Barley3_2_C) \
     x(BP_PetUsable_C) \
     x(BP_RadioactiveGlowinggGreenCrystal_Hazard_C) \
     x(BP_PheromoneAttackerPositioning_Propogated_C) \
@@ -438,7 +437,6 @@
     x(BP_Widget_DropPod_Complexity_C) \
     x(BP_PlagueWormPod_C) \
     x(BP_PlagueGroundSpike_C) \
-    x(BP_Collectible_Barley_B1_C) \
     x(BP_AlienEgg_C) \
     x(BP_CribrariaPlant_C) \
     x(BP_GuntowerEvent_C) \
@@ -488,7 +486,6 @@
     x(BP_Azure_HugeRoots_Ground_01_C) \
     x(BP_SandArch_1_C) \
     x(BP_JetBootsBox_Spacerig_C) \
-    x(BP_Boolo_Cap_C) \
     x(BP_PheromoneAttackerPositioning_C) \
     x(BP_CabinOwnerSign_C) \
     x(BP_BossFight_Heartstone_C) \
@@ -733,7 +730,6 @@
     x(BP_UnknownArtifact_C) \
     x(BP_Terminator_ElectricAttack_C) \
     x(BP_PostProcessing_FungusBogs_C) \
-    x(BP_Barley3_3_C) \
     x(BP_Salvage_FuelPod_C) \
     x(BP_Azure_VoidBasket_C) \
     x(BP_CrystalFormationsSpikyBunch_Base_C) \
@@ -780,13 +776,10 @@
     x(BP_SwarmerTunnels_variant_4_C) \
     x(BP_StickySpiderWeb_New_Corner_C) \
     x(BP_Azure_MagicCrystal_C_C) \
-    x(BP_GunkSeed_Hanger_C) \
     x(BP_SlimyFungus_XL_C) \
     x(BP_Geyser_Frost_C) \
-    x(BP_Gem_Jadiz_C) \
     x(BP_Armor_Gunner_C) \
     x(BP_Spacerig_Comet_C) \
-    x(BP_Barley2_1_C) \
     x(BP_Collectible_Barley_Base_C) \
     x(BP_WeaponSkinRewarder_C) \
     x(BP_ChimneyGeyser02_Carved_C) \
@@ -795,7 +788,6 @@
     x(BP_MorchellaFungus_C) \
     x(BP_QuickRecoveryLogic_C) \
     x(BP_CameraDrone_Flare_C) \
-    x(BP_FossilsBase_C) \
     x(BP_ElectricReload_DMG_Component_C) \
     x(BP_HandheldTablet_3P_C) \
     x(BP_HugeLongRoot_1_C) \
@@ -819,7 +811,6 @@
     x(BP_FSDCameraManager_C) \
     x(BP_Bosco_C) \
     x(BP_DropPod_Landing_NoMule_C) \
-    x(BP_Fossil_BigLizard_Skull01_C) \
     x(BP_SpawnDroppodLocationItem_C) \
     x(BP_PlayerController_C) \
     x(BP_StickySpiderWeb_New_C) \
@@ -856,13 +847,11 @@
     x(BP_Count_Randoms_C) \
     x(BP_Anniversary_Sparkler_C) \
     x(BP_MinersManual_Hologram_C) \
-    x(BP_Barley2_4_C) \
     x(BP_IronWillActivation_C) \
     x(BP_OxygenTank_C) \
     x(BP_PersistentExplosionEffect_EPC_C) \
     x(BP_HugeCrystalStar_3_C) \
     x(BP_RockFormation_Stone_010_C) \
-    x(BP_Barley4_1_C) \
     x(BP_SpaceRig_Cabin01_C) \
     x(BP_AutoReloadPerkActivation_C) \
     x(BP_Skysphere_HoxxesStars_C) \
@@ -888,7 +877,6 @@
     x(BP_GreatEggHunt_BunnyPlush_C) \
     x(BP_BomberAcidPuddle_C) \
     x(BP_BossFight_PlagueMeteor_C) \
-    x(BP_Barley2_2_C) \
     x(BP_RadioactiveBlobPlant_01_C) \
     x(BP_Guntower_Module_LMG_C) \
     x(BP_BarGlass_BurningLove_C) \
@@ -1002,7 +990,6 @@
     x(BP_Refinery_ProjectorLight_C) \
     x(BP_CreeperVine_Large_02_C) \
     x(BP_CribrariaPlant_C_C) \
-    x(BP_Fossil_C) \
     x(BP_DropPod_Escape_Base_C) \
     x(BP_Crossbow_Projectile_Stuck_Electric_C) \
     x(BP_TurretEMPDischarge_C) \
@@ -1109,7 +1096,6 @@
     x(BP_LargeLongRootLoop_3_C) \
     x(BP_LargeCoral_Base_C) \
     x(BP_OldSupplyPod_FailSmokeCloud_C) \
-    x(BP_EnorEmd_C) \
     x(BP_FireCracker_C) \
     x(BP_DrippingPlant_C) \
     x(BP_EnemyShowroomController_C) \
@@ -1139,7 +1125,6 @@
     x(BP_Phys_Haybale_C) \
     x(BP_CribrariaPlant_A_C) \
     x(BP_RivalBombEvent_C) \
-    x(BP_Fossil_BigLizard_Ribcage_C) \
     x(BP_HureRoots_Base_C) \
     x(BP_Azure_CombaCharm_Egg_C) \
     x(BP_BarGlass_SmartStout_C) \
@@ -1150,7 +1135,6 @@
     x(BP_SentryItem_PlaceMarker_C) \
     x(BP_SpinningFan01_C) \
     x(BP_BioTank_Small_C) \
-    x(BP_Barley1_1_C) \
     x(BP_ZipLineConnector_C) \
     x(BP_LockOnBeam_C) \
     x(BP_ExplosiveReloadComponent_C) \
@@ -1183,7 +1167,6 @@
     x(BP_MicroRocket_Base_C) \
     x(BP_RockFormation_Stone_009_C) \
     x(BP_GreatEggHunt_ThrowableEgg_C) \
-    x(BP_Apoca_Bloom_C) \
     x(BP_Widget_DropPod_GarbageGen_C) \
     x(BP_Empty_C) \
     x(BP_Geyser_Sand_C) \
@@ -1200,7 +1183,6 @@
     x(BP_CampaignManager_C) \
     x(BP_FacilityElectricAttack_C) \
     x(BP_WaterBalloon_C) \
-    x(BP_Collectible_Barley_B2_C) \
     x(BP_Refinery_Lamp_C) \
     x(BP_Endscreen_Lamp_C) \
     x(BP_Spider_PlagueCloud_C) \
@@ -1227,13 +1209,11 @@
     x(BP_SoapVacuum_Dropped_Hologram_C) \
     x(BP_Coilgun_HellfireSegment_OLD_C) \
     x(BP_HugeTrippleRoot_2_C) \
-    x(BP_Barley3_4_C) \
     x(BP_Object_Macros_C) \
     x(BP_PropHunt_Anniversary_Bottle_C) \
     x(BP_GuntowerWeakpoint_C) \
     x(BP_SaltFormation_Large_2_C) \
     x(BP_SentryGun_MoveMarker_Heavy_C) \
-    x(BP_Compressed_Gold_C) \
     x(BP_DetPack_Charge_C) \
     x(BP_MOD_MakeElite_C) \
     x(BP_ImpactCompensators_C) \
@@ -1288,7 +1268,6 @@
     x(BP_Pipeline_Segment_C) \
     x(BP_Donkey_Facility_C) \
     x(BP_SentryGun_Redeployable_C) \
-    x(BP_Gem_Aquarq_C) \
     x(BP_PlagueHeartShield_A_C) \
     x(BP_MemorialWall_C) \
     x(BP_Phys_Barrel01_C) \
@@ -1331,7 +1310,6 @@
     x(BP_CrystalFormation_SpikyBunch_02_C) \
     x(BP_RockFormation_Stone_13_C) \
     x(BP_Azure_HugeRoots_Single_06_C) \
-    x(BP_Ebonut_C) \
     x(BP_Crossbow_PheromoneAttackerPositioning_C) \
     x(BP_SpecialTutorialCrystal_C) \
     x(BP_CozyTreeHollow_Double_A_C) \
@@ -1341,7 +1319,6 @@
     x(BP_SpaceRig_Exterior_C) \
     x(BP_WormPlant_Animated_Radioactive_C) \
     x(BP_BrokenDNA_2_C) \
-    x(BP_Barley4_3_C) \
     x(BP_PlagueHeartShield_B_C) \
     x(BP_DropPod_Escape_Normal_C) \
     x(BP_DownedBombDamage_C) \
@@ -1368,7 +1345,6 @@
     x(BP_SnowballItem_C) \
     x(BP_CrystalArch_2_C) \
     x(BP_ChimneyGeyser04_Carved_C) \
-    x(BP_Barley3_1_C) \
     x(BP_Phys_Balloon_C) \
     x(BP_CozyTreeHollow_Base_C) \
     x(BP_GlowingBlueCrystal_2_C) \
@@ -1402,7 +1378,6 @@
     x(BP_ForgeConsole_C) \
     x(BP_Tentacle_ClawParts_C) \
     x(BP_CleanupPod_Beacon_WalkingPlagueheart_C) \
-    x(BP_Barley2_3_C) \
     x(BP_DrinksBox_C) \
     x(BP_ChimneyGeyser03_Carved_C) \
     x(BP_BossFight_NeutralEvent_C) \
@@ -1411,8 +1386,6 @@
     x(BP_TriggerBase_C) \
     x(BP_RockpoxBomber_PlaguePuddle_C) \
     x(BP_WormpodCarcass_C) \
-    x(BP_Collectible_Barley_B4_C) \
-    x(BP_Gem_Bittergem_C) \
     x(BP_EletrocutedSentry_C) \
     x(BP_DownedState_C) \
     x(BP_ExterminationContract_C) \
@@ -1442,19 +1415,16 @@
     x(BP_FriendlyShredder_C) \
     x(BP_HandheldTablet_Off_C) \
     x(BP_ConffetiPipe_A_C) \
-    x(BP_Collectible_Barley_B3_C) \
     x(BP_FragilePlatform_C) \
     x(BP_SelfiePoint_C) \
     x(BP_HugeLongRoot_3_C) \
     x(BP_MiniNuke_RadiationCloud_C) \
-    x(BP_Barley4_4_C) \
     x(BP_ExplosiveReloadComponent_DualMP_C) \
     x(BP_ExpertDepositorLogic_C) \
     x(BP_SpotLightInteractive_C) \
     x(BP_HUD_C) \
     x(BP_SwarmerTunnels_variant_1_C) \
     x(BP_HugeThornBranch_1_NEW_C) \
-    x(BP_Barley4_2_C) \
     x(BP_SandblastedRockIsland_4_C) \
     x(BP_InfectedState_C) \
     x(BP_SeaUrchin_C) \
@@ -1463,7 +1433,6 @@
     x(BP_IceFormation_Base_C) \
     x(BP_ItemDispenserBase_C) \
     x(BP_ExplosiveBarrelsEvent_C) \
-    x(BP_Gem_C) \
     x(BP_Coilgun_Trailsegment_Base_C) \
     x(BP_SupplyPod_Beacon_C) \
     x(BP_HugeCrystalStar_1_Double_C) \

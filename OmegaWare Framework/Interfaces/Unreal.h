@@ -299,8 +299,8 @@ public:
 				umClassLookupCache.emplace(iComparisonIndex, stActorInfo.iLookupIndex);
 			}
 
-			if (stActorInfo.iLookupIndex == FNames::Invalid)
-				continue;
+			//if (stActorInfo.iLookupIndex == FNames::Invalid)
+			//	continue;
 
 			while (1) {
 				bool bFixed = true;

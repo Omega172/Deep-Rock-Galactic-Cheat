@@ -390,16 +390,13 @@ void ESP::Render()
 
 			break;
 		}
-		case FNames::BP_Gem_Aquarq_C:
-		case FNames::BP_GunkSeed_Hanger_C:
-		case FNames::BP_GunkSeed_C:
-		case FNames::BP_Ebonut_C:
-		case FNames::BP_Apoca_Bloom_C:
+		case FNames::BP_Collectible_Simple_C:      // Resource
+		case FNames::BP_Collectible_Barley_Base_C: // BEER
+		case FNames::BP_Collectible_Base_C:        // YIPPEE
+		case FNames::Gem:                          // What do you think dumbass
 		case FNames::BP_AlienEgg_C:
 		case FNames::BP_MiniMule_Salvage_C:
 		case FNames::BP_MuleLeg_C:
-		case FNames::BP_Boolo_Cap_C:
-		case FNames::BP_Fossil_C:
 		case FNames::BP_DorettaHead_C:
 		{
 			if (!stObjectives.bEnabled || (iESPMaxDistance && stInfo.flDistance > iESPMaxDistance) || !IsValidObjectPtr(stInfo.pActor))
@@ -610,11 +607,6 @@ void ESP::Render()
 
 			break;
 		}
-		case FNames::BP_Compressed_Gold_C:
-		case FNames::BP_Gem_Jadiz_C:
-		case FNames::BP_Barley4_1_C:
-		case FNames::BP_Barley4_2_C:
-
 		default:
 		{
 			if (stInfo.flDistance > iDebug)
