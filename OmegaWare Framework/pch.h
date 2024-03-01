@@ -11,10 +11,10 @@
 // Framework defines
 #pragma execution_character_set("utf-8")
 
-#define FRAMEWORK_VERSION 5.5.2
-#define FRAMEWORK_MAJOR_VERSION 5
-#define FRAMEWORK_MINOR_VERSION 5
+#define FRAMEWORK_MAJOR_VERSION 6
+#define FRAMEWORK_MINOR_VERSION 8
 #define FRAMEWORK_REWORK_VERSION 2
+#define FRAMEWORK_VERSION FRAMEWORK_MAJOR_VERSION.FRAMEWORK_MINOR_VERSION.FRAMEWORK_REWORK_VERSION
 
 #define FRAMEWORK_CODENAME "OmegaWare"
 #define FRAMEWORK_TARGET_GAME "Deep Rock Galactic"
@@ -34,11 +34,13 @@ static_assert(FRAMEWORK_TARGET_PROCESS != "", "Target process name not set."); /
 static_assert((FRAMEWORK_OTHER + FRAMEWORK_UNREAL + FRAMEWORK_UNITY) == 1, "Must use exactly one framework type"); // Don't allow both frameworks to be used)
 
 // Make sure a rendering API is selected and only one rendering API is selected
+#define FRAMEWORK_RENDER_DYNAMIC 0
 #define FRAMEWORK_RENDER_D3D11 1
 #define FRAMEWORK_RENDER_D3D12 0
-static_assert((FRAMEWORK_RENDER_D3D11 + FRAMEWORK_RENDER_D3D12) == 1, "Must use exactly one rendering API"); // Don't allow both rendering API's to be used
+static_assert((FRAMEWORK_RENDER_DYNAMIC + FRAMEWORK_RENDER_D3D11 + FRAMEWORK_RENDER_D3D12) == 1, "Must use exactly one rendering API");
+static_assert(!(FRAMEWORK_RENDER_DYNAMIC || FRAMEWORK_RENDER_D3D12), "This does NOT work right now, please dont use ;3");
 
-#include "MinHook/include/MinHook.h"
+#include "Libs/MinHook/include/MinHook.h"
 
 // A macro to get the current source location to be used with Utils::GetLocation
 #include <source_location>
@@ -49,19 +51,6 @@ static_assert((FRAMEWORK_RENDER_D3D11 + FRAMEWORK_RENDER_D3D12) == 1, "Must use 
 // Start the precompiled headers
 #ifndef PCH_H
 #define PCH_H
-
-#ifndef FRAMEWORK_INJECTOR
-
-#if FRAMEWORK_UNREAL // If the framework set is Unreal include the SDK.h file that includes all the SDK headers made by an SDK generator
-#include "SDK.h"
-
-// Reminder remember to incude these files in the project
-// BasicTypes_Package.cpp
-// CoreUObject_Package.cpp
-// Engine_Package.cpp
-#endif
-
-#endif
 
 // Include standard libraries that are used in the project
 #include <thread>
@@ -74,7 +63,9 @@ static_assert((FRAMEWORK_RENDER_D3D11 + FRAMEWORK_RENDER_D3D12) == 1, "Must use 
 #include <sstream>
 #include <cstdio>
 #include <vector>
+#include <functional>
 #include <algorithm>
+#include <span>
 #include <eh.h> // I dont remember what this was for, but I think it was for a scuffed try catch block to stop crashes on memory access violations
 
 #ifndef FRAMEWORK_INJECTOR
@@ -83,11 +74,11 @@ static_assert((FRAMEWORK_RENDER_D3D11 + FRAMEWORK_RENDER_D3D12) == 1, "Must use 
 #include <math.h>
 
 #define FAIL_ON_MAX_STRLEN // Prevent overreading strings
+#include "Memory/Memory.h"
 #include "Utils/Utils.h" // Include the Utils.h file that contains various utility functions for the framework
 
-#include "Interfaces/EasyHook.h"
-
 #if FRAMEWORK_UNREAL // If the framework set is Unreal include the Unreal.h file that contains the Unreal interface class that is used to interact with the Unreal Engine
+#include "SDK.h"
 #include "Interfaces/FNames.h"
 #include "Interfaces/Unreal.h"
 #endif
@@ -99,8 +90,8 @@ static_assert((FRAMEWORK_RENDER_D3D11 + FRAMEWORK_RENDER_D3D12) == 1, "Must use 
 // Include ImGui and the ImGui implementation for Win32
 #define IMGUI_DEFINE_MATH_OPERATORS
 #pragma warning(disable : 4244) // Disable the warning for the conversion from 'float' to 'int', possible loss of data
-#include "ImGUI/imgui.h"
-#include "ImGUI/imgui_impl_win32.h"
+#include "Libs/ImGui/imgui.h"
+#include "Libs/ImGui/imgui_impl_win32.h"
 
 // Include the ImGui implementation for the rendering API that is being used
 #if FRAMEWORK_RENDER_D3D11
@@ -108,7 +99,7 @@ static_assert((FRAMEWORK_RENDER_D3D11 + FRAMEWORK_RENDER_D3D12) == 1, "Must use 
 #include <d3d11.h>
 #include <dxgi.h>
 #include <dxgi1_2.h>
-#include "ImGUI/imgui_impl_dx11.h"
+#include "Libs/ImGui/imgui_impl_dx11.h"
 #endif
 
 #if FRAMEWORK_RENDER_D3D12
@@ -116,10 +107,10 @@ static_assert((FRAMEWORK_RENDER_D3D11 + FRAMEWORK_RENDER_D3D12) == 1, "Must use 
 #include <D3D12.h>
 #include <dxgi.h>
 #include <dxgi1_4.h>
-#include "ImGUI/imgui_impl_dx12.h"
+#include "Libs/ImGui/imgui_impl_dx12.h"
 #endif
 
-#include "ImGUI/Styles.h" // Include the Styles.h file that contains the ImGui styles for the framework
+#include "GUI/Styles.h" // Include the Styles.h file that contains the ImGui styles for the framework
 
 #include "GUI/Custom.h" // Include the Custom.h file that contains the custom ImGui widgets for the framework
 #include "GUI/GUI.h" // Include the GUI.h file that contains the GUI class that is used to create the framework's menu

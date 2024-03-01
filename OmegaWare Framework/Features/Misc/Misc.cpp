@@ -65,7 +65,7 @@ void Misc::PopulateMenu()
 
 				
 				wchar_t* wsName = pResourceData->Title.Get();
-				if (!Utils::IsReadableMemory(wsName, sizeof(*wsName)))
+				if (!IsValidObjectPtr(wsName))
 					continue;
 
 				std::wstring ws(wsName);

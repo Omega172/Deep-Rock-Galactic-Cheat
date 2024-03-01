@@ -16,7 +16,7 @@ namespace Cheat
 		if (!renderer.get()->Setup())
 			return false;
 
-	#if FRAMEWORK_UNREAL // If the framework is Unreal initalize the SDK assuming the SDK was generated with CheatGeat by Cormm
+#if FRAMEWORK_UNREAL // If the framework is Unreal initalize the SDK assuming the SDK was generated with CheatGeat by Cormm
 		if (!CG::InitSdk())
 			return false;
 
@@ -25,18 +25,23 @@ namespace Cheat
 
 		while (!(*CG::UWorld::GWorld))
 			continue;
-	#endif
+#endif
 
 		Utils::LogDebug(Utils::GetLocation(CurrentLoc), "Initalizing Globals, this can take a bit"); // Log that the globals are being initalized
 
-	#if FRAMEWORK_UNREAL // If using the Unreal framework print the pointer to the Unreal class to make sure it was initalized
+#if FRAMEWORK_UNREAL // If using the Unreal framework print the pointer to the Unreal class to make sure it was initalized
 		Utils::LogDebug(Utils::GetLocation(CurrentLoc), (std::stringstream() << "Unreal: 0x" << unreal.get()).str());
 		FNames::Initialize();
-	#endif
+#endif
 
 		// Add other globals that need to be initalized here
 
 		Utils::LogDebug(Utils::GetLocation(CurrentLoc), "Globals Initalized"); // Log that the globals have been initalized
+
+		HANDLE pPrivilagedHandle = Memory::GetPrivilegedHandleToProcess();
+		if (pPrivilagedHandle)
+			Utils::LogDebug(Utils::GetLocation(CurrentLoc), (std::stringstream() << "PrivilagedHandle: 0x" << std::hex << pPrivilagedHandle).str());
+
 
 		localization = std::make_unique<Localization>();
 		if (!localization->IsInitialized())
@@ -61,13 +66,12 @@ namespace Cheat
 					return false;
 				}
 			}
-		} catch (char* e) {
+		}
+		catch (char* e) {
 			Utils::LogDebug(Utils::GetLocation(CurrentLoc), std::string(e));
 		}
 
 		config = std::make_unique<Config>(); // Initalize the config class
-
-		//Unreal::HookPostRender();
 
 		return true; // Return true if the initalization was successful
 	}
@@ -104,8 +108,8 @@ namespace Cheat
 				Features[i]->Run();
 			}
 
-// If the thread sleep is enabled sleep for the specified amount of time
-// This is used to reduce the CPU usage of the module, I would recommend keeping this enabled but added the option to disable it if needed for testing and when messing with less CPU intensive games
+			// If the thread sleep is enabled sleep for the specified amount of time
+			// This is used to reduce the CPU usage of the module, I would recommend keeping this enabled but added the option to disable it if needed for testing and when messing with less CPU intensive games
 #if DO_THREAD_SLEEP
 			std::this_thread::sleep_for(std::chrono::milliseconds(THREAD_SLEEP_TIME));
 #endif
@@ -113,34 +117,32 @@ namespace Cheat
 		console->SetVisibility(true); // Set the console to be visible when the cheat is unloading
 		Utils::LogDebug(Utils::GetLocation(CurrentLoc), Cheat::Title + ": Unloading..."); // Log that the cheat is unloading
 
-
-		renderer.get()->Destroy();
 		wndproc.get()->Destroy();
-
-		MH_Uninitialize();
+		renderer.get()->Destroy();
 
 		// Destroy features
-		for (size_t i = 0; i < Features.size(); i++) // A loop to grab the feature pointers and call their respective destroy functions to clean up any resources that were used and restore any settings that were changed
+		for (size_t i = 0; i < Features.size(); i++)
 		{
 			Features[i]->Destroy();
 		}
 
-		//Unreal::RestorePostRender();
+		std::this_thread::sleep_for(std::chrono::seconds(3));
 
-		std::this_thread::sleep_for(std::chrono::seconds(3)); // Sleep for 3 seconds to make sure the console is destroyed and that the hooks are released before unloading the module
+		console->Destroy();
 
-		console->Destroy(); // Destroy/Free the console because if we don't the console window will stay open after the cheat is unloaded and can also cause a crash in rare cases
+		// Uninitialize MinHook, will also disable any lurking hooks still active as a safety net
+		MH_Uninitialize();
 
-		FreeLibraryAndExitThread(hModule, EXIT_SUCCESS); // Unload the module and exit the thread
-		return TRUE; // Return true not sure if this is needed at all TBH but it's here
+		// Unload the module and exit the thread
+		FreeLibraryAndExitThread(hModule, EXIT_SUCCESS);
+		return TRUE;
 	}
 }
 
-// Simple and barebones DllMain to initalize the main thread
-// Really the only thing that should be in DllMain is the thread creation
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ulReasonForCall, LPVOID lpReserved)
 {
-	DisableThreadLibraryCalls(hModule); // Disable unwanted and unneeded thread calls
+	// Disable unwanted and unneeded thread calls
+	DisableThreadLibraryCalls(hModule);
 
 	if (ulReasonForCall != DLL_PROCESS_ATTACH)
 		return TRUE;
@@ -151,3 +153,4 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ulReasonForCall, LPVOID lpReserved)
 
 	return TRUE;
 }
+

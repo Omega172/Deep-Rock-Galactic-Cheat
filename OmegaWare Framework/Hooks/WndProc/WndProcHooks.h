@@ -2,12 +2,13 @@
 
 #include "pch.h"
 
-class WndProcHooks 
+class WndProcHooks
 {
 private:
 
 public:
 	HWND hwndWindow;
+	DWORD dwProcessId;
 
 	bool Setup();
 
