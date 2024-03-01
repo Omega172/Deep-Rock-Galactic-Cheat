@@ -63,6 +63,15 @@ private:
 		bool bDistance = false;
 	} stSpecialStructures;
 
+	struct {
+		bool bEnabled = false;
+		float clrBox[4] = { 1.f, 1.f, 0.f, 1.f };
+		bool bAccurateBox = true;
+		bool bBox = false;
+		bool bName = false;
+		bool bDistance = false;
+	} stResourceChunks;
+
 	int iESPMaxDistance = 0;
 
 	int iDebug = 0;

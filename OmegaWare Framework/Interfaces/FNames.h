@@ -50,6 +50,7 @@
     x(DroneCharacter) \
     x(MULE) \
     x(RecallableActor) \
+    x(ResourceChunk) \
     x(ITM_DeepDiveStatus_Stage_C) \
     x(ITM_MisDesMutator_C) \
     x(ITM_SeasonMenu_BG_C) \
@@ -477,7 +478,6 @@
     x(BP_BarGlass_UnderhillDeluxe_C) \
     x(BP_BoscoVacuum_C) \
     x(BP_RivalBombNode_C) \
-    x(BP_CroppaChunk_C) \
     x(BP_CreeperVine_Large_03_C) \
     x(BP_BarrelDispenserBeacon_C) \
     x(BP_CreateBombOnHit_C) \
@@ -515,7 +515,6 @@
     x(BP_SmallMangroveRoot_2_C) \
     x(BP_FoamPuddle_C) \
     x(BP_Plaguesoaper_Dropped_Hologram_C) \
-    x(BP_AmberChunk_C) \
     x(BP_NausicaaTreeTrunk_4_Fallen_C) \
     x(BP_BrokenDNA_1_C) \
     x(BP_CandleBlock_C) \
@@ -545,7 +544,6 @@
     x(BP_PropHunt_BiohazardSuit_C) \
     x(BP_HUD_SpaceRig_C) \
     x(BP_Character_ShowroomStage_C) \
-    x(BP_JadizChunk_C) \
     x(BP_DropPod_Landing_Escort_C) \
     x(BP_Crossbow_Projectile_Stuck_Chemical_C) \
     x(BP_Grenade_IFG_Area_Base_C) \
@@ -566,7 +564,6 @@
     x(BP_Microwave_Heatsink_C) \
     x(BP_MangroveRock_03_C) \
     x(BP_Guntower_Module_RandomFire_C) \
-    x(BP_IronChunk_C) \
     x(BP_EnemyControlState_C) \
     x(BP_CreeperVine_BendThroughGround_02_C) \
     x(BP_JetBootsBox_C) \
@@ -592,10 +589,8 @@
     x(BP_PhysicsTumbleweed_C) \
     x(BP_PingPongPlant_A_C) \
     x(BP_NetFungus_C) \
-    x(BP_QuantriteChunk_C) \
     x(BP_NetworkPlayGameMode_C) \
     x(BP_Salvage_FuelPoint_C) \
-    x(BP_GoldChunk_C) \
     x(BP_CreeperVine_Small_03_C) \
     x(BP_Phys_Barrel01_Red_C) \
     x(BP_Anniversary_Trophy6_InCave_C) \
@@ -640,7 +635,6 @@
     x(BP_Spider_FrostCloud_C) \
     x(BP_CaretakerMortarAction_C) \
     x(BP_Caretaker_AoE_Attack_C) \
-    x(BP_PhazyoniteChunk_C) \
     x(BP_Refinery_Extractor_C) \
     x(BP_DataCell_C) \
     x(BP_Collectible_Base_C) \
@@ -726,7 +720,6 @@
     x(BP_DropSpike_Salt_C) \
     x(BP_SupplyPod_Spawn_Beacon_C) \
     x(BP_CameraDrone_SplineMesh_C) \
-    x(BP_DirtChunk_C) \
     x(BP_Refinery_Depositor_C) \
     x(BP_ExplodingPlant_Base_C) \
     x(BP_DeathStats_C) \
@@ -800,7 +793,6 @@
     x(BP_CreeperVine_Small_01_C) \
     x(BP_FuelLine_StartPoint_C) \
     x(BP_MorchellaFungus_C) \
-    x(BP_OilShaleChunk_C) \
     x(BP_QuickRecoveryLogic_C) \
     x(BP_CameraDrone_Flare_C) \
     x(BP_FossilsBase_C) \
@@ -845,7 +837,6 @@
     x(BP_Spider_PlagueCloud_Small_C) \
     x(BP_MiniMule_Salvage_C) \
     x(BP_RicochetArrow_Component_C) \
-    x(BP_EnorChunk_C) \
     x(BP_Armor_Engineer_C) \
     x(BP_ItemRack_Simple_C) \
     x(BP_HoopsGame_C) \
@@ -883,7 +874,6 @@
     x(BP_Azure_Flower_Insect_swarm_C) \
     x(BP_LunarFestival_Lamp01_C) \
     x(BP_Screen_C) \
-    x(BP_UmaniteChunk_C) \
     x(BP_BarGlass_ArkenStout_C) \
     x(BP_SmallGenerator_C) \
     x(BP_Plague_BioTank_Big_C) \
@@ -919,7 +909,6 @@
     x(BP_WallMaggot_Deep_C) \
     x(BP_DeadTree_A_C) \
     x(BP_CreepyEyes_C) \
-    x(BP_BismorChunk_C) \
     x(BP_Guntower_Module_RadialFire_new_C) \
     x(BP_SandArch_2_C) \
     x(BP_HydraWeedCoreFragment_03_C) \
@@ -1008,12 +997,10 @@
     x(BP_Facility_PowerStation_GeneratorBase_C) \
     x(BP_TurretEMPDischarge_Indicator_C) \
     x(BP_DropPod_LandingZone_C) \
-    x(BP_RedSugarChunk_C) \
     x(BP_PlagueWarning_C) \
     x(BP_Depositable_C) \
     x(BP_Refinery_ProjectorLight_C) \
     x(BP_CreeperVine_Large_02_C) \
-    x(BP_MagniteChunk_C) \
     x(BP_CribrariaPlant_C_C) \
     x(BP_Fossil_C) \
     x(BP_DropPod_Escape_Base_C) \
@@ -1075,7 +1062,6 @@
     x(BP_PlatformMushroom_Base_C) \
     x(BP_TutorialTriggerManager_C) \
     x(BP_InCaveOktoberfestMug_C) \
-    x(BP_NitraChunk_C) \
     x(BP_Xmas_CandyCane_C) \
     x(BP_BarGlass_Random_C) \
     x(BP_LasePointer_SecondaryMarker_C) \
@@ -1264,7 +1250,6 @@
     x(BP_DiscordConsole_C) \
     x(BP_Chimney_Geyser_Carved_Base_C) \
     x(BP_PostProcessing_IceCaves_C) \
-    x(BP_MorkiteChunk_C) \
     x(BP_RockFormation_Base_C) \
     x(BP_HugeCrystalStar_4_Low_C) \
     x(BP_CrystalArch_01_Big_C) \
@@ -1412,7 +1397,6 @@
     x(BP_Bosco_FoamGlob_C) \
     x(BP_New_HeavyRain_Crystal_C) \
     x(BP_Azure_ThinHangingRoots_SM_AzureWealdVines_03_C) \
-    x(BP_HollomiteChunk_C) \
     x(BP_SentryItem_PlaceMarker_Heavy_C) \
     x(BP_Spacerig_Spaceball_Goal_C) \
     x(BP_ForgeConsole_C) \
@@ -1494,7 +1478,6 @@
     x(BP_Hologram_Base_C) \
     x(BP_Shotgun_A_Shell_C) \
     x(BP_MedbaySign_C) \
-    x(BP_DystrumChunk_C) \
     x(BP_MagneticArrow_Component_C) \
     x(BP_SMG_ElectrifiedPlatforms_C) \
     x(BP_Shotgun_A_ShellTP_C) \

@@ -14,6 +14,7 @@ bool ESP::Setup()
 		{ HASH("ESP_PLAYERS"), "Players" },
 		{ HASH("ESP_OBJECTIVES"), "Objectives" },
 		{ HASH("ESP_SPECIAL_STRUCTURES"), "Special Structures" },
+		{ HASH("ESP_RESOURCE_CHUNKS"), "Resource Chunks" },
 
 		{ HASH("ESP_ACCURATE_BOX"), "Accurate Box" },
 		{ HASH("ESP_BOX"), "Box" },
@@ -136,6 +137,15 @@ void ESP::PopulateMenu()
 			}), true, 2.f);
 		ESP->AddElement(new ColorPicker(Cheat::localization->Get("ESP_SPECIAL_STRUCTURES").c_str(), stSpecialStructures.clrBox, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoSidePreview | ImGuiColorEditFlags_AlphaBar), true, 2.f);
 
+		ESP->AddElement(new Checkbox("##ResourceChunksCheckbox", &stResourceChunks.bEnabled));
+		ESP->AddElement(new Combo("##ResourceChunksFlags", "", ImGuiComboFlags_NoPreview, [this]() {
+			ImGui::Selectable(Cheat::localization->Get("ESP_ACCURATE_BOX").c_str(), &stResourceChunks.bAccurateBox);
+			ImGui::Selectable(Cheat::localization->Get("ESP_BOX").c_str(), &stResourceChunks.bBox);
+			ImGui::Selectable(Cheat::localization->Get("ESP_NAME").c_str(), &stResourceChunks.bName);
+			ImGui::Selectable(Cheat::localization->Get("ESP_DISTANCE").c_str(), &stResourceChunks.bDistance);
+			}), true, 2.f);
+		ESP->AddElement(new ColorPicker(Cheat::localization->Get("ESP_RESOURCE_CHUNKS").c_str(), stResourceChunks.clrBox, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoSidePreview | ImGuiColorEditFlags_AlphaBar), true, 2.f);
+
 		ESP->AddElement(new SliderInt(Cheat::localization->Get("ESP_MAX_DISTANCE"), &iESPMaxDistance, 0, 5000));
 
 		ESP->AddElement(new SliderInt(Cheat::localization->Get("ESP_DEBUG"), &iDebug, 0, 2000));
@@ -246,6 +256,9 @@ void ESP::Render()
 
 	ImU32 uiSpecialStructuresBox = ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(stSpecialStructures.clrBox));
 	ImU32 uiSpecialStructuresBoxOutline = ImGui::ColorConvertFloat4ToU32({ 0.f, 0.f, 0.f, stSpecialStructures.clrBox[3] });
+
+	ImU32 uiResourceChunksBox = ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(stResourceChunks.clrBox));
+	ImU32 uiResourceChunksBoxOutline = ImGui::ColorConvertFloat4ToU32({ 0.f, 0.f, 0.f, stResourceChunks.clrBox[3] });
 
 	ImU32 uiDebugColor = ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(clrDebug));
 
@@ -557,6 +570,46 @@ void ESP::Render()
 
 			break;
 		}
+		case FNames::ResourceChunk: // Dropped resource chunks (gold, nitra, ect...)
+		{
+			if (!stResourceChunks.bEnabled || (iESPMaxDistance && stInfo.flDistance > iESPMaxDistance) || !IsValidObjectPtr(stInfo.pActor))
+				break;
+
+			CG::FVector vecLocation, vecExtent;
+			stInfo.pActor->GetActorBounds(true, &vecLocation, &vecExtent, false);
+
+			ImRect rectBox{};
+			if (!GetBoxFromBBox(vecLocation, vecExtent, rectBox, stResourceChunks.bAccurateBox))
+				break;
+
+			if (stResourceChunks.bBox) {
+				ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, uiResourceChunksBoxOutline, 0.f, ImDrawFlags_None, 3.f);
+				ImGui::GetBackgroundDrawList()->AddRect(rectBox.Min, rectBox.Max, uiResourceChunksBox);
+			}
+
+			if (stResourceChunks.bName) {
+
+				// EVIL TERRIBLE HORRIBLE HACK
+				char szName[64];
+				szName[stInfo.pActor->Name.GetName().copy(szName, 63, 0)] = 0;
+
+				ImVec2 vecTextSize = ImGui::CalcTextSize(szName);
+				ImGui::OutlinedText({ rectBox.Min.x + (rectBox.GetWidth() - vecTextSize.x) / 2, rectBox.Min.y - 17.f }, White, szName);
+			}
+
+			if (stResourceChunks.bDistance)
+			{
+				std::stringstream ssDistance;
+				ssDistance << "[ " << std::to_string(static_cast<int>(stInfo.flDistance)) << "m ]";
+
+				std::string sDistance = ssDistance.str();
+				ImVec2 vecTextSize = ImGui::CalcTextSize(sDistance.c_str());
+
+				ImGui::OutlinedText({ rectBox.Min.x + (rectBox.GetWidth() - vecTextSize.x) / 2, rectBox.Max.y + 2.f }, White, sDistance.c_str());
+			}
+
+			break;
+		}
 		case FNames::BP_Compressed_Gold_C:
 		case FNames::BP_Gem_Jadiz_C:
 		case FNames::BP_Barley4_1_C:
@@ -690,6 +743,13 @@ void ESP::SaveConfig()
 	Cheat::config->PushEntry("ESP_SPECIAL_STRUCTURES_NAME", "bool", std::to_string(stSpecialStructures.bName));
 	Cheat::config->PushEntry("ESP_SPECIAL_STRUCTURES_DISTANCE", "bool", std::to_string(stSpecialStructures.bDistance));
 	Cheat::config->PushEntry("ESP_SPECIAL_STRUCTURES_BOX_COLOR", "int", std::to_string(ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(stSpecialStructures.clrBox))));
+
+	Cheat::config->PushEntry("ESP_RESOURCE_CHUNKS_ENABLE", "bool", std::to_string(stResourceChunks.bEnabled));
+	Cheat::config->PushEntry("ESP_RESOURCE_CHUNKS_ACCURATE_BOX", "bool", std::to_string(stResourceChunks.bAccurateBox));
+	Cheat::config->PushEntry("ESP_RESOURCE_CHUNKS_BOX", "bool", std::to_string(stResourceChunks.bBox));
+	Cheat::config->PushEntry("ESP_RESOURCE_CHUNKS_NAME", "bool", std::to_string(stResourceChunks.bName));
+	Cheat::config->PushEntry("ESP_RESOURCE_CHUNKS_DISTANCE", "bool", std::to_string(stResourceChunks.bDistance));
+	Cheat::config->PushEntry("ESP_RESOURCE_CHUNKS_BOX_COLOR", "int", std::to_string(ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(stResourceChunks.clrBox))));
 
 	Cheat::config->PushEntry("ESP_MAX_DISTANCE", "int", std::to_string(iESPMaxDistance));
 	Cheat::config->PushEntry("ESP_DEBUG_COLOR", "int", std::to_string(ImGui::ColorConvertFloat4ToU32(*reinterpret_cast<ImVec4*>(clrDebug))));
@@ -880,6 +940,35 @@ void ESP::LoadConfig()
 		ImVec4 clrTmp = ImGui::ColorConvertU32ToFloat4(std::stoul(entry.Value));
 		*reinterpret_cast<uint64_t*>(&stSpecialStructures.clrBox[0]) = *reinterpret_cast<uint64_t*>(&clrTmp.x);
 		*reinterpret_cast<uint64_t*>(&stSpecialStructures.clrBox[2]) = *reinterpret_cast<uint64_t*>(&clrTmp.z);
+	}
+
+
+
+	entry = Cheat::config->GetEntryByName("ESP_RESOURCE_CHUNKS_ENABLE");
+	if (entry.Name == "ESP_RESOURCE_CHUNKS_ENABLE")
+		stResourceChunks.bEnabled = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_RESOURCE_CHUNKS_ACCURATE_BOX");
+	if (entry.Name == "ESP_RESOURCE_CHUNKS_ACCURATE_BOX")
+		stResourceChunks.bAccurateBox = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_RESOURCE_CHUNKS_BOX");
+	if (entry.Name == "ESP_RESOURCE_CHUNKS_BOX")
+		stResourceChunks.bBox = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_RESOURCE_CHUNKS_NAME");
+	if (entry.Name == "ESP_RESOURCE_CHUNKS_NAME")
+		stResourceChunks.bName = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_RESOURCE_CHUNKS_DISTANCE");
+	if (entry.Name == "ESP_RESOURCE_CHUNKS_DISTANCE")
+		stResourceChunks.bDistance = std::stoi(entry.Value);
+
+	entry = Cheat::config->GetEntryByName("ESP_RESOURCE_CHUNKS_BOX_COLOR");
+	if (entry.Name == "ESP_RESOURCE_CHUNKS_BOX_COLOR") {
+		ImVec4 clrTmp = ImGui::ColorConvertU32ToFloat4(std::stoul(entry.Value));
+		*reinterpret_cast<uint64_t*>(&stResourceChunks.clrBox[0]) = *reinterpret_cast<uint64_t*>(&clrTmp.x);
+		*reinterpret_cast<uint64_t*>(&stResourceChunks.clrBox[2]) = *reinterpret_cast<uint64_t*>(&clrTmp.z);
 	}
 
 
