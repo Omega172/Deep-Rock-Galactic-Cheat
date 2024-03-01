@@ -272,7 +272,7 @@ void Aimbot::Run()
 			if (!IsValidObjectPtr(pHealthComponent) || pHealthComponent->InternalIndex <= 0 || pHealthComponent->Name.ComparisonIndex == 0 || pHealthComponent->IsDead() || !pHealthComponent->canTakeDamage)
 				return true;
 
-			if (pActor->GetAttitude() != CG::EPawnAttitude::Hostile && FNames::GetLookupIndex(pActor->Name.ComparisonIndex) != FNames::ENE_Flea_C)
+			if (pActor->GetAttitude() != CG::EPawnAttitude::Hostile)// && FNames::GetLookupIndex(pActor->Name.ComparisonIndex) != FNames::ENE_Flea_C)
 				return true;
 
 			CG::USkeletalMeshComponent* pMesh = pActor->Mesh;
@@ -310,6 +310,31 @@ void Aimbot::Run()
 			return false;
 		}), apEnemyPathFinders.end());
 	Mutex.unlock();
+
+	/*
+	if (1)
+		return;
+
+	for (FNames::ActorInfo_t stInfo : pUnreal->ActorList) {
+		switch (stInfo.iLookupIndex) {
+		case FNames::ENE_Parasite_C:
+		case FNames::BP_FriendlyParasite_Mechanical_C:
+		case FNames::BP_FriendlyParasite_C:
+		{	// CG::AParasiteEnemy
+
+			break;
+		}
+		case FNames::BP_GuntowerWeakpoint_C:
+		{	// CG::AGuntowerWeakPoint
+
+			break;
+		}
+		default:
+			break;
+
+		};
+	};
+	*/
 }
 
 void Aimbot::SaveConfig()

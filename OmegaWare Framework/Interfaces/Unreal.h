@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "pch.h"
 #if FRAMEWORK_UNREAL // Not sure if this is needed but it's here anyway
 
@@ -165,14 +165,40 @@ public:
 	static CG::UGameplayStatics* GetGameplayStatics() { return reinterpret_cast<CG::UGameplayStatics*>(CG::UGameplayStatics::StaticClass()); }
 	static CG::UKismetStringLibrary* GetStringLibrary() { return reinterpret_cast<CG::UKismetStringLibrary*>(CG::UKismetStringLibrary::StaticClass()); }
 
+	// LIFEHAAACK BITCH (◣_◢)
+	inline bool IsAFast(CG::UClass* in, FNames::EFNames iLookupIndex)
+	{
+		int32_t iComparisonIndex = FNames::vecClassLookups[iLookupIndex].ComparisonIndex;
+		for (CG::UStruct* pStruct = static_cast<CG::UStruct*>(in); IsValidObjectPtr(pStruct); pStruct = pStruct->SuperField) {
+			if (pStruct->Name.ComparisonIndex == iComparisonIndex)
+				return true;
+		}
+
+		return false;
+	};
+
+	// Kinda like UObject->IsA, but safer and faster as we are already storing fname comparison indexes!!!
+	inline bool IsAFast(CG::UClass* in, int iComparisonIndex)
+	{
+		for (CG::UStruct* pStruct = static_cast<CG::UStruct*>(in); IsValidObjectPtr(pStruct); pStruct = pStruct->SuperField) {
+			if (pStruct->Name.ComparisonIndex == iComparisonIndex)
+				return true;
+		}
+
+		return false;
+	};
+
 	inline void RefreshActorList() // A function to refresh the actor list
 	{
 		std::vector<CG::AActor*> lActors{};
 		std::vector<FNames::ActorInfo_t> lActorList{};
 		std::vector<float> AllDistances{};
 
+		static std::unordered_map<uint32_t, FNames::EFNames> umClassLookupCache{};
+
 		if (CG::UWorld::GWorld == nullptr) {
 			ActorLock.lock();
+			umClassLookupCache.clear(); // This is probably not needed due to fname comparison indexes not changing
 			Actors.clear();
 			ActorList.clear();
 			ActorLock.unlock();
@@ -182,6 +208,7 @@ public:
 		CG::AFSDGameState* pGameState = reinterpret_cast<CG::AFSDGameState*>(GetGameStateBase());
 		if (!IsValidObjectPtr(pGameState) || pGameState->IsOnSpaceRig) {
 			ActorLock.lock();
+			umClassLookupCache.clear(); // This is probably not needed due to fname comparison indexes not changing
 			Actors.clear();
 			ActorList.clear();
 			ActorLock.unlock();
@@ -191,6 +218,7 @@ public:
 		FNames::EFNames iMatchState = FNames::GetLookupIndex(pGameState->MatchState.ComparisonIndex);
 		if (iMatchState != FNames::InProgress) {
 			ActorLock.lock();
+			umClassLookupCache.clear(); // This is probably not needed due to fname comparison indexes not changing
 			Actors.clear();
 			ActorList.clear();
 			ActorLock.unlock();
@@ -251,11 +279,24 @@ public:
 				vecLocation.Distance(pActor->K2_GetActorLocation())
 			};
 
-			for (FNames::ClassLookupEntry_t stEntry : FNames::vecClassLookups) {
-				if (iComparisonIndex == stEntry.ComparisonIndex) {
-					stActorInfo.iLookupIndex = stEntry.iLookupIndex;
-					break;
+
+			if (auto itr = umClassLookupCache.find(iComparisonIndex); itr != umClassLookupCache.end()) {
+				stActorInfo.iLookupIndex = itr->second;
+			}
+			else {
+				for (CG::UStruct* pStruct = static_cast<CG::UStruct*>(pActor->Class); IsValidObjectPtr(pStruct); pStruct = pStruct->SuperField) {
+					for (FNames::ClassLookupEntry_t stEntry : FNames::vecClassLookups) {
+						if (pStruct->Name.ComparisonIndex == stEntry.ComparisonIndex) {
+							stActorInfo.iLookupIndex = stEntry.iLookupIndex;
+							break;
+						}
+					}
+
+					if (stActorInfo.iLookupIndex != FNames::Invalid)
+						break;
 				}
+
+				umClassLookupCache.emplace(iComparisonIndex, stActorInfo.iLookupIndex);
 			}
 
 			if (stActorInfo.iLookupIndex == FNames::Invalid)

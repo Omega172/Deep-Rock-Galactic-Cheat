@@ -84,6 +84,9 @@ namespace Memory
 			if (!m_fnOriginal)
 				throw std::runtime_error("Attempted to call a nullptr!");
 
+			if (!m_pTarget)
+				return std::invoke_result_t<TFunction, TArgs...>{};
+
 			return m_fnOriginal(std::forward<TArgs>(args)...);
 		};
 

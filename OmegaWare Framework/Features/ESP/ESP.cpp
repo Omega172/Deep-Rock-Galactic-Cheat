@@ -251,149 +251,57 @@ void ESP::Render()
 
 	for (FNames::ActorInfo_t stInfo : pUnreal->ActorList) {
 		switch (stInfo.iLookupIndex) {
-		case FNames::ENE_JellyBreeder_Normal_C:
-		case FNames::ENE_Butterfly_C:
-		case FNames::ENE_Spider_Grunt_Guard_C:
-		case FNames::ENE_Bomber_Fire_C:
-		case FNames::ENE_FlyingCritterBase_C:
-		case FNames::ENE_Spider_Grunt_Guard_Radioactive_C:
-		case FNames::ENE_Spider_Spitter_C:
-		case FNames::ENE_FacilityTurret_Spinning_C:
-		case FNames::ENE_Spider_ExploderTank_Ghost_C:
-		case FNames::ENE_Spider_Grunt_Guard_Ice_C:
-		case FNames::ENE_FacilityTurret_Burst_C:
-		case FNames::ENE_Spider_Drone_C:
-		case FNames::ENE_Spider_Shooter_Ground_C:
-		case FNames::ENE_Spider_Grunt_Normal_C:
-		case FNames::ENE_Spider_Exploding_C:
-		case FNames::ENE_Spider_Tank_Amber_C:
-		case FNames::ENE_HydraWeed_Core_C:
-		case FNames::ENE_JellyBreeder_Base_C:
-		case FNames::ENE_Spider_Amber_Shooter_C:
-		case FNames::ENE_Spider_Tank_Ice_C:
+		case FNames::DefaultPawn:
+		case FNames::PathfinderVehicle:
+		case FNames::PlayerCameraDrone:
+		case FNames::FSDPawn:
+		case FNames::Caretaker:
+		case FNames::EscortMule:
+		case FNames::TowerModuleBase:
+		case FNames::GuntowerModule:
+		case FNames::GuntowerWeakPoint:
+		case FNames::TowerEventModule:
+		case FNames::EnemyPawn:
+		case FNames::StabberVineRoot:
+		case FNames::ParasiteEnemy:
+		case FNames::InsectSwarmSpawner:
+		case FNames::HydraWeedHealer:
+		case FNames::ShootingPlant:
+		case FNames::HydraWeedCore:
+		case FNames::FacilityTurret:
+		case FNames::TentacleBase:
+		case FNames::CaveLeech:
+		case FNames::DeepPathfinderCharacter:
+		case FNames::EnemyDeepPathfinderCharacter:
+		case FNames::AFlyingBug:
+		case FNames::ConvertedRobot:
+		case FNames::FlyingEnemyDeepPathfinderCharacter:
+		case FNames::FriendlyParasite:
+		case FNames::HalloweenSkull:
+		case FNames::InsectSwarmEnemy:
+		case FNames::PatrolBot:
+		case FNames::PlagueWorm:
+		case FNames::ProspectorRobot:
+		case FNames::SharkEnemy:
+		case FNames::Shredder:
+		case FNames::SpiderEnemy:
+		case FNames::TerminatorEnemy:
+		case FNames::WoodLouse:
+		case FNames::BP_ShieldRegenerator_Mover_C:
 		case FNames::ENE_Jelly_Passive_C:
-		case FNames::ENE_Spider_Boss_TwinA_C:
-		case FNames::ENE_ShootingPlant_Small_C:
-		case FNames::ENE_Jelly_Swarmer_C:
-		case FNames::ENE_Prospector_C:
-		case FNames::ENE_FacilityTentacle_End_C:
-		case FNames::ENE_Spider_Tank_Rock_C:
-		case FNames::ENE_Spider_ExploderTank_King_C:
-		case FNames::ENE_Harvester_C:
-		case FNames::ENE_Spider_Exploding_Rockpox_Plague_C:
-		case FNames::ENE_Bomber_Rockpox_Plague_C:
-		case FNames::ENE_Spider_ShieldTank_C:
-		case FNames::ENE_FacilityTurret_Sniper_C:
-		case FNames::ENE_Spider_Shooter_C:
-		case FNames::ENE_Spider_Swarmer_Radioactive_C:
-		case FNames::ENE_Spider_RapidShooter_Elite_C:
-		case FNames::ENE_Bomber_Child_C:
-		case FNames::ENE_Spider_Charger_C:
-		case FNames::ENE_Spider_Swarmer_Pheromoned_C:
-		case FNames::ENE_PlagueLarva_C:
-		case FNames::ENE_Jelly_Swarmer_Child_C:
-		case FNames::ENE_Jelly_Spawn_Child_C:
-		case FNames::ENE_FacilityTentacle_Burrowing_C:
-		case FNames::ENE_SpiderSpawner_C:
-		case FNames::ENE_Spider_Shooter_Normal_Elite_C:
-		case FNames::ENE_Spider_Exploding_Warning_Radioactive_C:
-		case FNames::ENE_Spider_Tank_Radioactive_C:
-		case FNames::ENE_Grabber_C:
-		case FNames::ENE_Spider_Boss_HeavySpawn_C:
-		case FNames::ENE_BoughWasp_Nest_Medium2_C:
-		case FNames::ENE_Spider_Grunt_Attacker_Ice_C:
-		case FNames::ENE_Shredder_C:
-		case FNames::ENE_Spider_RapidShooter_C:
-		case FNames::ENE_Spider_Tank_Generic_C:
-		case FNames::ENE_Spider_Tank_Normal_C:
-		case FNames::ENE_BoughWasp_Nest_Medium_C:
-		case FNames::ENE_Spider_Boss_Base_C:
-		case FNames::ENE_Spider_Boss_TwinBase_C:
-		case FNames::ENE_BoughWasp_Swarm_C:
-		case FNames::ENE_Spider_Exploding_Radioactive_C:
-		case FNames::ENE_LootBug_C:
-		case FNames::ENE_Spider_Tank_Base_C:
-		case FNames::ENE_Mactera_TripleShooter_C:
-		case FNames::ENE_TerminatorTentacle_C:
-		case FNames::ENE_LootBug_Gold_C:
-		case FNames::ENE_Spider_Grunt_Rock_C:
-		case FNames::ENE_Terminator_C:
-		case FNames::ENE_Spider_Grunt_Attacker_Radioactive_C:
-		case FNames::ENE_Spider_Shooter_Rockpox_Plague_C:
-		case FNames::ENE_Spider_Boss_TwinB_C:
-		case FNames::ENE_Spider_ExploderTank_C:
-		case FNames::ENE_Spider_Boss_Heavy_C:
-		case FNames::ENE_GliderBeast_C:
-		case FNames::ENE_Flea_C:
-		case FNames::ENE_Spider_Grunt_Attacker_C:
-		case FNames::ENE_ElectricPlantVThree_C:
-		case FNames::ENE_Spider_Tank_Boss_C:
-		case FNames::ENE_Spider_Grunt_Radioactive_C:
-		case FNames::ENE_Spider_Stinger_C:
-		case FNames::ENE_PF_SpiderBase_C:
-		case FNames::ENE_Spider_Spawn_C:
-		case FNames::ENE_Maggot_Red1_C:
-		case FNames::ENE_StabberVines2_C:
-		case FNames::ENE_Spider_Swarmer_C:
-		case FNames::ENE_Spider_Buffer_C:
-		case FNames::ENE_Mactera_Shooter_Normal_C:
-		case FNames::ENE_Spider_Swarmer_Ice_C:
-		case FNames::ENE_ShootingPlant_C:
-		case FNames::ENE_Parasite_C:
-		case FNames::ENE_Mactera_Amber_C:
-		case FNames::ENE_InsectSwarm_Spawner_C:
-		case FNames::ENE_Woodlouse_Youngling_C:
-		case FNames::ENE_Bomber_Ice_C:
-		case FNames::ENE_Spider_Grunt_Base_C:
-		case FNames::ENE_BoughWasp_Nest_Medium3_C:
-		case FNames::ENE_Bomber_C:
-		case FNames::ENE_Maggot_C:
-		case FNames::ENE_SmallShootingPlant_RegenPod_C:
-		case FNames::ENE_Shredder_Base_C:
-		case FNames::ENE_StabberVine_Tentacle_C:
-		case FNames::ENE_InfestationLarva_C:
-		case FNames::ENE_Woodlouse_C:
-		case FNames::ENE_Shark_C:
-		case FNames::ENE_Maggot_Normal_C:
-		case FNames::ENE_FlyingSmartRock_C:
-		case FNames::ENE_EnemySpawner_C:
-		case FNames::ENE_Spider_Exploding_Warning_C:
-		case FNames::ENE_Spider_Grunt_Ice_C:
-		case FNames::ENE_FacilityTurret_Barrier_C:
-		case FNames::ENE_FacilityTentacle_C:
-		case FNames::ENE_Jelly_Passive_Mother_C:
-		case FNames::ENE_InsectSwarm_C:
-		case FNames::ENE_Maggot_Azure_C:
-		case FNames::ENE_Spider_Shooter_Queen_C:
-		case FNames::ENE_JellyBreeder_RockpoxPlague_C:
-		case FNames::ENE_WalkingPlagueheart_C:
-		case FNames::ENE_Spider_Hoarder_C:
-		case FNames::ENE_StabberVines_C:
-		case FNames::ENE_Spider_Tank_RockpoxPlague_C:
-		case FNames::ENE_FacilityCaretaker_C:
-		case FNames::ENE_InfectedMule_C:
-		case FNames::ENE_Mactera_Shooter_Base_C:
-		case FNames::ENE_Maggot_HollowBough_Grub_C:
-		case FNames::ENE_Spider_Shooter_Normal_C:
-		case FNames::ENE_Spider_Grunt_RockpoxPlague_C:
-		case FNames::ENE_CaveLeech_C:
-		case FNames::ENE_FacilityTurret_Base_C:
-		case FNames::ENE_Maggot_Green1_C:
-		case FNames::ENE_Maggot_SplineTrail_C:
-		case FNames::ENE_Mactera_Shooter_HeavyVeteran_C:
-		case FNames::ENE_PlagueShark_C:
-		case FNames::ENE_Spider_Lobber_C:
-		case FNames::ENE_PatrolBot_C:
-		case FNames::ENE_PatrolBot_Caretaker_C:
-		case FNames::ENE_SpiderBase_Large_C:
-		case FNames::ENE_BoughWasp_Nest_Small_C:
-		case FNames::ENE_Spider_Lobber_Base_C:
+		case FNames::Bosco:
+		case FNames::CaveWorm:
+		case FNames::Maggot:
+		case FNames::DroneBase:
+		case FNames::DroneCharacter:
+		case FNames::MULE:
+		case FNames::RecallableActor:
 		{
 			if ((iESPMaxDistance && stInfo.flDistance > iESPMaxDistance) || !IsValidObjectPtr(stInfo.pActor))
 				break;
 
 			CG::AFSDPawn* pPawn = reinterpret_cast<CG::AFSDPawn*>(stInfo.pActor);
-			if (!IsValidObjectPtr(pPawn) || !stInfo.pActor->IsA(CG::AFSDPawn::StaticClass()))
+			if (!IsValidObjectPtr(pPawn) || !pUnreal->IsAFast(pPawn->Class, FNames::FSDPawn))
 				break;
 
 			CG::UHealthComponent* pHealthComponent = reinterpret_cast<CG::UHealthComponent*>(pPawn->GetHealthComponent());
@@ -497,7 +405,6 @@ void ESP::Render()
 			}
 
 			if (stObjectives.bName) {
-
 				// EVIL TERRIBLE HORRIBLE HACK
 				char szName[64];
 				szName[stInfo.pActor->Name.GetName().copy(szName, 63, 0)] = 0;
@@ -564,10 +471,8 @@ void ESP::Render()
 
 			break;
 		}
-		case FNames::BP_NavigatorCharacter_C: // Player Characters
-		case FNames::BP_DrillerCharacter_C:
-		case FNames::BP_EngineerCharacter_C:
-		case FNames::BP_GunnerCharacter_C:
+		case FNames::Character:
+		case FNames::PlayerCharacter:
 		{
 			vecPlayers.push_back(stInfo.pActor);
 
