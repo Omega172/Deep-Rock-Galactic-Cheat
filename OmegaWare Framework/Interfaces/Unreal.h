@@ -2,9 +2,87 @@
 #include "pch.h"
 #if FRAMEWORK_UNREAL // Not sure if this is needed but it's here anyway
 
-#ifndef GAME_FNAMES
-#define GAME_FNAMES(x) \
-	x(Invalid)
+bool FrameworkUnrealInit()
+{
+#ifndef DUMPER_7
+	if (!CG::InitSdk())
+		return false;
+
+	if (!(*CG::UWorld::GWorld))
+		LogErrorHere("Waiting for GWorld to initalize");
+
+	while (!(*CG::UWorld::GWorld))
+		continue;
+#endif // !DUMPER_7
+
+#ifdef DUMPER_7
+	CG::UWorld* pGWorld = CG::UWorld::GetWorld();
+	if (!pGWorld)
+		LogErrorHere("Waiting for GWorld to initalize");
+
+	while (!pGWorld)
+		continue;
+#endif // DUMPER_7
+
+}
+
+#ifndef DUMPER_7
+typedef void(__thiscall* PostRender) (CG::UObject* pViewportClient, CG::UCanvas* pCanvas);
+class BadHookPostRender
+{
+public:
+	static CG::UFont* pFont;
+	static DWORD dwOldProtect;
+
+	static PostRender oPostRender;
+
+	static void HookPostRender()
+	{
+		pFont = CG::UObject::FindObject<CG::UFont>("Font Roboto.Roboto");
+		if (!IsValidObjectPtr(pFont))
+			return;
+
+		CG::UGameViewportClient* pViewportClient = Framework::unreal.get()->GetViewportClient();;
+		if (!IsValidObjectPtr(pViewportClient))
+			return;
+
+		void** VFTable = pViewportClient->VfTable;
+		VirtualProtect(&VFTable[POST_RENDER_INDEX], 8, PAGE_EXECUTE_READWRITE, &dwOldProtect);
+		oPostRender = reinterpret_cast<PostRender>(VFTable[POST_RENDER_INDEX]);
+		VFTable[POST_RENDER_INDEX] = &hkPostRender;
+		VirtualProtect(&VFTable[POST_RENDER_INDEX], 8, dwOldProtect, &dwOldProtect);
+	}
+
+	static void RestorePostRender()
+	{
+		CG::UGameViewportClient* pViewportClient = Framework::unreal.get()->GetViewportClient();
+		if (!IsValidObjectPtr(pViewportClient))
+			return;
+
+		void** VFTable = pViewportClient->VfTable;
+		VirtualProtect(&VFTable[POST_RENDER_INDEX], 8, PAGE_EXECUTE_READWRITE, &dwOldProtect);
+		VFTable[POST_RENDER_INDEX] = oPostRender;
+		VirtualProtect(&VFTable[POST_RENDER_INDEX], 8, dwOldProtect, &dwOldProtect);
+	}
+
+	static void hkPostRender(CG::UObject* pViewportClient, CG::UCanvas* pCanvas)
+	{
+		CG::ULocalPlayer* pLocalPlayer = GetLocalPlayer();
+		if (!IsValidObjectPtr(pLocalPlayer))
+			return oPostRender(pViewportClient, pCanvas);
+
+		CG::FLinearColor Cyan = { 0.f, 1.f, 1.f, 1.f };
+		CG::FLinearColor Black = { 0.f, 0.f, 0.f, 1.f };
+
+		// The canvas reports its size as the current resolution but in my testing it is always 2048, 1280
+		CG::FVector2D TextSize = pCanvas->K2_TextSize(pFont, L"OmegaWare.xyz", { 1.f, 1.f });
+		//pCanvas->K2_DrawText(pFont, L"OmegaWare.xyz", { 1024.f - (TextSize.X / 2), 0.f }, { 1.f, 1.f }, Cyan, 1.f, Black, { 0.f, 0.f }, false, false, true, Black);
+
+		//pCanvas->K2_DrawLine({ 0.f, 0.f }, { 1024.f, 640.f }, 1.f, Cyan);
+
+		oPostRender(pViewportClient, pCanvas);
+	}
+};
 #endif
 
 #define CREATE_ENUM(n) n,
@@ -30,7 +108,7 @@ namespace FNames
 	inline std::vector<ClassLookupEntry_t> vecClassLookups{
 		GAME_FNAMES(CREATE_CLASS_LOOKUP)
 	};
-	
+
 	inline EFNames GetLookupIndex(int32_t ComparisonIndex) {
 		for (const auto entry : vecClassLookups) {
 			if (ComparisonIndex == entry.ComparisonIndex)
@@ -44,7 +122,7 @@ namespace FNames
 	{
 		Utils::LogDebug(Utils::GetLocation(CurrentLoc), (std::stringstream() << "GNames: 0x" << CG::FName::GNames).str());
 		Utils::LogDebug(Utils::GetLocation(CurrentLoc), (std::stringstream() << "GNames Count: " << CG::FName::GNames->Count()).str());
-		
+
 		size_t iGNameSize = 0;
 		int lastBlock = 0;
 		uintptr_t nextFNameAddress = reinterpret_cast<uintptr_t>(CG::FName::GNames->Allocator.Blocks[0]);
@@ -111,50 +189,15 @@ namespace FNames
 				Utils::LogError(Utils::GetLocation(CurrentLoc), "Didnt Find " + std::string(stLookupEntry.sName));
 		}
 
-		Utils::LogDebug(Utils::GetLocation(CurrentLoc), (std::stringstream() << "Resolved GNames Count: " << iGNameSize).str());
+		LogDebugStreamHere("Resolved GNames Count: " << iGNameSize);
 	};
 }
 #undef CREATE_ENUM
 #undef CREATE_CLASS_LOOKUP
 
-static CG::UFont* pFont;
-static DWORD dwOldProtect;
-
-typedef void(__thiscall* PostRender) (CG::UObject* pViewportClient, CG::UCanvas* pCanvas);
-static PostRender oPostRender;
-
 class Unreal
 {
 public:
-	static void HookPostRender()
-	{
-		pFont = CG::UObject::FindObject<CG::UFont>("Font Roboto.Roboto");
-		if (!IsValidObjectPtr(pFont))
-			return;
-
-		CG::UGameViewportClient* pViewportClient = GetViewportClient();
-		if (!IsValidObjectPtr(pViewportClient))
-			return;
-
-		void** VFTable = pViewportClient->VfTable;
-		VirtualProtect(&VFTable[POST_RENDER_INDEX], 8, PAGE_EXECUTE_READWRITE, &dwOldProtect);
-		oPostRender = reinterpret_cast<PostRender>(VFTable[POST_RENDER_INDEX]);
-		VFTable[POST_RENDER_INDEX] = &hkPostRender;
-		VirtualProtect(&VFTable[POST_RENDER_INDEX], 8, dwOldProtect, &dwOldProtect);
-	}
-
-	static void RestorePostRender()
-	{
-		CG::UGameViewportClient* pViewportClient = GetViewportClient();
-		if (!IsValidObjectPtr(pViewportClient))
-			return;
-
-		void** VFTable = pViewportClient->VfTable;
-		VirtualProtect(&VFTable[POST_RENDER_INDEX], 8, PAGE_EXECUTE_READWRITE, &dwOldProtect);
-		VFTable[POST_RENDER_INDEX] = oPostRender;
-		VirtualProtect(&VFTable[POST_RENDER_INDEX], 8, dwOldProtect, &dwOldProtect);
-	}
-
 	std::vector<CG::AActor*> Actors;
 	std::vector<FNames::ActorInfo_t> ActorList;
 	std::mutex ActorLock;
@@ -165,50 +208,34 @@ public:
 	static CG::UGameplayStatics* GetGameplayStatics() { return reinterpret_cast<CG::UGameplayStatics*>(CG::UGameplayStatics::StaticClass()); }
 	static CG::UKismetStringLibrary* GetStringLibrary() { return reinterpret_cast<CG::UKismetStringLibrary*>(CG::UKismetStringLibrary::StaticClass()); }
 
-	// LIFEHAAACK BITCH (◣_◢)
-	inline bool IsAFast(CG::UClass* in, FNames::EFNames iLookupIndex)
-	{
-		int32_t iComparisonIndex = FNames::vecClassLookups[iLookupIndex].ComparisonIndex;
-		for (CG::UStruct* pStruct = static_cast<CG::UStruct*>(in); IsValidObjectPtr(pStruct); pStruct = pStruct->SuperField) {
-			if (pStruct->Name.ComparisonIndex == iComparisonIndex)
-				return true;
-		}
-
-		return false;
-	};
-
-	// Kinda like UObject->IsA, but safer and faster as we are already storing fname comparison indexes!!!
-	inline bool IsAFast(CG::UClass* in, int iComparisonIndex)
-	{
-		for (CG::UStruct* pStruct = static_cast<CG::UStruct*>(in); IsValidObjectPtr(pStruct); pStruct = pStruct->SuperField) {
-			if (pStruct->Name.ComparisonIndex == iComparisonIndex)
-				return true;
-		}
-
-		return false;
-	};
-
 	inline void RefreshActorList() // A function to refresh the actor list
 	{
 		std::vector<CG::AActor*> lActors{};
 		std::vector<FNames::ActorInfo_t> lActorList{};
 		std::vector<float> AllDistances{};
 
-		static std::unordered_map<uint32_t, FNames::EFNames> umClassLookupCache{};
-
+#ifndef DUMPER_7
 		if (CG::UWorld::GWorld == nullptr) {
 			ActorLock.lock();
-			umClassLookupCache.clear(); // This is probably not needed due to fname comparison indexes not changing
 			Actors.clear();
 			ActorList.clear();
 			ActorLock.unlock();
 			return;
 		}
-
-		CG::AFSDGameState* pGameState = reinterpret_cast<CG::AFSDGameState*>(GetGameStateBase());
-		if (!IsValidObjectPtr(pGameState) || pGameState->IsOnSpaceRig) {
+#else
+		CG::UWorld* pGWorld = CG::UWorld::GetWorld();
+		if (pGWorld == nullptr) {
 			ActorLock.lock();
-			umClassLookupCache.clear(); // This is probably not needed due to fname comparison indexes not changing
+			Actors.clear();
+			ActorList.clear();
+			ActorLock.unlock();
+			return;
+		}
+#endif
+
+		CG::AGameState* pGameState = reinterpret_cast<CG::AGameState*>(GetGameStateBase());
+		if (!IsValidObjectPtr(pGameState)) {
+			ActorLock.lock();
 			Actors.clear();
 			ActorList.clear();
 			ActorLock.unlock();
@@ -218,13 +245,12 @@ public:
 		FNames::EFNames iMatchState = FNames::GetLookupIndex(pGameState->MatchState.ComparisonIndex);
 		if (iMatchState != FNames::InProgress) {
 			ActorLock.lock();
-			umClassLookupCache.clear(); // This is probably not needed due to fname comparison indexes not changing
 			Actors.clear();
 			ActorList.clear();
 			ActorLock.unlock();
 			return;
 		}
-		
+
 		CG::APawn* pAcknowledgedPawn = GetAcknowledgedPawn();
 		if (!pAcknowledgedPawn) {
 			ActorLock.lock();
@@ -237,6 +263,8 @@ public:
 
 		CG::FVector vecLocation = pAcknowledgedPawn->K2_GetActorLocation();
 
+
+#ifndef DUMPER_7
 		for (int i = 0; i < (**CG::UWorld::GWorld).Levels.Count(); i++)
 		{
 			CG::ULevel* Level = (**CG::UWorld::GWorld).Levels[i];
@@ -266,6 +294,37 @@ public:
 					lActors.push_back(Actor);
 			}
 		}
+#else
+		for (int i = 0; i < pGWorld->Levels.Num(); i++)
+		{
+			CG::ULevel* Level = pGWorld->Levels[i];
+
+			if (!Level)
+				continue;
+
+			if (!Level->Actors.IsValid() || !Level->Actors.Num())
+				continue;
+
+			for (int j = 0; j < Level->Actors.Num(); j++)
+			{
+				CG::AActor* Actor = Level->Actors[j];
+				if (!Actor)
+					continue;
+
+				bool bFailed = false;
+				for (CG::AActor* pOtherActor : lActors) {
+					if (pOtherActor != Actor)
+						continue;
+
+					bFailed = true;
+					break;
+				}
+
+				if (!bFailed)
+					lActors.push_back(Actor);
+			}
+		}
+#endif
 
 		for (CG::AActor* pActor : lActors)
 		{
@@ -276,31 +335,22 @@ public:
 			FNames::ActorInfo_t stActorInfo{
 				pActor,
 				FNames::Invalid,
+#ifndef DUMPER_7
 				vecLocation.Distance(pActor->K2_GetActorLocation())
+#else
+				vecLocation.GetDistanceTo(pActor->K2_GetActorLocation())
+#endif
 			};
 
-
-			if (auto itr = umClassLookupCache.find(iComparisonIndex); itr != umClassLookupCache.end()) {
-				stActorInfo.iLookupIndex = itr->second;
-			}
-			else {
-				for (CG::UStruct* pStruct = static_cast<CG::UStruct*>(pActor->Class); IsValidObjectPtr(pStruct); pStruct = pStruct->SuperField) {
-					for (FNames::ClassLookupEntry_t stEntry : FNames::vecClassLookups) {
-						if (pStruct->Name.ComparisonIndex == stEntry.ComparisonIndex) {
-							stActorInfo.iLookupIndex = stEntry.iLookupIndex;
-							break;
-						}
-					}
-
-					if (stActorInfo.iLookupIndex != FNames::Invalid)
-						break;
+			for (FNames::ClassLookupEntry_t stEntry : FNames::vecClassLookups) {
+				if (iComparisonIndex == stEntry.ComparisonIndex) {
+					stActorInfo.iLookupIndex = stEntry.iLookupIndex;
+					break;
 				}
-
-				umClassLookupCache.emplace(iComparisonIndex, stActorInfo.iLookupIndex);
 			}
 
-			//if (stActorInfo.iLookupIndex == FNames::Invalid)
-			//	continue;
+			if (stActorInfo.iLookupIndex == FNames::Invalid)
+				continue;
 
 			while (1) {
 				bool bFixed = true;
@@ -364,24 +414,42 @@ public:
 	// These functions are to make getting pointers to important classes and objects easier and cleaner
 	static CG::AGameStateBase* GetGameStateBase()
 	{
+#ifndef DUMPER_7
 		if (!(*CG::UWorld::GWorld))
 			return nullptr;
 
 		CG::AGameStateBase* pGameState = (*CG::UWorld::GWorld)->GameState;
 		if (!IsValidObjectPtr(pGameState))
 			return nullptr;
+#else
+		CG::UWorld* pGWorld = CG::UWorld::GetWorld();
+		if (!pGWorld)
+			return nullptr;
 
+		CG::AGameStateBase* pGameState = pGWorld->GameState;
+		if (!IsValidObjectPtr(pGameState))
+			return nullptr;
+#endif
 		return pGameState;
 	}
 	static CG::UGameInstance* GetGameInstance()
 	{
+#ifndef DUMPER_7
 		if (!(*CG::UWorld::GWorld))
 			return nullptr;
 
 		CG::UGameInstance* pGameInstance = (*CG::UWorld::GWorld)->OwningGameInstance;
 		if (!IsValidObjectPtr(pGameInstance))
 			return nullptr;
+#else
+		CG::UWorld* pGWorld = CG::UWorld::GetWorld();
+		if (!pGWorld)
+			return nullptr;
 
+		CG::UGameInstance* pGameInstance = pGWorld->OwningGameInstance;
+		if (!IsValidObjectPtr(pGameInstance))
+			return nullptr;
+#endif
 		return pGameInstance;
 	}
 
@@ -486,7 +554,7 @@ public:
 		std::vector<SortHack_t> ActorAndDistances{};
 		std::vector<float> AllDistances{};
 
-		for (T pActor : actors) 
+		for (T pActor : actors)
 		{
 			if (!IsValidObjectPtr(pActor))
 				continue;
@@ -524,24 +592,5 @@ public:
 
 		return SortedActors;
 	}
-
-	static void hkPostRender(CG::UObject* pViewportClient, CG::UCanvas* pCanvas)
-	{
-		CG::ULocalPlayer* pLocalPlayer = GetLocalPlayer();
-		if (!IsValidObjectPtr(pLocalPlayer))
-			return oPostRender(pViewportClient, pCanvas);
-
-		CG::FLinearColor Cyan = { 0.f, 1.f, 1.f, 1.f };
-		CG::FLinearColor Black = { 0.f, 0.f, 0.f, 1.f };
-
-		// The canvas reports its size as the current resolution but in my testing it is always 2048, 1280
-		CG::FVector2D TextSize = pCanvas->K2_TextSize(pFont, L"OmegaWare.xyz", { 1.f, 1.f });
-		//pCanvas->K2_DrawText(pFont, L"OmegaWare.xyz", { 1024.f - (TextSize.X / 2), 0.f }, { 1.f, 1.f }, Cyan, 1.f, Black, { 0.f, 0.f }, false, false, true, Black);
-
-		//pCanvas->K2_DrawLine({ 0.f, 0.f }, { 1024.f, 640.f }, 1.f, Cyan);
-
-		oPostRender(pViewportClient, pCanvas);
-	}
 };
-
 #endif

@@ -148,11 +148,14 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="SDK\Basic.cpp" />
     <ClCompile Include="SDK\BasicTypes_Package.cpp" />
     <ClCompile Include="SDK\BP_DropPod_Base_Package.cpp" />
     <ClCompile Include="SDK\BP_DropPod_Escape_Base_Package.cpp" />
     <ClCompile Include="SDK\BP_PlayerCharacter_Package.cpp" />
+    <ClCompile Include="SDK\CoreUObject_functions.cpp" />
     <ClCompile Include="SDK\CoreUObject_Package.cpp" />
+    <ClCompile Include="SDK\Engine_functions.cpp" />
     <ClCompile Include="SDK\Engine_Package.cpp" />
     <ClCompile Include="SDK\FSD_Package.cpp" />
     <ClCompile Include="SDK\WPN_DoubleDrills_Package.cpp" />
@@ -187,13 +190,16 @@
     <ClInclude Include="Localization\Locales\German.h" />
     <ClInclude Include="Localization\Localization.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="PropertyFixup.hpp" />
     <ClInclude Include="SDK.h" />
+    <ClInclude Include="UnrealContainers.hpp" />
     <ClInclude Include="Utils\Console\Console.h" />
     <ClInclude Include="Utils\Logging\Colors.hpp" />
     <ClInclude Include="Utils\Logging\Logging.h" />
     <ClInclude Include="Utils\Utils.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="NameCollisions.inl" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

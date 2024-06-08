@@ -38,6 +38,9 @@
     <ClCompile Include="Libs\ImGui\imgui_tables.cpp" />
     <ClCompile Include="Libs\ImGui\imgui_widgets.cpp" />
     <ClCompile Include="Hooks\Renderer\RendererHooks.cpp" />
+    <ClCompile Include="SDK\Basic.cpp" />
+    <ClCompile Include="SDK\CoreUObject_functions.cpp" />
+    <ClCompile Include="SDK\Engine_functions.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utils\Console\Console.h" />
@@ -82,9 +85,12 @@
     <ClInclude Include="Libs\ImGui\imstb_truetype.h" />
     <ClInclude Include="Libs\MinHook\include\MinHook.h" />
     <ClInclude Include="Libs\StringToBytes\stb.hh" />
+    <ClInclude Include="PropertyFixup.hpp" />
+    <ClInclude Include="UnrealContainers.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="NameCollisions.inl" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Fonts.txt" />
