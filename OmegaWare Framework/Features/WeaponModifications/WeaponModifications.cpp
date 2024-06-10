@@ -71,7 +71,8 @@ void WeaponModifications::PopulateMenu()
 
 void WeaponModifications::Render() {}
 
-void WeaponModifications::Run() {
+void WeaponModifications::Run() 
+{
 	if (!Initialized)
 		return;
 
@@ -103,7 +104,6 @@ void WeaponModifications::Run() {
 	if (bInfiniteAmmo) {
 		pInventoryComponent->FlareProductionTimeLeft = 0.f;
 		pInventoryComponent->FlareCooldownRemaining = 0.f;
-		pInventoryComponent->Resupply(100.f);
 	}
 
 	CG::APickaxeItem* pPickaxe = pInventoryComponent->MiningItem;
@@ -135,6 +135,32 @@ void WeaponModifications::Run() {
 
 		return;
 	}
+	case FNames::WPN_DoubleDrills_C:
+	{
+		CG::AWPN_DoubleDrills_C* pDrills = reinterpret_cast<CG::AWPN_DoubleDrills_C*>(pItem);
+		if (!IsValidObjectPtr(pDrills))
+			return;
+
+		pDrills->CarverRayCastLength = 99999.f;
+		pDrills->CarveTerrainDistanceCheck = 99999.f;
+		pDrills->TimeToNextMine = 0.f;
+		pDrills->MovementPenalty = 1.f; // 0.7f
+
+
+		const float flCarveSizeModifier = 3.f;
+
+		pDrills->CarveSize.X = 150.f * flCarveSizeModifier;
+		pDrills->CarveSize.Y = 200.f * flCarveSizeModifier;
+		pDrills->CarveSize.Z = 220.f * flCarveSizeModifier;
+
+		if (bNoOverheating)
+			pDrills->IsMining = false;
+
+		if (bInfiniteAmmo)
+			pDrills->Client_Resupply(100.f);
+	
+		return;
+	}
 	case FNames::WPN_SawedOffShotgun_C:
 		CG::AWPN_SawedOffShotgun_C* pShotgun = static_cast<CG::AWPN_SawedOffShotgun_C*>(pItem);
 		if (IsValidObjectPtr(pShotgun)) {
@@ -144,24 +170,27 @@ void WeaponModifications::Run() {
 		break;
 	}
 
+
+	CG::AAmmoDrivenWeapon* pWeapon = static_cast<CG::AAmmoDrivenWeapon*>(pItem);
+	if (!pUnreal->IsAFast(pItem->Class, CG::FName("AmmoDrivenWeapon").ComparisonIndex) || !IsValidObjectPtr(pWeapon))
+		return;
+
 	if (bNoOverheating) {
 		pItem->ManualCooldownDelay = 0.f;
 		pItem->CooldownRate = 99999.f;
+
 	}
 	else {
 		pItem->ManualCooldownDelay = 1.f;
 	}
 
-	if (!pItem->IsA(CG::AAmmoDrivenWeapon::StaticClass()))
-		return;	
-
-	CG::AAmmoDrivenWeapon* pWeapon = static_cast<CG::AAmmoDrivenWeapon*>(pItem);
-	if (!IsValidObjectPtr(pWeapon))
-		return;
+	if (bInfiniteAmmo)
+		pWeapon->Client_RefillAmmo(100.f);
 
 	pWeapon->HasAutomaticFire = true;
-	if (bNoReload && !pWeapon->IsClipFull())
+	if (bNoReload && pWeapon->WeaponState == CG::EAmmoWeaponState::Reloading)
 		pWeapon->InstantlyReload();
+	
 
 	if (bNoRecoil) {
 		pWeapon->RecoilSettings.RecoilPitch.Max = 0.f;
